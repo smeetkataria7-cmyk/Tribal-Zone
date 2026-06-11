@@ -124,7 +124,7 @@
 /* Collection header banner */
 .tz-coll-banner {
   position: relative; overflow: hidden;
-  height: 200px; background: linear-gradient(135deg, #1c1c1c, #2e2620);
+  height: 220px; background: linear-gradient(135deg, #1c1c1c, #2e2620);
   display: flex; align-items: center;
 }
 .tz-coll-banner img {
@@ -248,7 +248,7 @@
     <!-- Products -->
     <div class="tz-products" id="Collection">
       {% for product in collection.products %}
-        {% include 'product-card-grid', max_height: 400 %}
+        {% render 'product-card-grid', product: product, collection: collection %}
       {% else %}
         <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;">
           <p style="font-family:var(--tz-serif,serif);font-size:28px;font-weight:300;margin-bottom:12px;color:#1c1c1c;">No products found</p>

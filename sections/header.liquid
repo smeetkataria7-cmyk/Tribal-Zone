@@ -215,28 +215,70 @@
   <!-- Desktop nav -->
   <nav class="tz-nav-row" role="navigation">
     <div class="tz-nav-inner">
-      {% for link in linklists[section.settings.main_linklist].links %}
+      {% if linklists[section.settings.main_linklist].links != blank %}
+        {% for link in linklists[section.settings.main_linklist].links %}
+          <div class="tz-nav-item">
+            <a href="{{ link.url }}" class="tz-nav-link{% if link.active %} active{% endif %}{% if link.title contains 'Sale' or link.title contains 'sale' %} sale{% endif %}">
+              {{ link.title }}{% if link.links != blank %} ▾{% endif %}
+            </a>
+            {% if link.links != blank %}
+              <div class="tz-dropdown">
+                {% for childlink in link.links %}
+                  <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        {%- comment -%} Fallback hardcoded nav — matches all 8 collection tabs {%- endcomment -%}
+        <div class="tz-nav-item"><a href="/collections/new-arrivals" class="tz-nav-link{% if collection.handle == 'new-arrivals' %} active{% endif %}">New Arrivals</a></div>
         <div class="tz-nav-item">
-          <a href="{{ link.url }}" class="tz-nav-link{% if link.active %} active{% endif %}{% if link.title contains 'Sale' or link.title contains 'sale' %} sale{% endif %}">
-            {{ link.title }}{% if link.links != blank %} ▾{% endif %}
-          </a>
-          {% if link.links != blank %}
-            <div class="tz-dropdown">
-              {% for childlink in link.links %}
-                <a href="{{ childlink.url }}">{{ childlink.title }}</a>
-              {% endfor %}
-            </div>
-          {% endif %}
+          <a href="/collections/earrings" class="tz-nav-link{% if collection.handle == 'earrings' %} active{% endif %}">Earrings ▾</a>
+          <div class="tz-dropdown">
+            <a href="/collections/earrings/jhumkas">Jhumkas</a>
+            <a href="/collections/earrings/studs">Studs</a>
+            <a href="/collections/earrings/hoops">Hoops</a>
+            <a href="/collections/earrings/danglers">Danglers</a>
+            <a href="/collections/earrings/chandbalis">Chandbalis</a>
+          </div>
         </div>
-      {% endfor %}
+        <div class="tz-nav-item">
+          <a href="/collections/necklaces" class="tz-nav-link{% if collection.handle == 'necklaces' %} active{% endif %}">Necklaces ▾</a>
+          <div class="tz-dropdown">
+            <a href="/collections/necklaces/chokers">Chokers</a>
+            <a href="/collections/necklaces/long-chains">Long Chains</a>
+            <a href="/collections/necklaces/layered-sets">Layered Sets</a>
+            <a href="/collections/necklaces/temple-jewellery">Temple Jewellery</a>
+          </div>
+        </div>
+        <div class="tz-nav-item"><a href="/collections/bangles-bracelets" class="tz-nav-link{% if collection.handle == 'bangles-bracelets' %} active{% endif %}">Bangles &amp; Bracelets</a></div>
+        <div class="tz-nav-item"><a href="/collections/maang-tikka" class="tz-nav-link{% if collection.handle == 'maang-tikka' %} active{% endif %}">Maang Tikka</a></div>
+        <div class="tz-nav-item"><a href="/collections/rings" class="tz-nav-link{% if collection.handle == 'rings' %} active{% endif %}">Rings</a></div>
+        <div class="tz-nav-item"><a href="/collections/zodiac" class="tz-nav-link{% if collection.handle == 'zodiac' %} active{% endif %}">Zodiac</a></div>
+        <div class="tz-nav-item"><a href="/collections/festive-hampers" class="tz-nav-link{% if collection.handle == 'festive-hampers' %} active{% endif %}">Festive Hampers</a></div>
+        <div class="tz-nav-item"><a href="/collections/sale" class="tz-nav-link sale{% if collection.handle == 'sale' %} active{% endif %}">Sale</a></div>
+      {% endif %}
     </div>
   </nav>
 
   <!-- Mobile nav -->
   <nav class="tz-mobile-nav" id="tzMobileNav" role="navigation">
-    {% for link in linklists[section.settings.main_linklist].links %}
-      <a href="{{ link.url }}" {% if link.title contains 'Sale' or link.title contains 'sale' %}class="sale"{% endif %}>{{ link.title }}</a>
-    {% endfor %}
+    {% if linklists[section.settings.main_linklist].links != blank %}
+      {% for link in linklists[section.settings.main_linklist].links %}
+        <a href="{{ link.url }}" {% if link.title contains 'Sale' or link.title contains 'sale' %}class="sale"{% endif %}>{{ link.title }}</a>
+      {% endfor %}
+    {% else %}
+      <a href="/collections/new-arrivals">New Arrivals</a>
+      <a href="/collections/earrings">Earrings</a>
+      <a href="/collections/necklaces">Necklaces</a>
+      <a href="/collections/bangles-bracelets">Bangles &amp; Bracelets</a>
+      <a href="/collections/maang-tikka">Maang Tikka</a>
+      <a href="/collections/rings">Rings</a>
+      <a href="/collections/zodiac">Zodiac</a>
+      <a href="/collections/festive-hampers">Festive Hampers</a>
+      <a href="/collections/sale" class="sale">Sale</a>
+    {% endif %}
   </nav>
 </div>
 

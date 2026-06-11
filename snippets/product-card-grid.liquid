@@ -5,7 +5,7 @@
 .tz-card {
   background: #fff;
   border: 1px solid #ececec;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   transition: box-shadow .25s, transform .25s;
   cursor: pointer;
@@ -72,7 +72,7 @@
 .tz-card-free { font-size: 11px; color: #2ecc71; margin-top: 4px; font-weight: 500; }
 </style>
 
-<a class="tz-card" href="{{ product.url | within: collection }}">
+<a class="tz-card" href="{{ product.url }}">
   <div class="tz-card-img">
     {% if product.featured_image %}
       <img
