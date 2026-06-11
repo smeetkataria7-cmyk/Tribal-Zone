@@ -10,1152 +10,1330 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --gold: #b8913a;
+      --gold:    #b8913a;
       --gold-lt: #d4a853;
-      --cream: #fdf9f4;
-      --white: #ffffff;
-      --dark: #1c1c1c;
-      --mid: #4a4a4a;
-      --muted: #888;
-      --border: #ececec;
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans: 'Inter', system-ui, sans-serif;
+      --gold-bg: #fff8ed;
+      --cream:   #fdf9f4;
+      --white:   #ffffff;
+      --dark:    #1c1c1c;
+      --mid:     #4a4a4a;
+      --muted:   #888888;
+      --border:  #ececec;
+      --red:     #e03e3e;
+      --green:   #27ae60;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Inter', system-ui, sans-serif;
+      --radius:  14px;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); color: var(--dark); background: var(--white); font-size: 14px; line-height: 1.6; }
+    body { font-family: var(--sans); color: var(--dark); background: #fff; font-size: 14px; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
     button { font-family: var(--sans); cursor: pointer; }
 
-    /* ─── ANNOUNCE BAR ─── */
+    /* ══════════════════════════════════════════
+       ANNOUNCE BAR
+    ══════════════════════════════════════════ */
     .announce {
-      background: var(--dark);
-      color: rgba(255,255,255,.85);
-      text-align: center;
-      padding: 9px 20px;
-      font-size: 12px;
-      letter-spacing: 0.08em;
+      background: var(--dark); color: rgba(255,255,255,.88);
+      text-align: center; padding: 10px 20px; font-size: 12.5px;
+      letter-spacing: 0.07em; overflow: hidden; height: 38px;
       position: relative;
-      overflow: hidden;
     }
     .announce-slides { display: flex; flex-direction: column; height: 18px; overflow: hidden; }
-    .announce-slide { height: 18px; display: flex; align-items: center; justify-content: center; gap: 6px; animation: slide 9s infinite; }
+    .announce-slide { height: 18px; display: flex; align-items: center; justify-content: center; gap: 8px; animation: aSlide 12s infinite; }
     .announce b { color: var(--gold-lt); }
-    @keyframes slide {
+    .announce-slide .sep { opacity: .35; margin: 0 8px; }
+    @keyframes aSlide {
       0%,28%  { transform: translateY(0); }
       33%,61% { transform: translateY(-18px); }
       66%,94% { transform: translateY(-36px); }
       100%    { transform: translateY(0); }
     }
 
-    /* ─── HEADER ─── */
-    header {
-      position: sticky; top: 0; z-index: 200;
-      background: rgba(255,255,255,.97);
-      backdrop-filter: blur(12px);
+    /* ══════════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════════ */
+    .header {
+      position: sticky; top: 0; z-index: 300;
+      background: rgba(255,255,255,.98);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(0,0,0,.04);
     }
-    .header-top {
-      max-width: 1340px; margin: 0 auto;
-      padding: 0 32px; height: 68px;
+    .header-main {
+      max-width: 1380px; margin: 0 auto;
+      padding: 0 32px; height: 70px;
       display: flex; align-items: center; justify-content: space-between; gap: 20px;
     }
     .logo {
-      font-family: var(--serif);
-      font-size: 26px; font-weight: 400; letter-spacing: 0.04em;
-      display: flex; align-items: center; gap: 2px;
+      font-family: var(--serif); font-size: 28px; font-weight: 400;
+      letter-spacing: 0.03em; white-space: nowrap; flex-shrink: 0;
     }
-    .logo-tz { color: var(--dark); }
-    .logo-dot { color: var(--gold); font-size: 32px; line-height: 0; margin-bottom: -4px; }
-
-    /* Search bar (GIVA style) */
-    .header-search {
-      flex: 1; max-width: 420px;
+    .logo span { color: var(--gold); }
+    /* Search */
+    .search-wrap {
+      flex: 1; max-width: 480px;
       display: flex; align-items: center;
-      border: 1.5px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      transition: border-color .2s;
+      border: 1.5px solid var(--border); border-radius: 50px; overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+      background: #fafafa;
     }
-    .header-search:focus-within { border-color: var(--gold); }
-    .header-search input {
-      flex: 1; border: none; outline: none; padding: 9px 14px;
-      font-size: 13px; font-family: var(--sans); color: var(--dark);
-      background: transparent;
+    .search-wrap:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,145,58,.1); background: #fff; }
+    .search-wrap input {
+      flex: 1; border: none; outline: none; padding: 11px 18px;
+      font-size: 13px; font-family: var(--sans); background: transparent;
     }
-    .header-search input::placeholder { color: var(--muted); }
-    .header-search button {
-      background: none; border: none; padding: 0 14px;
-      color: var(--muted); display: flex; align-items: center;
-      transition: color .2s;
+    .search-wrap button {
+      background: var(--dark); border: none; padding: 11px 18px;
+      color: #fff; display: flex; align-items: center; transition: background .2s;
     }
-    .header-search button:hover { color: var(--gold); }
-
-    .header-actions { display: flex; align-items: center; gap: 4px; }
-    .h-btn {
-      display: flex; flex-direction: column; align-items: center; gap: 2px;
-      background: none; border: none; padding: 8px 12px;
-      color: var(--mid); transition: color .2s; font-size: 10px;
-      letter-spacing: 0.06em; text-transform: uppercase;
+    .search-wrap button:hover { background: var(--gold); }
+    /* Header right */
+    .header-right { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .h-icon {
+      background: none; border: none; padding: 9px; cursor: pointer;
+      color: var(--muted); transition: color .2s; display: flex; align-items: center;
+      position: relative; border-radius: 50%;
     }
-    .h-btn:hover { color: var(--gold); }
-    .h-btn svg { margin-bottom: 1px; }
-    .cart-count {
-      background: var(--gold); color: #fff;
-      font-size: 9px; font-weight: 600;
+    .h-icon:hover { color: var(--gold); background: var(--gold-bg); }
+    .h-icon .badge {
+      position: absolute; top: 4px; right: 4px;
+      background: var(--gold); color: #fff; font-size: 9px; font-weight: 700;
       width: 16px; height: 16px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      position: absolute; top: -4px; right: -4px;
     }
-    .h-btn-cart { position: relative; }
+    .cart-btn {
+      display: flex; align-items: center; gap: 8px; padding: 10px 20px;
+      background: var(--dark); color: #fff; border: none; cursor: pointer;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: background .2s; border-radius: 50px; font-family: var(--sans);
+    }
+    .cart-btn:hover { background: var(--gold); }
+    .mob-menu-btn { display: none; background: none; border: none; padding: 8px; }
 
-    /* Nav links row */
-    .header-nav {
-      border-top: 1px solid var(--border);
-      background: var(--white);
-    }
+    /* ── NAV BAR ── */
+    .nav-bar { border-top: 1px solid var(--border); background: #fff; }
     .nav-inner {
-      max-width: 1340px; margin: 0 auto; padding: 0 32px;
-      display: flex; align-items: center; gap: 0;
+      max-width: 1380px; margin: 0 auto; padding: 0 32px;
+      display: flex; align-items: center;
     }
-    .nav-item {
-      position: relative; display: flex; align-items: center;
-    }
+    .nav-item { position: relative; }
     .nav-link {
-      display: block; padding: 12px 18px;
-      font-size: 12.5px; font-weight: 500; letter-spacing: 0.05em;
+      display: block; padding: 14px 18px;
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
       color: var(--mid); transition: color .2s; white-space: nowrap;
+      font-weight: 500;
     }
-    .nav-link:hover { color: var(--gold); }
-    .nav-link.sale { color: #c0392b; font-weight: 600; }
-    .nav-item:hover .mega-menu { display: block; }
+    .nav-link:hover { color: var(--dark); }
+    .nav-link.active { color: var(--dark); border-bottom: 2px solid var(--gold); }
+    .nav-link.sale-link { color: var(--red); font-weight: 600; }
+    .nav-item:hover .nav-drop { display: block; }
+    .nav-drop {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: #fff; border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(0,0,0,.1); min-width: 200px;
+      border-radius: 0 0 12px 12px; z-index: 400; padding: 8px 0;
+    }
+    .nav-drop a {
+      display: block; padding: 10px 20px; font-size: 13px;
+      color: var(--mid); transition: all .15s;
+    }
+    .nav-drop a:hover { color: var(--gold); background: var(--gold-bg); padding-left: 26px; }
 
-    /* Mega menu */
-    .mega-menu {
-      display: none;
-      position: absolute; top: 100%; left: 0;
-      background: var(--white); border: 1px solid var(--border);
-      box-shadow: 0 8px 32px rgba(0,0,0,.10);
-      padding: 24px 28px; min-width: 240px; z-index: 300;
-      border-top: 2px solid var(--gold);
-    }
-    .mega-menu a {
-      display: block; padding: 7px 0;
-      font-size: 13px; color: var(--mid);
-      border-bottom: 1px solid var(--border);
-      transition: color .2s, padding-left .2s;
-    }
-    .mega-menu a:last-child { border-bottom: none; }
-    .mega-menu a:hover { color: var(--gold); padding-left: 6px; }
-
-    /* ─── PERKS STRIP ─── */
-    .perks {
-      background: var(--cream);
-      border-bottom: 1px solid var(--border);
-    }
-    .perks-row {
-      max-width: 1340px; margin: 0 auto;
-      display: flex; align-items: stretch;
-      overflow-x: auto; scrollbar-width: none;
-    }
-    .perks-row::-webkit-scrollbar { display: none; }
-    .perk {
-      display: flex; align-items: center; gap: 10px;
-      padding: 13px 28px; border-right: 1px solid var(--border);
-      white-space: nowrap; flex-shrink: 0;
-    }
-    .perk:last-child { border-right: none; }
-    .perk svg { color: var(--gold); flex-shrink: 0; }
-    .perk-t { font-size: 12px; font-weight: 600; }
-    .perk-s { font-size: 11px; color: var(--muted); }
-
-    /* ─── HERO CAROUSEL ─── */
-    .hero {
-      position: relative; overflow: hidden;
-      height: 86vh; min-height: 480px; max-height: 700px;
-      background: #f5f0e8;
-    }
-    .hero-slides { display: flex; height: 100%; transition: transform .7s cubic-bezier(.4,0,.2,1); }
+    /* ══════════════════════════════════════════
+       HERO CAROUSEL
+    ══════════════════════════════════════════ */
+    .hero { position: relative; overflow: hidden; }
+    .hero-track { display: flex; transition: transform .7s cubic-bezier(.77,0,.175,1); }
     .hero-slide {
-      min-width: 100%; height: 100%;
-      position: relative; display: flex; align-items: center;
+      min-width: 100%; height: 580px; position: relative;
+      display: flex; align-items: center;
     }
-    .slide-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center;
+    .hero-slide-bg {
+      position: absolute; inset: 0; background-size: cover; background-position: center;
     }
-    .slide-bg-1 { background: url('https://images.unsplash.com/photo-1630019852942-f89202989a59?w=1600&q=75') center/cover; }
-    .slide-bg-2 { background: url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=1600&q=75') center/cover; }
-    .slide-bg-3 { background: url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1600&q=75') center/cover; }
-    .slide-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.36) 0%, rgba(0,0,0,.08) 60%, transparent 100%); }
-    .slide-content {
+    .hero-slide-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(0,0,0,.52) 0%, rgba(0,0,0,.18) 55%, transparent 100%); }
+    .hero-content {
       position: relative; z-index: 2;
-      padding: 0 80px; max-width: 620px; color: var(--white);
+      max-width: 1380px; margin: 0 auto; padding: 0 64px;
+      color: #fff;
     }
-    .slide-eyebrow {
-      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold-lt); margin-bottom: 16px;
+    .hero-eyebrow {
       display: flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-lt); margin-bottom: 16px; font-weight: 600;
     }
-    .slide-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold-lt); }
-    .slide-title {
-      font-family: var(--serif);
-      font-size: clamp(40px, 5.5vw, 72px);
-      font-weight: 300; line-height: 1.08; margin-bottom: 18px;
+    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold-lt); }
+    .hero-title {
+      font-family: var(--serif); font-size: clamp(42px, 5.5vw, 74px);
+      font-weight: 300; line-height: 1.06; margin-bottom: 18px; letter-spacing: -0.01em;
     }
-    .slide-title em { font-style: italic; color: var(--gold-lt); }
-    .slide-desc { font-size: 15px; opacity: .85; line-height: 1.8; margin-bottom: 36px; max-width: 400px; }
-    .slide-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-hero {
-      padding: 13px 32px; font-size: 12px; letter-spacing: 0.12em;
-      text-transform: uppercase; font-weight: 600; display: inline-block;
-      transition: all .25s; border-radius: 3px;
+    .hero-title em { font-style: italic; color: var(--gold-lt); }
+    .hero-desc { font-size: 15px; opacity: .88; line-height: 1.8; margin-bottom: 36px; max-width: 420px; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-gold {
+      padding: 14px 34px; background: var(--gold); color: #fff; border: none;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+      border-radius: 50px; transition: all .25s; display: inline-flex; align-items: center; gap: 8px;
     }
-    .btn-primary { background: var(--gold); color: var(--white); border: 2px solid var(--gold); }
-    .btn-primary:hover { background: transparent; color: var(--white); }
-    .btn-outline-wh { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.7); }
-    .btn-outline-wh:hover { background: var(--white); color: var(--dark); border-color: var(--white); }
-
-    /* Carousel controls */
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,145,58,.4); }
+    .btn-outline-w {
+      padding: 14px 34px; background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,.65); font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 600; border-radius: 50px; transition: all .25s;
+      display: inline-flex; align-items: center;
+    }
+    .btn-outline-w:hover { background: #fff; color: var(--dark); border-color: #fff; }
+    /* Hero controls */
     .hero-arr {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      z-index: 10; background: rgba(255,255,255,.18); backdrop-filter: blur(4px);
-      border: 1.5px solid rgba(255,255,255,.4); color: var(--white);
-      width: 44px; height: 44px; border-radius: 50%; display: flex;
-      align-items: center; justify-content: center; cursor: pointer;
-      transition: background .2s;
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+      background: rgba(255,255,255,.18); backdrop-filter: blur(6px);
+      border: 1.5px solid rgba(255,255,255,.35); color: #fff;
+      width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background .2s;
     }
     .hero-arr:hover { background: rgba(255,255,255,.35); }
     .hero-prev { left: 24px; }
     .hero-next { right: 24px; }
     .hero-dots {
-      position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
       display: flex; gap: 8px; z-index: 10;
     }
     .hero-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: rgba(255,255,255,.45); cursor: pointer; transition: all .25s;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.4); cursor: pointer; transition: all .3s;
     }
-    .hero-dot.on { background: var(--white); width: 22px; border-radius: 4px; }
+    .hero-dot.on { background: #fff; width: 24px; border-radius: 4px; }
 
-    /* ─── SECTION HEADER ─── */
-    .sec-head { text-align: center; margin-bottom: 36px; }
+    /* ══════════════════════════════════════════
+       PERKS STRIP (Lili Origin style)
+    ══════════════════════════════════════════ */
+    .perks {
+      background: var(--dark); color: rgba(255,255,255,.8);
+      padding: 0 32px;
+    }
+    .perks-inner {
+      max-width: 1380px; margin: 0 auto;
+      display: flex; align-items: stretch; justify-content: space-around;
+    }
+    .perk {
+      display: flex; align-items: center; gap: 12px;
+      padding: 18px 20px; flex: 1; justify-content: center;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .perk:last-child { border-right: none; }
+    .perk-icon { font-size: 22px; flex-shrink: 0; }
+    .perk-text strong { display: block; font-size: 13px; font-weight: 600; color: #fff; letter-spacing: 0.02em; }
+    .perk-text span { font-size: 11px; opacity: .55; }
+
+    /* ══════════════════════════════════════════
+       SECTION HELPERS
+    ══════════════════════════════════════════ */
+    .sec { padding: 64px 32px; }
+    .sec-cream { background: var(--cream); }
+    .sec-dark { background: #111; color: #fff; }
+    .sec-inner { max-width: 1380px; margin: 0 auto; }
+
+    .sec-head { text-align: center; margin-bottom: 40px; }
     .sec-tag {
-      display: inline-block; font-size: 11px; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 10px;
+      display: inline-block; font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 600;
     }
     .sec-title {
-      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 300; line-height: 1.2; color: var(--dark);
+      font-family: var(--serif); font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: 300; line-height: 1.15; color: var(--dark);
     }
     .sec-title em { font-style: italic; color: var(--gold); }
-    .sec-sub { font-size: 13.5px; color: var(--muted); margin-top: 10px; }
+    .sec-title-w { color: #fff; }
+    .sec-sub { font-size: 14px; color: var(--muted); margin-top: 10px; }
 
-    /* ─── CATEGORY CIRCLES (Pinki Promise / GIVA style) ─── */
-    .categories { padding: 56px 32px; background: var(--white); }
-    .cat-scroll {
-      max-width: 1340px; margin: 0 auto;
-      display: flex; gap: 20px; overflow-x: auto;
-      padding-bottom: 8px; scrollbar-width: none; justify-content: center;
-    }
-    .cat-scroll::-webkit-scrollbar { display: none; }
-    .cat-item {
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-      cursor: pointer; flex-shrink: 0; transition: transform .2s;
-    }
-    .cat-item:hover { transform: translateY(-4px); }
-    .cat-circle {
-      width: 108px; height: 108px; border-radius: 50%;
-      overflow: hidden; border: 2px solid var(--border);
-      background: linear-gradient(145deg, #f5efe4, #e8dfd0);
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color .2s, box-shadow .2s;
-      position: relative;
-    }
-    .cat-item:hover .cat-circle { border-color: var(--gold); box-shadow: 0 4px 20px rgba(184,145,58,.2); }
-    .cat-circle img { width: 100%; height: 100%; object-fit: cover; }
-    .cat-circle-ph { font-size: 28px; }
-    .cat-label {
-      font-size: 12.5px; font-weight: 500; color: var(--dark);
-      text-align: center; letter-spacing: 0.03em;
-    }
-
-    /* ─── PRODUCT CARDS (GIVA/Pinki style) ─── */
-    .section { padding: 56px 32px; }
-    .section.bg-cream { background: var(--cream); }
-    .sec-inner { max-width: 1340px; margin: 0 auto; }
-    .sec-header-row {
+    .row-head {
       display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 28px; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
     }
-    .sec-header-row .sec-head { text-align: left; margin-bottom: 0; }
-    .view-all-link {
+    .row-head .sec-head { text-align: left; margin-bottom: 0; }
+    .view-all {
       font-size: 12.5px; font-weight: 600; color: var(--gold);
       letter-spacing: 0.06em; text-transform: uppercase;
       display: flex; align-items: center; gap: 5px;
       border-bottom: 1px solid var(--gold); padding-bottom: 1px;
-      transition: gap .2s;
+      transition: gap .2s; white-space: nowrap;
     }
-    .view-all-link:hover { gap: 10px; }
+    .view-all:hover { gap: 9px; }
 
-    /* Product grid */
+    /* ══════════════════════════════════════════
+       CATEGORY CIRCLES (Lili Origin + GIVA style)
+    ══════════════════════════════════════════ */
+    .cat-scroll {
+      display: flex; gap: 20px; overflow-x: auto; padding-bottom: 8px;
+      scrollbar-width: none; justify-content: center; flex-wrap: wrap;
+    }
+    .cat-scroll::-webkit-scrollbar { display: none; }
+    .cat-item {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      cursor: pointer; flex-shrink: 0; transition: transform .2s; text-decoration: none; color: inherit;
+    }
+    .cat-item:hover { transform: translateY(-5px); }
+    .cat-ring {
+      width: 110px; height: 110px; border-radius: 50%;
+      border: 2.5px solid var(--border);
+      overflow: hidden; transition: border-color .2s, box-shadow .2s;
+      background: var(--cream);
+    }
+    .cat-item:hover .cat-ring { border-color: var(--gold); box-shadow: 0 6px 24px rgba(184,145,58,.22); }
+    .cat-ring img { width: 100%; height: 100%; object-fit: cover; }
+    .cat-label { font-size: 12.5px; font-weight: 500; letter-spacing: 0.02em; }
+
+    /* ══════════════════════════════════════════
+       HORIZONTAL SCROLL PRODUCT ROW (Lili Origin)
+    ══════════════════════════════════════════ */
+    .prod-row-wrap { position: relative; }
+    .prod-row {
+      display: flex; gap: 16px; overflow-x: auto;
+      padding-bottom: 8px; scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+    .prod-row::-webkit-scrollbar { display: none; }
+    .prod-row-arr {
+      position: absolute; top: 38%; transform: translateY(-50%);
+      z-index: 10; background: #fff; border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .2s; color: var(--dark);
+    }
+    .prod-row-arr:hover { border-color: var(--gold); color: var(--gold); }
+    .prod-row-prev { left: -20px; }
+    .prod-row-next { right: -20px; }
+
+    /* ══════════════════════════════════════════
+       PRODUCT GRID (static)
+    ══════════════════════════════════════════ */
     .prod-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 16px;
     }
+    .prod-grid-4 { grid-template-columns: repeat(4, 1fr); }
 
-    /* Product card */
-    .prod-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
+    /* ══════════════════════════════════════════
+       PRODUCT CARD
+    ══════════════════════════════════════════ */
+    .pcard {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
       transition: box-shadow .25s, transform .25s;
-      cursor: pointer;
+      cursor: pointer; display: block; color: inherit;
+      scroll-snap-align: start; flex-shrink: 0;
     }
-    .prod-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.11); transform: translateY(-3px); }
-    .prod-img {
-      position: relative; overflow: hidden;
-      aspect-ratio: 1; background: #f8f4ef;
+    .pcard:hover { box-shadow: 0 10px 36px rgba(0,0,0,.12); transform: translateY(-4px); }
+    /* row-mode width */
+    .prod-row .pcard { width: 220px; }
+
+    .pcard-img {
+      position: relative; aspect-ratio: 1; overflow: hidden; background: var(--cream);
     }
-    .prod-img img { width: 100%; height: 100%; object-fit: cover; transition: opacity .4s; }
-    .prod-img .img-hover { position: absolute; inset: 0; opacity: 0; transition: opacity .4s; }
-    .prod-card:hover .img-hover { opacity: 1; }
-    .prod-card:hover .img-main { opacity: 0; }
-    .prod-ph {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 32px; color: #ccc;
+    .pcard-img img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform .5s;
     }
-    .prod-badge {
-      position: absolute; top: 8px; left: 8px;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; padding: 3px 8px; border-radius: 3px;
+    .pcard:hover .pcard-img img { transform: scale(1.07); }
+    .pcard-img .img2 { position: absolute; inset: 0; opacity: 0; transition: opacity .4s; }
+    .pcard:hover .pcard-img .img2 { opacity: 1; }
+    .pcard:hover .pcard-img .img1 { opacity: 0; }
+
+    .pcard-badge {
+      position: absolute; top: 10px; left: 10px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
     }
-    .badge-sale { background: #e74c3c; color: #fff; }
-    .badge-new { background: var(--gold); color: #fff; }
+    .badge-sale { background: var(--red); color: #fff; }
+    .badge-new  { background: var(--gold); color: #fff; }
     .badge-best { background: #1c1c1c; color: #fff; }
-    .wish-btn {
-      position: absolute; top: 8px; right: 8px;
-      width: 30px; height: 30px; border-radius: 50%;
-      background: rgba(255,255,255,.9); border: none;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity .2s; color: var(--muted);
-      font-size: 15px;
+    .badge-bogo { background: #6a4cac; color: #fff; }
+
+    .pcard-wish {
+      position: absolute; top: 10px; right: 10px;
+      background: rgba(255,255,255,.9); border: none; width: 32px; height: 32px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 15px; cursor: pointer; transition: all .2s; color: var(--muted);
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
     }
-    .wish-btn:hover { color: #e74c3c; }
-    .prod-card:hover .wish-btn { opacity: 1; }
-    .add-to-cart-bar {
+    .pcard-wish:hover { color: var(--red); transform: scale(1.1); }
+    .pcard-wish.on { color: var(--red); }
+
+    .pcard-atb {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: rgba(28,28,28,.9); color: var(--white);
+      background: rgba(28,28,28,.92); color: #fff;
       font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 600; padding: 11px; text-align: center;
+      font-weight: 600; padding: 12px; text-align: center;
       transform: translateY(100%); transition: transform .28s ease;
     }
-    .prod-card:hover .add-to-cart-bar { transform: translateY(0); }
+    .pcard:hover .pcard-atb { transform: translateY(0); }
 
-    .prod-info { padding: 12px 12px 14px; }
-    .prod-cat-label { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-    .prod-name { font-size: 13.5px; font-weight: 500; line-height: 1.35; margin-bottom: 7px; color: var(--dark); }
-    .prod-stars {
-      display: flex; align-items: center; gap: 4px; margin-bottom: 8px;
-    }
-    .stars-fill { color: var(--gold); font-size: 11px; letter-spacing: 1px; }
-    .stars-count { font-size: 11px; color: var(--muted); }
-    .prod-price { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .price-now { font-size: 14.5px; font-weight: 700; color: var(--dark); }
-    .price-was { font-size: 12px; color: var(--muted); text-decoration: line-through; }
-    .price-pct { font-size: 11.5px; color: #e74c3c; font-weight: 600; }
-    .prod-free { font-size: 11px; color: #2ecc71; margin-top: 4px; font-weight: 500; }
+    .pcard-info { padding: 13px 13px 15px; }
+    .pcard-cat { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .pcard-name { font-size: 13.5px; font-weight: 500; line-height: 1.35; margin-bottom: 8px; color: var(--dark); }
+    .pcard-stars { color: var(--gold); font-size: 11px; margin-bottom: 6px; display: flex; align-items: center; gap: 5px; }
+    .pcard-stars span { color: var(--muted); font-size: 11px; }
+    .pcard-price { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+    .price-now { font-size: 15px; font-weight: 700; color: var(--dark); }
+    .price-was { font-size: 12px; color: #aaa; text-decoration: line-through; }
+    .price-off { font-size: 11.5px; color: var(--red); font-weight: 600; }
+    .pcard-free { font-size: 11px; color: var(--green); margin-top: 5px; font-weight: 500; }
+    .pcard-offer { font-size: 11px; color: #6a4cac; margin-top: 3px; font-weight: 600; }
 
-    /* ─── COLLECTIONS BANNER ROW (GIVA-style editorial) ─── */
-    .banners { padding: 56px 32px; background: var(--white); }
+    /* ══════════════════════════════════════════
+       COLLECTION BANNERS (3-col)
+    ══════════════════════════════════════════ */
     .banners-grid {
-      max-width: 1340px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+      max-width: 1380px; margin: 0 auto; padding: 0 32px 64px;
     }
     .banner-tile {
-      position: relative; border-radius: 10px; overflow: hidden;
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      aspect-ratio: 3/4; cursor: pointer; background-size: cover; background-position: center;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; aspect-ratio: 3/4;
-      background: linear-gradient(145deg, #f0ece4, #ddd6c8);
-      display: flex; align-items: flex-end;
     }
-    .banner-tile.wide { aspect-ratio: auto; grid-row: span 1; }
-    .banner-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-    .banner-tile:hover img { transform: scale(1.04); }
-    .banner-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0,0,0,.55) 0%, transparent 55%); }
-    .banner-content { position: relative; z-index: 2; padding: 24px; color: var(--white); text-align: center; display: flex; flex-direction: column; align-items: center; }
-    .banner-tag { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 6px; }
-    .banner-title { font-family: var(--serif); font-size: 24px; font-weight: 300; margin-bottom: 12px; }
+    .banner-tile::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+      transition: background .3s;
+    }
+    .banner-tile:hover::after { background: linear-gradient(0deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.2) 60%, transparent 100%); }
+    .banner-tile:hover { transform: scale(1.01); transition: transform .3s; }
+    .banner-content {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+      padding: 28px; color: #fff; text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .banner-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-lt); margin-bottom: 6px; font-weight: 600; }
+    .banner-title { font-family: var(--serif); font-size: 26px; font-weight: 300; margin-bottom: 14px; }
     .banner-btn {
-      display: inline-block; padding: 9px 20px;
-      border: 1.5px solid rgba(255,255,255,.7); color: var(--white);
+      display: inline-block; padding: 9px 22px; border: 1.5px solid rgba(255,255,255,.75);
       font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 600; border-radius: 3px; transition: all .2s;
+      color: #fff; border-radius: 50px; transition: all .2s; background: transparent;
     }
-    .banner-btn:hover { background: var(--white); color: var(--dark); }
-    .banner-ph {
-      width: 100%; height: 100%; display: flex; align-items: center;
-      justify-content: center; font-size: 12px; color: #a89880;
-      letter-spacing: 0.1em; text-transform: uppercase;
-    }
+    .banner-btn:hover { background: #fff; color: var(--dark); border-color: #fff; }
 
-    /* ─── ZODIAC STRIP ─── */
-    .zodiac-strip { padding: 56px 32px; background: var(--cream); }
+    /* ══════════════════════════════════════════
+       OFFER STRIP (Lili Origin — Buy 1 Get 2)
+    ══════════════════════════════════════════ */
+    .offer-strip {
+      background: linear-gradient(135deg, #1c1c1c 0%, #2e2218 100%);
+      padding: 32px; text-align: center; color: #fff;
+    }
+    .offer-strip h2 {
+      font-family: var(--serif); font-size: clamp(28px, 4vw, 48px);
+      font-weight: 300; margin-bottom: 8px;
+    }
+    .offer-strip h2 em { color: var(--gold-lt); font-style: italic; }
+    .offer-strip p { font-size: 14px; opacity: .65; margin-bottom: 20px; }
+    .offer-strip .btn-gold { font-size: 13px; padding: 14px 40px; }
+
+    /* ══════════════════════════════════════════
+       ZODIAC STRIP
+    ══════════════════════════════════════════ */
+    .zodiac-sec { background: var(--cream); padding: 56px 32px; }
     .zodiac-row {
-      max-width: 1340px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+      max-width: 1380px; margin: 0 auto;
+      display: flex; gap: 8px; overflow-x: auto;
+      scrollbar-width: none; justify-content: center; flex-wrap: wrap;
     }
+    .zodiac-row::-webkit-scrollbar { display: none; }
     .z-card {
-      text-align: center; padding: 22px 10px; border: 1px solid var(--border);
-      border-radius: 16px; cursor: pointer; background: var(--white);
-      transition: all .2s;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      padding: 16px 12px; background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; min-width: 80px; cursor: pointer; text-decoration: none;
+      color: inherit; transition: all .2s; flex-shrink: 0;
     }
-    .z-card:hover { border-color: var(--gold); box-shadow: 0 4px 18px rgba(184,145,58,.14); transform: translateY(-2px); }
-    .z-sym { font-size: 24px; display: block; margin-bottom: 6px; }
-    .z-name { font-size: 12.5px; font-weight: 600; margin-bottom: 2px; }
-    .z-dates { font-size: 10px; color: var(--muted); }
+    .z-card:hover { border-color: var(--gold); background: var(--gold-bg); transform: translateY(-3px); }
+    .z-sym { font-size: 22px; line-height: 1; }
+    .z-name { font-size: 12px; font-weight: 600; }
+    .z-dates { font-size: 10px; color: var(--muted); text-align: center; }
 
-    /* ─── BRAND STRIP ─── */
-    .brand-strip {
-      background: var(--dark);
-      padding: 64px 32px;
+    /* ══════════════════════════════════════════
+       BRAND STORY
+    ══════════════════════════════════════════ */
+    .brand-sec {
+      background: #111; color: rgba(255,255,255,.75);
+      padding: 80px 32px;
     }
-    .brand-strip-inner {
-      max-width: 1340px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    .brand-inner {
+      max-width: 1380px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
-    .brand-text .sec-title { text-align: left; color: var(--white); }
-    .brand-text .sec-title em { color: var(--gold-lt); }
-    .brand-body {
-      color: rgba(255,255,255,.6); font-size: 14px; line-height: 1.9;
-      margin-top: 18px;
+    .brand-text .sec-tag { color: var(--gold-lt); }
+    .brand-text h2 {
+      font-family: var(--serif); font-size: clamp(34px, 4vw, 56px);
+      font-weight: 300; color: #fff; margin-bottom: 20px; line-height: 1.1;
     }
-    .brand-nums {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 36px;
+    .brand-text h2 em { color: var(--gold-lt); font-style: italic; }
+    .brand-text p { font-size: 14px; line-height: 1.9; margin-bottom: 16px; opacity: .7; }
+    .brand-nums { display: flex; gap: 40px; margin-top: 32px; }
+    .brand-num strong { display: block; font-size: 36px; font-weight: 300; color: var(--gold-lt); font-family: var(--serif); }
+    .brand-num span { font-size: 12px; opacity: .55; text-transform: uppercase; letter-spacing: 0.08em; }
+    .brand-img {
+      border-radius: 20px; overflow: hidden; aspect-ratio: 4/5;
     }
-    .brand-num-val {
-      font-family: var(--serif); font-size: 38px; font-weight: 300; color: var(--gold-lt); line-height: 1;
-    }
-    .brand-num-lbl { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-top: 4px; }
-    .brand-img-side {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-    }
-    .brand-img-tile {
-      border-radius: 16px; overflow: hidden;
-      background: linear-gradient(145deg, #2e2620, #1c1814);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.15); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    }
-    .brand-img-tile.tall { aspect-ratio: 2/3; }
-    .brand-img-tile.sq { aspect-ratio: 1; }
+    .brand-img img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* ─── TESTIMONIALS ─── */
-    .testimonials { padding: 56px 32px; background: var(--white); }
-    .test-grid {
-      max-width: 1340px; margin: 0 auto;
+    /* ══════════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════════ */
+    .testi-sec { background: var(--cream); padding: 64px 32px; }
+    .testi-grid {
+      max-width: 1380px; margin: 0 auto;
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
     }
-    .test-card {
-      border: 1px solid var(--border); border-radius: 10px; padding: 28px 24px;
-      position: relative; background: var(--white);
+    .testi-card {
+      background: #fff; border-radius: var(--radius);
+      padding: 28px; border: 1px solid var(--border);
+      transition: box-shadow .2s;
     }
-    .test-card::before {
-      content: '"'; font-family: var(--serif); font-size: 72px;
-      color: var(--gold); opacity: .15; position: absolute; top: 8px; left: 20px; line-height: 1;
+    .testi-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.08); }
+    .testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+    .testi-text { font-size: 14px; line-height: 1.8; color: var(--mid); margin-bottom: 18px; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar {
+      width: 40px; height: 40px; border-radius: 50%; background: var(--gold-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 600; color: var(--gold); flex-shrink: 0;
     }
-    .test-stars { color: var(--gold); font-size: 13px; letter-spacing: 2px; margin-bottom: 14px; }
-    .test-text { font-style: italic; font-size: 14px; line-height: 1.75; color: var(--mid); margin-bottom: 20px; font-family: var(--serif); font-size: 15px; }
-    .test-author { display: flex; align-items: center; gap: 10px; }
-    .test-av { width: 38px; height: 38px; border-radius: 50%; background: var(--cream); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 16px; color: var(--gold); flex-shrink: 0; }
-    .test-name { font-size: 13px; font-weight: 600; }
-    .test-loc { font-size: 11px; color: var(--muted); }
+    .testi-name { font-weight: 600; font-size: 13px; }
+    .testi-loc { font-size: 11px; color: var(--muted); }
+    .testi-verified { font-size: 11px; color: var(--green); margin-top: 2px; }
 
-    /* ─── NEWSLETTER ─── */
-    .newsletter {
-      background: linear-gradient(135deg, var(--gold) 0%, #7a5e1c 100%);
-      padding: 64px 32px; text-align: center; color: var(--white);
+    /* ══════════════════════════════════════════
+       NEWSLETTER
+    ══════════════════════════════════════════ */
+    .nl-sec {
+      background: linear-gradient(135deg, #1c1c1c, #2a1f10);
+      padding: 72px 32px; text-align: center; color: #fff;
     }
-    .newsletter h2 { font-family: var(--serif); font-size: clamp(26px,4vw,46px); font-weight: 300; margin-bottom: 10px; }
-    .newsletter p { font-size: 14px; opacity: .85; margin-bottom: 28px; }
-    .newsletter-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.2); }
-    .newsletter-form input {
-      flex: 1; padding: 14px 18px; border: none; outline: none;
-      font-size: 14px; font-family: var(--sans);
+    .nl-sec h2 { font-family: var(--serif); font-size: clamp(30px, 4vw, 50px); font-weight: 300; margin-bottom: 8px; }
+    .nl-sec h2 em { color: var(--gold-lt); font-style: italic; }
+    .nl-sec p { font-size: 14px; opacity: .6; margin-bottom: 28px; }
+    .nl-form { display: flex; max-width: 460px; margin: 0 auto; border-radius: 50px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.3); }
+    .nl-input {
+      flex: 1; padding: 15px 22px; background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.15); border-right: none;
+      color: #fff; font-size: 13px; font-family: var(--sans); outline: none;
+      border-radius: 50px 0 0 50px;
     }
-    .newsletter-form button {
-      background: var(--dark); color: var(--white); border: none;
-      padding: 14px 24px; font-size: 12px; letter-spacing: 0.1em;
-      text-transform: uppercase; font-weight: 600; transition: background .2s;
+    .nl-input::placeholder { color: rgba(255,255,255,.35); }
+    .nl-input:focus { border-color: var(--gold); }
+    .nl-btn {
+      padding: 15px 26px; background: var(--gold); color: #fff; border: none;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-family: var(--sans); cursor: pointer; transition: background .2s;
+      border-radius: 0 50px 50px 0; font-weight: 600;
     }
-    .newsletter-form button:hover { background: #333; }
+    .nl-btn:hover { background: var(--gold-lt); }
 
-    /* ─── FOOTER ─── */
-    footer { background: #111; color: rgba(255,255,255,.6); padding: 60px 32px 24px; }
-    .foot-inner { max-width: 1340px; margin: 0 auto; }
-    .foot-top {
-      display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr;
-      gap: 48px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.08);
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    .footer { background: #0e0e0e; color: rgba(255,255,255,.55); padding: 64px 32px 28px; }
+    .footer-inner { max-width: 1380px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 52px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
-    .foot-logo { font-family: var(--serif); font-size: 24px; color: var(--white); margin-bottom: 14px; display: block; }
-    .foot-logo span { color: var(--gold); }
-    .foot-about { font-size: 13px; line-height: 1.85; color: rgba(255,255,255,.4); max-width: 260px; }
-    .foot-social { display: flex; gap: 8px; margin-top: 20px; }
-    .soc-btn { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.15); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .2s; cursor: pointer; }
+    .footer-logo { font-family: var(--serif); font-size: 26px; color: #fff; margin-bottom: 14px; display: block; }
+    .footer-logo span { color: var(--gold); }
+    .footer-about { font-size: 13px; line-height: 1.9; color: rgba(255,255,255,.38); max-width: 280px; }
+    .footer-socials { display: flex; gap: 8px; margin-top: 22px; }
+    .soc-btn {
+      width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 13px; transition: all .2s; cursor: pointer; color: rgba(255,255,255,.5);
+      text-decoration: none;
+    }
     .soc-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .foot-col h5 { color: var(--white); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px; }
-    .foot-col ul { list-style: none; }
-    .foot-col li { margin-bottom: 9px; }
-    .foot-col a { font-size: 13px; color: rgba(255,255,255,.42); transition: color .2s; }
-    .foot-col a:hover { color: var(--gold-lt); }
-    .foot-bot { padding-top: 22px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,.25); flex-wrap: wrap; gap: 12px; }
-    .pay-row { display: flex; gap: 6px; }
-    .pay-chip { background: rgba(255,255,255,.07); border-radius: 3px; padding: 3px 8px; font-size: 10px; letter-spacing: 0.05em; color: rgba(255,255,255,.38); }
+    .footer-col h5 {
+      color: #fff; font-size: 11.5px; letter-spacing: 0.14em;
+      text-transform: uppercase; margin-bottom: 18px; font-weight: 600;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,.4); transition: color .2s; }
+    .footer-col a:hover { color: var(--gold-lt); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px; padding-top: 24px;
+    }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
+    .pay-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pay-chip {
+      background: rgba(255,255,255,.07); border-radius: 6px;
+      padding: 5px 10px; font-size: 11px; color: rgba(255,255,255,.4);
+      letter-spacing: 0.04em;
+    }
 
-    /* ─── RESPONSIVE ─── */
+    /* ══════════════════════════════════════════
+       MOBILE NAV DRAWER
+    ══════════════════════════════════════════ */
+    .mob-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 500; }
+    .mob-overlay.on { display: block; }
+    .mob-drawer {
+      position: fixed; top: 0; left: -100%; bottom: 0; width: 300px;
+      background: #fff; z-index: 501; padding: 24px 20px;
+      transition: left .3s; overflow-y: auto;
+    }
+    .mob-drawer.on { left: 0; }
+    .mob-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 24px; color: var(--muted); }
+    .mob-nav a { display: block; padding: 13px 0; font-size: 15px; border-bottom: 1px solid var(--border); color: var(--dark); }
+    .mob-nav a:hover { color: var(--gold); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
     @media (max-width: 1100px) {
       .prod-grid { grid-template-columns: repeat(4, 1fr); }
-      .banners-grid { grid-template-columns: 1fr 1fr; }
-      .zodiac-row { grid-template-columns: repeat(4, 1fr); }
     }
-    @media (max-width: 860px) {
-      .header-top { padding: 0 16px; }
-      .header-search { display: none; }
-      .prod-grid { grid-template-columns: repeat(3, 1fr); }
-      .brand-strip-inner { grid-template-columns: 1fr; }
-      .brand-img-side { display: none; }
-      .test-grid { grid-template-columns: 1fr 1fr; }
-      .foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .zodiac-row { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) {
+      .nav-bar { display: none; }
+      .mob-menu-btn { display: block; }
+      .prod-grid { grid-template-columns: repeat(2, 1fr); }
+      .prod-grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .banners-grid { grid-template-columns: 1fr; padding: 0 16px 40px; }
+      .brand-inner { grid-template-columns: 1fr; gap: 40px; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .hero-slide { height: 420px; }
+      .hero-content { padding: 0 32px; }
+      .perks-inner { flex-wrap: wrap; }
+      .perk { width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
     }
     @media (max-width: 600px) {
-      .hero { height: 70vh; }
-      .slide-content { padding: 0 24px; }
-      .slide-title { font-size: 34px; }
-      .header-nav { display: none; }
+      .header-main { padding: 0 16px; }
+      .search-wrap { display: none; }
+      .sec { padding: 44px 16px; }
+      .hero-slide { height: 340px; }
       .prod-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .cat-scroll { justify-content: flex-start; padding: 0 0 8px; }
-      .banners-grid { grid-template-columns: 1fr; }
-      .test-grid { grid-template-columns: 1fr; }
-      .zodiac-row { grid-template-columns: repeat(3, 1fr); }
-      .foot-top { grid-template-columns: 1fr; }
-      .foot-bot { flex-direction: column; text-align: center; }
-      .newsletter-form { flex-direction: column; }
-      .newsletter-form input, .newsletter-form button { width: 100%; }
-      .section, .categories, .banners, .zodiac-strip, .brand-strip, .testimonials, .newsletter { padding: 44px 16px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .brand-nums { gap: 24px; flex-wrap: wrap; }
     }
   </style>
 </head>
 <body>
 
-<!-- ANNOUNCE -->
+<!-- ══════════════════════════════════════════
+     ANNOUNCE BAR
+══════════════════════════════════════════ -->
 <div class="announce">
   <div class="announce-slides">
-    <div class="announce-slide">🚚 Free shipping on orders above ₹500</div>
-    <div class="announce-slide"><b>FLAT 10% OFF</b> on your first order — Use code: TRIBAL10</div>
-    <div class="announce-slide">🎁 Complimentary gift wrapping on all orders</div>
+    <div class="announce-slide">🚚 Free shipping on orders above <b>₹999</b> <span class="sep">|</span> Use code <b>TRIBAL10</b> for 10% off</div>
+    <div class="announce-slide">🎁 Free Handbag on orders worth <b>₹2499+</b> <span class="sep">|</span> Limited Time</div>
+    <div class="announce-slide">✦ Handcrafted in India · Skin-safe metals · Since <b>2003</b> ✦</div>
   </div>
 </div>
 
-<!-- HEADER -->
-<header>
-  <div class="header-top">
-    <a href="index.html" class="logo">
-      <span class="logo-tz">Tribal</span><span style="color:var(--gold);font-weight:600;">Zone</span>
-    </a>
-    <div class="header-search">
-      <input type="text" placeholder="Search for earrings, necklaces, zodiac..."/>
-      <button>
-        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header class="header">
+  <div class="header-main">
+    <a href="#" class="logo">Tribal<span>Zone</span></a>
+
+    <div class="search-wrap">
+      <input type="search" placeholder="Search earrings, necklaces, zodiac…"/>
+      <button aria-label="Search">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </button>
     </div>
-    <div class="header-actions">
-      <button class="h-btn">
-        <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Account
+
+    <div class="header-right">
+      <button class="h-icon" title="Wishlist">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="badge">3</span>
       </button>
-      <button class="h-btn">
-        <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        Wishlist
+      <button class="h-icon" title="Account">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </button>
-      <button class="h-btn h-btn-cart">
-        <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-count">0</span>
-        Bag
+      <button class="cart-btn">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Bag (2)
+      </button>
+      <button class="mob-menu-btn" onclick="document.getElementById('mobOverlay').classList.add('on');document.getElementById('mobDrawer').classList.add('on')">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
   </div>
-  <div class="header-nav">
+
+  <nav class="nav-bar">
     <div class="nav-inner">
+      <div class="nav-item"><a href="#" class="nav-link active">New Arrivals</a></div>
       <div class="nav-item">
-        <a class="nav-link" href="products.html">New Arrivals</a>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="products.html">Earrings ▾</a>
-        <div class="mega-menu">
-          <a href="products.html">Stud Earrings</a>
-          <a href="products.html">Hoop Earrings</a>
-          <a href="products.html">Drop Earrings</a>
-          <a href="products.html">Jhumka Earrings</a>
-          <a href="products.html">Chandbali</a>
-          <a href="products.html">View All Earrings</a>
+        <a href="preview-collection.html" class="nav-link">Earrings ▾</a>
+        <div class="nav-drop">
+          <a href="preview-collection.html">Jhumkas</a>
+          <a href="preview-collection.html">Studs</a>
+          <a href="preview-collection.html">Hoops</a>
+          <a href="preview-collection.html">Chandbalis</a>
+          <a href="preview-collection.html">Danglers</a>
         </div>
       </div>
       <div class="nav-item">
-        <a class="nav-link" href="products.html">Necklaces ▾</a>
-        <div class="mega-menu">
-          <a href="products.html">Pendant Necklaces</a>
-          <a href="products.html">Chain Necklaces</a>
-          <a href="products.html">Layered Sets</a>
-          <a href="products.html">Chokers</a>
-          <a href="products.html">View All Necklaces</a>
+        <a href="preview-collection.html" class="nav-link">Necklaces ▾</a>
+        <div class="nav-drop">
+          <a href="preview-collection.html">Chokers</a>
+          <a href="preview-collection.html">Long Chains</a>
+          <a href="preview-collection.html">Layered Sets</a>
+          <a href="preview-collection.html">Temple Jewellery</a>
         </div>
       </div>
-      <div class="nav-item">
-        <a class="nav-link" href="products.html">Bracelets ▾</a>
-        <div class="mega-menu">
-          <a href="products.html">Bangles</a>
-          <a href="products.html">Cuffs</a>
-          <a href="products.html">Beaded Bracelets</a>
-          <a href="products.html">View All Bracelets</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="products.html">Zodiac</a>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="products.html">Ethnic</a>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link" href="products.html">Collections ▾</a>
-        <div class="mega-menu">
-          <a href="products.html">Best Sellers</a>
-          <a href="products.html">Gift Sets</a>
-          <a href="products.html">Under ₹499</a>
-          <a href="products.html">Festive Edit</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a class="nav-link sale" href="products.html">🔥 Sale</a>
-      </div>
+      <div class="nav-item"><a href="preview-collection.html" class="nav-link">Bangles & Bracelets</a></div>
+      <div class="nav-item"><a href="preview-collection.html" class="nav-link">Maang Tikka</a></div>
+      <div class="nav-item"><a href="preview-collection.html" class="nav-link">Rings</a></div>
+      <div class="nav-item"><a href="preview-collection.html" class="nav-link">Zodiac</a></div>
+      <div class="nav-item"><a href="preview-collection.html" class="nav-link">Festive Hampers 🎁</a></div>
+      <div class="nav-item"><a href="preview-collection.html" class="nav-link sale-link">Sale 🔥</a></div>
     </div>
-  </div>
+  </nav>
 </header>
 
-<!-- PERKS -->
+<!-- Mobile overlay + drawer -->
+<div class="mob-overlay" id="mobOverlay" onclick="this.classList.remove('on');document.getElementById('mobDrawer').classList.remove('on')"></div>
+<div class="mob-drawer" id="mobDrawer">
+  <button class="mob-close" onclick="document.getElementById('mobOverlay').classList.remove('on');document.getElementById('mobDrawer').classList.remove('on')">×</button>
+  <a href="#" class="logo" style="display:block;margin-bottom:24px;">Tribal<span style="color:var(--gold)">Zone</span></a>
+  <nav class="mob-nav">
+    <a href="#">New Arrivals</a>
+    <a href="preview-collection.html">Earrings</a>
+    <a href="preview-collection.html">Necklaces</a>
+    <a href="preview-collection.html">Bangles & Bracelets</a>
+    <a href="preview-collection.html">Maang Tikka</a>
+    <a href="preview-collection.html">Rings</a>
+    <a href="preview-collection.html">Zodiac</a>
+    <a href="preview-collection.html" style="color:var(--red);font-weight:600;">Sale 🔥</a>
+  </nav>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO CAROUSEL
+══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-track" id="heroTrack">
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1630019852942-f89202989a59?w=1600&q=80')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">New Arrivals — 2024</div>
+        <h1 class="hero-title">Elevate Your<br/><em>Everyday</em><br/>with Jewellery</h1>
+        <p class="hero-desc">Handcrafted fashion accessories blending Indian tradition with modern elegance — since 2003.</p>
+        <div class="hero-ctas">
+          <a href="preview-collection.html" class="btn-gold">Shop New Arrivals →</a>
+          <a href="preview-collection.html" class="btn-outline-w">Explore All</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=1600&q=80')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Limited Time Offer</div>
+        <h1 class="hero-title">Up to<br/><em>50% Off</em><br/>Sale is Live</h1>
+        <p class="hero-desc">Shop our biggest sale of the season. Stunning earrings, necklaces & more at unbeatable prices.</p>
+        <div class="hero-ctas">
+          <a href="preview-collection.html" class="btn-gold">Shop the Sale →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1600&q=80')"></div>
+      <div class="hero-slide-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Celestial Collection</div>
+        <h1 class="hero-title">Wear Your<br/><em>Zodiac</em><br/>Story</h1>
+        <p class="hero-desc">Meaningful pendants for all 12 star signs. The perfect personalised gift for someone special.</p>
+        <div class="hero-ctas">
+          <a href="preview-collection.html" class="btn-gold">Shop Zodiac →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button class="hero-arr hero-prev" onclick="heroMove(-1)">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="hero-arr hero-next" onclick="heroMove(1)">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot on" onclick="heroGo(0)"></div>
+    <div class="hero-dot" onclick="heroGo(1)"></div>
+    <div class="hero-dot" onclick="heroGo(2)"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PERKS STRIP
+══════════════════════════════════════════ -->
 <div class="perks">
-  <div class="perks-row">
-    <div class="perk">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      <div><div class="perk-t">Free Shipping</div><div class="perk-s">On orders above ₹500</div></div>
-    </div>
-    <div class="perk">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.75"/></svg>
-      <div><div class="perk-t">Easy Returns</div><div class="perk-s">7-day hassle-free returns</div></div>
-    </div>
-    <div class="perk">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      <div><div class="perk-t">Authentic Quality</div><div class="perk-s">Anti-tarnish, skin-safe</div></div>
-    </div>
-    <div class="perk">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      <div><div class="perk-t">Gift Wrapping</div><div class="perk-s">Complimentary on all orders</div></div>
-    </div>
-    <div class="perk">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      <div><div class="perk-t">COD Available</div><div class="perk-s">Pay on delivery</div></div>
-    </div>
+  <div class="perks-inner">
+    <div class="perk"><div class="perk-icon">🚚</div><div class="perk-text"><strong>Free Shipping</strong><span>Orders above ₹999</span></div></div>
+    <div class="perk"><div class="perk-icon">🎁</div><div class="perk-text"><strong>Free Handbag</strong><span>On orders worth ₹2499+</span></div></div>
+    <div class="perk"><div class="perk-icon">♻️</div><div class="perk-text"><strong>Easy Returns</strong><span>7-day hassle-free</span></div></div>
+    <div class="perk"><div class="perk-icon">🛡️</div><div class="perk-text"><strong>Skin Safe Metals</strong><span>Anti-tarnish, hypoallergenic</span></div></div>
+    <div class="perk"><div class="perk-icon">🇮🇳</div><div class="perk-text"><strong>Handcrafted in India</strong><span>By skilled artisans</span></div></div>
   </div>
 </div>
 
-<!-- HERO CAROUSEL -->
-<section class="hero" id="hero">
-  <div class="hero-slides" id="heroSlides">
-    <!-- Slide 1 -->
-    <div class="hero-slide">
-      <div class="slide-bg slide-bg-1"></div>
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <div class="slide-eyebrow">New Arrivals 2024</div>
-        <h1 class="slide-title">Elevate Your<br/><em>Everyday</em><br/>with Jewellery</h1>
-        <p class="slide-desc">Handcrafted fashion accessories blending Indian tradition with modern elegance — since 2003.</p>
-        <div class="slide-ctas">
-          <a href="products.html" class="btn-hero btn-primary">Shop New Arrivals</a>
-          <a href="products.html" class="btn-hero btn-outline-wh">Explore All</a>
-        </div>
-      </div>
-    </div>
-    <!-- Slide 2 -->
-    <div class="hero-slide">
-      <div class="slide-bg slide-bg-2"></div>
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <div class="slide-eyebrow">Limited Time Offer</div>
-        <h1 class="slide-title">Up to<br/><em>50% Off</em><br/>Sale is Live</h1>
-        <p class="slide-desc">Shop our biggest sale of the season. Stunning earrings, necklaces & more at unbeatable prices.</p>
-        <div class="slide-ctas">
-          <a href="products.html" class="btn-hero btn-primary">Shop the Sale</a>
-        </div>
-      </div>
-    </div>
-    <!-- Slide 3 -->
-    <div class="hero-slide">
-      <div class="slide-bg slide-bg-3"></div>
-      <div class="slide-overlay"></div>
-      <div class="slide-content">
-        <div class="slide-eyebrow">Celestial Collection</div>
-        <h1 class="slide-title">Wear Your<br/><em>Zodiac</em><br/>Sign</h1>
-        <p class="slide-desc">Meaningful pendants for all 12 star signs. The perfect personalised gift.</p>
-        <div class="slide-ctas">
-          <a href="products.html" class="btn-hero btn-primary">Shop Zodiac</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <button class="hero-arr hero-prev" onclick="heroSlide(-1)">
-    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
-  </button>
-  <button class="hero-arr hero-next" onclick="heroSlide(1)">
-    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
-  </button>
-  <div class="hero-dots">
-    <div class="hero-dot on" onclick="goSlide(0)"></div>
-    <div class="hero-dot" onclick="goSlide(1)"></div>
-    <div class="hero-dot" onclick="goSlide(2)"></div>
-  </div>
-</section>
-
-<!-- CATEGORY CIRCLES -->
-<section class="categories">
-  <div class="sec-head">
-    <div class="sec-tag">Shop by Category</div>
-    <h2 class="sec-title">What are you looking for?</h2>
-  </div>
-  <div class="cat-scroll">
-    <a href="preview-collection.html" class="cat-item">
-      <div class="cat-circle"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=200&q=70" alt="Earrings"/></div>
-      <span class="cat-label">Earrings</span>
-    </a>
-    <a href="preview-collection.html" class="cat-item">
-      <div class="cat-circle"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&q=70" alt="Necklaces"/></div>
-      <span class="cat-label">Necklaces</span>
-    </a>
-    <a href="preview-collection.html" class="cat-item">
-      <div class="cat-circle"><img src="https://images.unsplash.com/photo-1573408301185-9519f94b4d7f?w=200&q=70" alt="Bracelets"/></div>
-      <span class="cat-label">Bracelets</span>
-    </a>
-    <a href="preview-collection.html" class="cat-item">
-      <div class="cat-circle"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=200&q=70" alt="Ethnic"/></div>
-      <span class="cat-label">Ethnic</span>
-    </a>
-    <a href="preview-collection.html" class="cat-item">
-      <div class="cat-circle"><img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=200&q=70" alt="Zodiac"/></div>
-      <span class="cat-label">Zodiac</span>
-    </a>
-    <a href="preview-collection.html" class="cat-item">
-      <div class="cat-circle"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=200&q=70" alt="Gift Sets"/></div>
-      <span class="cat-label">Gift Sets</span>
-    </a>
-    <a href="preview-collection.html" class="cat-item">
-      <div class="cat-circle"><img src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=200&q=70" alt="Sale"/></div>
-      <span class="cat-label">Sale</span>
-    </a>
-  </div>
-</section>
-
-<!-- NEW ARRIVALS -->
-<section class="section">
+<!-- ══════════════════════════════════════════
+     SHOP BY CATEGORY
+══════════════════════════════════════════ -->
+<section class="sec">
   <div class="sec-inner">
-    <div class="sec-header-row">
+    <div class="sec-head">
+      <div class="sec-tag">Shop by Category</div>
+      <h2 class="sec-title">What are you <em>looking for?</em></h2>
+    </div>
+    <div class="cat-scroll">
+      <a href="preview-collection.html" class="cat-item">
+        <div class="cat-ring"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=220&q=70" alt="Earrings"/></div>
+        <span class="cat-label">Earrings</span>
+      </a>
+      <a href="preview-collection.html" class="cat-item">
+        <div class="cat-ring"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=220&q=70" alt="Necklaces"/></div>
+        <span class="cat-label">Necklaces</span>
+      </a>
+      <a href="preview-collection.html" class="cat-item">
+        <div class="cat-ring"><img src="https://images.unsplash.com/photo-1573408301185-9519f94b4d7f?w=220&q=70" alt="Bracelets"/></div>
+        <span class="cat-label">Bracelets</span>
+      </a>
+      <a href="preview-collection.html" class="cat-item">
+        <div class="cat-ring"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=220&q=70" alt="Ethnic"/></div>
+        <span class="cat-label">Ethnic</span>
+      </a>
+      <a href="preview-collection.html" class="cat-item">
+        <div class="cat-ring"><img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=220&q=70" alt="Rings"/></div>
+        <span class="cat-label">Rings</span>
+      </a>
+      <a href="preview-collection.html" class="cat-item">
+        <div class="cat-ring"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=220&q=70" alt="Gift Sets"/></div>
+        <span class="cat-label">Gift Sets</span>
+      </a>
+      <a href="preview-collection.html" class="cat-item">
+        <div class="cat-ring"><img src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=220&q=70" alt="Maang Tikka"/></div>
+        <span class="cat-label">Maang Tikka</span>
+      </a>
+      <a href="preview-collection.html" class="cat-item">
+        <div class="cat-ring"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=220&q=70" alt="Zodiac"/></div>
+        <span class="cat-label">Zodiac</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     NEW ARRIVALS — Horizontal Scroll Row
+══════════════════════════════════════════ -->
+<section class="sec sec-cream">
+  <div class="sec-inner">
+    <div class="row-head">
       <div class="sec-head">
         <div class="sec-tag">Just In</div>
         <h2 class="sec-title">New <em>Arrivals</em></h2>
       </div>
-      <a href="products.html" class="view-all-link">View All →</a>
+      <a href="preview-collection.html" class="view-all">View All →</a>
     </div>
-    <div class="prod-grid">
-      <!-- Card 1 -->
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt="Gold Cluster Stud"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="Gold Cluster Stud hover"/>
-          <span class="prod-badge badge-new">New</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Earrings</div>
-          <div class="prod-name">Gold Cluster Stud & Hoop Set</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★★</span><span class="stars-count">(128)</span></div>
-          <div class="prod-price"><span class="price-now">₹379</span><span class="price-was">₹699</span><span class="price-pct">-46%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
+    <div class="prod-row-wrap">
+      <button class="prod-row-arr prod-row-prev" onclick="scrollRow('newRow',-1)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="prod-row" id="newRow">
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt="Gold Cluster Stud"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-new">New</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Earrings</div>
+            <div class="pcard-name">Gold Kundan Cluster Studs</div>
+            <div class="pcard-stars">★★★★★ <span>(128)</span></div>
+            <div class="pcard-price"><span class="price-now">₹379</span><span class="price-was">₹699</span><span class="price-off">-46%</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt="Crystal Pendant"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-new">New</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Necklaces</div>
+            <div class="pcard-name">Crystal Drop Pendant Necklace</div>
+            <div class="pcard-stars">★★★★ <span>(84)</span></div>
+            <div class="pcard-price"><span class="price-now">₹549</span><span class="price-was">₹899</span><span class="price-off">-39%</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&q=70" alt="Zodiac Pendant"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-new">New</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Zodiac</div>
+            <div class="pcard-name">Aries Zodiac Silver Pendant</div>
+            <div class="pcard-stars">★★★★★ <span>(56)</span></div>
+            <div class="pcard-price"><span class="price-now">₹449</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt="Jhumka"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-sale">Sale</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Ethnic</div>
+            <div class="pcard-name">Antique Gold Jhumka Earrings</div>
+            <div class="pcard-stars">★★★★★ <span>(203)</span></div>
+            <div class="pcard-price"><span class="price-now">₹699</span><span class="price-was">₹999</span><span class="price-off">-30%</span></div>
+            <div class="pcard-offer">🎁 Buy 1 Get 2 Free</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1573408301185-9519f94b4d7f?w=500&q=70" alt="Bracelet"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70" alt="hover"/>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Bracelets</div>
+            <div class="pcard-name">Crystal Beaded Stretch Bracelet</div>
+            <div class="pcard-stars">★★★★★ <span>(91)</span></div>
+            <div class="pcard-price"><span class="price-now">₹299</span><span class="price-was">₹499</span><span class="price-off">-40%</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt="Chandbali"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-bogo">Buy 1 Get 2</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Ethnic</div>
+            <div class="pcard-name">Bridal Kundan Chandbali Set</div>
+            <div class="pcard-stars">★★★★★ <span>(67)</span></div>
+            <div class="pcard-price"><span class="price-now">₹849</span><span class="price-was">₹1,499</span><span class="price-off">-43%</span></div>
+          </div>
+        </a>
+
       </div>
-      <!-- Card 2 -->
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt="Crystal Drop Pendant"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt="Crystal Drop Pendant hover"/>
-          <span class="prod-badge badge-new">New</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Necklaces</div>
-          <div class="prod-name">Crystal Drop Pendant Necklace</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★</span><span class="stars-count">(84)</span></div>
-          <div class="prod-price"><span class="price-now">₹549</span><span class="price-was">₹899</span><span class="price-pct">-39%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&q=70" alt="Zodiac Pendant"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt="Zodiac Pendant hover"/>
-          <span class="prod-badge badge-new">New</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Zodiac</div>
-          <div class="prod-name">Aries Zodiac Silver Pendant</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★★</span><span class="stars-count">(56)</span></div>
-          <div class="prod-price"><span class="price-now">₹449</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
-      </div>
-      <!-- Card 4 -->
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt="Jhumka Earrings"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="Jhumka Earrings hover"/>
-          <span class="prod-badge badge-sale">Sale</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Ethnic</div>
-          <div class="prod-name">Antique Gold Jhumka Earrings</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★★</span><span class="stars-count">(203)</span></div>
-          <div class="prod-price"><span class="price-now">₹699</span><span class="price-was">₹999</span><span class="price-pct">-30%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
-      </div>
-      <!-- Card 5 -->
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1573408301185-9519f94b4d7f?w=500&q=70" alt="Crystal Bracelet"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70" alt="Crystal Bracelet hover"/>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Bracelets</div>
-          <div class="prod-name">Crystal Beaded Stretch Bracelet</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★★</span><span class="stars-count">(91)</span></div>
-          <div class="prod-price"><span class="price-now">₹299</span><span class="price-was">₹499</span><span class="price-pct">-40%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
-      </div>
+      <button class="prod-row-arr prod-row-next" onclick="scrollRow('newRow',1)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- COLLECTION BANNERS -->
-<section class="banners">
-  <div class="sec-head" style="max-width:1340px;margin:0 auto 28px;">
-    <div class="sec-tag">Curated for You</div>
-    <h2 class="sec-title">Shop by <em>Collection</em></h2>
-  </div>
-  <div class="banners-grid">
-    <div class="banner-tile" style="aspect-ratio:1/1.2;background:url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=700&q=75') center/cover;">
-      <div class="banner-ph" style="display:none"></div>
-      <div class="banner-overlay"></div>
-      <div class="banner-content">
-        <div class="banner-tag">Bestseller</div>
-        <div class="banner-title">Ethnic &amp; Festive</div>
-        <a href="products.html" class="banner-btn">Shop Now</a>
-      </div>
-    </div>
-    <div class="banner-tile" style="aspect-ratio:1/1.2;background:url('https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=700&q=75') center/cover;">
-      <div class="banner-ph" style="display:none"></div>
-      <div class="banner-overlay"></div>
-      <div class="banner-content">
-        <div class="banner-tag">Trending</div>
-        <div class="banner-title">Zodiac Pendants</div>
-        <a href="products.html" class="banner-btn">Shop Now</a>
-      </div>
-    </div>
-    <div class="banner-tile" style="aspect-ratio:1/1.2;background:url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=700&q=75') center/cover;">
-      <div class="banner-ph" style="display:none"></div>
-      <div class="banner-overlay"></div>
-      <div class="banner-content">
-        <div class="banner-tag">Up to 50% Off</div>
-        <div class="banner-title">Sale Picks</div>
-        <a href="products.html" class="banner-btn">Shop Now</a>
-      </div>
+<!-- ══════════════════════════════════════════
+     COLLECTION BANNERS
+══════════════════════════════════════════ -->
+<div style="padding:64px 0 0; background:#fff;">
+  <div class="sec-inner" style="max-width:1380px;margin:0 auto;padding:0 32px;">
+    <div class="sec-head">
+      <div class="sec-tag">Curated for You</div>
+      <h2 class="sec-title">Shop by <em>Collection</em></h2>
     </div>
   </div>
-</section>
+</div>
+<div class="banners-grid">
+  <div class="banner-tile" style="background-image:url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=700&q=75')">
+    <div class="banner-content">
+      <div class="banner-tag">Bestseller</div>
+      <div class="banner-title">Ethnic &amp; Festive</div>
+      <a href="preview-collection.html" class="banner-btn">Shop Now</a>
+    </div>
+  </div>
+  <div class="banner-tile" style="background-image:url('https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=700&q=75')">
+    <div class="banner-content">
+      <div class="banner-tag">Trending</div>
+      <div class="banner-title">Zodiac Pendants</div>
+      <a href="preview-collection.html" class="banner-btn">Shop Now</a>
+    </div>
+  </div>
+  <div class="banner-tile" style="background-image:url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=700&q=75')">
+    <div class="banner-content">
+      <div class="banner-tag">Up to 50% Off</div>
+      <div class="banner-title">Sale Picks</div>
+      <a href="preview-collection.html" class="banner-btn">Shop Now</a>
+    </div>
+  </div>
+</div>
 
-<!-- BEST SELLERS -->
-<section class="section bg-cream">
+<!-- ══════════════════════════════════════════
+     OFFER STRIP (Buy 1 Get 2 Free)
+══════════════════════════════════════════ -->
+<div class="offer-strip">
+  <h2>Buy 1 Get <em>2 Free</em> 🎉</h2>
+  <p>On all earrings & bracelets — limited time offer. No code needed.</p>
+  <a href="preview-collection.html" class="btn-gold">Shop the Offer →</a>
+</div>
+
+<!-- ══════════════════════════════════════════
+     BEST SELLERS — Horizontal Scroll Row
+══════════════════════════════════════════ -->
+<section class="sec">
   <div class="sec-inner">
-    <div class="sec-header-row">
+    <div class="row-head">
       <div class="sec-head">
         <div class="sec-tag">Most Loved</div>
         <h2 class="sec-title">Best <em>Sellers</em></h2>
       </div>
-      <a href="products.html" class="view-all-link">View All →</a>
+      <a href="preview-collection.html" class="view-all">View All →</a>
     </div>
-    <div class="prod-grid">
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt="Pearl Drop Studs"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt="Pearl Drop Studs hover"/>
-          <span class="prod-badge badge-best">Bestseller</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Earrings</div>
-          <div class="prod-name">Pearl Drop Stud Earrings</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★★</span><span class="stars-count">(312)</span></div>
-          <div class="prod-price"><span class="price-now">₹349</span><span class="price-was">₹599</span><span class="price-pct">-42%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
+    <div class="prod-row-wrap">
+      <button class="prod-row-arr prod-row-prev" onclick="scrollRow('bestRow',-1)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="prod-row" id="bestRow">
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt="Pearl Studs"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-best">Bestseller</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Earrings</div>
+            <div class="pcard-name">Pearl Drop Stud Earrings</div>
+            <div class="pcard-stars">★★★★★ <span>(312)</span></div>
+            <div class="pcard-price"><span class="price-now">₹349</span><span class="price-was">₹599</span><span class="price-off">-42%</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt="Gold Chain"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-best">Bestseller</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Necklaces</div>
+            <div class="pcard-name">Layered Gold Chain Set</div>
+            <div class="pcard-stars">★★★★★ <span>(187)</span></div>
+            <div class="pcard-price"><span class="price-now">₹899</span><span class="price-was">₹1,299</span><span class="price-off">-31%</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="Chandbali"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-best">Bestseller</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Ethnic</div>
+            <div class="pcard-name">Chandbali Kundan Earrings</div>
+            <div class="pcard-stars">★★★★★ <span>(241)</span></div>
+            <div class="pcard-price"><span class="price-now">₹849</span><span class="price-was">₹1,499</span><span class="price-off">-43%</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1573408301185-9519f94b4d7f?w=500&q=70" alt="Bangle Set"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-sale">Sale</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Bracelets</div>
+            <div class="pcard-name">Gold Bangle Set of 4</div>
+            <div class="pcard-stars">★★★★ <span>(154)</span></div>
+            <div class="pcard-price"><span class="price-now">₹599</span><span class="price-was">₹999</span><span class="price-off">-40%</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt="Gift Box"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt="hover"/>
+            <span class="pcard-badge badge-best">Bestseller</span>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Gift Set</div>
+            <div class="pcard-name">Jewellery Gift Box — 3 Piece</div>
+            <div class="pcard-stars">★★★★★ <span>(98)</span></div>
+            <div class="pcard-price"><span class="price-now">₹1,199</span><span class="price-was">₹1,799</span><span class="price-off">-33%</span></div>
+            <div class="pcard-offer">🎁 Perfect for Gifting</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="preview-collection.html">
+          <div class="pcard-img">
+            <img class="img1" src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70" alt="Oxidised Hoops"/>
+            <img class="img2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt="hover"/>
+            <button class="pcard-wish" onclick="event.preventDefault();this.classList.toggle('on');this.textContent=this.classList.contains('on')?'♥':'♡'">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Earrings</div>
+            <div class="pcard-name">Oxidised Silver Tribal Hoops</div>
+            <div class="pcard-stars">★★★★★ <span>(175)</span></div>
+            <div class="pcard-price"><span class="price-now">₹399</span></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
       </div>
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt="Layered Gold Chain"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt="Layered Gold Chain hover"/>
-          <span class="prod-badge badge-best">Bestseller</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Necklaces</div>
-          <div class="prod-name">Layered Gold Chain Set</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★★</span><span class="stars-count">(187)</span></div>
-          <div class="prod-price"><span class="price-now">₹899</span><span class="price-was">₹1,299</span><span class="price-pct">-31%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="Chandbali Kundan"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt="Chandbali Kundan hover"/>
-          <span class="prod-badge badge-best">Bestseller</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Ethnic</div>
-          <div class="prod-name">Chandbali Kundan Earrings</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★★</span><span class="stars-count">(241)</span></div>
-          <div class="prod-price"><span class="price-now">₹849</span><span class="price-was">₹1,499</span><span class="price-pct">-43%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1573408301185-9519f94b4d7f?w=500&q=70" alt="Gold Bangle Set"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70" alt="Gold Bangle Set hover"/>
-          <span class="prod-badge badge-sale">Sale</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Bracelets</div>
-          <div class="prod-name">Gold Bangle Set of 4</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★</span><span class="stars-count">(154)</span></div>
-          <div class="prod-price"><span class="price-now">₹599</span><span class="price-was">₹999</span><span class="price-pct">-40%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-img">
-          <img class="img-main" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt="Jewellery Gift Box"/>
-          <img class="img-hover" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt="Jewellery Gift Box hover"/>
-          <span class="prod-badge badge-best">Bestseller</span>
-          <button class="wish-btn">♡</button>
-          <div class="add-to-cart-bar">Add to Bag</div>
-        </div>
-        <div class="prod-info">
-          <div class="prod-cat-label">Gift Set</div>
-          <div class="prod-name">Jewellery Gift Box — 3 Piece</div>
-          <div class="prod-stars"><span class="stars-fill">★★★★★</span><span class="stars-count">(98)</span></div>
-          <div class="prod-price"><span class="price-now">₹1,199</span><span class="price-was">₹1,799</span><span class="price-pct">-33%</span></div>
-          <div class="prod-free">✓ Free delivery</div>
-        </div>
-      </div>
+      <button class="prod-row-arr prod-row-next" onclick="scrollRow('bestRow',1)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
     </div>
   </div>
 </section>
 
-<!-- ZODIAC STRIP -->
-<section class="zodiac-strip">
+<!-- ══════════════════════════════════════════
+     ZODIAC STRIP
+══════════════════════════════════════════ -->
+<section class="zodiac-sec">
   <div class="sec-head">
     <div class="sec-tag">Celestial Collection</div>
     <h2 class="sec-title">Shop by Your <em>Zodiac</em></h2>
   </div>
   <div class="zodiac-row">
-    <a href="products.html" class="z-card"><span class="z-sym">♈</span><div class="z-name">Aries</div><div class="z-dates">Mar 21–Apr 19</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♉</span><div class="z-name">Taurus</div><div class="z-dates">Apr 20–May 20</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♊</span><div class="z-name">Gemini</div><div class="z-dates">May 21–Jun 20</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♋</span><div class="z-name">Cancer</div><div class="z-dates">Jun 21–Jul 22</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♌</span><div class="z-name">Leo</div><div class="z-dates">Jul 23–Aug 22</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♍</span><div class="z-name">Virgo</div><div class="z-dates">Aug 23–Sep 22</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♎</span><div class="z-name">Libra</div><div class="z-dates">Sep 23–Oct 22</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♏</span><div class="z-name">Scorpio</div><div class="z-dates">Oct 23–Nov 21</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♐</span><div class="z-name">Sagittarius</div><div class="z-dates">Nov 22–Dec 21</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♑</span><div class="z-name">Capricorn</div><div class="z-dates">Dec 22–Jan 19</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♒</span><div class="z-name">Aquarius</div><div class="z-dates">Jan 20–Feb 18</div></a>
-    <a href="products.html" class="z-card"><span class="z-sym">♓</span><div class="z-name">Pisces</div><div class="z-dates">Feb 19–Mar 20</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♈</span><div class="z-name">Aries</div><div class="z-dates">Mar 21–Apr 19</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♉</span><div class="z-name">Taurus</div><div class="z-dates">Apr 20–May 20</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♊</span><div class="z-name">Gemini</div><div class="z-dates">May 21–Jun 20</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♋</span><div class="z-name">Cancer</div><div class="z-dates">Jun 21–Jul 22</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♌</span><div class="z-name">Leo</div><div class="z-dates">Jul 23–Aug 22</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♍</span><div class="z-name">Virgo</div><div class="z-dates">Aug 23–Sep 22</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♎</span><div class="z-name">Libra</div><div class="z-dates">Sep 23–Oct 22</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♏</span><div class="z-name">Scorpio</div><div class="z-dates">Oct 23–Nov 21</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♐</span><div class="z-name">Sagittarius</div><div class="z-dates">Nov 22–Dec 21</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♑</span><div class="z-name">Capricorn</div><div class="z-dates">Dec 22–Jan 19</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♒</span><div class="z-name">Aquarius</div><div class="z-dates">Jan 20–Feb 18</div></a>
+    <a href="preview-collection.html" class="z-card"><span class="z-sym">♓</span><div class="z-name">Pisces</div><div class="z-dates">Feb 19–Mar 20</div></a>
   </div>
 </section>
 
-<!-- BRAND STRIP -->
-<section class="brand-strip">
-  <div class="brand-strip-inner">
+<!-- ══════════════════════════════════════════
+     BRAND STORY
+══════════════════════════════════════════ -->
+<section class="brand-sec">
+  <div class="brand-inner">
     <div class="brand-text">
-      <div class="sec-tag" style="color:var(--gold-lt);">Since 2003</div>
-      <h2 class="sec-title" style="text-align:left;color:#fff;">Crafting Beauty,<br/><em>One Piece</em> at a Time</h2>
-      <p class="brand-body">Tribal Zone was born from a deep love of Indian craftsmanship. For over two decades, we've been creating fashion accessories that honour our cultural heritage while embracing modern style.<br/><br/>Every jhumka, every pendant, every bracelet is thoughtfully made — because we believe jewellery is more than adornment. It's the story you wear.</p>
+      <div class="sec-tag" style="color:var(--gold-lt)">Since 2003</div>
+      <h2>Crafting Beauty,<br/><em>One Piece</em> at a Time</h2>
+      <p>Tribal Zone was born from a deep love of Indian craftsmanship. For over two decades, we've been creating fashion accessories that honour our cultural heritage while embracing modern style.</p>
+      <p>Every jhumka, every pendant, every bracelet is thoughtfully made — because we believe jewellery is more than adornment. It's the story you wear.</p>
       <div class="brand-nums">
-        <div><div class="brand-num-val">2003</div><div class="brand-num-lbl">Founded</div></div>
-        <div><div class="brand-num-val">223+</div><div class="brand-num-lbl">Active Designs</div></div>
-        <div><div class="brand-num-val">50K+</div><div class="brand-num-lbl">Happy Customers</div></div>
-        <div><div class="brand-num-val">20+</div><div class="brand-num-lbl">Years of Excellence</div></div>
+        <div class="brand-num"><strong>5L+</strong><span>Happy Customers</span></div>
+        <div class="brand-num"><strong>20+</strong><span>Years of Craft</span></div>
+        <div class="brand-num"><strong>2000+</strong><span>Designs</span></div>
       </div>
     </div>
-    <div class="brand-img-side">
-      <div class="brand-img-tile tall" style="min-height:200px;">Brand Photo</div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div class="brand-img-tile sq" style="min-height:120px;">Photo</div>
-        <div class="brand-img-tile sq" style="min-height:120px;">Photo</div>
-      </div>
+    <div class="brand-img">
+      <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=700&q=75" alt="Artisan crafting jewellery"/>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section class="testi-sec">
   <div class="sec-head">
-    <div class="sec-tag">Reviews</div>
-    <h2 class="sec-title">Loved by <em>Thousands</em></h2>
+    <div class="sec-tag">Customer Love</div>
+    <h2 class="sec-title">What Our <em>Customers</em> Say</h2>
   </div>
-  <div class="test-grid">
-    <div class="test-card">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-text">"The quality is absolutely stunning for the price. My jhumkas got so many compliments at the wedding. Will definitely be ordering again!"</p>
-      <div class="test-author"><div class="test-av">P</div><div><div class="test-name">Priya Sharma</div><div class="test-loc">Mumbai, Maharashtra</div></div></div>
-    </div>
-    <div class="test-card">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-text">"I ordered the zodiac pendant for my daughter and she absolutely loves it. Beautiful packaging too — felt like a real luxury gift."</p>
-      <div class="test-author"><div class="test-av">R</div><div><div class="test-name">Rekha Nair</div><div class="test-loc">Bangalore, Karnataka</div></div></div>
-    </div>
-    <div class="test-card">
-      <div class="test-stars">★★★★★</div>
-      <p class="test-text">"Fast delivery, great quality. The earrings look exactly like the photos. Tribal Zone is now my go-to for all my jewellery needs!"</p>
-      <div class="test-author"><div class="test-av">A</div><div><div class="test-name">Ananya Patel</div><div class="test-loc">Ahmedabad, Gujarat</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWSLETTER -->
-<section class="newsletter">
-  <h2>Get Early Access to New Drops</h2>
-  <p>Subscribe and get 10% off your first order + exclusive offers straight to your inbox.</p>
-  <div class="newsletter-form">
-    <input type="email" placeholder="Enter your email address"/>
-    <button>Subscribe</button>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="foot-inner">
-    <div class="foot-top">
-      <div>
-        <a href="index.html" class="foot-logo">Tribal<span>Zone</span></a>
-        <p class="foot-about">Leading Indian fashion accessories brand since 2003. Crafting beautiful jewellery that celebrates tradition and contemporary elegance.</p>
-        <div class="foot-social">
-          <div class="soc-btn">f</div>
-          <div class="soc-btn">in</div>
-          <div class="soc-btn">yt</div>
-          <div class="soc-btn">pt</div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Absolutely stunning earrings! The quality is far better than I expected at this price. Got so many compliments at my cousin's wedding."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">P</div>
+        <div>
+          <div class="testi-name">Priya Sharma</div>
+          <div class="testi-loc">Mumbai, Maharashtra</div>
+          <div class="testi-verified">✓ Verified Purchase</div>
         </div>
       </div>
-      <div class="foot-col">
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The chandbali set is exactly what I was looking for. Delivered in 2 days and beautifully packaged. Will definitely order again!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Ananya Reddy</div>
+          <div class="testi-loc">Hyderabad, Telangana</div>
+          <div class="testi-verified">✓ Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Ordered the zodiac pendant for my sister's birthday. She absolutely loved it. The packaging was gift-ready — no extra wrapping needed!"</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sneha Kulkarni</div>
+          <div class="testi-loc">Pune, Maharashtra</div>
+          <div class="testi-verified">✓ Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     NEWSLETTER
+══════════════════════════════════════════ -->
+<section class="nl-sec">
+  <div class="sec-tag" style="color:var(--gold-lt)">Stay in the Loop</div>
+  <h2>Get <em>Early Access</em> to New Drops</h2>
+  <p>New arrivals, exclusive offers & styling tips — straight to your inbox.</p>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="Enter your email address"/>
+    <button class="nl-btn">Subscribe</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <div class="footer-col">
+        <a href="#" class="footer-logo">Tribal<span>Zone</span></a>
+        <p class="footer-about">India's leading fashion accessories brand since 2003. Handcrafted jewellery celebrating our rich cultural heritage. Skin-safe, affordable & unique.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn" title="Instagram">IG</a>
+          <a href="#" class="soc-btn" title="Facebook">FB</a>
+          <a href="#" class="soc-btn" title="Pinterest">PT</a>
+          <a href="#" class="soc-btn" title="YouTube">YT</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
         <h5>Shop</h5>
         <ul>
-          <li><a href="products.html">New Arrivals</a></li>
-          <li><a href="products.html">Earrings</a></li>
-          <li><a href="products.html">Necklaces</a></li>
-          <li><a href="products.html">Bracelets</a></li>
-          <li><a href="products.html">Ethnic Earrings</a></li>
-          <li><a href="products.html">Zodiac Pendants</a></li>
-          <li><a href="products.html">Sale</a></li>
+          <li><a href="preview-collection.html">New Arrivals</a></li>
+          <li><a href="preview-collection.html">Earrings</a></li>
+          <li><a href="preview-collection.html">Necklaces</a></li>
+          <li><a href="preview-collection.html">Bangles & Bracelets</a></li>
+          <li><a href="preview-collection.html">Maang Tikka</a></li>
+          <li><a href="preview-collection.html">Zodiac</a></li>
+          <li><a href="preview-collection.html" style="color:#e97777;">Sale 🔥</a></li>
         </ul>
       </div>
-      <div class="foot-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Corporate</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Careers</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
+
+      <div class="footer-col">
         <h5>Help</h5>
         <ul>
-          <li><a href="#">Return Policy</a></li>
-          <li><a href="#">Shipping Info</a></li>
           <li><a href="#">Track Order</a></li>
+          <li><a href="#">Returns & Exchange</a></li>
+          <li><a href="#">Shipping Policy</a></li>
           <li><a href="#">Size Guide</a></li>
           <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Wholesale Enquiry</a></li>
         </ul>
-        <div style="margin-top:20px;font-size:13px;line-height:1.8;color:rgba(255,255,255,.35);">
-          info@tribalzone.in<br/>+91 22 2850 0010
-        </div>
       </div>
+
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Craftsmanship</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Press & Media</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
     </div>
-    <div class="foot-bot">
-      <span>© 2024 Tribal Zone. All rights reserved.</span>
-      <div class="pay-row">
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Tribal Zone. All rights reserved. Made with ♥ in India.</p>
+      <div class="pay-chips">
         <span class="pay-chip">Visa</span>
         <span class="pay-chip">Mastercard</span>
         <span class="pay-chip">UPI</span>
-        <span class="pay-chip">GPay</span>
         <span class="pay-chip">Paytm</span>
+        <span class="pay-chip">RazorPay</span>
         <span class="pay-chip">COD</span>
       </div>
     </div>
   </div>
 </footer>
 
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
 <script>
-  // ── Hero Carousel ──
-  let cur = 0;
-  const total = 3;
-  function heroSlide(dir) {
-    cur = (cur + dir + total) % total;
-    goSlide(cur);
+  /* ── Hero carousel ── */
+  var heroIdx = 0, heroTotal = 3, heroTimer;
+  function heroMove(dir) {
+    heroIdx = (heroIdx + dir + heroTotal) % heroTotal;
+    heroRender();
   }
-  function goSlide(n) {
-    cur = n;
-    document.getElementById('heroSlides').style.transform = `translateX(-${cur * 100}%)`;
-    document.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('on', i === cur));
+  function heroGo(i) { heroIdx = i; heroRender(); }
+  function heroRender() {
+    document.getElementById('heroTrack').style.transform = 'translateX(-' + (heroIdx * 100) + '%)';
+    document.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('on', i===heroIdx));
   }
-  // Auto-play
-  setInterval(() => heroSlide(1), 5000);
+  function heroAutoPlay() { heroTimer = setInterval(() => heroMove(1), 5000); }
+  document.querySelector('.hero').addEventListener('mouseenter', () => clearInterval(heroTimer));
+  document.querySelector('.hero').addEventListener('mouseleave', heroAutoPlay);
+  heroAutoPlay();
+
+  /* ── Horizontal row scroll ── */
+  function scrollRow(id, dir) {
+    var el = document.getElementById(id);
+    el.scrollBy({ left: dir * 460, behavior: 'smooth' });
+  }
 </script>
+
 </body>
 </html>
