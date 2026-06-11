@@ -10,431 +10,774 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --tz-gold:    #F2157B; --tz-gold-lt: #f5488e; --tz-cream: #fff0f5;
-      --tz-white:   #ffffff; --tz-dark:    #120101; --tz-navy:  #162950; --tz-mid:   #3a3a3a;
-      --tz-muted:   #888;    --tz-border:  #ececec;
-      --tz-serif:    'Cormorant Garamond', Georgia, serif;
-      --tz-sans:    'Poppins', system-ui, sans-serif;
+      --gold:    #F2157B;
+      --gold-lt: #f5488e;
+      --gold-bg: #fff0f8;
+      --cream:   #fdf9f4;
+      --dark:    #120101;
+      --navy:    #162950;
+      --mid:     #3a3a3a;
+      --muted:   #888;
+      --border:  #e8e8e8;
+      --red:     #ED1A43;
+      --green:   #27ae60;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Poppins', system-ui, sans-serif;
+      --radius:  12px;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--tz-sans); color: var(--tz-dark); background: #fff; font-size: 14px; line-height: 1.6; }
+    body { font-family: var(--sans); color: var(--dark); background: #fff; font-size: 14px; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
-    button { font-family: var(--tz-sans); cursor: pointer; }
+    button { font-family: var(--sans); cursor: pointer; }
 
-    .tz-announce { background: linear-gradient(90deg, #120101 0%, #162950 50%, #120101 100%); color: rgba(255,255,255,.85); text-align: center; padding: 9px 20px; font-size: 12px; letter-spacing: 0.08em; overflow: hidden; height: 36px; }
-    .tz-announce-slides { display: flex; flex-direction: column; overflow: hidden; height: 18px; }
-    .tz-announce-slide { height: 18px; display: flex; align-items: center; justify-content: center; gap: 6px; animation: tzSlide 9s infinite; }
-    .tz-announce b { color: var(--tz-gold-lt); }
-    @keyframes tzSlide { 0%,28%{transform:translateY(0)} 33%,61%{transform:translateY(-18px)} 66%,94%{transform:translateY(-36px)} 100%{transform:translateY(0)} }
+    /* ── ANNOUNCE BAR ── */
+    .announce { background: var(--dark); color: rgba(255,255,255,.85); text-align: center; padding: 0 20px; font-size: 12.5px; letter-spacing: 0.06em; height: 38px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .announce-track { display: flex; flex-direction: column; height: 18px; overflow: hidden; }
+    .announce-msg { height: 18px; display: flex; align-items: center; justify-content: center; gap: 8px; flex-shrink: 0; animation: aRoll 12s infinite; }
+    .announce b { color: var(--gold-lt); }
+    .announce .sep { opacity: .35; margin: 0 6px; }
+    @keyframes aRoll { 0%,28%{transform:translateY(0)} 33%,61%{transform:translateY(-18px)} 66%,94%{transform:translateY(-36px)} 100%{transform:translateY(0)} }
 
-    .tz-header { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--tz-border); }
-    .tz-header-top { max-width: 1340px; margin: 0 auto; padding: 0 32px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .tz-logo { font-family: var(--tz-serif); font-size: 26px; font-weight: 400; letter-spacing: 0.04em; white-space: nowrap; }
-    .tz-logo span { color: var(--tz-gold); }
-    .tz-header-search { flex: 1; max-width: 420px; display: flex; align-items: center; border: 1.5px solid var(--tz-border); border-radius: 6px; overflow: hidden; transition: border-color .2s; }
-    .tz-header-search:focus-within { border-color: var(--tz-gold); }
-    .tz-search-input { flex: 1; border: none; outline: none; padding: 10px 14px; font-size: 13px; font-family: var(--tz-sans); background: transparent; }
-    .tz-search-btn { background: var(--tz-dark); border: none; padding: 10px 14px; color: #fff; display: flex; align-items: center; cursor: pointer; transition: background .2s; }
-    .tz-search-btn:hover { background: var(--tz-gold); }
-    .tz-header-right { display: flex; align-items: center; gap: 4px; }
-    .tz-icon-btn { background: none; border: none; padding: 8px; cursor: pointer; color: var(--tz-muted); transition: color .2s; display: flex; align-items: center; }
-    .tz-icon-btn:hover { color: var(--tz-gold); }
-    .tz-cart-btn { display: flex; align-items: center; gap: 8px; padding: 9px 18px; background: var(--tz-dark); color: #fff; border: none; cursor: pointer; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; transition: background .2s; border-radius: 2px; }
-    .tz-cart-btn:hover { background: var(--tz-gold); }
-    .tz-cart-count { background: var(--tz-gold); color: #fff; font-size: 10px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .tz-nav { border-top: 1px solid var(--tz-border); background: #fff; }
-    .tz-nav-inner { max-width: 1340px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; }
-    .tz-nav-item { position: relative; }
-    .tz-nav-link { display: block; padding: 13px 18px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tz-mid); transition: color .2s; white-space: nowrap; }
-    .tz-nav-link:hover, .tz-nav-link.active { color: var(--tz-dark); }
-    .tz-nav-link.active { border-bottom: 2px solid var(--tz-gold); }
-    .tz-nav-item:hover .tz-dropdown { display: block; }
-    .tz-dropdown { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid var(--tz-border); box-shadow: 0 8px 32px rgba(0,0,0,.08); min-width: 180px; z-index: 300; }
-    .tz-dropdown a { display: block; padding: 11px 18px; font-size: 12px; color: var(--tz-mid); letter-spacing: 0.04em; transition: color .2s, background .2s; }
-    .tz-dropdown a:hover { color: var(--tz-gold); background: var(--tz-cream); }
-    .tz-mob-toggle { display: none; background: none; border: none; padding: 8px; color: var(--tz-dark); }
+    /* ── HEADER ── */
+    .hdr { position: sticky; top: 0; z-index: 300; background: rgba(255,255,255,.98); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,.04); }
+    .hdr-row { max-width: 1400px; margin: 0 auto; padding: 0 32px; height: 70px; display: flex; align-items: center; gap: 24px; }
+    .hdr-logo { flex-shrink: 0; }
+    .hdr-logo img { height: 48px; width: auto; display: block; }
+    .hdr-search { flex: 1; max-width: 480px; display: flex; align-items: center; border: 1.5px solid var(--border); border-radius: 50px; overflow: hidden; background: #fafafa; transition: border-color .2s, box-shadow .2s; }
+    .hdr-search:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(242,21,123,.1); background: #fff; }
+    .hdr-search input { flex: 1; border: none; outline: none; padding: 10px 18px; font-size: 13px; font-family: var(--sans); background: transparent; }
+    .hdr-search-btn { background: var(--dark); border: none; padding: 10px 18px; color: #fff; display: flex; align-items: center; transition: background .2s; }
+    .hdr-search-btn:hover { background: var(--gold); }
+    .hdr-right { display: flex; align-items: center; gap: 2px; flex-shrink: 0; margin-left: auto; }
+    .hdr-icon { background: none; border: none; padding: 9px; color: var(--muted); display: flex; align-items: center; border-radius: 50%; transition: color .2s, background .2s; }
+    .hdr-icon:hover { color: var(--gold); background: var(--gold-bg); }
+    .cart-toggle { display: flex; align-items: center; gap: 7px; padding: 10px 20px; background: var(--dark); color: #fff; border: none; border-radius: 50px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; transition: background .2s; }
+    .cart-toggle:hover { background: var(--gold); }
+    .cart-toggle .bdg { background: var(--gold); color: #fff; font-size: 9px; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .cart-toggle:hover .bdg { background: #fff; color: var(--gold); }
+    .ham-btn { display: none; background: none; border: none; padding: 8px; color: var(--dark); }
 
-    .tz-coll-banner { position: relative; overflow: hidden; height: 220px; display: flex; align-items: center; background: linear-gradient(135deg, #120101, #2e2620); }
-    .tz-coll-banner-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; }
-    .tz-coll-banner-content { position: relative; z-index: 2; max-width: 1340px; margin: 0 auto; padding: 0 32px; color: #fff; }
-    .tz-coll-banner h1 { font-family: var(--tz-serif); font-size: clamp(32px,4vw,54px); font-weight: 300; margin-bottom: 8px; letter-spacing: 0.02em; }
-    .tz-coll-banner p { font-size: 14px; opacity: .7; }
+    /* ── NAV ── */
+    .nav { border-top: 1px solid var(--border); background: #fff; }
+    .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; }
+    .nav-item { position: relative; }
+    .nav-lnk { display: block; padding: 14px 16px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; color: var(--mid); transition: color .2s; white-space: nowrap; }
+    .nav-lnk:hover, .nav-lnk.active { color: var(--dark); }
+    .nav-lnk.active { border-bottom: 2px solid var(--gold); }
+    .nav-lnk.sale { color: var(--red); font-weight: 600; }
+    .nav-item:hover .nav-drop { display: block; }
+    .nav-drop { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid var(--border); box-shadow: 0 12px 36px rgba(0,0,0,.1); min-width: 190px; border-radius: 0 0 10px 10px; z-index: 400; padding: 6px 0; }
+    .nav-drop a { display: block; padding: 10px 20px; font-size: 13px; color: var(--mid); transition: all .15s; }
+    .nav-drop a:hover { color: var(--gold); background: var(--gold-bg); padding-left: 26px; }
 
-    .tz-breadcrumb { background: #fdf9f4; border-bottom: 1px solid var(--tz-border); padding: 12px 32px; font-size: 12px; color: var(--tz-muted); max-width: 100%; }
-    .tz-breadcrumb a { color: var(--tz-muted); transition: color .2s; }
-    .tz-breadcrumb a:hover { color: var(--tz-gold); }
-    .tz-bc-sep { margin: 0 6px; opacity: .4; }
-    .tz-bc-cur { color: var(--tz-dark); font-weight: 500; }
+    /* ── MOBILE NAV ── */
+    .mob-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 490; }
+    .mob-overlay.on { display: block; }
+    .mob-drawer { position: fixed; top: 0; left: -100%; bottom: 0; width: 310px; background: #fff; z-index: 500; transition: left .32s cubic-bezier(.4,0,.2,1); box-shadow: 4px 0 32px rgba(0,0,0,.18); overflow-y: auto; }
+    .mob-drawer.on { left: 0; }
+    .mob-drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+    .mob-close { background: none; border: none; font-size: 26px; color: var(--muted); line-height: 1; }
+    .mob-nav a { display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; font-size: 14px; color: var(--dark); border-bottom: 1px solid var(--border); transition: color .15s; }
+    .mob-nav a:hover { color: var(--gold); }
+    .mob-nav .sale-m { color: var(--red); font-weight: 600; }
 
-    .tz-coll-wrap { max-width: 1340px; margin: 0 auto; padding: 28px 24px 64px; display: flex; gap: 28px; align-items: flex-start; }
+    /* ── CART DRAWER ── */
+    .cart-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 600; }
+    .cart-overlay.on { display: block; }
+    .cart-drawer { position: fixed; top: 0; right: -420px; bottom: 0; width: 400px; max-width: 100vw; background: #fff; z-index: 601; display: flex; flex-direction: column; transition: right .32s cubic-bezier(.4,0,.2,1); box-shadow: -4px 0 32px rgba(0,0,0,.14); }
+    .cart-drawer.on { right: 0; }
+    .cart-drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .cart-drawer-head h3 { font-size: 16px; font-weight: 600; }
+    .cart-close { background: none; border: none; font-size: 26px; color: var(--muted); line-height: 1; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 16px 24px; }
+    .cart-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .cart-item-img { width: 80px; height: 80px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; }
+    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name { font-size: 13px; font-weight: 500; margin-bottom: 4px; line-height: 1.4; }
+    .cart-item-meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .cart-item-row { display: flex; align-items: center; justify-content: space-between; }
+    .cart-qty { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .cart-qty button { background: none; border: none; width: 28px; height: 28px; font-size: 16px; display: flex; align-items: center; justify-content: center; color: var(--mid); transition: color .15s; }
+    .cart-qty button:hover { color: var(--gold); }
+    .cart-qty span { padding: 0 10px; font-size: 13px; font-weight: 500; }
+    .cart-item-price { font-size: 14px; font-weight: 700; }
+    .cart-item-remove { background: none; border: none; color: var(--muted); font-size: 11px; text-decoration: underline; cursor: pointer; margin-top: 6px; display: block; transition: color .15s; }
+    .cart-item-remove:hover { color: var(--red); }
+    .cart-footer { padding: 20px 24px; border-top: 1px solid var(--border); flex-shrink: 0; }
+    .cart-subtotal { display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .cart-sub-note { font-size: 11.5px; color: var(--muted); margin-bottom: 18px; }
+    .cart-checkout { display: block; width: 100%; padding: 15px; background: var(--dark); color: #fff; border: none; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; text-align: center; border-radius: 50px; transition: background .2s; cursor: pointer; }
+    .cart-checkout:hover { background: var(--gold); }
+    .cart-continue { display: block; text-align: center; margin-top: 12px; font-size: 12px; color: var(--muted); transition: color .15s; }
+    .cart-continue:hover { color: var(--gold); }
 
-    .tz-sidebar { width: 256px; flex-shrink: 0; position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: #ececec transparent; }
-    .tz-sidebar::-webkit-scrollbar { width: 4px; }
-    .tz-sidebar::-webkit-scrollbar-thumb { background: #ececec; border-radius: 2px; }
-    .tz-sb-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 2px solid #120101; margin-bottom: 4px; }
-    .tz-sb-head span { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-    .tz-clear { font-size: 12px; color: var(--tz-gold); background: none; border: none; cursor: pointer; padding: 0; }
-    .tz-clear:hover { text-decoration: underline; }
-    .tz-fg { border-bottom: 1px solid #ececec; }
-    .tz-fg-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; cursor: pointer; user-select: none; }
-    .tz-fg-head > span { font-size: 13px; font-weight: 600; }
-    .tz-fg-head svg { transition: transform .25s; color: #888; flex-shrink: 0; }
-    .tz-fg.open .tz-fg-head svg { transform: rotate(180deg); }
-    .tz-fg-body { display: none; padding-bottom: 14px; }
-    .tz-fg.open .tz-fg-body { display: block; }
-    .tz-opt { display: flex; align-items: center; gap: 9px; padding: 5px 0; cursor: pointer; }
-    .tz-opt input { display: none; }
-    .tz-box { width: 16px; height: 16px; border: 1.5px solid #ccc; border-radius: 2px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #fff; transition: all .15s; }
-    .tz-opt input:checked ~ .tz-box { background: var(--tz-gold); border-color: var(--tz-gold); }
-    .tz-opt input:checked ~ .tz-box::after { content: '✓'; font-size: 10px; color: #fff; font-weight: 700; }
-    .tz-opt-lbl { font-size: 13px; flex: 1; }
-    .tz-opt-cnt { font-size: 11px; color: #888; }
-    .tz-price-inputs { display: flex; gap: 8px; margin-bottom: 12px; }
-    .tz-pi { flex: 1; padding: 7px 9px; border: 1px solid #ececec; font-size: 13px; font-family: var(--tz-sans); border-radius: 2px; outline: none; }
-    .tz-pi:focus { border-color: var(--tz-gold); }
-    .tz-price-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .tz-ptag { padding: 4px 10px; border: 1px solid #ececec; border-radius: 12px; font-size: 11px; background: none; cursor: pointer; font-family: var(--tz-sans); transition: border-color .15s, color .15s; }
-    .tz-ptag:hover, .tz-ptag.on { border-color: var(--tz-gold); color: var(--tz-gold); }
-    .tz-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tz-sw { width: 26px; height: 26px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: border-color .15s; }
-    .tz-sw:hover, .tz-sw.on { border-color: var(--tz-gold); }
-    .tz-active-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; min-height: 0; }
-    .tz-atag { display: inline-flex; align-items: center; gap: 5px; background: #fff0f8; border: 1px solid var(--tz-gold-lt); font-size: 12px; padding: 4px 10px; border-radius: 20px; cursor: pointer; }
-    .tz-atag:hover { background: #ffefd4; }
+    /* ── COLLECTION BANNER ── */
+    .coll-banner { position: relative; overflow: hidden; height: 240px; display: flex; align-items: center; }
+    .coll-banner-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; }
+    .coll-banner-grad { position: absolute; inset: 0; background: linear-gradient(135deg, #120101 0%, #1a0818 100%); }
+    .coll-banner-content { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 32px; color: #fff; }
+    .coll-banner h1 { font-family: var(--serif); font-size: clamp(34px, 4.5vw, 58px); font-weight: 300; margin-bottom: 8px; letter-spacing: 0.02em; }
+    .coll-banner p { font-size: 14px; opacity: .68; }
+    .coll-banner p b { color: var(--gold-lt); }
 
-    .tz-main { flex: 1; min-width: 0; }
-    .tz-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 12px; flex-wrap: wrap; }
-    .tz-count { font-size: 14px; color: #888; }
-    .tz-count b { color: var(--tz-dark); }
-    .tz-toolbar-right { display: flex; align-items: center; gap: 10px; }
-    .tz-sort { padding: 9px 32px 9px 12px; border: 1px solid #ececec; font-size: 13px; font-family: var(--tz-sans); outline: none; cursor: pointer; border-radius: 2px; appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 10px center; }
-    .tz-sort:focus { border-color: var(--tz-gold); }
-    .tz-mob-filter { display: none; align-items: center; gap: 8px; padding: 9px 16px; border: 1px solid #ececec; background: none; font-size: 13px; font-family: var(--tz-sans); cursor: pointer; border-radius: 2px; }
-    .tz-mob-filter:hover { border-color: var(--tz-gold); color: var(--tz-gold); }
+    /* ── BREADCRUMB ── */
+    .breadcrumb { background: #fafafa; border-bottom: 1px solid var(--border); padding: 12px 32px; font-size: 12px; color: var(--muted); }
+    .breadcrumb a { color: var(--muted); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb .sep { margin: 0 6px; opacity: .4; }
+    .breadcrumb .cur { color: var(--dark); font-weight: 500; }
 
-    .tz-products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .tz-card { background: #fff; border: 1px solid #ececec; border-radius: 12px; overflow: hidden; transition: box-shadow .25s, transform .25s; cursor: pointer; display: block; text-decoration: none; color: inherit; }
-    .tz-card:hover { box-shadow: 0 8px 32px rgba(242,21,123,.13); transform: translateY(-3px); }
-    .tz-card-img { position: relative; overflow: hidden; aspect-ratio: 1; background: #f8f4ef; }
-    .tz-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
-    .tz-card:hover .tz-card-img img { transform: scale(1.05); }
-    .tz-card-badge { position: absolute; top: 8px; left: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 3px; }
-    .tz-badge-sale { background: #ED1A43; color: #fff; }
-    .tz-badge-new  { background: var(--tz-gold); color: #fff; }
-    .tz-badge-out  { background: #888; color: #fff; }
-    .tz-card-atb { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(28,28,28,.9); color: #fff; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; padding: 11px; text-align: center; transform: translateY(100%); transition: transform .28s ease; }
-    .tz-card:hover .tz-card-atb { transform: translateY(0); }
-    .tz-card-info { padding: 12px 14px 14px; }
-    .tz-card-cat { font-size: 10.5px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
-    .tz-card-name { font-size: 13.5px; font-weight: 500; line-height: 1.35; margin-bottom: 7px; }
-    .tz-card-stars { color: var(--tz-gold); font-size: 11px; letter-spacing: 1px; margin-bottom: 7px; }
-    .tz-card-price { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-    .tz-price-now { font-size: 14.5px; font-weight: 700; }
-    .tz-price-was { font-size: 12px; color: #aaa; text-decoration: line-through; }
-    .tz-price-off { font-size: 11.5px; color: #ED1A43; font-weight: 600; }
-    .tz-card-free { font-size: 11px; color: #27ae60; margin-top: 4px; font-weight: 500; }
+    /* ── LAYOUT ── */
+    .coll-wrap { max-width: 1400px; margin: 0 auto; padding: 28px 32px 80px; display: flex; gap: 28px; align-items: flex-start; }
 
-    .tz-pagination { display: flex; justify-content: center; gap: 6px; margin-top: 48px; }
-    .tz-pg-btn { min-width: 38px; height: 38px; padding: 0 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #ececec; background: #fff; font-size: 13px; cursor: pointer; border-radius: 2px; text-decoration: none; color: #120101; transition: all .15s; }
-    .tz-pg-btn:hover { border-color: var(--tz-gold); color: var(--tz-gold); }
-    .tz-pg-btn.active { background: #120101; color: #fff; border-color: #120101; }
+    /* ── SIDEBAR ── */
+    .sidebar { width: 250px; flex-shrink: 0; position: sticky; top: 84px; max-height: calc(100vh - 104px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: #e0e0e0 transparent; }
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 2px; }
+    .sb-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 2px solid var(--dark); margin-bottom: 4px; }
+    .sb-header span { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .sb-clear { font-size: 12px; color: var(--gold); background: none; border: none; cursor: pointer; }
+    .sb-clear:hover { text-decoration: underline; }
+    .fg { border-bottom: 1px solid var(--border); }
+    .fg-head { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; cursor: pointer; user-select: none; }
+    .fg-head > span { font-size: 13px; font-weight: 600; }
+    .fg-head svg { transition: transform .25s; color: var(--muted); flex-shrink: 0; }
+    .fg.open .fg-head svg { transform: rotate(180deg); }
+    .fg-body { display: none; padding-bottom: 14px; }
+    .fg.open .fg-body { display: block; }
+    .f-opt { display: flex; align-items: center; gap: 9px; padding: 5px 0; cursor: pointer; }
+    .f-opt input { display: none; }
+    .f-box { width: 16px; height: 16px; border: 1.5px solid #ccc; border-radius: 3px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #fff; transition: all .15s; }
+    .f-opt input:checked ~ .f-box { background: var(--gold); border-color: var(--gold); }
+    .f-opt input:checked ~ .f-box::after { content: '✓'; font-size: 10px; color: #fff; font-weight: 700; }
+    .f-lbl { font-size: 13px; flex: 1; }
+    .f-cnt { font-size: 11px; color: var(--muted); }
+    .price-inputs { display: flex; gap: 8px; margin-bottom: 12px; }
+    .price-in { flex: 1; padding: 8px 10px; border: 1px solid var(--border); font-size: 13px; font-family: var(--sans); border-radius: 4px; outline: none; }
+    .price-in:focus { border-color: var(--gold); }
+    .price-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .ptag { padding: 4px 11px; border: 1px solid var(--border); border-radius: 14px; font-size: 11px; background: none; cursor: pointer; font-family: var(--sans); transition: border-color .15s, color .15s; }
+    .ptag:hover, .ptag.on { border-color: var(--gold); color: var(--gold); }
+    .swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+    .swatch { width: 28px; height: 28px; border-radius: 50%; border: 2.5px solid transparent; cursor: pointer; transition: border-color .15s; }
+    .swatch:hover, .swatch.on { border-color: var(--gold); }
+    .active-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .af-tag { display: inline-flex; align-items: center; gap: 5px; background: var(--gold-bg); border: 1px solid var(--gold-lt); font-size: 12px; padding: 4px 10px; border-radius: 20px; cursor: pointer; color: var(--gold); transition: background .15s; }
+    .af-tag:hover { background: #ffdcec; }
+    .af-tag .x { font-size: 14px; font-weight: 600; }
 
-    .tz-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 500; }
-    .tz-overlay.on { display: block; }
-    .tz-drawer { position: fixed; top: 0; left: -100%; bottom: 0; width: 290px; z-index: 501; background: #fff; overflow-y: auto; padding: 20px; transition: left .3s; box-shadow: 4px 0 24px rgba(0,0,0,.15); }
-    .tz-drawer.on { left: 0; }
-    .tz-drawer-close { position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 24px; cursor: pointer; color: #888; line-height: 1; }
+    /* ── MAIN GRID ── */
+    .coll-main { flex: 1; min-width: 0; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 12px; flex-wrap: wrap; }
+    .prod-count { font-size: 14px; color: var(--muted); }
+    .prod-count b { color: var(--dark); }
+    .toolbar-right { display: flex; align-items: center; gap: 10px; }
+    .sort-select {
+      padding: 9px 36px 9px 12px; border: 1px solid var(--border); font-size: 13px;
+      font-family: var(--sans); outline: none; cursor: pointer; border-radius: 6px;
+      appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 10px center;
+    }
+    .sort-select:focus { border-color: var(--gold); }
+    .mob-filter-btn { display: none; align-items: center; gap: 8px; padding: 9px 16px; border: 1px solid var(--border); background: #fff; font-size: 13px; font-family: var(--sans); cursor: pointer; border-radius: 6px; transition: border-color .15s, color .15s; }
+    .mob-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
 
-    .tz-footer { background: #111; color: rgba(255,255,255,.6); padding: 60px 24px 24px; }
-    .tz-footer-inner { max-width: 1340px; margin: 0 auto; }
-    .tz-footer-top { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .tz-footer-logo { font-family: var(--tz-serif); font-size: 24px; color: #fff; margin-bottom: 14px; display: block; }
-    .tz-footer-logo span { color: var(--tz-gold); }
-    .tz-footer-about { font-size: 13px; line-height: 1.85; color: rgba(255,255,255,.4); max-width: 260px; }
-    .tz-footer-socials { display: flex; gap: 8px; margin-top: 20px; }
-    .tz-soc { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.15); border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all .2s; color: rgba(255,255,255,.5); font-size: 13px; }
-    .tz-soc:hover { border-color: var(--tz-gold); color: var(--tz-gold); }
-    .tz-footer-col h5 { color: #fff; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px; font-weight: 600; }
-    .tz-footer-col ul { list-style: none; padding: 0; margin: 0; }
-    .tz-footer-col li { margin-bottom: 9px; }
-    .tz-footer-col a { font-size: 13px; color: rgba(255,255,255,.42); transition: color .2s; }
-    .tz-footer-col a:hover { color: var(--tz-gold-lt); }
-    .tz-nl-form { display: flex; border-radius: 4px; overflow: hidden; margin-top: 12px; }
-    .tz-nl-input { flex: 1; padding: 11px 14px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-right: none; color: #fff; font-size: 12px; font-family: var(--tz-sans); outline: none; }
-    .tz-nl-input::placeholder { color: rgba(255,255,255,.3); }
-    .tz-nl-btn { padding: 11px 18px; background: var(--tz-gold); color: #fff; border: none; cursor: pointer; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--tz-sans); transition: background .2s; white-space: nowrap; }
-    .tz-nl-btn:hover { background: var(--tz-gold-lt); }
-    .tz-footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 24px; }
-    .tz-footer-copy { font-size: 12px; color: rgba(255,255,255,.28); }
-    .tz-pay-icons { display: flex; gap: 8px; }
-    .tz-pay-icon { background: rgba(255,255,255,.08); border-radius: 4px; padding: 4px 9px; font-size: 11px; color: rgba(255,255,255,.45); }
+    /* ── PRODUCT GRID ── */
+    .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
+    /* ── PRODUCT CARD ── */
+    .pcard { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: box-shadow .25s, transform .25s; display: block; color: inherit; text-decoration: none; }
+    .pcard:hover { box-shadow: 0 10px 36px rgba(242,21,123,.12); transform: translateY(-4px); }
+    .pcard-img { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--cream); }
+    .pcard-img .i1 { width: 100%; height: 100%; object-fit: cover; transition: opacity .4s, transform .5s; }
+    .pcard-img .i2 { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s; }
+    .pcard:hover .i1 { opacity: 0; transform: scale(1.05); }
+    .pcard:hover .i2 { opacity: 1; }
+    .pcard-badge { position: absolute; top: 10px; left: 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
+    .b-sale { background: var(--red); color: #fff; }
+    .b-new  { background: var(--gold); color: #fff; }
+    .b-best { background: var(--dark); color: #fff; }
+    .b-out  { background: var(--muted); color: #fff; }
+    .pcard-wish { position: absolute; top: 10px; right: 10px; background: rgba(255,255,255,.9); border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; cursor: pointer; transition: all .2s; color: var(--muted); box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+    .pcard-wish:hover { color: var(--red); transform: scale(1.12); }
+    .pcard-wish.on { color: var(--red); }
+    .pcard-atb { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(18,1,1,.92); color: #fff; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 12px; text-align: center; transform: translateY(100%); transition: transform .28s ease; }
+    .pcard:hover .pcard-atb { transform: translateY(0); }
+    .pcard-info { padding: 13px 14px 16px; }
+    .pcard-cat { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .pcard-name { font-size: 13.5px; font-weight: 500; line-height: 1.35; margin-bottom: 8px; color: var(--dark); }
+    .pcard-stars { color: var(--gold); font-size: 11px; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
+    .pcard-stars span { color: var(--muted); font-size: 11px; }
+    .pcard-price { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+    .p-now { font-size: 15px; font-weight: 700; color: var(--dark); }
+    .p-was { font-size: 12px; color: #aaa; text-decoration: line-through; }
+    .p-off { font-size: 11.5px; color: var(--red); font-weight: 600; }
+    .pcard-free { font-size: 11px; color: var(--green); margin-top: 5px; font-weight: 500; }
+    .pcard-offer { font-size: 11px; color: #6a4cac; margin-top: 4px; font-weight: 600; }
+
+    /* ── PAGINATION ── */
+    .pagination { display: flex; justify-content: center; gap: 6px; margin-top: 52px; }
+    .pg-btn { min-width: 38px; height: 38px; padding: 0 10px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: #fff; font-size: 13px; cursor: pointer; border-radius: 6px; color: var(--dark); transition: all .15s; font-family: var(--sans); }
+    .pg-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .pg-btn.active { background: var(--dark); color: #fff; border-color: var(--dark); }
+
+    /* ── MOB FILTER DRAWER ── */
+    .filter-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 590; }
+    .filter-overlay.on { display: block; }
+    .filter-drawer { position: fixed; top: 0; left: -100%; bottom: 0; width: 290px; z-index: 591; background: #fff; overflow-y: auto; padding: 20px; transition: left .3s; box-shadow: 4px 0 24px rgba(0,0,0,.15); }
+    .filter-drawer.on { left: 0; }
+    .filter-drawer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .filter-drawer-close { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    .footer { background: #0d0d0d; color: rgba(255,255,255,.5); padding: 64px 32px 28px; }
+    .footer-inner { max-width: 1400px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 52px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .footer-logo { font-family: var(--serif); font-size: 26px; color: #fff; margin-bottom: 14px; display: block; }
+    .footer-logo span { color: var(--gold); }
+    .footer-about { font-size: 13px; line-height: 1.9; color: rgba(255,255,255,.38); max-width: 280px; }
+    .footer-socials { display: flex; gap: 8px; margin-top: 22px; }
+    .soc-btn { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.12); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all .2s; color: rgba(255,255,255,.45); text-decoration: none; }
+    .soc-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-col h5 { color: #fff; font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px; font-weight: 600; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { font-size: 13px; color: rgba(255,255,255,.4); transition: color .2s; }
+    .footer-col a:hover { color: var(--gold-lt); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 24px; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
+    .pay-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pay-chip { background: rgba(255,255,255,.07); border-radius: 6px; padding: 5px 10px; font-size: 11px; color: rgba(255,255,255,.4); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) { .prod-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 900px) {
-      .tz-sidebar { display: none; }
-      .tz-mob-filter { display: flex !important; }
-      .tz-products { grid-template-columns: repeat(2, 1fr); }
-      .tz-footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .tz-nav { display: none; }
+      .nav { display: none; } .ham-btn { display: flex; }
+      .sidebar { display: none; } .mob-filter-btn { display: flex; }
+      .coll-wrap { padding: 16px 16px 60px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
     @media (max-width: 600px) {
-      .tz-header-search { display: none; }
-      .tz-coll-wrap { padding: 14px 14px 48px; }
-      .tz-footer-top { grid-template-columns: 1fr; gap: 24px; }
-    }
-    @media (max-width: 400px) {
-      .tz-products { grid-template-columns: 1fr; }
+      .hdr-row { padding: 0 16px; gap: 12px; } .hdr-search { display: none; }
+      .prod-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .breadcrumb { padding: 10px 16px; }
+      .coll-banner-content { padding: 0 16px; }
     }
   </style>
 </head>
 <body>
 
-<div class="tz-announce">
-  <div class="tz-announce-slides">
-    <div class="tz-announce-slide">✦ Free shipping on orders above <b>₹999</b> ✦</div>
-    <div class="tz-announce-slide">✦ Use code <b>TRIBAL10</b> for 10% off your first order ✦</div>
-    <div class="tz-announce-slide">✦ Handcrafted in India · Since <b>2003</b> ✦</div>
+<!-- ANNOUNCE BAR -->
+<div class="announce">
+  <div class="announce-track">
+    <div class="announce-msg">🚚 Free shipping on orders above <b>₹999</b> <span class="sep">|</span> Use code <b>TRIBAL10</b> for 10% off</div>
+    <div class="announce-msg">🎁 Free Handbag on orders worth <b>₹2499+</b> <span class="sep">|</span> Limited Time</div>
+    <div class="announce-msg">✦ Handcrafted in India · Skin-safe metals · Since <b>2003</b> ✦</div>
   </div>
 </div>
 
-<header class="tz-header">
-  <div class="tz-header-top">
-    <a href="index.html" class="tz-logo"><img src="logo.png" alt="Tribal Zone" style="height:46px;width:auto;display:block;"/></a>
-    <div class="tz-header-search">
-      <input class="tz-search-input" type="search" placeholder="Search jewellery, collections…"/>
-      <button class="tz-search-btn"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-row">
+    <a href="index.html" class="hdr-logo"><img src="logo.png" alt="Tribal Zone"/></a>
+    <div class="hdr-search">
+      <input type="search" placeholder="Search earrings, necklaces, zodiac…"/>
+      <button class="hdr-search-btn" aria-label="Search">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
     </div>
-    <div class="tz-header-right">
-      <button class="tz-icon-btn"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
-      <button class="tz-icon-btn"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
-      <button class="tz-cart-btn"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> Bag <span class="tz-cart-count">0</span></button>
+    <div class="hdr-right">
+      <button class="hdr-icon" title="Wishlist">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <button class="hdr-icon" title="Account">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="cart-toggle" onclick="openCart()">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Bag <span class="bdg" id="cartCount">0</span>
+      </button>
+      <button class="ham-btn" onclick="openMob()">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </div>
-  <nav class="tz-nav">
-    <div class="tz-nav-inner">
-      <div class="tz-nav-item"><a href="index.html" class="tz-nav-link">New Arrivals</a></div>
-      <div class="tz-nav-item">
-        <a href="collection-earrings.html" class="tz-nav-link active">Earrings</a>
-        <div class="tz-dropdown">
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-item"><a href="index.html" class="nav-lnk">New Arrivals</a></div>
+      <div class="nav-item">
+        <a href="collection-earrings.html" class="nav-lnk active">Earrings ▾</a>
+        <div class="nav-drop">
           <a href="collection-earrings.html">Jhumkas</a>
           <a href="collection-earrings.html">Studs</a>
           <a href="collection-earrings.html">Hoops</a>
-          <a href="collection-earrings.html">Danglers</a>
           <a href="collection-earrings.html">Chandbalis</a>
+          <a href="collection-earrings.html">Danglers</a>
         </div>
       </div>
-      <div class="tz-nav-item">
-        <a href="collection-necklaces.html" class="tz-nav-link">Necklaces</a>
-        <div class="tz-dropdown">
+      <div class="nav-item">
+        <a href="collection-necklaces.html" class="nav-lnk">Necklaces ▾</a>
+        <div class="nav-drop">
           <a href="collection-necklaces.html">Chokers</a>
           <a href="collection-necklaces.html">Long Chains</a>
           <a href="collection-necklaces.html">Layered Sets</a>
           <a href="collection-necklaces.html">Temple Jewellery</a>
         </div>
       </div>
-      <div class="tz-nav-item"><a href="collection-bangles.html" class="tz-nav-link">Bangles &amp; Bracelets</a></div>
-      <div class="tz-nav-item"><a href="collection-maangtikka.html" class="tz-nav-link">Maang Tikka</a></div>
-      <div class="tz-nav-item"><a href="collection-rings.html" class="tz-nav-link">Rings</a></div>
-      <div class="tz-nav-item"><a href="collection-zodiac.html" class="tz-nav-link">Zodiac</a></div>
-      <div class="tz-nav-item"><a href="collection-hampers.html" class="tz-nav-link">Festive Hampers</a></div>
-      <div class="tz-nav-item"><a href="collection-sale.html" class="tz-nav-link" style="color:#c0392b;">Sale</a></div>
+      <div class="nav-item"><a href="collection-bangles.html" class="nav-lnk">Bangles &amp; Bracelets</a></div>
+      <div class="nav-item"><a href="collection-maangtikka.html" class="nav-lnk">Maang Tikka</a></div>
+      <div class="nav-item"><a href="collection-rings.html" class="nav-lnk">Rings</a></div>
+      <div class="nav-item"><a href="collection-zodiac.html" class="nav-lnk">Zodiac</a></div>
+      <div class="nav-item"><a href="collection-hampers.html" class="nav-lnk">Festive Hampers 🎁</a></div>
+      <div class="nav-item"><a href="collection-sale.html" class="nav-lnk sale">Sale 🔥</a></div>
     </div>
   </nav>
 </header>
 
-<div class="tz-overlay" id="tzOverlay" onclick="tzCloseDrawer()"></div>
-<div class="tz-drawer" id="tzDrawer">
-  <button class="tz-drawer-close" onclick="tzCloseDrawer()">×</button>
-  <div id="tzDrawerContent"></div>
+<!-- MOBILE DRAWER -->
+<div class="mob-overlay" id="mobOverlay" onclick="closeMob()"></div>
+<div class="mob-drawer" id="mobDrawer">
+  <div class="mob-drawer-head">
+    <a href="index.html"><img src="logo.png" alt="Tribal Zone" style="height:40px;width:auto;"/></a>
+    <button class="mob-close" onclick="closeMob()">×</button>
+  </div>
+  <nav class="mob-nav">
+    <a href="index.html">New Arrivals</a>
+    <a href="collection-earrings.html">Earrings</a>
+    <a href="collection-necklaces.html">Necklaces</a>
+    <a href="collection-bangles.html">Bangles &amp; Bracelets</a>
+    <a href="collection-maangtikka.html">Maang Tikka</a>
+    <a href="collection-rings.html">Rings</a>
+    <a href="collection-zodiac.html">Zodiac</a>
+    <a href="collection-hampers.html">Festive Hampers 🎁</a>
+    <a href="collection-sale.html" class="sale-m">Sale 🔥</a>
+  </nav>
 </div>
 
-<div class="tz-coll-banner" style="background:linear-gradient(135deg,#1a1008,#3a2a0e);">
-  <img class="tz-coll-banner-img" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=1440&q=60" alt="Earrings"/>
-  <div class="tz-coll-banner-content">
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <h3>Your Bag (0)</h3>
+    <button class="cart-close" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" style="display:flex;align-items:center;justify-content:center;">
+    <div style="text-align:center;padding:60px 24px;">
+      <svg width="56" height="56" fill="none" stroke="#ccc" stroke-width="1.5" viewBox="0 0 24 24" style="margin:0 auto 16px;"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <p style="font-size:14px;color:#888;margin-bottom:20px;">Your bag is empty</p>
+      <a href="index.html" onclick="closeCart()" style="display:inline-block;padding:12px 28px;background:var(--dark);color:#fff;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;border-radius:50px;transition:background .2s;" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='var(--dark)'">Continue Shopping</a>
+    </div>
+  </div>
+  <div class="cart-footer" style="border-top:none;"></div>
+</div>
+
+<!-- FILTER DRAWER (mobile) -->
+<div class="filter-overlay" id="filterOverlay" onclick="closeMobFilter()"></div>
+<div class="filter-drawer" id="filterDrawer">
+  <div class="filter-drawer-head">
+    <strong style="font-size:14px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;">Filters</strong>
+    <button class="filter-drawer-close" onclick="closeMobFilter()">×</button>
+  </div>
+  <!-- same filter groups injected by JS or duplicated -->
+  <div id="filterDrawerContent"></div>
+</div>
+
+<!-- COLLECTION BANNER -->
+<div class="coll-banner">
+  <div class="coll-banner-grad"></div>
+  <img class="coll-banner-bg" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=1440&q=60" alt="Earrings"/>
+  <div class="coll-banner-content">
     <h1>Earrings</h1>
     <p>Handcrafted Indian fashion earrings — jhumkas, chandbalis, hoops &amp; more · <b>178 products</b></p>
   </div>
 </div>
 
-<div class="tz-breadcrumb">
-  <a href="index.html">Home</a><span class="tz-bc-sep">›</span>
-  <span class="tz-bc-cur">Earrings</span>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="sep">›</span>
+  <span class="cur">Earrings</span>
 </div>
 
-<div class="tz-coll-wrap">
-  <aside class="tz-sidebar">
-    <div class="tz-sb-head"><span>Filters</span><button class="tz-clear" onclick="tzClearAll()">Clear All</button></div>
-    <div class="tz-fg open">
-      <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')"><span>Category</span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
-      <div class="tz-fg-body">
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Jhumkas',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Jhumkas</span><span class="tz-opt-cnt">(48)</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Studs',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Studs</span><span class="tz-opt-cnt">(36)</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Hoops',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Hoops</span><span class="tz-opt-cnt">(22)</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Danglers',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Danglers</span><span class="tz-opt-cnt">(31)</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Chandbalis',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Chandbalis</span><span class="tz-opt-cnt">(14)</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Drop Earrings',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Drop Earrings</span><span class="tz-opt-cnt">(27)</span></label>
+<!-- MAIN CONTENT -->
+<div class="coll-wrap">
+
+  <!-- SIDEBAR FILTERS -->
+  <aside class="sidebar" id="desktopSidebar">
+    <div class="sb-header">
+      <span>Filters</span>
+      <button class="sb-clear" onclick="clearAllFilters()">Clear All</button>
+    </div>
+
+    <!-- Active filter tags -->
+    <div class="active-filters" id="activeFilters"></div>
+
+    <!-- Category filter -->
+    <div class="fg open" id="fg-cat">
+      <div class="fg-head" onclick="this.closest('.fg').classList.toggle('open')">
+        <span>Category</span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="fg-body">
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Jhumkas',this)"><span class="f-box"></span><span class="f-lbl">Jhumkas</span><span class="f-cnt">(48)</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Studs',this)"><span class="f-box"></span><span class="f-lbl">Studs</span><span class="f-cnt">(36)</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Hoops',this)"><span class="f-box"></span><span class="f-lbl">Hoops</span><span class="f-cnt">(22)</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Danglers',this)"><span class="f-box"></span><span class="f-lbl">Danglers</span><span class="f-cnt">(31)</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Chandbalis',this)"><span class="f-box"></span><span class="f-lbl">Chandbalis</span><span class="f-cnt">(14)</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Drop Earrings',this)"><span class="f-box"></span><span class="f-lbl">Drop Earrings</span><span class="f-cnt">(27)</span></label>
       </div>
     </div>
-    <div class="tz-fg open">
-      <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')"><span>Price Range</span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
-      <div class="tz-fg-body">
-        <div class="tz-price-inputs"><input class="tz-pi" type="number" placeholder="₹ Min"/><input class="tz-pi" type="number" placeholder="₹ Max"/></div>
-        <div class="tz-price-tags">
-          <button class="tz-ptag" onclick="tzPriceTag(this,'Under ₹500')">Under ₹500</button>
-          <button class="tz-ptag" onclick="tzPriceTag(this,'₹500–₹999')">₹500–₹999</button>
-          <button class="tz-ptag" onclick="tzPriceTag(this,'₹1K–₹3K')">₹1K–₹3K</button>
-          <button class="tz-ptag" onclick="tzPriceTag(this,'Above ₹3K')">Above ₹3K</button>
+
+    <!-- Price Range -->
+    <div class="fg open">
+      <div class="fg-head" onclick="this.closest('.fg').classList.toggle('open')">
+        <span>Price Range</span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="fg-body">
+        <div class="price-inputs">
+          <input class="price-in" type="number" placeholder="₹ Min" min="0"/>
+          <input class="price-in" type="number" placeholder="₹ Max" min="0"/>
+        </div>
+        <div class="price-tags">
+          <button class="ptag" onclick="this.classList.toggle('on');filterTag('Under ₹299',this)">Under ₹299</button>
+          <button class="ptag" onclick="this.classList.toggle('on');filterTag('₹300–₹599',this)">₹300–₹599</button>
+          <button class="ptag" onclick="this.classList.toggle('on');filterTag('₹600–₹999',this)">₹600–₹999</button>
+          <button class="ptag" onclick="this.classList.toggle('on');filterTag('₹1000+',this)">₹1000+</button>
         </div>
       </div>
     </div>
-    <div class="tz-fg open">
-      <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')"><span>Material</span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
-      <div class="tz-fg-body">
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Gold Plated',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Gold Plated</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Silver Plated',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Silver Plated</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Crystal',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Crystal</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Pearl',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Pearl</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('Oxidised',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Oxidised Silver</span></label>
+
+    <!-- Metal / Finish -->
+    <div class="fg open">
+      <div class="fg-head" onclick="this.closest('.fg').classList.toggle('open')">
+        <span>Metal / Finish</span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
       </div>
-    </div>
-    <div class="tz-fg">
-      <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')"><span>Color</span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
-      <div class="tz-fg-body">
-        <div class="tz-swatches">
-          <div class="tz-sw" style="background:#d4a853" title="Gold" onclick="tzSwatchTag(this,'Gold')"></div>
-          <div class="tz-sw" style="background:#c0c0c0" title="Silver" onclick="tzSwatchTag(this,'Silver')"></div>
-          <div class="tz-sw" style="background:#2c2c2c" title="Black" onclick="tzSwatchTag(this,'Black')"></div>
-          <div class="tz-sw" style="background:#e8c4c4" title="Rose Gold" onclick="tzSwatchTag(this,'Rose Gold')"></div>
-          <div class="tz-sw" style="background:#ED1A43" title="Red" onclick="tzSwatchTag(this,'Red')"></div>
-          <div class="tz-sw" style="background:#6a4c9c" title="Purple" onclick="tzSwatchTag(this,'Purple')"></div>
+      <div class="fg-body">
+        <div class="swatches">
+          <div class="swatch" style="background:#D4AF37;" title="Gold" onclick="this.classList.toggle('on');filterTag('Gold',{checked:this.classList.contains('on')})"></div>
+          <div class="swatch" style="background:#C0C0C0;" title="Silver" onclick="this.classList.toggle('on');filterTag('Silver',{checked:this.classList.contains('on')})"></div>
+          <div class="swatch" style="background:#7B3F00;" title="Oxidised" onclick="this.classList.toggle('on');filterTag('Oxidised',{checked:this.classList.contains('on')})"></div>
+          <div class="swatch" style="background:#b5651d;" title="Copper" onclick="this.classList.toggle('on');filterTag('Copper',{checked:this.classList.contains('on')})"></div>
+          <div class="swatch" style="background:#F2157B;" title="Rose Gold" onclick="this.classList.toggle('on');filterTag('Rose Gold',{checked:this.classList.contains('on')})"></div>
         </div>
       </div>
     </div>
-    <div class="tz-fg">
-      <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')"><span>Discount</span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
-      <div class="tz-fg-body">
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('10% or more',this)"><span class="tz-box"></span><span class="tz-opt-lbl">10% or more</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('30% or more',this)"><span class="tz-box"></span><span class="tz-opt-lbl">30% or more</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('50% or more',this)"><span class="tz-box"></span><span class="tz-opt-lbl">50% or more</span></label>
+
+    <!-- Availability -->
+    <div class="fg open">
+      <div class="fg-head" onclick="this.closest('.fg').classList.toggle('open')">
+        <span>Availability</span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="fg-body">
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('In Stock',this)"><span class="f-box"></span><span class="f-lbl">In Stock</span><span class="f-cnt">(156)</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('On Sale',this)"><span class="f-box"></span><span class="f-lbl">On Sale</span><span class="f-cnt">(74)</span></label>
       </div>
     </div>
-    <div class="tz-fg">
-      <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')"><span>Availability</span><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
-      <div class="tz-fg-body">
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('In Stock',this)"><span class="tz-box"></span><span class="tz-opt-lbl">In Stock</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('On Sale',this)"><span class="tz-box"></span><span class="tz-opt-lbl">On Sale</span></label>
-        <label class="tz-opt"><input type="checkbox" onchange="tzTag('New Arrivals',this)"><span class="tz-box"></span><span class="tz-opt-lbl">New Arrivals</span></label>
+
+    <!-- Occasion -->
+    <div class="fg">
+      <div class="fg-head" onclick="this.closest('.fg').classList.toggle('open')">
+        <span>Occasion</span>
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="fg-body">
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Casual',this)"><span class="f-box"></span><span class="f-lbl">Casual / Daily Wear</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Festive',this)"><span class="f-box"></span><span class="f-lbl">Festive / Wedding</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Office',this)"><span class="f-box"></span><span class="f-lbl">Office &amp; Party</span></label>
+        <label class="f-opt"><input type="checkbox" onchange="filterTag('Bridal',this)"><span class="f-box"></span><span class="f-lbl">Bridal</span></label>
       </div>
     </div>
   </aside>
 
-  <main class="tz-main">
-    <div class="tz-toolbar">
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-        <button class="tz-mob-filter" onclick="tzOpenDrawer()"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg> Filters</button>
-        <span class="tz-count">Showing <b id="tzCountDisplay">12</b> products</span>
-      </div>
-      <div class="tz-toolbar-right">
-        <select class="tz-sort" onchange="tzSort(this.value)">
-          <option value="manual">Featured</option>
-          <option value="best-selling">Best Selling</option>
-          <option value="price-ascending">Price: Low to High</option>
-          <option value="price-descending">Price: High to Low</option>
-          <option value="created-descending">Newest First</option>
+  <!-- PRODUCT GRID -->
+  <div class="coll-main">
+    <div class="toolbar">
+      <div class="prod-count"><b>178</b> products</div>
+      <div class="toolbar-right">
+        <button class="mob-filter-btn" onclick="openMobFilter()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+          Filters
+        </button>
+        <select class="sort-select">
+          <option>Featured</option>
+          <option>Best Selling</option>
+          <option>Newest First</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Top Rated</option>
         </select>
       </div>
     </div>
-    <div class="tz-active-tags" id="tzActiveTags"></div>
-    <div class="tz-products" id="tzProductGrid"></div>
-    <div class="tz-pagination">
-      <a href="#" class="tz-pg-btn">← Prev</a>
-      <a href="#" class="tz-pg-btn active">1</a>
-      <a href="#" class="tz-pg-btn">2</a>
-      <a href="#" class="tz-pg-btn">3</a>
-      <span class="tz-pg-btn" style="border:none;cursor:default;">…</span>
-      <a href="#" class="tz-pg-btn">15</a>
-      <a href="#" class="tz-pg-btn">Next →</a>
-    </div>
-  </main>
-</div>
 
-<footer class="tz-footer">
-  <div class="tz-footer-inner">
-    <div class="tz-footer-top">
-      <div class="tz-footer-col">
-        <a href="index.html" class="tz-footer-logo">Tribal<span>Zone</span></a>
-        <p class="tz-footer-about">India's leading fashion accessories brand since 2003. Crafting handmade jewellery that celebrates our rich cultural heritage.</p>
-        <div class="tz-footer-socials">
-          <a href="#" class="tz-soc">IG</a><a href="#" class="tz-soc">FB</a><a href="#" class="tz-soc">PT</a><a href="#" class="tz-soc">YT</a>
+    <div class="prod-grid">
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt="Kundan Studs"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="hover"/>
+          <span class="pcard-badge b-new">New</span>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Studs</div>
+          <div class="pcard-name">Gold Kundan Cluster Studs</div>
+          <div class="pcard-stars">★★★★★ <span>(128)</span></div>
+          <div class="pcard-price"><span class="p-now">₹379</span><span class="p-was">₹699</span><span class="p-off">−46%</span></div>
+          <div class="pcard-free">✓ Free delivery</div>
+        </div>
+      </a>
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt="Jhumka"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70" alt="hover"/>
+          <span class="pcard-badge b-best">Bestseller</span>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Jhumkas</div>
+          <div class="pcard-name">Antique Gold Jhumka Earrings</div>
+          <div class="pcard-stars">★★★★★ <span>(203)</span></div>
+          <div class="pcard-price"><span class="p-now">₹699</span><span class="p-was">₹999</span><span class="p-off">−30%</span></div>
+          <div class="pcard-offer">🎁 Buy 1 Get 2 Free</div>
+        </div>
+      </a>
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt="Chandbali"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt="hover"/>
+          <span class="pcard-badge b-sale">Sale</span>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Chandbalis</div>
+          <div class="pcard-name">Bridal Kundan Chandbali Set</div>
+          <div class="pcard-stars">★★★★★ <span>(67)</span></div>
+          <div class="pcard-price"><span class="p-now">₹849</span><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div>
+        </div>
+      </a>
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="Drop earring"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt="hover"/>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Danglers</div>
+          <div class="pcard-name">Crystal Tassel Drop Earrings</div>
+          <div class="pcard-stars">★★★★ <span>(44)</span></div>
+          <div class="pcard-price"><span class="p-now">₹449</span><span class="p-was">₹699</span><span class="p-off">−36%</span></div>
+          <div class="pcard-free">✓ Free delivery</div>
+        </div>
+      </a>
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70" alt="Oxidised Hoops"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt="hover"/>
+          <span class="pcard-badge b-new">New</span>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Hoops</div>
+          <div class="pcard-name">Oxidised Silver Tribal Hoops</div>
+          <div class="pcard-stars">★★★★★ <span>(175)</span></div>
+          <div class="pcard-price"><span class="p-now">₹399</span></div>
+          <div class="pcard-free">✓ Free delivery</div>
+        </div>
+      </a>
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt="Pearl studs"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt="hover"/>
+          <span class="pcard-badge b-best">Bestseller</span>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Studs</div>
+          <div class="pcard-name">Pearl Drop Stud Earrings</div>
+          <div class="pcard-stars">★★★★★ <span>(312)</span></div>
+          <div class="pcard-price"><span class="p-now">₹349</span><span class="p-was">₹599</span><span class="p-off">−42%</span></div>
+          <div class="pcard-free">✓ Free delivery</div>
+        </div>
+      </a>
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt="Statement earring"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="hover"/>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Danglers</div>
+          <div class="pcard-name">Meenakari Statement Danglers</div>
+          <div class="pcard-stars">★★★★★ <span>(88)</span></div>
+          <div class="pcard-price"><span class="p-now">₹549</span><span class="p-was">₹799</span><span class="p-off">−31%</span></div>
+        </div>
+      </a>
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&q=70" alt="Zodiac earring"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt="hover"/>
+          <span class="pcard-badge b-new">New</span>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Studs</div>
+          <div class="pcard-name">Zodiac Constellation Studs</div>
+          <div class="pcard-stars">★★★★ <span>(29)</span></div>
+          <div class="pcard-price"><span class="p-now">₹299</span><span class="p-was">₹499</span><span class="p-off">−40%</span></div>
+          <div class="pcard-free">✓ Free delivery</div>
+        </div>
+      </a>
+
+      <a class="pcard" href="product.html">
+        <div class="pcard-img">
+          <img class="i1" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt="Layered earring"/>
+          <img class="i2" src="https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70" alt="hover"/>
+          <span class="pcard-badge b-sale">Sale</span>
+          <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+          <div class="pcard-atb">Add to Bag</div>
+        </div>
+        <div class="pcard-info">
+          <div class="pcard-cat">Hoops</div>
+          <div class="pcard-name">Layered Gold Hoop Set</div>
+          <div class="pcard-stars">★★★★★ <span>(61)</span></div>
+          <div class="pcard-price"><span class="p-now">₹499</span><span class="p-was">₹799</span><span class="p-off">−38%</span></div>
+          <div class="pcard-free">✓ Free delivery</div>
+        </div>
+      </a>
+
+    </div><!-- .prod-grid -->
+
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="pg-btn active">1</button>
+      <button class="pg-btn">2</button>
+      <button class="pg-btn">3</button>
+      <button class="pg-btn" style="color:var(--muted)">…</button>
+      <button class="pg-btn">11</button>
+      <button class="pg-btn">Next →</button>
+    </div>
+
+  </div><!-- .coll-main -->
+</div><!-- .coll-wrap -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <a href="index.html" class="footer-logo">Tribal<span>Zone</span></a>
+        <p class="footer-about">India's leading fashion accessories brand since 2003. Handcrafted jewellery celebrating our rich cultural heritage. Skin-safe, affordable &amp; unique.</p>
+        <div class="footer-socials">
+          <a href="#" class="soc-btn">IG</a>
+          <a href="#" class="soc-btn">FB</a>
+          <a href="#" class="soc-btn">PT</a>
+          <a href="#" class="soc-btn">YT</a>
         </div>
       </div>
-      <div class="tz-footer-col">
+      <div class="footer-col">
         <h5>Shop</h5>
         <ul>
           <li><a href="index.html">New Arrivals</a></li>
           <li><a href="collection-earrings.html">Earrings</a></li>
           <li><a href="collection-necklaces.html">Necklaces</a></li>
           <li><a href="collection-bangles.html">Bangles</a></li>
-          <li><a href="collection-maangtikka.html">Maang Tikka</a></li>
-          <li><a href="collection-sale.html">Sale</a></li>
+          <li><a href="collection-zodiac.html">Zodiac</a></li>
+          <li><a href="collection-sale.html" style="color:#e97777;">Sale 🔥</a></li>
         </ul>
       </div>
-      <div class="tz-footer-col">
+      <div class="footer-col">
         <h5>Help</h5>
         <ul>
           <li><a href="#">Track Order</a></li>
-          <li><a href="#">Returns &amp; Exchange</a></li>
+          <li><a href="#">Returns</a></li>
           <li><a href="#">Shipping Policy</a></li>
           <li><a href="#">FAQ</a></li>
           <li><a href="#">Contact Us</a></li>
         </ul>
       </div>
-      <div class="tz-footer-col">
-        <h5>Newsletter</h5>
-        <p style="font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;">Get new arrivals, exclusive offers &amp; styling tips.</p>
-        <div class="tz-nl-form">
-          <input class="tz-nl-input" type="email" placeholder="Your email address"/>
-          <button class="tz-nl-btn">Subscribe</button>
-        </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="#">Our Story</a></li>
+          <li><a href="#">Craftsmanship</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
       </div>
     </div>
-    <div class="tz-footer-bottom">
-      <p class="tz-footer-copy">© 2026 Tribal Zone. All rights reserved.</p>
-      <div class="tz-pay-icons">
-        <span class="tz-pay-icon">Visa</span><span class="tz-pay-icon">Mastercard</span><span class="tz-pay-icon">UPI</span><span class="tz-pay-icon">Paytm</span>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Tribal Zone. All rights reserved. Made with ♥ in India.</p>
+      <div class="pay-chips">
+        <span class="pay-chip">Visa</span>
+        <span class="pay-chip">Mastercard</span>
+        <span class="pay-chip">UPI</span>
+        <span class="pay-chip">RazorPay</span>
+        <span class="pay-chip">COD</span>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-var TZ_PRODUCTS = [
-  { id:1,  title:'Kundan Jhumka Earrings',         type:'Jhumkas',       price:649,  was:999,   img:'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70', available:true,  isNew:false },
-  { id:2,  title:'Pearl Drop Chandbali',            type:'Chandbalis',    price:849,  was:1299,  img:'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70', available:true,  isNew:false },
-  { id:3,  title:'Oxidised Silver Tribal Hoops',    type:'Hoops',         price:399,  was:0,     img:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70', available:true,  isNew:true  },
-  { id:4,  title:'Temple Gold Stud Earrings',       type:'Studs',         price:549,  was:749,   img:'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70', available:true,  isNew:false },
-  { id:5,  title:'Meenakari Flower Dangler',        type:'Danglers',      price:499,  was:699,   img:'https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&q=70', available:true,  isNew:false },
-  { id:6,  title:'Crystal Boho Drop Earrings',      type:'Drop Earrings', price:349,  was:0,     img:'https://images.unsplash.com/photo-1573408301185-9519f94b4d7f?w=500&q=70', available:false, isNew:false },
-  { id:7,  title:'Rajasthani Lac Jhumka',           type:'Jhumkas',       price:799,  was:1099,  img:'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70', available:true,  isNew:false },
-  { id:8,  title:'Antique Gold Chandbali',          type:'Chandbalis',    price:1199, was:1699,  img:'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70', available:true,  isNew:false },
-  { id:9,  title:'Silver Filigree Hoop Earrings',   type:'Hoops',         price:449,  was:0,     img:'https://images.unsplash.com/photo-1596939563690-6c12a6ee5f4b?w=500&q=70', available:true,  isNew:true  },
-  { id:10, title:'Polki Stone Statement Danglers',  type:'Danglers',      price:1499, was:1999,  img:'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70', available:true,  isNew:false },
-  { id:11, title:'Minimal Gold Bar Studs',          type:'Studs',         price:299,  was:0,     img:'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70', available:true,  isNew:true  },
-  { id:12, title:'Bridal Kundan Jhumka Set',        type:'Jhumkas',       price:2499, was:3499,  img:'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70', available:true,  isNew:false },
-];
-var tzState = {};
-function tzTag(l,cb){if(!cb||cb.checked)tzState[l]=true;else delete tzState[l];tzRenderTags();tzFilterCards();}
-function tzPriceTag(btn,l){document.querySelectorAll('.tz-ptag').forEach(b=>b.classList.remove('on'));if(tzState[l]){delete tzState[l];}else{['Under ₹500','₹500–₹999','₹1K–₹3K','Above ₹3K'].forEach(k=>delete tzState[k]);tzState[l]=true;btn.classList.add('on');}tzRenderTags();tzFilterCards();}
-function tzSwatchTag(el,l){el.classList.toggle('on');if(el.classList.contains('on'))tzState[l]=true;else delete tzState[l];tzRenderTags();tzFilterCards();}
-function tzRenderTags(){document.getElementById('tzActiveTags').innerHTML=Object.keys(tzState).map(t=>`<div class="tz-atag" onclick="tzRemoveTag('${t.replace(/'/g,"\\'")}'">${t} <span>×</span></div>`).join('');}
-function tzRemoveTag(l){delete tzState[l];document.querySelectorAll('.tz-opt input').forEach(cb=>{var lb=cb.closest('.tz-opt')?.querySelector('.tz-opt-lbl');if(lb&&lb.textContent.trim()===l)cb.checked=false;});document.querySelectorAll('.tz-sw').forEach(s=>{if(s.title===l)s.classList.remove('on');});document.querySelectorAll('.tz-ptag').forEach(b=>{if(b.textContent.trim()===l)b.classList.remove('on');});tzRenderTags();tzFilterCards();}
-function tzClearAll(){tzState={};document.querySelectorAll('.tz-opt input').forEach(cb=>cb.checked=false);document.querySelectorAll('.tz-sw').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.tz-ptag').forEach(b=>b.classList.remove('on'));tzRenderTags();tzFilterCards();}
-function tzMakeCard(p){var d=p.was>p.price?Math.round((p.was-p.price)*100/p.was):0;var badge=!p.available?'<span class="tz-card-badge tz-badge-out">Sold Out</span>':d>0?'<span class="tz-card-badge tz-badge-sale">Sale</span>':p.isNew?'<span class="tz-card-badge tz-badge-new">New</span>':'';var was=p.was>p.price?`<span class="tz-price-was">₹${p.was.toLocaleString('en-IN')}</span><span class="tz-price-off">-${d}%</span>`:'';var free=p.price>=999?'<div class="tz-card-free">✓ Free delivery</div>':'';return`<a class="tz-card" href="product.html"><div class="tz-card-img"><img src="${p.img}" alt="${p.title}" loading="lazy"/>${badge}<div class="tz-card-atb">Add to Bag</div></div><div class="tz-card-info"><div class="tz-card-cat">${p.type}</div><div class="tz-card-name">${p.title}</div><div class="tz-card-stars">★★★★★</div><div class="tz-card-price"><span class="tz-price-now">₹${p.price.toLocaleString('en-IN')}</span>${was}</div>${free}</div></a>`;}
-function tzFilterCards(){var tags=Object.keys(tzState);var filtered=TZ_PRODUCTS.filter(p=>{if(!tags.length)return true;return tags.every(t=>{if(t==='In Stock')return p.available;if(t==='On Sale')return p.was>p.price;if(t==='New Arrivals')return p.isNew;if(t==='Under ₹500')return p.price<500;if(t==='₹500–₹999')return p.price>=500&&p.price<=999;if(t==='₹1K–₹3K')return p.price>=1000&&p.price<=3000;if(t==='Above ₹3K')return p.price>3000;return p.type===t;});});document.getElementById('tzProductGrid').innerHTML=filtered.length?filtered.map(tzMakeCard).join(''):`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;"><p style="font-family:var(--tz-serif);font-size:28px;font-weight:300;color:#120101;margin-bottom:10px;">No products found</p><p>Try clearing some filters.</p><button onclick="tzClearAll()" style="margin-top:16px;padding:12px 28px;background:#120101;color:#fff;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;">Clear Filters</button></div>`;document.getElementById('tzCountDisplay').textContent=filtered.length;}
-function tzSort(v){if(v==='price-ascending')TZ_PRODUCTS.sort((a,b)=>a.price-b.price);else if(v==='price-descending')TZ_PRODUCTS.sort((a,b)=>b.price-a.price);else if(v==='created-descending')TZ_PRODUCTS.sort((a,b)=>b.id-a.id);tzFilterCards();}
-function tzOpenDrawer(){document.getElementById('tzOverlay').classList.add('on');document.getElementById('tzDrawer').classList.add('on');document.getElementById('tzDrawerContent').innerHTML=document.querySelector('.tz-sidebar').innerHTML;}
-function tzCloseDrawer(){document.getElementById('tzOverlay').classList.remove('on');document.getElementById('tzDrawer').classList.remove('on');}
-tzFilterCards();
+  function toggleWish(btn) { var on = btn.classList.toggle('on'); btn.textContent = on ? '♥' : '♡'; }
+  function openMob() { document.getElementById('mobOverlay').classList.add('on'); document.getElementById('mobDrawer').classList.add('on'); }
+  function closeMob() { document.getElementById('mobOverlay').classList.remove('on'); document.getElementById('mobDrawer').classList.remove('on'); }
+  function openCart() { document.getElementById('cartOverlay').classList.add('on'); document.getElementById('cartDrawer').classList.add('on'); }
+  function closeCart() { document.getElementById('cartOverlay').classList.remove('on'); document.getElementById('cartDrawer').classList.remove('on'); }
+  function openMobFilter() { document.getElementById('filterOverlay').classList.add('on'); document.getElementById('filterDrawer').classList.add('on'); }
+  function closeMobFilter() { document.getElementById('filterOverlay').classList.remove('on'); document.getElementById('filterDrawer').classList.remove('on'); }
+
+  var activeFilters = [];
+  function filterTag(name, el) {
+    if (el.checked) {
+      if (!activeFilters.includes(name)) activeFilters.push(name);
+    } else {
+      activeFilters = activeFilters.filter(f => f !== name);
+    }
+    renderActiveTags();
+  }
+  function renderActiveTags() {
+    var container = document.getElementById('activeFilters');
+    container.innerHTML = activeFilters.map(f =>
+      '<div class="af-tag" onclick="removeFilter(\'' + f + '\')"><span>' + f + '</span><span class="x">×</span></div>'
+    ).join('');
+  }
+  function removeFilter(name) {
+    activeFilters = activeFilters.filter(f => f !== name);
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      var lbl = cb.closest('.f-opt');
+      if (lbl && lbl.querySelector('.f-lbl').textContent === name) cb.checked = false;
+    });
+    renderActiveTags();
+  }
+  function clearAllFilters() {
+    activeFilters = [];
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.ptag').forEach(b => b.classList.remove('on'));
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('on'));
+    renderActiveTags();
+  }
 </script>
 </body>
 </html>
