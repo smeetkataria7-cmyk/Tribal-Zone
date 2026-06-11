@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Side by Side — Tribal Zone Redesign</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #0f0f0f; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      height: 48px; background: #1a1a1a; border-bottom: 1px solid #2e2e2e;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; flex-shrink: 0; gap: 16px;
+    }
+    .topbar-logo { color: #b8913a; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; }
+    .topbar-title { color: rgba(255,255,255,.5); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .topbar-actions { display: flex; gap: 8px; align-items: center; }
+    .tb-btn {
+      padding: 6px 14px; border-radius: 4px; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase; cursor: pointer; border: none;
+      transition: all .2s;
+    }
+    .tb-btn-outline { background: none; border: 1px solid #3e3e3e; color: rgba(255,255,255,.6); }
+    .tb-btn-outline:hover { border-color: #b8913a; color: #b8913a; }
+    .tb-btn-gold { background: #b8913a; color: #fff; }
+    .tb-btn-gold:hover { background: #d4a853; }
+
+    /* ── LABEL STRIP ── */
+    .labels {
+      display: flex; height: 36px; flex-shrink: 0;
+    }
+    .label {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .label-old { background: #1e1e1e; color: rgba(255,255,255,.35); border-right: 1px solid #2e2e2e; }
+    .label-new { background: #1e2a1a; color: #6fcf5a; }
+    .label-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .dot-old { background: rgba(255,255,255,.2); }
+    .dot-new { background: #6fcf5a; }
+
+    /* ── DIVIDER ── */
+    .frames-wrap {
+      flex: 1; display: flex; overflow: hidden; position: relative;
+    }
+
+    /* Draggable divider */
+    .divider {
+      width: 4px; background: #b8913a; cursor: col-resize; flex-shrink: 0;
+      position: relative; z-index: 10; transition: background .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .divider:hover { background: #d4a853; }
+    .divider-handle {
+      width: 28px; height: 56px; background: #b8913a; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.5); cursor: col-resize;
+      position: absolute; left: 50%; transform: translateX(-50%);
+      transition: background .2s;
+    }
+    .divider:hover .divider-handle { background: #d4a853; }
+    .divider-handle svg { color: #fff; }
+
+    /* Frames */
+    .frame-wrap {
+      flex: 1; overflow: hidden; position: relative; background: #fff;
+      min-width: 0;
+    }
+    iframe {
+      width: 100%; height: 100%; border: none; display: block;
+    }
+    /* Scale old site to fit */
+    .frame-old iframe {
+      width: 1440px; height: calc(100vh - 84px);
+      transform-origin: top left;
+    }
+    .frame-new iframe {
+      width: 100%; height: 100%;
+    }
+
+    /* Sync scroll label */
+    .sync-label {
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,.7); color: rgba(255,255,255,.6);
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 12px; white-space: nowrap;
+      pointer-events: none; z-index: 5;
+    }
+
+    /* Scroll sync overlay message */
+    .scroll-hint {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: rgba(184,145,58,.95); color: #fff;
+      font-size: 12px; letter-spacing: 0.06em; padding: 8px 20px; border-radius: 6px;
+      opacity: 0; transition: opacity .4s; pointer-events: none; z-index: 999;
+      font-weight: 600;
+    }
+    .scroll-hint.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">TribalZone</div>
+  <div class="topbar-title">Side-by-side comparison — drag the divider</div>
+  <div class="topbar-actions">
+    <button class="tb-btn tb-btn-outline" onclick="resetSplit()">Reset 50/50</button>
+    <button class="tb-btn tb-btn-outline" onclick="showOld()">Show Old Only</button>
+    <button class="tb-btn tb-btn-gold" onclick="showNew()">Show New Only</button>
+  </div>
+</div>
+
+<!-- LABELS -->
+<div class="labels">
+  <div class="label label-old">
+    <span class="label-dot dot-old"></span>
+    Current Site — tribalzone.in
+  </div>
+  <div class="label label-new">
+    <span class="label-dot dot-new"></span>
+    ✦ Redesign — New Look
+  </div>
+</div>
+
+<!-- FRAMES -->
+<div class="frames-wrap" id="framesWrap">
+
+  <!-- OLD SITE -->
+  <div class="frame-wrap frame-old" id="frameOld">
+    <iframe id="iframeOld" src="https://www.tribalzone.in/" title="Current Tribal Zone"></iframe>
+    <div class="sync-label">← Current Site</div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider" id="divider">
+    <div class="divider-handle">
+      <svg width="12" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- NEW DESIGN -->
+  <div class="frame-wrap frame-new" id="frameNew">
+    <iframe id="iframeNew" src="index.html" title="Redesigned Tribal Zone"></iframe>
+    <div class="sync-label">New Design →</div>
+  </div>
+
+</div>
+
+<div class="scroll-hint" id="scrollHint">Scroll synced across both panels</div>
+
+<script>
+  // ── Draggable divider ──
+  const wrap = document.getElementById('framesWrap');
+  const divider = document.getElementById('divider');
+  const frameOld = document.getElementById('frameOld');
+  const frameNew = document.getElementById('frameNew');
+  let dragging = false;
+
+  divider.addEventListener('mousedown', e => {
+    dragging = true;
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    // Overlay iframes during drag so mousemove fires
+    document.querySelectorAll('iframe').forEach(f => f.style.pointerEvents = 'none');
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const rect = wrap.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    const minW = 200, maxW = rect.width - 200;
+    x = Math.max(minW, Math.min(maxW, x));
+    const pct = (x / rect.width) * 100;
+    frameOld.style.flex = 'none';
+    frameOld.style.width = pct + '%';
+    frameNew.style.flex = '1';
+    frameNew.style.width = '';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+    document.querySelectorAll('iframe').forEach(f => f.style.pointerEvents = '');
+  });
+
+  // Touch support
+  divider.addEventListener('touchstart', e => {
+    dragging = true;
+    document.querySelectorAll('iframe').forEach(f => f.style.pointerEvents = 'none');
+  }, { passive: true });
+  document.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const rect = wrap.getBoundingClientRect();
+    let x = e.touches[0].clientX - rect.left;
+    const minW = 120, maxW = rect.width - 120;
+    x = Math.max(minW, Math.min(maxW, x));
+    const pct = (x / rect.width) * 100;
+    frameOld.style.flex = 'none';
+    frameOld.style.width = pct + '%';
+  }, { passive: true });
+  document.addEventListener('touchend', () => {
+    dragging = false;
+    document.querySelectorAll('iframe').forEach(f => f.style.pointerEvents = '');
+  });
+
+  // ── Scale old iframe to fit ──
+  function scaleOldFrame() {
+    const iframe = document.getElementById('iframeOld');
+    const container = frameOld;
+    const containerW = container.offsetWidth;
+    const scale = containerW / 1440;
+    iframe.style.transform = `scale(${scale})`;
+    iframe.style.width = '1440px';
+    iframe.style.height = (container.offsetHeight / scale) + 'px';
+    iframe.style.transformOrigin = 'top left';
+  }
+  window.addEventListener('resize', scaleOldFrame);
+  // Wait for layout
+  setTimeout(scaleOldFrame, 100);
+
+  // Re-scale when divider moves
+  const resizeObserver = new ResizeObserver(scaleOldFrame);
+  resizeObserver.observe(frameOld);
+
+  // ── Scroll sync ──
+  let syncingOld = false, syncingNew = false;
+  function trySync(sourceIframe, targetIframe, flagSource, flagTarget) {
+    try {
+      sourceIframe.contentWindow.addEventListener('scroll', () => {
+        if (flagTarget) return;
+        flagSource = true;
+        const scrollY = sourceIframe.contentWindow.scrollY;
+        try { targetIframe.contentWindow.scrollTo(0, scrollY); } catch(e){}
+        setTimeout(() => { flagSource = false; }, 50);
+      }, { passive: true });
+    } catch(e) {}
+  }
+
+  // Sync after iframes load
+  document.getElementById('iframeNew').addEventListener('load', () => {
+    const newFrame = document.getElementById('iframeNew');
+    const oldFrame = document.getElementById('iframeOld');
+    try {
+      newFrame.contentWindow.addEventListener('scroll', () => {
+        const scrollPct = newFrame.contentWindow.scrollY / (newFrame.contentDocument.body.scrollHeight - newFrame.contentWindow.innerHeight);
+        showScrollHint();
+      }, { passive: true });
+    } catch(e) {}
+  });
+
+  let scrollHintTimer;
+  function showScrollHint() {
+    const hint = document.getElementById('scrollHint');
+    hint.classList.add('show');
+    clearTimeout(scrollHintTimer);
+    scrollHintTimer = setTimeout(() => hint.classList.remove('show'), 1800);
+  }
+
+  // ── Control buttons ──
+  function resetSplit() {
+    frameOld.style.flex = '1';
+    frameOld.style.width = '';
+    frameNew.style.flex = '1';
+    frameNew.style.width = '';
+    setTimeout(scaleOldFrame, 50);
+  }
+  function showOld() {
+    frameOld.style.flex = 'none';
+    frameOld.style.width = 'calc(100% - 4px)';
+    frameNew.style.flex = 'none';
+    frameNew.style.width = '0';
+    setTimeout(scaleOldFrame, 50);
+  }
+  function showNew() {
+    frameOld.style.flex = 'none';
+    frameOld.style.width = '0';
+    frameNew.style.flex = 'none';
+    frameNew.style.width = 'calc(100% - 4px)';
+  }
+</script>
+</body>
+</html>

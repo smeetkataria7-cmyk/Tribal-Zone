@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop All Jewellery — Tribal Zone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #faf8f5;
+      --white: #ffffff;
+      --gold: #b8913a;
+      --gold-lt: #d4a853;
+      --dark: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e8e2d9;
+      --sidebar: 268px;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--dark); background: var(--white); }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── ANNOUNCE ── */
+    .bar { background: var(--dark); color: rgba(255,255,255,.8); text-align: center; padding: 9px 20px; font-size: 12px; letter-spacing: 0.1em; }
+    .bar b { color: var(--gold-lt); }
+
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; z-index: 200; background: rgba(255,255,255,.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-family: var(--serif); font-size: 22px; font-weight: 300; letter-spacing: 0.06em; white-space: nowrap; }
+    .logo b { color: var(--gold); font-weight: 600; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--dark); }
+    .nav-links a.sale-link { color: #c0392b; }
+    .nav-right { display: flex; gap: 10px; align-items: center; }
+    .icon-btn { background: none; border: none; cursor: pointer; padding: 7px; color: var(--muted); transition: color .2s; display: flex; align-items: center; }
+    .icon-btn:hover { color: var(--gold); }
+    .bag-btn { background: var(--dark); color: var(--white); border: none; cursor: pointer; padding: 9px 20px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--sans); display: flex; gap: 7px; align-items: center; transition: background .2s; }
+    .bag-btn:hover { background: var(--gold); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { background: var(--cream); border-bottom: 1px solid var(--border); padding: 12px 32px; }
+    .bc-inner { max-width: 1400px; margin: 0 auto; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .bc-inner a { color: var(--muted); transition: color .2s; }
+    .bc-inner a:hover { color: var(--gold); }
+    .bc-sep { opacity: 0.4; }
+    .bc-current { color: var(--dark); font-weight: 500; }
+
+    /* ── PAGE LAYOUT ── */
+    .page { max-width: 1400px; margin: 0 auto; padding: 28px 32px 64px; display: flex; gap: 28px; align-items: flex-start; }
+
+    /* ── SIDEBAR ── */
+    .sidebar { width: var(--sidebar); flex-shrink: 0; position: sticky; top: 78px; max-height: calc(100vh - 90px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px; border-bottom: 2px solid var(--dark); margin-bottom: 4px; }
+    .sidebar-title { font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+    .clear-all { font-size: 12px; color: var(--gold); cursor: pointer; background: none; border: none; font-family: var(--sans); padding: 0; }
+    .clear-all:hover { text-decoration: underline; }
+
+    /* Filter group */
+    .filter-group { border-bottom: 1px solid var(--border); }
+    .filter-group-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0; cursor: pointer; user-select: none;
+    }
+    .filter-group-label { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; }
+    .filter-count { font-size: 11px; background: var(--gold); color: var(--white); border-radius: 10px; padding: 1px 7px; font-weight: 600; display: none; }
+    .filter-count.show { display: inline; }
+    .filter-chevron { width: 16px; height: 16px; color: var(--muted); transition: transform .25s; flex-shrink: 0; }
+    .filter-group.open .filter-chevron { transform: rotate(180deg); }
+    .filter-body { display: none; padding-bottom: 16px; }
+    .filter-group.open .filter-body { display: block; }
+
+    /* Checkbox filters */
+    .filter-search {
+      width: 100%; padding: 7px 10px; border: 1px solid var(--border);
+      font-size: 12px; font-family: var(--sans); color: var(--dark);
+      outline: none; margin-bottom: 10px; border-radius: 2px;
+      background: var(--cream);
+    }
+    .filter-search:focus { border-color: var(--gold); }
+    .filter-options { display: flex; flex-direction: column; gap: 8px; }
+    .filter-option { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+    .filter-option input[type=checkbox] { display: none; }
+    .checkbox {
+      width: 16px; height: 16px; border: 1.5px solid #ccc; border-radius: 2px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; transition: all .15s; background: var(--white);
+    }
+    .filter-option input:checked + .checkbox { background: var(--gold); border-color: var(--gold); }
+    .filter-option input:checked + .checkbox::after { content: '✓'; font-size: 10px; color: var(--white); font-weight: 700; }
+    .filter-opt-label { font-size: 13px; color: var(--dark); flex: 1; }
+    .filter-opt-count { font-size: 11px; color: var(--muted); }
+    .show-more { font-size: 12px; color: var(--gold); cursor: pointer; background: none; border: none; padding: 6px 0 0; font-family: var(--sans); }
+    .show-more:hover { text-decoration: underline; }
+
+    /* Price range slider */
+    .price-inputs { display: flex; gap: 8px; margin-bottom: 14px; }
+    .price-input {
+      flex: 1; padding: 7px 9px; border: 1px solid var(--border); font-size: 13px;
+      font-family: var(--sans); color: var(--dark); outline: none; border-radius: 2px;
+    }
+    .price-input:focus { border-color: var(--gold); }
+    .range-track { position: relative; height: 4px; background: var(--border); border-radius: 2px; margin: 10px 0 18px; }
+    .range-fill { position: absolute; height: 100%; background: var(--gold); border-radius: 2px; left: 0; right: 30%; }
+    input[type=range] {
+      -webkit-appearance: none; appearance: none; position: absolute; top: 50%;
+      transform: translateY(-50%); width: 100%; height: 4px;
+      background: transparent; pointer-events: none; outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none; pointer-events: all;
+      width: 16px; height: 16px; border-radius: 50%; background: var(--white);
+      border: 2px solid var(--gold); cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 16px; height: 16px; border-radius: 50%; background: var(--white);
+      border: 2px solid var(--gold); cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,.2);
+      pointer-events: all;
+    }
+    .price-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+
+    /* Color swatches */
+    .color-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+    .color-swatch {
+      width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+      border: 2px solid transparent; transition: all .15s; position: relative;
+    }
+    .color-swatch.active, .color-swatch:hover { border-color: var(--gold); }
+    .color-swatch.active::after {
+      content: '✓'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: var(--white); font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0,0,0,.4);
+    }
+
+    /* Star rating */
+    .rating-options { display: flex; flex-direction: column; gap: 8px; }
+    .rating-opt { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    .stars-row { color: var(--gold); font-size: 13px; letter-spacing: 2px; }
+    .stars-empty { color: #ddd; }
+    .rating-label { font-size: 12px; color: var(--muted); }
+
+    /* Active filters */
+    .active-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .active-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fff8ed; border: 1px solid var(--gold-lt); color: var(--dark);
+      font-size: 12px; padding: 4px 10px; border-radius: 20px; cursor: pointer;
+    }
+    .active-tag:hover { background: #ffefd4; }
+    .active-tag span { font-size: 13px; color: var(--muted); }
+
+    /* ── MAIN CONTENT ── */
+    .main { flex: 1; min-width: 0; }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .result-count { font-size: 14px; color: var(--muted); }
+    .result-count b { color: var(--dark); font-weight: 600; }
+    .toolbar-right { display: flex; align-items: center; gap: 12px; }
+    .sort-select {
+      padding: 9px 32px 9px 12px; border: 1px solid var(--border);
+      font-size: 13px; font-family: var(--sans); color: var(--dark);
+      outline: none; cursor: pointer; background: var(--white);
+      appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 10px center; border-radius: 2px;
+    }
+    .sort-select:focus { border-color: var(--gold); }
+    .view-toggle { display: flex; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+    .view-btn { padding: 8px 11px; background: none; border: none; cursor: pointer; color: var(--muted); display: flex; transition: all .15s; }
+    .view-btn.active { background: var(--dark); color: var(--white); }
+    .view-btn:not(.active):hover { background: var(--cream); }
+    .mobile-filter-btn {
+      display: none; align-items: center; gap: 8px; padding: 9px 16px;
+      border: 1px solid var(--border); background: none; font-size: 13px;
+      font-family: var(--sans); cursor: pointer; border-radius: 2px; transition: all .2s;
+    }
+    .mobile-filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Products grid */
+    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .products-grid.list-view { grid-template-columns: 1fr; }
+    .products-grid.four-col { grid-template-columns: repeat(4, 1fr); }
+
+    /* Product card */
+    .prod-card { background: var(--white); cursor: pointer; transition: box-shadow .25s; border: 1px solid transparent; }
+    .prod-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.09); border-color: var(--border); }
+    .prod-img-wrap { position: relative; overflow: hidden; aspect-ratio: 3/4; background: linear-gradient(145deg, #f0ece5, #e4dfd6); }
+    .prod-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .prod-card:hover .prod-img-wrap img { transform: scale(1.05); }
+    .prod-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #a89880; position: absolute; inset: 0; }
+    .badge { position: absolute; top: 10px; left: 10px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 8px; border-radius: 1px; font-weight: 600; }
+    .badge-new { background: var(--gold); color: var(--white); }
+    .badge-sale { background: #c0392b; color: var(--white); }
+    .wishlist-btn {
+      position: absolute; top: 10px; right: 10px;
+      width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.9);
+      display: flex; align-items: center; justify-content: center;
+      border: none; cursor: pointer; opacity: 0; transition: opacity .2s;
+      color: var(--muted);
+    }
+    .wishlist-btn:hover { color: #e74c3c; }
+    .prod-card:hover .wishlist-btn { opacity: 1; }
+    .quick-add { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(26,26,26,.9); color: var(--white); text-align: center; padding: 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; transform: translateY(100%); transition: transform .28s ease; }
+    .prod-card:hover .quick-add { transform: translateY(0); }
+    .prod-info { padding: 14px 12px 16px; }
+    .prod-cat { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .prod-name { font-family: var(--serif); font-size: 15px; font-weight: 400; line-height: 1.3; margin-bottom: 8px; }
+    .prod-rating { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
+    .stars-s { color: var(--gold); font-size: 11px; letter-spacing: 1px; }
+    .rating-num { font-size: 11px; color: var(--muted); }
+    .prod-price { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .p-sale { font-size: 15px; font-weight: 600; }
+    .p-orig { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+    .p-off { font-size: 11px; color: #c0392b; font-weight: 600; }
+    .delivery { font-size: 11px; color: #27ae60; margin-top: 5px; display: flex; align-items: center; gap: 4px; }
+
+    /* List view card */
+    .products-grid.list-view .prod-card { display: flex; gap: 0; }
+    .products-grid.list-view .prod-img-wrap { aspect-ratio: 1; width: 220px; flex-shrink: 0; }
+    .products-grid.list-view .prod-info { flex: 1; padding: 20px 20px 20px; display: flex; flex-direction: column; justify-content: center; }
+    .products-grid.list-view .prod-name { font-size: 18px; margin-bottom: 12px; }
+    .list-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; display: none; }
+    .products-grid.list-view .list-desc { display: block; }
+    .list-add-btn { display: none; margin-top: 14px; }
+    .products-grid.list-view .list-add-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--dark); color: var(--white); border: none; cursor: pointer; padding: 10px 22px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--sans); transition: background .2s; }
+    .products-grid.list-view .list-add-btn:hover { background: var(--gold); }
+    .products-grid.list-view .quick-add { display: none; }
+    .products-grid.list-view .wishlist-btn { opacity: 1; }
+
+    /* Pagination */
+    .pagination { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 48px; }
+    .page-btn { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: var(--white); font-size: 13px; cursor: pointer; border-radius: 2px; transition: all .15s; font-family: var(--sans); color: var(--dark); }
+    .page-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .page-btn.active { background: var(--dark); color: var(--white); border-color: var(--dark); }
+    .page-btn.dots { border: none; cursor: default; }
+    .page-btn.dots:hover { color: var(--muted); border: none; }
+
+    /* No results */
+    .no-results { text-align: center; padding: 80px 20px; color: var(--muted); }
+    .no-results h3 { font-family: var(--serif); font-size: 28px; font-weight: 300; margin-bottom: 12px; color: var(--dark); }
+
+    /* Mobile sidebar overlay */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 300; }
+    .sidebar-overlay.show { display: block; }
+    .sidebar-drawer {
+      position: fixed; top: 0; left: -100%; bottom: 0; width: 300px; z-index: 301;
+      background: var(--white); overflow-y: auto; padding: 20px;
+      transition: left .3s ease; box-shadow: 4px 0 24px rgba(0,0,0,.15);
+    }
+    .sidebar-drawer.open { left: 0; }
+    .drawer-close { position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer; font-size: 22px; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-grid.four-col { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 860px) {
+      .sidebar { display: none; }
+      .mobile-filter-btn { display: flex; }
+      .products-grid, .products-grid.four-col { grid-template-columns: repeat(2, 1fr); }
+      .products-grid.list-view .prod-img-wrap { width: 160px; }
+    }
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
+      .nav-inner { padding: 0 16px; }
+      .page { padding: 16px; gap: 0; }
+      .products-grid, .products-grid.four-col { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .products-grid.list-view { grid-template-columns: 1fr; }
+      .products-grid.list-view .prod-img-wrap { width: 120px; }
+      .breadcrumb { padding: 10px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bar">Free shipping above ₹500 &nbsp;·&nbsp; <b>10% OFF</b> first order &nbsp;·&nbsp; Gift wrapping on all orders</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Tribal<b>Zone</b></a>
+    <div class="nav-links">
+      <a href="products.html" class="active">Shop All</a>
+      <a href="products.html?cat=earrings">Earrings</a>
+      <a href="products.html?cat=necklaces">Necklaces</a>
+      <a href="products.html?cat=bracelets">Bracelets</a>
+      <a href="products.html?cat=zodiac">Zodiac</a>
+      <a href="products.html?sale=true" class="sale-link">Sale</a>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <button class="icon-btn"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="bag-btn">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Bag (0)
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html">Home</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-current" id="bc-current">All Jewellery</span>
+  </div>
+</div>
+
+<!-- Mobile sidebar overlay -->
+<div class="sidebar-overlay" id="overlay" onclick="closeMobileSidebar()"></div>
+<div class="sidebar-drawer" id="drawer">
+  <button class="drawer-close" onclick="closeMobileSidebar()">×</button>
+  <div id="drawer-content"></div>
+</div>
+
+<div class="page">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+      <span class="sidebar-title">Filters</span>
+      <button class="clear-all" onclick="clearAllFilters()">Clear All</button>
+    </div>
+
+    <!-- Active filters -->
+    <div class="active-filters" id="active-filters" style="padding-top:12px;"></div>
+
+    <!-- Category -->
+    <div class="filter-group open" id="fg-category">
+      <div class="filter-group-head" onclick="toggleGroup('fg-category')">
+        <span class="filter-group-label">Category</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="filter-count" id="fc-category"></span>
+          <svg class="filter-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="filter-body">
+        <div class="filter-options" id="fo-category">
+          <label class="filter-option"><input type="checkbox" value="earrings" onchange="onFilter('category','earrings',this)"><span class="checkbox"></span><span class="filter-opt-label">Earrings</span><span class="filter-opt-count">86</span></label>
+          <label class="filter-option"><input type="checkbox" value="necklaces" onchange="onFilter('category','necklaces',this)"><span class="checkbox"></span><span class="filter-opt-label">Necklaces</span><span class="filter-opt-count">42</span></label>
+          <label class="filter-option"><input type="checkbox" value="bracelets" onchange="onFilter('category','bracelets',this)"><span class="checkbox"></span><span class="filter-opt-label">Bracelets</span><span class="filter-opt-count">31</span></label>
+          <label class="filter-option"><input type="checkbox" value="ethnic" onchange="onFilter('category','ethnic',this)"><span class="checkbox"></span><span class="filter-opt-label">Ethnic Earrings</span><span class="filter-opt-count">28</span></label>
+          <label class="filter-option"><input type="checkbox" value="zodiac" onchange="onFilter('category','zodiac',this)"><span class="checkbox"></span><span class="filter-opt-label">Zodiac Pendants</span><span class="filter-opt-count">24</span></label>
+          <label class="filter-option"><input type="checkbox" value="hair" onchange="onFilter('category','hair',this)"><span class="checkbox"></span><span class="filter-opt-label">Hair Accessories</span><span class="filter-opt-count">12</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Price Range -->
+    <div class="filter-group open" id="fg-price">
+      <div class="filter-group-head" onclick="toggleGroup('fg-price')">
+        <span class="filter-group-label">Price Range</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="filter-count" id="fc-price"></span>
+          <svg class="filter-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="filter-body">
+        <div class="price-inputs">
+          <input class="price-input" type="number" id="price-min" placeholder="₹ Min" value="189" min="189" max="6990" oninput="updatePriceFilter()"/>
+          <input class="price-input" type="number" id="price-max" placeholder="₹ Max" value="6990" min="189" max="6990" oninput="updatePriceFilter()"/>
+        </div>
+        <div class="range-track">
+          <div class="range-fill" id="range-fill"></div>
+          <input type="range" id="range-min" min="189" max="6990" value="189" oninput="onRangeMin(this)"/>
+          <input type="range" id="range-max" min="189" max="6990" value="6990" oninput="onRangeMax(this)"/>
+        </div>
+        <div class="price-labels"><span>₹189</span><span>₹6,990</span></div>
+        <!-- Quick price brackets -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">
+          <button onclick="setPrice(189,499)" style="padding:5px 10px;border:1px solid var(--border);background:none;font-size:11px;cursor:pointer;border-radius:12px;font-family:var(--sans);transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Under ₹500</button>
+          <button onclick="setPrice(500,999)" style="padding:5px 10px;border:1px solid var(--border);background:none;font-size:11px;cursor:pointer;border-radius:12px;font-family:var(--sans);transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">₹500–₹999</button>
+          <button onclick="setPrice(1000,2999)" style="padding:5px 10px;border:1px solid var(--border);background:none;font-size:11px;cursor:pointer;border-radius:12px;font-family:var(--sans);transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">₹1K–₹3K</button>
+          <button onclick="setPrice(3000,6990)" style="padding:5px 10px;border:1px solid var(--border);background:none;font-size:11px;cursor:pointer;border-radius:12px;font-family:var(--sans);transition:all .15s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">Above ₹3K</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Material -->
+    <div class="filter-group open" id="fg-material">
+      <div class="filter-group-head" onclick="toggleGroup('fg-material')">
+        <span class="filter-group-label">Material</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="filter-count" id="fc-material"></span>
+          <svg class="filter-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="filter-body">
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" value="gold-plated" onchange="onFilter('material','Gold Plated',this)"><span class="checkbox"></span><span class="filter-opt-label">Gold Plated</span><span class="filter-opt-count">94</span></label>
+          <label class="filter-option"><input type="checkbox" value="silver-plated" onchange="onFilter('material','Silver Plated',this)"><span class="checkbox"></span><span class="filter-opt-label">Silver Plated</span><span class="filter-opt-count">67</span></label>
+          <label class="filter-option"><input type="checkbox" value="crystal" onchange="onFilter('material','Crystal',this)"><span class="checkbox"></span><span class="filter-opt-label">Crystal</span><span class="filter-opt-count">41</span></label>
+          <label class="filter-option"><input type="checkbox" value="pearl" onchange="onFilter('material','Pearl',this)"><span class="checkbox"></span><span class="filter-opt-label">Pearl</span><span class="filter-opt-count">22</span></label>
+          <label class="filter-option"><input type="checkbox" value="oxidised" onchange="onFilter('material','Oxidised',this)"><span class="checkbox"></span><span class="filter-opt-label">Oxidised Silver</span><span class="filter-opt-count">18</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color -->
+    <div class="filter-group open" id="fg-color">
+      <div class="filter-group-head" onclick="toggleGroup('fg-color')">
+        <span class="filter-group-label">Color</span>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span class="filter-count" id="fc-color"></span>
+          <svg class="filter-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="filter-body">
+        <div class="color-swatches" id="color-swatches">
+          <div class="color-swatch" style="background:#d4a853;" title="Gold" onclick="toggleColor(this,'Gold')"></div>
+          <div class="color-swatch" style="background:#c0c0c0;" title="Silver" onclick="toggleColor(this,'Silver')"></div>
+          <div class="color-swatch" style="background:#2c2c2c;" title="Black" onclick="toggleColor(this,'Black')"></div>
+          <div class="color-swatch" style="background:#e8c4c4;" title="Rose Gold" onclick="toggleColor(this,'Rose Gold')"></div>
+          <div class="color-swatch" style="background:#fff;border:1px solid #ddd;" title="White/Pearl" onclick="toggleColor(this,'White')"></div>
+          <div class="color-swatch" style="background:#6a4c9c;" title="Purple" onclick="toggleColor(this,'Purple')"></div>
+          <div class="color-swatch" style="background:#2e86ab;" title="Blue" onclick="toggleColor(this,'Blue')"></div>
+          <div class="color-swatch" style="background:#e74c3c;" title="Red" onclick="toggleColor(this,'Red')"></div>
+          <div class="color-swatch" style="background:#27ae60;" title="Green" onclick="toggleColor(this,'Green')"></div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;" id="color-selected-label"></div>
+      </div>
+    </div>
+
+    <!-- Rating -->
+    <div class="filter-group" id="fg-rating">
+      <div class="filter-group-head" onclick="toggleGroup('fg-rating')">
+        <span class="filter-group-label">Customer Rating</span>
+        <svg class="filter-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-body">
+        <div class="rating-options">
+          <label class="filter-option"><input type="checkbox" value="4plus" onchange="onFilter('rating','4★ & above',this)"><span class="checkbox"></span><span class="stars-row">★★★★</span><span style="font-size:11px;color:var(--muted);margin-left:4px;">& above</span></label>
+          <label class="filter-option"><input type="checkbox" value="3plus" onchange="onFilter('rating','3★ & above',this)"><span class="checkbox"></span><span class="stars-row">★★★</span><span style="font-size:11px;color:var(--muted);margin-left:4px;">& above</span></label>
+          <label class="filter-option"><input type="checkbox" value="2plus" onchange="onFilter('rating','2★ & above',this)"><span class="checkbox"></span><span class="stars-row">★★</span><span style="font-size:11px;color:var(--muted);margin-left:4px;">& above</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Discount -->
+    <div class="filter-group" id="fg-discount">
+      <div class="filter-group-head" onclick="toggleGroup('fg-discount')">
+        <span class="filter-group-label">Discount</span>
+        <svg class="filter-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-body">
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" value="10" onchange="onFilter('discount','10% or more',this)"><span class="checkbox"></span><span class="filter-opt-label">10% or more</span></label>
+          <label class="filter-option"><input type="checkbox" value="20" onchange="onFilter('discount','20% or more',this)"><span class="checkbox"></span><span class="filter-opt-label">20% or more</span></label>
+          <label class="filter-option"><input type="checkbox" value="30" onchange="onFilter('discount','30% or more',this)"><span class="checkbox"></span><span class="filter-opt-label">30% or more</span></label>
+          <label class="filter-option"><input type="checkbox" value="50" onchange="onFilter('discount','50% or more',this)"><span class="checkbox"></span><span class="filter-opt-label">50% or more</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Availability -->
+    <div class="filter-group" id="fg-avail">
+      <div class="filter-group-head" onclick="toggleGroup('fg-avail')">
+        <span class="filter-group-label">Availability</span>
+        <svg class="filter-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="filter-body">
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" value="instock" onchange="onFilter('avail','In Stock',this)"><span class="checkbox"></span><span class="filter-opt-label">In Stock</span></label>
+          <label class="filter-option"><input type="checkbox" value="new" onchange="onFilter('avail','New Arrivals',this)"><span class="checkbox"></span><span class="filter-opt-label">New Arrivals</span></label>
+          <label class="filter-option"><input type="checkbox" value="sale" onchange="onFilter('avail','On Sale',this)"><span class="checkbox"></span><span class="filter-opt-label">On Sale</span></label>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <button class="mobile-filter-btn" onclick="openMobileSidebar()">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+          Filters <span id="mobile-filter-count" style="display:none;background:var(--gold);color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:600;"></span>
+        </button>
+        <span class="result-count">Showing <b id="result-count">223</b> results</span>
+      </div>
+      <div class="toolbar-right">
+        <select class="sort-select" id="sort-select" onchange="onSort(this.value)">
+          <option value="relevance">Sort: Relevance</option>
+          <option value="popularity">Most Popular</option>
+          <option value="newest">Newest First</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="discount">Biggest Discount</option>
+          <option value="rating">Highest Rated</option>
+        </select>
+        <div class="view-toggle">
+          <button class="view-btn active" id="vb-grid" onclick="setView('grid')" title="Grid view">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/></svg>
+          </button>
+          <button class="view-btn" id="vb-list" onclick="setView('list')" title="List view">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active filter tags (inline, above grid) -->
+    <div class="active-filters" id="active-filters-inline" style="margin-bottom:16px;"></div>
+
+    <!-- Product Grid -->
+    <div class="products-grid" id="products-grid">
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <span class="badge badge-new">New</span>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Earrings</div>
+          <div class="prod-name">Gold Cluster Stud & Hoop Combo Set</div>
+          <div class="prod-rating"><span class="stars-s">★★★★★</span><span class="rating-num">(128)</span></div>
+          <div class="prod-price"><span class="p-sale">₹379</span><span class="p-orig">₹699</span><span class="p-off">-46%</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">3-pair set with gold cluster studs and thin hoop earrings. Gold plated, lightweight, suitable for daily wear.</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <span class="badge badge-sale">Sale</span>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Necklaces</div>
+          <div class="prod-name">Crystal Drop Pendant Necklace</div>
+          <div class="prod-rating"><span class="stars-s">★★★★</span><span class="stars-s" style="color:#ddd;">★</span><span class="rating-num">(84)</span></div>
+          <div class="prod-price"><span class="p-sale">₹549</span><span class="p-orig">₹899</span><span class="p-off">-39%</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">Delicate crystal pendant on a fine gold-plated chain. Suitable for casual and festive occasions.</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <span class="badge badge-new">New</span>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Zodiac</div>
+          <div class="prod-name">Aries Zodiac Silver Pendant</div>
+          <div class="prod-rating"><span class="stars-s">★★★★★</span><span class="rating-num">(56)</span></div>
+          <div class="prod-price"><span class="p-sale">₹449</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">Silver plated zodiac sign pendant. A meaningful gift for your loved ones.</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Ethnic</div>
+          <div class="prod-name">Antique Gold Jhumka Earrings</div>
+          <div class="prod-rating"><span class="stars-s">★★★★</span><span class="stars-s" style="color:#ddd;">★</span><span class="rating-num">(203)</span></div>
+          <div class="prod-price"><span class="p-sale">₹699</span><span class="p-orig">₹999</span><span class="p-off">-30%</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">Traditional oxidised gold jhumka earrings with intricate detailing. Perfect for ethnic wear.</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <span class="badge badge-sale">Sale</span>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Bracelets</div>
+          <div class="prod-name">Crystal Beaded Stretch Bracelet</div>
+          <div class="prod-rating"><span class="stars-s">★★★★★</span><span class="rating-num">(91)</span></div>
+          <div class="prod-price"><span class="p-sale">₹299</span><span class="p-orig">₹499</span><span class="p-off">-40%</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">Stretchable crystal bead bracelet, fits all wrist sizes. Great for stacking.</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Earrings</div>
+          <div class="prod-name">Pearl Drop Stud Earrings</div>
+          <div class="prod-rating"><span class="stars-s">★★★★★</span><span class="rating-num">(167)</span></div>
+          <div class="prod-price"><span class="p-sale">₹349</span><span class="p-orig">₹599</span><span class="p-off">-42%</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">Faux pearl drop stud earrings on gold-plated base. Elegant everyday jewellery.</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <span class="badge badge-new">New</span>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Necklaces</div>
+          <div class="prod-name">Layered Gold Chain Necklace Set</div>
+          <div class="prod-rating"><span class="stars-s">★★★★</span><span class="stars-s" style="color:#ddd;">★</span><span class="rating-num">(42)</span></div>
+          <div class="prod-price"><span class="p-sale">₹899</span><span class="p-orig">₹1,299</span><span class="p-off">-31%</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">3-layer adjustable gold chain necklace set. Can be worn as one piece or individually.</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <span class="badge badge-sale">Sale</span>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Ethnic</div>
+          <div class="prod-name">Chandbali Kundan Earrings</div>
+          <div class="prod-rating"><span class="stars-s">★★★★★</span><span class="rating-num">(78)</span></div>
+          <div class="prod-price"><span class="p-sale">₹849</span><span class="p-orig">₹1,499</span><span class="p-off">-43%</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">Traditional chandbali earrings with kundan stone work. Statement piece for weddings and festivals.</div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <div class="prod-ph">Product Photo</div>
+          <button class="wishlist-btn">♡</button>
+          <div class="quick-add">Quick Add to Bag</div>
+        </div>
+        <div class="prod-info">
+          <div class="prod-cat">Zodiac</div>
+          <div class="prod-name">Leo Star Sign Gold Pendant</div>
+          <div class="prod-rating"><span class="stars-s">★★★★★</span><span class="rating-num">(33)</span></div>
+          <div class="prod-price"><span class="p-sale">₹449</span></div>
+          <div class="delivery">✓ Free delivery</div>
+          <button class="list-add-btn">Add to Bag →</button>
+          <div class="list-desc">Gold plated Leo zodiac pendant on a delicate chain. Personalised gifting option.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn dots">…</button>
+      <button class="page-btn">18</button>
+      <button class="page-btn" style="width:auto;padding:0 14px;">Next →</button>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  // ── State ──
+  const state = { filters: {}, view: 'grid' };
+
+  // ── Filter group toggle ──
+  function toggleGroup(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+
+  // ── Checkbox filter ──
+  function onFilter(group, label, cb) {
+    if (!state.filters[group]) state.filters[group] = {};
+    if (cb.checked) state.filters[group][label] = true;
+    else delete state.filters[group][label];
+    if (Object.keys(state.filters[group]).length === 0) delete state.filters[group];
+    renderActiveTags();
+    updateFilterCounts();
+    simulateResults();
+  }
+
+  // ── Color toggle ──
+  function toggleColor(el, name) {
+    el.classList.toggle('active');
+    if (!state.filters.color) state.filters.color = {};
+    if (el.classList.contains('active')) state.filters.color[name] = true;
+    else delete state.filters.color[name];
+    if (Object.keys(state.filters.color).length === 0) delete state.filters.color;
+    const selected = Object.keys(state.filters.color || {});
+    document.getElementById('color-selected-label').textContent = selected.length ? 'Selected: ' + selected.join(', ') : '';
+    renderActiveTags();
+    updateFilterCounts();
+    simulateResults();
+  }
+
+  // ── Price range ──
+  function onRangeMin(el) {
+    const max = parseInt(document.getElementById('range-max').value);
+    if (parseInt(el.value) > max - 100) el.value = max - 100;
+    document.getElementById('price-min').value = el.value;
+    updateRangeFill();
+    simulateResults();
+  }
+  function onRangeMax(el) {
+    const min = parseInt(document.getElementById('range-min').value);
+    if (parseInt(el.value) < min + 100) el.value = min + 100;
+    document.getElementById('price-max').value = el.value;
+    updateRangeFill();
+    simulateResults();
+  }
+  function updatePriceFilter() {
+    document.getElementById('range-min').value = document.getElementById('price-min').value;
+    document.getElementById('range-max').value = document.getElementById('price-max').value;
+    updateRangeFill();
+    simulateResults();
+  }
+  function updateRangeFill() {
+    const min = 189, max = 6990;
+    const lo = parseInt(document.getElementById('range-min').value);
+    const hi = parseInt(document.getElementById('range-max').value);
+    const left = ((lo - min) / (max - min)) * 100;
+    const right = 100 - ((hi - min) / (max - min)) * 100;
+    const fill = document.getElementById('range-fill');
+    if (fill) { fill.style.left = left + '%'; fill.style.right = right + '%'; }
+  }
+  function setPrice(lo, hi) {
+    document.getElementById('price-min').value = lo;
+    document.getElementById('price-max').value = hi;
+    document.getElementById('range-min').value = lo;
+    document.getElementById('range-max').value = hi;
+    updateRangeFill();
+    simulateResults();
+  }
+
+  // ── Active filter tags ──
+  function renderActiveTags() {
+    const tags = [];
+    for (const [group, vals] of Object.entries(state.filters)) {
+      for (const label of Object.keys(vals)) {
+        tags.push({ group, label });
+      }
+    }
+    ['active-filters', 'active-filters-inline'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = tags.map(t =>
+        `<div class="active-tag" onclick="removeTag('${t.group}','${t.label}')">${t.label} <span>×</span></div>`
+      ).join('');
+    });
+    const mfc = document.getElementById('mobile-filter-count');
+    if (tags.length > 0) { mfc.style.display = 'inline'; mfc.textContent = tags.length; }
+    else mfc.style.display = 'none';
+  }
+
+  function removeTag(group, label) {
+    if (state.filters[group]) {
+      delete state.filters[group][label];
+      if (Object.keys(state.filters[group]).length === 0) delete state.filters[group];
+    }
+    // uncheck the corresponding checkbox
+    document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+      if (cb.closest('.filter-option')) {
+        const lbl = cb.closest('.filter-option').querySelector('.filter-opt-label');
+        if (lbl && lbl.textContent === label) cb.checked = false;
+      }
+    });
+    // uncheck color swatch
+    document.querySelectorAll('.color-swatch').forEach(s => {
+      if (s.title === label) s.classList.remove('active');
+    });
+    const selected = Object.keys(state.filters.color || {});
+    const colorLabel = document.getElementById('color-selected-label');
+    if (colorLabel) colorLabel.textContent = selected.length ? 'Selected: ' + selected.join(', ') : '';
+    renderActiveTags();
+    updateFilterCounts();
+    simulateResults();
+  }
+
+  function clearAllFilters() {
+    state.filters = {};
+    document.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+    const colorLabel = document.getElementById('color-selected-label');
+    if (colorLabel) colorLabel.textContent = '';
+    setPrice(189, 6990);
+    renderActiveTags();
+    updateFilterCounts();
+    simulateResults();
+  }
+
+  // ── Filter counts ──
+  function updateFilterCounts() {
+    const groups = { category: 'fc-category', material: 'fc-material', color: 'fc-color', price: 'fc-price' };
+    for (const [group, countId] of Object.entries(groups)) {
+      const el = document.getElementById(countId);
+      if (!el) continue;
+      const count = Object.keys(state.filters[group] || {}).length;
+      el.textContent = count;
+      el.classList.toggle('show', count > 0);
+    }
+  }
+
+  // ── Sort ──
+  function onSort(val) { simulateResults(); }
+
+  // ── View toggle ──
+  function setView(v) {
+    state.view = v;
+    const grid = document.getElementById('products-grid');
+    grid.className = 'products-grid' + (v === 'list' ? ' list-view' : '');
+    document.getElementById('vb-grid').classList.toggle('active', v === 'grid');
+    document.getElementById('vb-list').classList.toggle('active', v === 'list');
+  }
+
+  // ── Simulate result count (demo) ──
+  function simulateResults() {
+    const totalFilters = Object.values(state.filters).reduce((a, g) => a + Object.keys(g).length, 0);
+    const base = 223;
+    const count = Math.max(12, base - totalFilters * 18 + Math.floor(Math.random() * 5));
+    document.getElementById('result-count').textContent = count;
+  }
+
+  // ── Mobile sidebar ──
+  function openMobileSidebar() {
+    document.getElementById('overlay').classList.add('show');
+    const drawer = document.getElementById('drawer');
+    drawer.classList.add('open');
+    if (!drawer.querySelector('.sidebar-header')) {
+      document.getElementById('drawer-content').innerHTML = document.getElementById('sidebar').innerHTML;
+    }
+  }
+  function closeMobileSidebar() {
+    document.getElementById('overlay').classList.remove('show');
+    document.getElementById('drawer').classList.remove('open');
+  }
+
+  // ── Init ──
+  updateRangeFill();
+</script>
+</body>
+</html>

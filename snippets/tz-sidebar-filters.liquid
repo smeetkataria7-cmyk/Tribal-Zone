@@ -1,0 +1,153 @@
+{% comment %} TribalZone — tz-sidebar-filters.liquid {% endcomment %}
+
+<div class="tz-sb-head">
+  <span>Filters</span>
+  <button class="tz-clear" onclick="tzClearAll()">Clear All</button>
+</div>
+
+<!-- Category / Tags -->
+{% if collection.all_tags.size > 0 %}
+<div class="tz-fg open">
+  <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+    <span>Filter by Tag</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="tz-fg-body">
+    {% for tag in collection.all_tags %}
+      <label class="tz-opt">
+        <input type="checkbox" {% if current_tags contains tag %}checked{% endif %}
+          onchange="tzTagFilter('{{ tag | handleize }}', '{{ collection.handle }}', this)">
+        <span class="tz-box"></span>
+        <span class="tz-opt-lbl">{{ tag }}</span>
+      </label>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+<!-- Price Range -->
+<div class="tz-fg open">
+  <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+    <span>Price Range</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="tz-fg-body">
+    <div class="tz-price-inputs">
+      <input class="tz-pi" type="number" id="tzPriceMin" placeholder="₹ Min"/>
+      <input class="tz-pi" type="number" id="tzPriceMax" placeholder="₹ Max"/>
+    </div>
+    <div class="tz-price-tags">
+      <button class="tz-ptag" onclick="tzTag('Under ₹500')">Under ₹500</button>
+      <button class="tz-ptag" onclick="tzTag('₹500–₹999')">₹500–₹999</button>
+      <button class="tz-ptag" onclick="tzTag('₹1K–₹3K')">₹1K–₹3K</button>
+      <button class="tz-ptag" onclick="tzTag('Above ₹3K')">Above ₹3K</button>
+    </div>
+  </div>
+</div>
+
+<!-- Material -->
+<div class="tz-fg open">
+  <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+    <span>Material</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="tz-fg-body">
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('Gold Plated',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Gold Plated</span></label>
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('Silver Plated',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Silver Plated</span></label>
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('Crystal',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Crystal</span></label>
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('Pearl',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Pearl</span></label>
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('Oxidised',this)"><span class="tz-box"></span><span class="tz-opt-lbl">Oxidised Silver</span></label>
+  </div>
+</div>
+
+<!-- Color -->
+<div class="tz-fg">
+  <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+    <span>Color</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="tz-fg-body">
+    <div class="tz-swatches">
+      <div class="tz-sw" style="background:#d4a853" title="Gold" onclick="tzSwatchTag(this,'Gold')"></div>
+      <div class="tz-sw" style="background:#c0c0c0" title="Silver" onclick="tzSwatchTag(this,'Silver')"></div>
+      <div class="tz-sw" style="background:#2c2c2c" title="Black" onclick="tzSwatchTag(this,'Black')"></div>
+      <div class="tz-sw" style="background:#e8c4c4" title="Rose Gold" onclick="tzSwatchTag(this,'Rose Gold')"></div>
+      <div class="tz-sw" style="background:#fff;border:1px solid #ddd" title="White" onclick="tzSwatchTag(this,'White')"></div>
+      <div class="tz-sw" style="background:#e74c3c" title="Red" onclick="tzSwatchTag(this,'Red')"></div>
+      <div class="tz-sw" style="background:#6a4c9c" title="Purple" onclick="tzSwatchTag(this,'Purple')"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Discount -->
+<div class="tz-fg">
+  <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+    <span>Discount</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="tz-fg-body">
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('10% or more',this)"><span class="tz-box"></span><span class="tz-opt-lbl">10% or more</span></label>
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('30% or more',this)"><span class="tz-box"></span><span class="tz-opt-lbl">30% or more</span></label>
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('50% or more',this)"><span class="tz-box"></span><span class="tz-opt-lbl">50% or more</span></label>
+  </div>
+</div>
+
+<!-- Availability -->
+<div class="tz-fg">
+  <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+    <span>Availability</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="tz-fg-body">
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('In Stock',this)"><span class="tz-box"></span><span class="tz-opt-lbl">In Stock</span></label>
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('On Sale',this)"><span class="tz-box"></span><span class="tz-opt-lbl">On Sale</span></label>
+    <label class="tz-opt"><input type="checkbox" onchange="tzTag('New Arrivals',this)"><span class="tz-box"></span><span class="tz-opt-lbl">New Arrivals</span></label>
+  </div>
+</div>
+
+<script>
+if (typeof tzFilterState === 'undefined') {
+  var tzFilterState = {};
+
+  function tzTag(label, cb) {
+    if (!cb || cb.checked) tzFilterState[label] = true;
+    else delete tzFilterState[label];
+    tzRenderTags();
+  }
+  function tzSwatchTag(el, label) {
+    el.classList.toggle('on');
+    if (el.classList.contains('on')) tzFilterState[label] = true;
+    else delete tzFilterState[label];
+    tzRenderTags();
+  }
+  function tzTagFilter(tag, handle, cb) {
+    var base = '/collections/' + handle;
+    if (cb.checked) window.location = base + '/' + tag;
+    else window.location = base;
+  }
+  function tzRenderTags() {
+    var c = document.getElementById('tzActiveTags');
+    if (!c) return;
+    c.innerHTML = Object.keys(tzFilterState).map(function(t) {
+      return '<div class="tz-atag" onclick="tzRemoveTag(\'' + t.replace(/'/g,"\\'") + '\')">' + t + ' <span>×</span></div>';
+    }).join('');
+  }
+  function tzRemoveTag(label) {
+    delete tzFilterState[label];
+    document.querySelectorAll('.tz-opt input').forEach(function(cb) {
+      var l = cb.closest('.tz-opt') && cb.closest('.tz-opt').querySelector('.tz-opt-lbl');
+      if (l && l.textContent.trim() === label) cb.checked = false;
+    });
+    document.querySelectorAll('.tz-sw').forEach(function(s) {
+      if (s.title === label) s.classList.remove('on');
+    });
+    tzRenderTags();
+  }
+  function tzClearAll() {
+    tzFilterState = {};
+    document.querySelectorAll('.tz-opt input').forEach(function(cb) { cb.checked = false; });
+    document.querySelectorAll('.tz-sw').forEach(function(s) { s.classList.remove('on'); });
+    tzRenderTags();
+  }
+}
+</script>

@@ -1,0 +1,539 @@
+/*================ Variable ================*/
+/*============================================================================
+  Grid Breakpoints and Class Names
+    - Do not change the variable names
+    - $grid-narrowscreen is based on a Shopify breakpoint for checkout buttons
+==============================================================================*/
+$grid-narrowscreen: 500px;
+$grid-medium: 750px;
+$grid-large: 990px;
+$grid-widescreen: 1400px;
+$grid-gutter: 30px;
+$grid-gutter-mobile: 22px;
+
+$narrowscreen: 'narrowscreen';
+$small: 'small';
+$medium: 'medium';
+$medium-down: 'medium-down';
+$medium-up: 'medium-up';
+$large: 'large';
+$large-down: 'large-down';
+$large-up: 'large-up';
+$widescreen: 'widescreen';
+
+/*============================================================================
+  Generate breakpoint-specific column widths and push classes
+    - Default column widths: $grid-breakpoint-has-widths: ($small, $medium-up);
+    - Default is no push classes
+==============================================================================*/
+$grid-breakpoint-has-widths: ($small, $medium-up);
+$grid-breakpoint-has-push: ($small, $medium-up);
+
+/*================ Color Variables ================*/
+
+// Text colors
+$color-text: #120101;
+$color-text-shadow: rgba(0,0,0,0.4);
+$color-body-text: #120101;
+$color-sale-text: #ed1a43;
+$color-small-button-text-border: #162950;
+$color-text-field: #ffffff;
+$color-text-field-text: #110101;
+$color-navigation-text: #120101;
+
+// Button colors
+$color-btn-primary: #f2157b;
+$color-btn-primary-text: #110101;
+
+// Hover and focus states
+$color-text-focus: adaptiveColor(#120101, 6.08);
+$color-overlay-text-focus: adaptiveColor(#1c1121, 22.11);
+$color-btn-primary-focus: adaptiveColor(#f2157b, 98.71);
+$color-btn-social-focus: adaptiveColor(rgba(0,0,0,0), 0.0);
+$color-small-button-text-border-focus: adaptiveColor(#162950, 39.77);
+
+// Link buttons and secondary cta
+$color-link: $color-body-text;
+$opacity-link-hover: 0.6;
+$transition-link-hover: 0.1s cubic-bezier(0.44, 0.13, 0.48, 0.87);
+
+// Backgrounds
+$color-body: #fffefe;
+$color-bg: #fffefe;
+$color-drawer-background: rgba(0, 0, 0, 0.6);
+$color-bg-alt: rgba(18, 1, 1, 0.05);
+
+// Overlays
+$color-overlay-title-text: #1c1121;
+$color-image-overlay: rgba(0,0,0,0);
+$opacity-image-overlay: 0.56;;
+
+
+  ;
+
+$hover-overlay-opacity: 0.96;
+
+// Border colors
+$color-border: rgba(0,0,0,0);
+$color-border-form: #909090;
+
+// Helper colors for form error states
+$color-disabled: #f4f4f4;
+$color-disabled-border: #f4f4f4;
+$color-error: #d20000;
+$color-error-bg: #fff8f8;
+$color-success: #1F873D;
+$color-success-bg: #f8fff9;
+
+// Forms
+$color-form-text: #333;
+$color-error-input-text: $color-error;
+$input-padding-top-bottom: 10px;
+$input-padding-left-right: 18px;
+$input-padding-top-bottom-small: 8px;
+$input-padding-left-right-small: 15px;
+$input-group-height: 46px;
+$input-group-height-small: 42px;
+
+// Social icons
+$color-facebook: #3b5998;
+$color-twitter: #00aced;
+$color-pinterest: #cb2027;
+
+/*================ Sizing Variables ================*/
+$width-site: 1200px;
+$gutter-site: 55px;
+$gutter-site-mobile: 22px;
+$section-spacing: 55px;
+$section-spacing-small: 35px;
+$border-radius: 2px;
+
+/*================ Footer Variables ================*/
+$footer-spacing-extra-small: 5px;
+$footer-spacing-small: 15px;
+$footer-wrapper-spacing: 18px;
+$footer-hr-bottom-spacing: 20px;
+$footer-spacing-medium: 25px;
+$footer-spacing-large: 45px;
+
+/*================ Z-Index ================*/
+$z-index-dropdown : 7;
+$z-index-sub-nav: 8;
+$z-index-drawer: 9;
+$z-index-announcement-bar: 10;
+$z-index-skip-to-content: 10000; // really high to be safe of app markup
+
+/*================ SVG ================*/
+$svg-select-icon: #{'//www.tribalzone.in/cdn/shop/t/71/assets/ico-select.svg?v=166587181081814778011650091602'};
+
+/*================ Drawers ================*/
+$transition-drawer: all 0.45s cubic-bezier(0.29, 0.63, 0.44, 1);
+
+/*================ Hero Slider ================*/
+$color-slideshow-arrows: #000;
+$color-slideshow-dots: #fff;
+
+/*================ Typography ================*/
+
+
+
+
+@font-face {
+  font-family: "Alegreya Sans";
+  font-weight: 400;
+  font-style: normal;
+  src: url("//www.tribalzone.in/cdn/fonts/alegreya_sans/alegreyasans_n4.e332e76eefe545db0f9180cd382ce06e2f88055f.woff2?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=168268151514b752f746659c474dc4c58bfa7380f1c5338428b342a4477f9074") format("woff2"),
+       url("//www.tribalzone.in/cdn/fonts/alegreya_sans/alegreyasans_n4.2f538e6a7581234d2f67054a40fbfd36d80c2e56.woff?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=b77fd01730e3d24adb1c190a7459dccdb90cdb7aa4466afb70ca157747ca83e1") format("woff");
+}
+
+@font-face {
+  font-family: Archivo;
+  font-weight: 400;
+  font-style: normal;
+  src: url("//www.tribalzone.in/cdn/fonts/archivo/archivo_n4.dc8d917cc69af0a65ae04d01fd8eeab28a3573c9.woff2?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=976c4f2da05447a5e2e401e12f16e9cad0597f01f2e32fcc6b6203984867d6ea") format("woff2"),
+       url("//www.tribalzone.in/cdn/fonts/archivo/archivo_n4.bd6b9c34fdb81d7646836be8065ce3c80a2cc984.woff?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=500a3250750cc4f9652c90aac0c6b579081107d18608149e9caf21d0cf8c8c8e") format("woff");
+}
+
+
+
+@font-face {
+  font-family: "Alegreya Sans";
+  font-weight: 700;
+  font-style: normal;
+  src: url("//www.tribalzone.in/cdn/fonts/alegreya_sans/alegreyasans_n7.3d9476fb0ebeda6ade9688d66cdb9524e329b866.woff2?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=fba8f47ba7deb91453dc07a5b78fec6eb8c201131b1c88151be48c506aba9c96") format("woff2"),
+       url("//www.tribalzone.in/cdn/fonts/alegreya_sans/alegreyasans_n7.f29cc7ebdc42d1112e7f77e7b4655fa02c985111.woff?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=dd6b3f7b35d5f65b46323a544a79e031ce5c69ee6b74824833614492c17c7f79") format("woff");
+}
+
+@font-face {
+  font-family: Archivo;
+  font-weight: 700;
+  font-style: normal;
+  src: url("//www.tribalzone.in/cdn/fonts/archivo/archivo_n7.651b020b3543640c100112be6f1c1b8e816c7f13.woff2?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=65cc75a4aa5385b437a9bddabac1dad47ecf9d524a662c7e69a0a93b8ca55b68") format("woff2"),
+       url("//www.tribalzone.in/cdn/fonts/archivo/archivo_n7.7e9106d320e6594976a7dcb57957f3e712e83c96.woff?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=c1815382af77df79c6d2bbdad089b28fd509d97c84b291cfea68f9c9b634b6c7") format("woff");
+}
+
+@font-face {
+  font-family: Archivo;
+  font-weight: 700;
+  font-style: normal;
+  src: url("//www.tribalzone.in/cdn/fonts/archivo/archivo_n7.651b020b3543640c100112be6f1c1b8e816c7f13.woff2?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=65cc75a4aa5385b437a9bddabac1dad47ecf9d524a662c7e69a0a93b8ca55b68") format("woff2"),
+       url("//www.tribalzone.in/cdn/fonts/archivo/archivo_n7.7e9106d320e6594976a7dcb57957f3e712e83c96.woff?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=c1815382af77df79c6d2bbdad089b28fd509d97c84b291cfea68f9c9b634b6c7") format("woff");
+}
+
+@font-face {
+  font-family: Archivo;
+  font-weight: 400;
+  font-style: italic;
+  src: url("//www.tribalzone.in/cdn/fonts/archivo/archivo_i4.37d8c4e02dc4f8e8b559f47082eb24a5c48c2908.woff2?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=38084daa04ecdc007db12abda56a37fa3b8853bf8f2add7c82fd8f00ffbbb55f") format("woff2"),
+       url("//www.tribalzone.in/cdn/fonts/archivo/archivo_i4.839d35d75c605237591e73815270f86ab696602c.woff?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=9c70a5ac4047f1ae9b243fe26de4409abd59b5625ead4ca7be5a7f0c07ccfa82") format("woff");
+}
+
+@font-face {
+  font-family: Archivo;
+  font-weight: 700;
+  font-style: italic;
+  src: url("//www.tribalzone.in/cdn/fonts/archivo/archivo_i7.3dc798c6f261b8341dd97dd5c78d97d457c63517.woff2?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=987d68e644e57c8c358b7640533bdfcdb44c47704e93b32d1eb50ae2a7dbb83b") format("woff2"),
+       url("//www.tribalzone.in/cdn/fonts/archivo/archivo_i7.3b65e9d326e7379bd5f15bcb927c5d533d950ff6.woff?h1=dHJpYmFsem9uZS5pbg&h2=dHJpYmFsem9uZS5hY2NvdW50Lm15c2hvcGlmeS5jb20&hmac=550d22c4e4c877536ab6eb6ecc0bbfdc23b00a1bb0e5da8f9dd7d8fe5fb76201") format("woff");
+}
+
+
+$font-weight-body--bold: 700;
+$font-weight-body--bolder: 700;
+$font-weight-header--bold: 700;
+
+$font-stack-header: "Alegreya Sans", sans-serif;
+$font-style-header: normal;
+$font-weight-header: 400;
+
+$font-stack-body: Archivo, sans-serif;
+$font-style-body: normal;
+$font-weight-body: 400;
+
+$font-size-header: 26 * 1px;
+$font-bold-titles: true;
+
+$font-size-base: 17px; // Henceforth known as 1em
+
+$font-stack-cart-notification: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$font-size-mobile-input: 16px; // min 16px to prevent zooming
+
+/*================ Gift Cards ================*/
+$color-giftcard-tooltip-fallback: #333;
+$color-giftcard-light: #fff;
+$color-giftcard-tooltip: rgba(0, 0, 0, 0.9);
+$color-giftcard-disabled: #999;
+$color-giftcard-small-text: #b3b3b3;
+$color-giftcard-shadow: rgba(0, 0, 0, 0.1);
+$color-giftcard-print-bg: #fff;
+$color-giftcard-print: #000;
+$color-giftcard-bg: #e95e61;
+
+/*================ Z-index ================*/
+$z-index-giftcard-image: 2;
+$z-index-giftcard-corners: 3;
+$z-index-giftcard-tooltip: 4;
+$z-index-giftcard-code: 5;
+
+
+
+/*================ #Giftcard Template ================*/
+
+.giftcard__apple-wallet-image {
+  display: block;
+  margin: 0 auto;
+}
+
+/*================ Print Giftcard Styles ================*/
+@media print {
+  @page {
+    margin: 0.5cm;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  html,
+  body {
+    background-color: $color-giftcard-light;
+    color: $color-giftcard-print;
+  }
+
+  .giftcard__print-link,
+  .giftcard__apple-wallet {
+    display: none;
+  }
+}
+
+/*================ Custom Giftcard Styles ================*/
+.template-giftcard {
+  background: $color-body;
+
+  .site-header__logo {
+    padding-left: 0;
+  }
+
+  .site-header__logo-image {
+    max-width: 200px;
+  }
+
+  .wrapper {
+    max-width: 588px;
+
+    img,
+    object,
+    iframe {
+      max-width: 100%;
+    }
+  }
+}
+
+.giftcard-wrapper {
+  max-width: 31rem;
+  margin: 0 auto;
+}
+
+.giftcard__header {
+  margin-top: $gutter-site * 2;
+}
+
+.giftcard__tag--active {
+  opacity: 0.6;
+}
+
+/*================ Gift Card image ================*/
+.giftcard__wrap {
+  position: relative;
+  margin: ($gutter-site / 2) ($gutter-site / 2) $gutter-site;
+  background-color: $color-giftcard-bg;
+  border-radius: 10px;
+
+  img {
+    position: relative;
+    display: block;
+    border-radius: 10px;
+    z-index: $z-index-giftcard-image;
+  }
+
+  // White corner caps that overlap gift card image
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 47px; // asset width
+    height: 47px; // asset width
+    z-index: $z-index-giftcard-corners;
+  }
+
+  &::before {
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNDdweCIgaGVpZ2h0PSI0N3B4IiB2aWV3Qm94PSIwIDAgNDcgNDciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDQ3IDQ3IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBvcGFjaXR5PSIwLjEiPgoJCTxwYXRoIGQ9Ik00NC41ODYsMUwxLDQ0LjU4NlYxMGMwLTQuOTYzLDQuMDM3LTksOS05SDQ0LjU4NiBNNDcsMEgxMEM0LjQ3NywwLDAsNC40NzcsMCwxMHYzN0w0NywwTDQ3LDB6Ii8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNDQuNTg2LDFMMSw0NC41ODZWMTBjMC00Ljk2Myw0LjAzNy05LDktOUg0NC41ODYiLz4KCTwvZz4KPC9nPgo8L3N2Zz4K') 0 0 no-repeat;
+    top: -1px;
+    left: -1px;
+  }
+
+  &::after {
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNDdweCIgaGVpZ2h0PSI0N3B4IiB2aWV3Qm94PSIwIDAgNDcgNDciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDQ3IDQ3IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBvcGFjaXR5PSIwLjEiPgoJCTxwYXRoIGQ9Ik0yLjQxNCw0Nkw0NiwyLjQxNFYzN2MwLDQuOTYzLTQuMDM3LDktOSw5SDIuNDE0IE0wLDQ3aDM3YzUuNTIzLDAsMTAtNC40NzcsMTAtMTBWMEwwLDQ3TDAsNDd6Ii8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMi40MTQsNDZMNDYsMi40MTRWMzdjMCw0Ljk2My00LjAzNyw5LTksOUgyLjQxNCIvPgoJPC9nPgo8L2c+Cjwvc3ZnPgo=') 0 0 no-repeat;
+    bottom: -1px;
+    right: -1px;
+  }
+}
+
+/*================ Gift card code ================*/
+.giftcard__code {
+  position: relative;
+  text-align: center;
+  width: 90%;
+  z-index: $z-index-giftcard-code;
+  margin: -70px auto 0px auto;
+  padding: 0 0 18px 0;
+}
+
+.giftcard__code--medium {
+  font-size: 0.875em;
+}
+
+.giftcard__code--small {
+  font-size: 0.75em;
+}
+
+.giftcard__code__inner {
+  display: inline-block;
+  vertical-align: baseline;
+  background-color: $color-giftcard-light;
+  padding: 0.5em;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 0 1px $color-giftcard-shadow;
+  box-shadow: 0 0 0 1px $color-giftcard-shadow;
+}
+
+.giftcard__code__text {
+  font-size: 1.875em;
+  text-transform: uppercase;
+  border: 1px dashed $color-border-form;
+  padding: 0.4em 0.5em;
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+
+  &.disabled {
+    color: $color-giftcard-disabled;
+    text-decoration: line-through;
+  }
+}
+
+/*================ Gift card amount ================*/
+.giftcard__amount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $color-giftcard-light;
+  font-size: 2.75em;
+  line-height: 1.2;
+  padding: 10px;
+  z-index: $z-index-giftcard-code;
+
+  strong {
+    display: block;
+    text-shadow: 2px 2px 0 $color-giftcard-shadow;
+  }
+}
+
+.giftcard__amount--medium {
+  font-size: 2em;
+}
+
+/*================ Tooltip ================*/
+.giftcard__tooltip {
+  display: block;
+  position: absolute;
+  top: -50%;
+  right: 50%;
+  margin-top: 16px;
+  z-index: $z-index-giftcard-tooltip;
+  color: $color-giftcard-light;
+  text-align: center;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    margin-bottom: -5px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 5px solid $color-giftcard-tooltip-fallback;
+    border-top: 5px solid $color-giftcard-tooltip;
+  }
+}
+
+.giftcard__tooltip-label {
+  display: block;
+  position: relative;
+  right: -50%;
+  border: 0;
+  border-radius: 4px;
+  background-color: $color-giftcard-tooltip-fallback;
+  background-color: $color-giftcard-tooltip;
+  min-height: 14px;
+  font-size: 12px;
+  text-decoration: none;
+  line-height: 16px;
+  text-shadow: none;
+  padding: 0.5em 0.75em;
+  margin-left: 0.25em;
+
+  small {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $color-giftcard-small-text;
+    font-size: 0.875em;
+  }
+}
+
+.giftcard-action-list {
+  text-align: center;
+}
+
+.giftcard-action-list__item {
+  margin: 0 0 ($section-spacing-small / 1.8);
+}
+
+/*================ QR code (print only) ================*/
+.giftcard__qr-code {
+  img {
+    padding: 0;
+    border: 1px solid $color-border;
+    border-radius: 4px;
+    margin: 0 auto $gutter-site;
+  }
+}
+
+/*================ Medium-down width ================*/
+@media screen and (max-width: 580px) {
+  .giftcard {
+    padding-top: $gutter-site * 2;
+  }
+
+  .print-link {
+    display: none;
+  }
+}
+
+/*================ Small width ================*/
+@media screen and (max-width: 400px) {
+  .giftcard__wrap::before,
+  .giftcard__wrap::after {
+    display: none;
+  }
+
+  .giftcard__code {
+    font-size: 0.75em;
+  }
+
+  .giftcard__code--medium {
+    font-size: 0.65em;
+  }
+
+  .giftcard__code--small {
+    font-size: 0.55em;
+  }
+}
+
+
+/*============================================================================
+  #Print Styles
+==============================================================================*/
+
+@media print {
+  .giftcard__actions,
+  .giftcard__wrap::before,
+  .giftcard__wrap::after,
+  .giftcard__tooltip {
+    display: none;
+  }
+
+  .shop-url {
+    display: block;
+    text-align: center;
+  }
+
+  .qr-code {
+    display: block;
+  }
+
+  .print-link {
+    display: none;
+  }
+  .giftcard__code {
+    margin-top: -90px;
+  }
+}
