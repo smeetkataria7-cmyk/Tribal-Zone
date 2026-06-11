@@ -55,7 +55,7 @@
     .tz-dropdown a:hover { color: var(--tz-gold); background: var(--tz-cream); }
     .tz-mob-toggle { display: none; background: none; border: none; padding: 8px; color: var(--tz-dark); }
 
-    .tz-coll-banner { position: relative; overflow: hidden; height: 220px; display: flex; align-items: center; background: linear-gradient(135deg, #1c1c1c, #2e2620); }
+    .tz-coll-banner { position: relative; overflow: hidden; height: 220px; display: flex; align-items: center; background: linear-gradient(135deg, #120101, #2e2620); }
     .tz-coll-banner-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; }
     .tz-coll-banner-content { position: relative; z-index: 2; max-width: 1340px; margin: 0 auto; padding: 0 32px; color: #fff; }
     .tz-coll-banner h1 { font-family: var(--tz-serif); font-size: clamp(32px,4vw,54px); font-weight: 300; margin-bottom: 8px; letter-spacing: 0.02em; }
@@ -72,7 +72,7 @@
     .tz-sidebar { width: 256px; flex-shrink: 0; position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin; scrollbar-color: #ececec transparent; }
     .tz-sidebar::-webkit-scrollbar { width: 4px; }
     .tz-sidebar::-webkit-scrollbar-thumb { background: #ececec; border-radius: 2px; }
-    .tz-sb-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 2px solid #1c1c1c; margin-bottom: 4px; }
+    .tz-sb-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 2px solid #120101; margin-bottom: 4px; }
     .tz-sb-head span { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
     .tz-clear { font-size: 12px; color: var(--tz-gold); background: none; border: none; cursor: pointer; padding: 0; }
     .tz-clear:hover { text-decoration: underline; }
@@ -136,9 +136,9 @@
     .tz-card-free { font-size: 11px; color: #27ae60; margin-top: 4px; font-weight: 500; }
 
     .tz-pagination { display: flex; justify-content: center; gap: 6px; margin-top: 48px; }
-    .tz-pg-btn { min-width: 38px; height: 38px; padding: 0 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #ececec; background: #fff; font-size: 13px; cursor: pointer; border-radius: 2px; text-decoration: none; color: #1c1c1c; transition: all .15s; }
+    .tz-pg-btn { min-width: 38px; height: 38px; padding: 0 10px; display: flex; align-items: center; justify-content: center; border: 1px solid #ececec; background: #fff; font-size: 13px; cursor: pointer; border-radius: 2px; text-decoration: none; color: #120101; transition: all .15s; }
     .tz-pg-btn:hover { border-color: var(--tz-gold); color: var(--tz-gold); }
-    .tz-pg-btn.active { background: #1c1c1c; color: #fff; border-color: #1c1c1c; }
+    .tz-pg-btn.active { background: #120101; color: #fff; border-color: #120101; }
 
     .tz-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 500; }
     .tz-overlay.on { display: block; }
@@ -430,7 +430,7 @@ function tzRenderTags(){document.getElementById('tzActiveTags').innerHTML=Object
 function tzRemoveTag(l){delete tzState[l];document.querySelectorAll('.tz-opt input').forEach(cb=>{var lb=cb.closest('.tz-opt')?.querySelector('.tz-opt-lbl');if(lb&&lb.textContent.trim()===l)cb.checked=false;});document.querySelectorAll('.tz-sw').forEach(s=>{if(s.title===l)s.classList.remove('on');});document.querySelectorAll('.tz-ptag').forEach(b=>{if(b.textContent.trim()===l)b.classList.remove('on');});tzRenderTags();tzFilterCards();}
 function tzClearAll(){tzState={};document.querySelectorAll('.tz-opt input').forEach(cb=>cb.checked=false);document.querySelectorAll('.tz-sw').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.tz-ptag').forEach(b=>b.classList.remove('on'));tzRenderTags();tzFilterCards();}
 function tzMakeCard(p){var d=p.was>p.price?Math.round((p.was-p.price)*100/p.was):0;var badge=!p.available?'<span class="tz-card-badge tz-badge-out">Sold Out</span>':d>0?'<span class="tz-card-badge tz-badge-sale">Sale</span>':p.isNew?'<span class="tz-card-badge tz-badge-new">New</span>':'';var was=p.was>p.price?`<span class="tz-price-was">₹${p.was.toLocaleString('en-IN')}</span><span class="tz-price-off">-${d}%</span>`:'';var free=p.price>=999?'<div class="tz-card-free">✓ Free delivery</div>':'';return`<a class="tz-card" href="product.html"><div class="tz-card-img"><img src="${p.img}" alt="${p.title}" loading="lazy"/>${badge}<div class="tz-card-atb">Add to Bag</div></div><div class="tz-card-info"><div class="tz-card-cat">${p.type}</div><div class="tz-card-name">${p.title}</div><div class="tz-card-stars">★★★★★</div><div class="tz-card-price"><span class="tz-price-now">₹${p.price.toLocaleString('en-IN')}</span>${was}</div>${free}</div></a>`;}
-function tzFilterCards(){var tags=Object.keys(tzState);var filtered=TZ_PRODUCTS.filter(p=>{if(!tags.length)return true;return tags.every(t=>{if(t==='In Stock')return p.available;if(t==='On Sale')return p.was>p.price;if(t==='New Arrivals')return p.isNew;if(t==='Under ₹500')return p.price<500;if(t==='₹500–₹999')return p.price>=500&&p.price<=999;if(t==='₹1K–₹3K')return p.price>=1000&&p.price<=3000;if(t==='Above ₹3K')return p.price>3000;return p.type===t;});});document.getElementById('tzProductGrid').innerHTML=filtered.length?filtered.map(tzMakeCard).join(''):`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;"><p style="font-family:var(--tz-serif);font-size:28px;font-weight:300;color:#1c1c1c;margin-bottom:10px;">No products found</p><p>Try clearing some filters.</p><button onclick="tzClearAll()" style="margin-top:16px;padding:12px 28px;background:#1c1c1c;color:#fff;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;">Clear Filters</button></div>`;document.getElementById('tzCountDisplay').textContent=filtered.length;}
+function tzFilterCards(){var tags=Object.keys(tzState);var filtered=TZ_PRODUCTS.filter(p=>{if(!tags.length)return true;return tags.every(t=>{if(t==='In Stock')return p.available;if(t==='On Sale')return p.was>p.price;if(t==='New Arrivals')return p.isNew;if(t==='Under ₹500')return p.price<500;if(t==='₹500–₹999')return p.price>=500&&p.price<=999;if(t==='₹1K–₹3K')return p.price>=1000&&p.price<=3000;if(t==='Above ₹3K')return p.price>3000;return p.type===t;});});document.getElementById('tzProductGrid').innerHTML=filtered.length?filtered.map(tzMakeCard).join(''):`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;"><p style="font-family:var(--tz-serif);font-size:28px;font-weight:300;color:#120101;margin-bottom:10px;">No products found</p><p>Try clearing some filters.</p><button onclick="tzClearAll()" style="margin-top:16px;padding:12px 28px;background:#120101;color:#fff;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;">Clear Filters</button></div>`;document.getElementById('tzCountDisplay').textContent=filtered.length;}
 function tzSort(v){if(v==='price-ascending')TZ_PRODUCTS.sort((a,b)=>a.price-b.price);else if(v==='price-descending')TZ_PRODUCTS.sort((a,b)=>b.price-a.price);else if(v==='created-descending')TZ_PRODUCTS.sort((a,b)=>b.id-a.id);tzFilterCards();}
 function tzOpenDrawer(){document.getElementById('tzOverlay').classList.add('on');document.getElementById('tzDrawer').classList.add('on');document.getElementById('tzDrawerContent').innerHTML=document.querySelector('.tz-sidebar').innerHTML;}
 function tzCloseDrawer(){document.getElementById('tzOverlay').classList.remove('on');document.getElementById('tzDrawer').classList.remove('on');}
