@@ -309,10 +309,10 @@
     .sec { padding: 64px 32px; }
     .sec-cream { background: var(--cream); }
     .sec-inner { max-width: 1400px; margin: 0 auto; }
-    .sec-head { text-align: center; margin-bottom: 40px; }
-    .sec-tag { display: inline-block; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 600; }
-    .sec-title { font-family: var(--serif); font-size: clamp(30px, 3.5vw, 46px); font-weight: 300; line-height: 1.15; }
-    .sec-title em { font-style: italic; color: var(--gold); }
+    .sec-head { text-align: left; margin-bottom: 40px; }
+    .sec-tag { display: none; }
+    .sec-title { font-family: var(--sans); font-size: clamp(20px, 2.5vw, 28px); font-weight: 600; line-height: 1.2; color: var(--dark); }
+    .sec-title em { font-style: normal; color: var(--dark); }
     .row-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 12px; }
     .row-head .sec-head { text-align: left; margin-bottom: 0; }
     .view-all { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid var(--gold); padding-bottom: 1px; transition: gap .2s; white-space: nowrap; }
@@ -360,13 +360,13 @@
     .pcard:hover .i2 { opacity: 1; }
     .pcard-badge {
       position: absolute; top: 10px; left: 10px;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-      padding: 3px 9px; border-radius: 20px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 4px;
     }
     .b-sale { background: var(--red); color: #fff; }
-    .b-new  { background: var(--gold); color: #fff; }
-    .b-best { background: var(--dark); color: #fff; }
-    .b-bogo { background: #6a4cac; color: #fff; }
+    .b-new  { background: #222; color: #fff; }
+    .b-best { background: #222; color: #fff; }
+    .b-bogo { background: #222; color: #fff; }
     .pcard-wish {
       position: absolute; top: 10px; right: 10px;
       background: rgba(255,255,255,.9); border: none; width: 32px; height: 32px;
@@ -746,16 +746,6 @@
   </div>
 </section>
 
-<!-- PERKS STRIP -->
-<div class="perks">
-  <div class="perks-inner">
-    <div class="perk"><div class="perk-icon">🚚</div><div class="perk-text"><strong>Free Shipping</strong><span>Orders above ₹999</span></div></div>
-    <div class="perk"><div class="perk-icon">🎁</div><div class="perk-text"><strong>Free Handbag</strong><span>On orders ₹2499+</span></div></div>
-    <div class="perk"><div class="perk-icon">♻️</div><div class="perk-text"><strong>Easy Returns</strong><span>7-day hassle-free</span></div></div>
-    <div class="perk"><div class="perk-icon">🛡️</div><div class="perk-text"><strong>Skin Safe</strong><span>Anti-tarnish metals</span></div></div>
-    <div class="perk"><div class="perk-icon">🇮🇳</div><div class="perk-text"><strong>Made in India</strong><span>By skilled artisans</span></div></div>
-  </div>
-</div>
 
 <!-- NEW ARRIVALS ROW -->
 <section class="sec sec-cream">
