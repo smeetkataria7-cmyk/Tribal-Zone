@@ -756,6 +756,7 @@
       activeFilters = activeFilters.filter(f => f !== name);
     }
     renderActiveTags();
+    applyFilters();
   }
   function renderActiveTags() {
     var container = document.getElementById('activeFilters');
@@ -777,6 +778,18 @@
     document.querySelectorAll('.ptag').forEach(b => b.classList.remove('on'));
     document.querySelectorAll('.swatch').forEach(s => s.classList.remove('on'));
     renderActiveTags();
+    applyFilters();
+  }
+  function applyFilters() {
+    if (activeFilters.length === 0) {
+      document.querySelectorAll('.pcard').forEach(card => card.style.display = 'block');
+      return;
+    }
+    document.querySelectorAll('.pcard').forEach(card => {
+      var cardCat = card.querySelector('.pcard-cat')?.textContent || '';
+      var match = activeFilters.some(f => cardCat.includes(f));
+      card.style.display = match ? 'block' : 'none';
+    });
   }
 </script>
 </body>
