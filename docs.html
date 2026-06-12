@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Tribal Zone — Live Docs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pink:#F2157B;--pink2:#f5488e;--pink-bg:#fff0f8;
+  --dark:#120101;--navy:#162950;
+  --mid:#444;--muted:#777;--border:#e5e5e5;--light:#f8f8f8;
+  --red:#ED1A43;--green:#1a9e4a;
+  --sans:'Poppins',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--dark);background:#fff;font-size:14px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--dark);color:#fff;padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.topbar-brand{display:flex;align-items:center;gap:12px}
+.topbar-logo{height:34px;width:auto}
+.topbar-title{font-size:15px;font-weight:700;letter-spacing:.04em}
+.topbar-sub{font-size:11px;color:rgba(255,255,255,.45);margin-left:4px;font-weight:400}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.topbar-right a{font-size:12px;color:rgba(255,255,255,.55);transition:color .2s}
+.topbar-right a:hover{color:var(--pink2)}
+.live-badge{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--pink2)}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--pink2);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── LAYOUT ── */
+.layout{display:flex;min-height:calc(100vh - 56px)}
+
+/* ── SIDEBAR ── */
+.sidebar{width:240px;flex-shrink:0;background:var(--light);border-right:1px solid var(--border);padding:28px 0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
+.sidebar-section{margin-bottom:6px}
+.sidebar-label{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:6px 24px 4px}
+.sidebar-link{display:flex;align-items:center;gap:9px;padding:9px 24px;font-size:13px;color:var(--mid);transition:all .15s;border-left:3px solid transparent}
+.sidebar-link:hover{color:var(--dark);background:rgba(242,21,123,.05)}
+.sidebar-link.active{color:var(--pink);background:var(--pink-bg);border-left-color:var(--pink);font-weight:500}
+.sidebar-link .icon{font-size:14px;width:18px;text-align:center;flex-shrink:0}
+.sidebar-divider{height:1px;background:var(--border);margin:12px 20px}
+.sidebar-ext{display:flex;align-items:center;gap:8px;padding:8px 24px;font-size:12px;color:var(--muted);transition:color .2s}
+.sidebar-ext:hover{color:var(--pink)}
+
+/* ── MAIN ── */
+.main{flex:1;min-width:0;padding:40px 48px 80px}
+.main-inner{max-width:860px}
+
+/* ── SECTION ── */
+.doc-section{margin-bottom:64px;scroll-margin-top:80px}
+.section-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+.section-title{font-size:26px;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.2}
+.section-sub{font-size:14px;color:var(--muted);margin-bottom:28px;border-bottom:1px solid var(--border);padding-bottom:20px}
+
+/* ── OVERVIEW CARDS ── */
+.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.ov-card{background:var(--light);border:1px solid var(--border);border-radius:10px;padding:18px 20px}
+.ov-card-label{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.ov-card-val{font-size:15px;font-weight:700;color:var(--dark)}
+.ov-card-val a{color:var(--pink);text-decoration:underline;text-underline-offset:3px}
+
+/* ── METRICS ── */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0}
+.metric{background:var(--dark);color:#fff;border-radius:10px;padding:20px 18px;text-align:center}
+.metric-num{font-size:28px;font-weight:700;color:var(--pink2);line-height:1;margin-bottom:6px}
+.metric-lbl{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.4}
+
+/* ── FOLDER TREE ── */
+.tree{background:#0d0d0d;color:#e0e0e0;border-radius:10px;padding:24px 28px;font-family:'Courier New',monospace;font-size:13px;line-height:2;overflow-x:auto}
+.tree .dir{color:#7ec8e3}
+.tree .file{color:#d4d4d4}
+.tree .img{color:#a8d8a8}
+.tree .liquid{color:#f5c842}
+.tree .config{color:#f0a0a0}
+.tree .note{color:#888;font-style:italic;margin-left:8px;font-size:11px}
+
+/* ── DEV PHASES ── */
+.phases{position:relative;padding-left:32px}
+.phases::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--border)}
+.phase{position:relative;margin-bottom:28px}
+.phase::before{content:'';position:absolute;left:-27px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--pink);border:2px solid #fff;box-shadow:0 0 0 2px var(--pink)}
+.phase.done::before{background:var(--green);box-shadow:0 0 0 2px var(--green)}
+.phase-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;cursor:pointer;user-select:none}
+.phase-num{background:var(--pink);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px}
+.phase.done .phase-num{background:var(--green)}
+.phase-title{font-size:14px;font-weight:600}
+.phase-date{font-size:11.5px;color:var(--muted);margin-left:auto}
+.phase-toggle{font-size:12px;color:var(--muted);transition:transform .2s}
+.phase.open .phase-toggle{transform:rotate(180deg)}
+.phase-body{display:none;padding:10px 0 0 4px}
+.phase.open .phase-body{display:block}
+.phase-body ul{list-style:none;padding:0}
+.phase-body li{font-size:13px;color:var(--mid);padding:3px 0 3px 18px;position:relative}
+.phase-body li::before{content:'→';position:absolute;left:0;color:var(--pink);font-size:11px}
+
+/* ── COMMIT LOG ── */
+.commit-list{border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.commit-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);transition:background .15s}
+.commit-item:last-child{border-bottom:none}
+.commit-item:hover{background:var(--light)}
+.commit-sha{font-family:'Courier New',monospace;font-size:11px;background:var(--pink-bg);color:var(--pink);padding:2px 8px;border-radius:4px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.commit-msg{font-size:13px;font-weight:500;flex:1;line-height:1.45}
+.commit-meta{font-size:11.5px;color:var(--muted);margin-top:2px}
+.commit-date{font-size:11px;color:var(--muted);white-space:nowrap;flex-shrink:0;margin-top:2px}
+.commits-loading{padding:32px;text-align:center;color:var(--muted);font-size:13px}
+.commits-error{padding:24px;text-align:center;color:var(--red);font-size:13px}
+
+/* ── PAGES STATUS TABLE ── */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--dark);color:#fff;text-align:left;padding:11px 16px;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+td{padding:11px 16px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--light)}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px}
+.badge-done{background:#e8f7ef;color:var(--green)}
+.badge-todo{background:#f5f5f5;color:var(--muted)}
+.badge-wip{background:#fff8e6;color:#c07800}
+code{font-family:'Courier New',monospace;font-size:12px;background:var(--light);padding:2px 6px;border-radius:4px;color:var(--navy)}
+
+/* ── DESIGN TOKENS ── */
+.tokens-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.token-row{display:flex;align-items:center;gap:14px;padding:12px 16px;border:1px solid var(--border);border-radius:8px;background:var(--light)}
+.token-swatch{width:36px;height:36px;border-radius:6px;flex-shrink:0;border:1px solid rgba(0,0,0,.08)}
+.token-info{}
+.token-var{font-family:'Courier New',monospace;font-size:12px;color:var(--navy);font-weight:600}
+.token-hex{font-size:11.5px;color:var(--muted)}
+
+/* ── NAV LINKS SECTION ── */
+.nav-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.nav-item{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border:1px solid var(--border);border-radius:8px;background:var(--light);font-size:13px}
+.nav-item-left{display:flex;flex-direction:column}
+.nav-item-name{font-weight:600}
+.nav-item-file{font-family:'Courier New',monospace;font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── COMPONENT MAP ── */
+.comp-table td:first-child{font-family:'Courier New',monospace;font-size:12px;color:var(--navy)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){.sidebar{display:none}.main{padding:24px 20px 60px}.overview-grid,.metrics{grid-template-columns:repeat(2,1fr)}.tokens-grid,.nav-grid{grid-template-columns:1fr}}
+@media(max-width:500px){.metrics{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <img src="logo.png" alt="Tribal Zone" class="topbar-logo"/>
+    <div>
+      <span class="topbar-title">Tribal Zone</span>
+      <span class="topbar-sub">Live Docs</span>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="live-badge"><span class="live-dot"></span>Live</div>
+    <a href="index.html">← Back to Site</a>
+    <a href="https://github.com/smeetkataria7-cmyk/Tribal-Zone" target="_blank">GitHub ↗</a>
+  </div>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Documentation</div>
+      <a href="#overview" class="sidebar-link active" onclick="setActive(this)"><span class="icon">📋</span>Overview</a>
+      <a href="#metrics" class="sidebar-link" onclick="setActive(this)"><span class="icon">📊</span>Key Metrics</a>
+      <a href="#structure" class="sidebar-link" onclick="setActive(this)"><span class="icon">📁</span>Folder Structure</a>
+      <a href="#phases" class="sidebar-link" onclick="setActive(this)"><span class="icon">🚀</span>Dev Phases</a>
+      <a href="#commits" class="sidebar-link" onclick="setActive(this)"><span class="icon">📝</span>Live Commit Log</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Reference</div>
+      <a href="#pages" class="sidebar-link" onclick="setActive(this)"><span class="icon">🗂️</span>Pages Status</a>
+      <a href="#tokens" class="sidebar-link" onclick="setActive(this)"><span class="icon">🎨</span>Design Tokens</a>
+      <a href="#nav" class="sidebar-link" onclick="setActive(this)"><span class="icon">🔗</span>Nav Links</a>
+      <a href="#components" class="sidebar-link" onclick="setActive(this)"><span class="icon">🧩</span>Components</a>
+      <a href="#issues" class="sidebar-link" onclick="setActive(this)"><span class="icon">🐛</span>Issues Log</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <a href="https://github.com/smeetkataria7-cmyk/Tribal-Zone" target="_blank" class="sidebar-ext">⬡ GitHub Repo ↗</a>
+    <a href="index.html" class="sidebar-ext">🏠 Homepage ↗</a>
+    <a href="product.html" class="sidebar-ext">🛍 Product Page ↗</a>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="main-inner">
+
+      <!-- OVERVIEW -->
+      <section class="doc-section" id="overview">
+        <div class="section-tag">Project Overview</div>
+        <h1 class="section-title">Tribal Zone — E-Commerce Storefront</h1>
+        <p class="section-sub">Full Shopify-ready storefront for India's fashion jewellery brand. Built as static HTML/CSS/JS preview files mirroring the Lili Origin design reference, synced with Shopify Liquid templates for live deployment.</p>
+
+        <div class="overview-grid">
+          <div class="ov-card">
+            <div class="ov-card-label">Brand</div>
+            <div class="ov-card-val">Tribal Zone</div>
+          </div>
+          <div class="ov-card">
+            <div class="ov-card-label">Type</div>
+            <div class="ov-card-val">Shopify Jewellery Store</div>
+          </div>
+          <div class="ov-card">
+            <div class="ov-card-label">Reference Design</div>
+            <div class="ov-card-val"><a href="https://liliorigin.com" target="_blank">liliorigin.com ↗</a></div>
+          </div>
+          <div class="ov-card">
+            <div class="ov-card-label">GitHub</div>
+            <div class="ov-card-val"><a href="https://github.com/smeetkataria7-cmyk/Tribal-Zone" target="_blank">smeetkataria7-cmyk/Tribal-Zone ↗</a></div>
+          </div>
+          <div class="ov-card">
+            <div class="ov-card-label">Stack</div>
+            <div class="ov-card-val">HTML · CSS · JS · Shopify Liquid</div>
+          </div>
+          <div class="ov-card">
+            <div class="ov-card-label">Auto Deploy</div>
+            <div class="ov-card-val">PowerShell hook → git push</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- METRICS -->
+      <section class="doc-section" id="metrics">
+        <div class="section-tag">Key Metrics</div>
+        <h2 class="section-title">What's Been Built</h2>
+        <p class="section-sub">Stats across the entire Tribal Zone storefront project.</p>
+        <div class="metrics">
+          <div class="metric"><div class="metric-num">10</div><div class="metric-lbl">Total Pages Built</div></div>
+          <div class="metric"><div class="metric-num">35+</div><div class="metric-lbl">Lili Origin Components Mapped</div></div>
+          <div class="metric"><div class="metric-num">8</div><div class="metric-lbl">Collection Categories</div></div>
+          <div class="metric"><div class="metric-num">100%</div><div class="metric-lbl">Poppins + Cormorant Garamond</div></div>
+        </div>
+      </section>
+
+      <!-- FOLDER STRUCTURE -->
+      <section class="doc-section" id="structure">
+        <div class="section-tag">Folder Structure</div>
+        <h2 class="section-title">Project Files</h2>
+        <p class="section-sub">Complete file tree of the Tribal Zone project repository.</p>
+        <div class="tree">
+<span class="dir">📁 Tribal Zone/</span>
+├── <span class="file">📄 index.html</span>             <span class="note">← Homepage (hero, carousels, categories)</span>
+├── <span class="file">📄 product.html</span>           <span class="note">← Product detail (gallery, variants, reviews)</span>
+├── <span class="file">📄 collection-earrings.html</span>
+├── <span class="file">📄 collection-necklaces.html</span>
+├── <span class="file">📄 collection-bangles.html</span>
+├── <span class="file">📄 collection-maangtikka.html</span>
+├── <span class="file">📄 collection-rings.html</span>
+├── <span class="file">📄 collection-zodiac.html</span>
+├── <span class="file">📄 collection-hampers.html</span>  <span class="note">← To build</span>
+├── <span class="file">📄 collection-sale.html</span>     <span class="note">← To build</span>
+├── <span class="img">🖼️ logo.png</span>                 <span class="note">← Dragonfly + TRIBAL ZONE text</span>
+├── <span class="file">📄 docs.html</span>               <span class="note">← This page</span>
+├── <span class="file">📄 REFERENCE_MAPPING.md</span>
+├── <span class="file">📄 TRIBAL_ZONE_DOCUMENTATION.md</span>
+├── <span class="dir">📁 sections/</span>
+│   └── <span class="liquid">📄 collection-template.liquid</span>
+├── <span class="dir">📁 snippets/</span>
+│   └── <span class="liquid">📄 product-card-grid.liquid</span>
+└── <span class="dir">📁 .claude/</span>
+    ├── <span class="config">📄 settings.json</span>        <span class="note">← PostToolUse hook config</span>
+    └── <span class="config">📄 autopush.ps1</span>         <span class="note">← Windows auto-push script</span>
+        </div>
+      </section>
+
+      <!-- DEV PHASES -->
+      <section class="doc-section" id="phases">
+        <div class="section-tag">Development Timeline</div>
+        <h2 class="section-title">Dev Phases</h2>
+        <p class="section-sub">Chronological phases of the Tribal Zone build — click any phase to expand.</p>
+
+        <div class="phases">
+
+          <div class="phase done open">
+            <div class="phase-head" onclick="this.closest('.phase').classList.toggle('open')">
+              <span class="phase-num">Phase 1</span>
+              <span class="phase-title">Foundation & Branding</span>
+              <span class="phase-date">Early June 2026</span>
+              <span class="phase-toggle">▼</span>
+            </div>
+            <div class="phase-body"><ul>
+              <li>Logo uploaded — <code>logo.png</code> (dragonfly + TRIBAL ZONE text, hot pink)</li>
+              <li>Color theme defined: <code>#F2157B</code> · <code>#120101</code> · <code>#162950</code> · <code>#ED1A43</code></li>
+              <li>Font stack locked: Poppins (body) + Cormorant Garamond (display)</li>
+              <li>Removed Mea Culpa and Great Vibes from all font imports</li>
+              <li>Replaced hardcoded <code>#1c1c1c</code> with <code>#120101</code> across all files</li>
+              <li>CSS variables standardized: <code>--gold</code>, <code>--dark</code>, <code>--navy</code>, <code>--red</code></li>
+            </ul></div>
+          </div>
+
+          <div class="phase done open">
+            <div class="phase-head" onclick="this.closest('.phase').classList.toggle('open')">
+              <span class="phase-num">Phase 2</span>
+              <span class="phase-title">Lili Origin Reference Analysis</span>
+              <span class="phase-date">June 2026</span>
+              <span class="phase-toggle">▼</span>
+            </div>
+            <div class="phase-body"><ul>
+              <li>Fetched and analysed liliorigin.com layout in detail</li>
+              <li>Documented: product-first design, horizontal scroll carousels, white bg</li>
+              <li>Catalogued product card specs: hover image-swap, visible "Add to cart", rating format, MRP strikethrough + % OFF</li>
+              <li>Section order mapped: announce bar → header → hero → categories → product rows → banner → footer</li>
+              <li>Collection page: left sidebar + 3-col grid confirmed</li>
+              <li>Created <code>REFERENCE_MAPPING.md</code> with 44 components</li>
+            </ul></div>
+          </div>
+
+          <div class="phase done open">
+            <div class="phase-head" onclick="this.closest('.phase').classList.toggle('open')">
+              <span class="phase-num">Phase 3</span>
+              <span class="phase-title">Full Redesign — Index, Collection, Product</span>
+              <span class="phase-date">June 2026</span>
+              <span class="phase-toggle">▼</span>
+            </div>
+            <div class="phase-body"><ul>
+              <li>Rebuilt <code>index.html</code> — Lili Origin product-first layout</li>
+              <li>Hero 3-slide carousel with arrows + dot nav</li>
+              <li>Category circles horizontal scroll (8 categories)</li>
+              <li>5 horizontal product carousels: New Arrivals, Earrings, Necklaces, Bestsellers, Zodiac</li>
+              <li>3-col editorial collection banners</li>
+              <li>Built <code>product.html</code> — gallery, variants, reviews, related products, sticky mobile CTA</li>
+              <li>Rebuilt all 6 collection pages with sidebar filters + product grid</li>
+            </ul></div>
+          </div>
+
+          <div class="phase done open">
+            <div class="phase-head" onclick="this.closest('.phase').classList.toggle('open')">
+              <span class="phase-num">Phase 4</span>
+              <span class="phase-title">UX Fixes & Polish</span>
+              <span class="phase-date">June 12, 2026</span>
+              <span class="phase-toggle">▼</span>
+            </div>
+            <div class="phase-body"><ul>
+              <li>Added hover-to-zoom magnifier on product gallery (2.4× mouse-tracking)</li>
+              <li>Fixed price row alignment — stacked layout + 2-line <code>min-height</code> on product name</li>
+              <li>Fixed cross-referenced images — earring photos showing on bracelet/maang tikka cards</li>
+              <li>Audited all 14+ product cards, assigned category-correct Unsplash images</li>
+              <li>Identified <code>photo-1611652022419</code> as necklace photo (misused on earring cards), replaced everywhere</li>
+              <li>Fixed auto-push hook — rewrote from bash+jq to PowerShell <code>autopush.ps1</code></li>
+            </ul></div>
+          </div>
+
+          <div class="phase">
+            <div class="phase-head" onclick="this.closest('.phase').classList.toggle('open')">
+              <span class="phase-num">Phase 5</span>
+              <span class="phase-title">Remaining Pages</span>
+              <span class="phase-date">Upcoming</span>
+              <span class="phase-toggle">▼</span>
+            </div>
+            <div class="phase-body"><ul>
+              <li>Build <code>collection-hampers.html</code> — Festive Hampers page</li>
+              <li>Build <code>collection-sale.html</code> — Sale page with red styling</li>
+              <li>Real product photos replacing Unsplash placeholders</li>
+              <li>Shopify Liquid sync — mirror all HTML changes to <code>.liquid</code> files</li>
+              <li>Live store deployment on <code>tribalzone.in</code></li>
+            </ul></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COMMIT LOG -->
+      <section class="doc-section" id="commits">
+        <div class="section-tag">Version Control</div>
+        <h2 class="section-title">Live Commit Log</h2>
+        <p class="section-sub">Latest commits pulled live from GitHub — <a href="https://github.com/smeetkataria7-cmyk/Tribal-Zone/commits/main" target="_blank" style="color:var(--pink)">view all on GitHub ↗</a></p>
+        <div class="commit-list" id="commitList">
+          <div class="commits-loading">Loading commits from GitHub…</div>
+        </div>
+      </section>
+
+      <!-- PAGES STATUS -->
+      <section class="doc-section" id="pages">
+        <div class="section-tag">Pages</div>
+        <h2 class="section-title">Pages Status</h2>
+        <p class="section-sub">All HTML preview pages and their current build status.</p>
+        <table>
+          <thead><tr><th>Page</th><th>File</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Homepage</td><td><code>index.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+            <tr><td>Product Detail</td><td><code>product.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+            <tr><td>Earrings</td><td><code>collection-earrings.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+            <tr><td>Necklaces</td><td><code>collection-necklaces.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+            <tr><td>Bangles & Bracelets</td><td><code>collection-bangles.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+            <tr><td>Maang Tikka</td><td><code>collection-maangtikka.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+            <tr><td>Rings</td><td><code>collection-rings.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+            <tr><td>Zodiac</td><td><code>collection-zodiac.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+            <tr><td>Festive Hampers</td><td><code>collection-hampers.html</code></td><td><span class="badge badge-todo">○ To Build</span></td></tr>
+            <tr><td>Sale</td><td><code>collection-sale.html</code></td><td><span class="badge badge-todo">○ To Build</span></td></tr>
+            <tr><td>Docs</td><td><code>docs.html</code></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- DESIGN TOKENS -->
+      <section class="doc-section" id="tokens">
+        <div class="section-tag">Brand Identity</div>
+        <h2 class="section-title">Design Tokens</h2>
+        <p class="section-sub">CSS custom properties used consistently across all pages.</p>
+        <div class="tokens-grid">
+          <div class="token-row"><div class="token-swatch" style="background:#F2157B"></div><div class="token-info"><div class="token-var">--gold (accent)</div><div class="token-hex">#F2157B — Hot Pink</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#f5488e"></div><div class="token-info"><div class="token-var">--gold-lt (accent light)</div><div class="token-hex">#f5488e — Light Pink</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#120101"></div><div class="token-info"><div class="token-var">--dark</div><div class="token-hex">#120101 — Near Black</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#162950"></div><div class="token-info"><div class="token-var">--navy</div><div class="token-hex">#162950 — Deep Navy</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#ED1A43"></div><div class="token-info"><div class="token-var">--red (sale)</div><div class="token-hex">#ED1A43 — Sale Red</div></div></div>
+          <div class="token-row"><div class="token-swatch" style="background:#27ae60"></div><div class="token-info"><div class="token-var">--green (success)</div><div class="token-hex">#27ae60 — Success Green</div></div></div>
+          <div class="token-row" style="grid-column:span 2"><div class="token-swatch" style="background:linear-gradient(135deg,#F2157B,#162950);border-radius:6px"></div><div class="token-info"><div class="token-var">--sans · --serif</div><div class="token-hex">Poppins (300–700) · Cormorant Garamond (300–600)</div></div></div>
+        </div>
+      </section>
+
+      <!-- NAV LINKS -->
+      <section class="doc-section" id="nav">
+        <div class="section-tag">Navigation</div>
+        <h2 class="section-title">Nav Links</h2>
+        <p class="section-sub">All collection links and their corresponding HTML files.</p>
+        <div class="nav-grid">
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">New Arrivals</span><span class="nav-item-file">index.html</span></div><span class="badge badge-done">✓</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">Earrings</span><span class="nav-item-file">collection-earrings.html</span></div><span class="badge badge-done">✓</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">Necklaces</span><span class="nav-item-file">collection-necklaces.html</span></div><span class="badge badge-done">✓</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">Bangles & Bracelets</span><span class="nav-item-file">collection-bangles.html</span></div><span class="badge badge-done">✓</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">Maang Tikka</span><span class="nav-item-file">collection-maangtikka.html</span></div><span class="badge badge-done">✓</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">Rings</span><span class="nav-item-file">collection-rings.html</span></div><span class="badge badge-done">✓</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">Zodiac</span><span class="nav-item-file">collection-zodiac.html</span></div><span class="badge badge-done">✓</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">Festive Hampers</span><span class="nav-item-file">collection-hampers.html</span></div><span class="badge badge-todo">○ To build</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">Sale 🔥</span><span class="nav-item-file">collection-sale.html</span></div><span class="badge badge-todo">○ To build</span></div>
+          <div class="nav-item"><div class="nav-item-left"><span class="nav-item-name">All Products</span><span class="nav-item-file">product.html</span></div><span class="badge badge-done">✓</span></div>
+        </div>
+      </section>
+
+      <!-- COMPONENTS -->
+      <section class="doc-section" id="components">
+        <div class="section-tag">Lili Origin Reference</div>
+        <h2 class="section-title">Component Map</h2>
+        <p class="section-sub">Every Lili Origin component and its Tribal Zone implementation.</p>
+        <table class="comp-table">
+          <thead><tr><th>CSS Class</th><th>Component</th><th>Pages</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>.announce</td><td>Announce bar (rotating 3 messages)</td><td>All</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.hdr</td><td>Sticky header — logo · search · bag</td><td>All</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.cat-nav / .nav</td><td>Desktop category nav + dropdowns</td><td>All</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.mob-dr</td><td>Mobile hamburger drawer</td><td>All</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.cart-dr</td><td>Cart drawer (right slide-in)</td><td>All</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.hero</td><td>3-slide hero carousel</td><td>index</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.perks</td><td>5-item trust/perks strip</td><td>index</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.cats-scroll</td><td>Category circles horizontal scroll</td><td>index</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.psec-scroll</td><td>Horizontal product carousels (×5)</td><td>index</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.pcard</td><td>Product card (hover swap, ATC, wishlist)</td><td>All</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.pcard-atb</td><td>Slide-up "Add to Bag" on card hover</td><td>All</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.coll-banners</td><td>3-col editorial collection banners</td><td>index</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.sidebar</td><td>Collection left sidebar filters</td><td>Collections</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.prod-grid</td><td>3-col product grid</td><td>Collections</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.gallery</td><td>4-image gallery + hover-to-zoom</td><td>product</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.variant-section</td><td>Metal finish + size variant selectors</td><td>product</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.accordion</td><td>Product details / care / shipping</td><td>product</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.reviews-sec</td><td>Rating bars + customer review cards</td><td>product</td><td><span class="badge badge-done">✓</span></td></tr>
+            <tr><td>.sticky-cta</td><td>Sticky mobile Add to Bag bar</td><td>product</td><td><span class="badge badge-done">✓</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ISSUES LOG -->
+      <section class="doc-section" id="issues">
+        <div class="section-tag">Debug History</div>
+        <h2 class="section-title">Issues Log</h2>
+        <p class="section-sub">All bugs encountered and fixes applied during development.</p>
+        <table>
+          <thead><tr><th>Issue</th><th>Root Cause</th><th>Fix</th></tr></thead>
+          <tbody>
+            <tr><td>Great Vibes font persisting</td><td><code>--serif</code> var not updated in index.html</td><td>Removed from all imports + font stacks</td></tr>
+            <tr><td>Hardcoded <code>#1c1c1c</code> remaining</td><td>CSS vars updated but inline hex missed</td><td><code>replace_all</code> across every file</td></tr>
+            <tr><td>Pages look "template generated"</td><td>Over-styled, not product-first like Lili Origin</td><td>Full redesign — carousels, card-first layout</td></tr>
+            <tr><td>Earring images on bracelet/maang tikka cards</td><td>Unsplash IDs reused across categories without verification</td><td>Audited all 14+ cards, category-correct photos assigned</td></tr>
+            <tr><td>Price row misaligned across cards</td><td>Name wraps to diff. line counts + flex-wrap on price</td><td>Stacked price + <code>min-height: 2 lines</code> on name</td></tr>
+            <tr><td>Auto-push hook not firing (11hr gap)</td><td>Hook used <code>jq</code> + <code>bash</code> — not on Windows PATH</td><td>Rewrote as <code>.claude/autopush.ps1</code> PowerShell script</td></tr>
+            <tr><td>File not read error on Edit</td><td>Attempted Edit before Read in same session</td><td>Always Read before Edit — session rule</td></tr>
+            <tr><td>Git merge conflict on rebase</td><td>Remote and local both modified index.html</td><td><code>git checkout --theirs</code> + rebase continue</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+// ── SIDEBAR ACTIVE STATE ──
+function setActive(el){
+  document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── SCROLL SPY ──
+var sections=document.querySelectorAll('.doc-section');
+var links=document.querySelectorAll('.sidebar-link[href^="#"]');
+window.addEventListener('scroll',function(){
+  var pos=window.scrollY+100;
+  sections.forEach(function(s){
+    if(s.offsetTop<=pos&&s.offsetTop+s.offsetHeight>pos){
+      links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+s.id)});
+    }
+  });
+});
+
+// ── LIVE COMMIT LOG ──
+fetch('https://api.github.com/repos/smeetkataria7-cmyk/Tribal-Zone/commits?per_page=15')
+  .then(function(r){return r.json()})
+  .then(function(data){
+    if(!data||!data.length){throw new Error('No data');}
+    var html=data.map(function(c){
+      var sha=c.sha.substring(0,7);
+      var msg=c.commit.message.split('\n')[0];
+      var author=c.commit.author.name;
+      var date=new Date(c.commit.author.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      return '<div class="commit-item">'
+        +'<span class="commit-sha">'+sha+'</span>'
+        +'<div class="flex-1"><div class="commit-msg">'+escHtml(msg)+'</div>'
+        +'<div class="commit-meta">'+escHtml(author)+'</div></div>'
+        +'<span class="commit-date">'+date+'</span>'
+        +'</div>';
+    }).join('');
+    document.getElementById('commitList').innerHTML=html;
+  })
+  .catch(function(){
+    document.getElementById('commitList').innerHTML='<div class="commits-error">Could not load commits — <a href="https://github.com/smeetkataria7-cmyk/Tribal-Zone/commits/main" target="_blank" style="color:var(--pink)">view on GitHub ↗</a></div>';
+  });
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+</script>
+</body>
+</html>
