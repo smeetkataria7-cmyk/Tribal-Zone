@@ -340,14 +340,15 @@
     .pcard:hover .i1 { opacity: 0; transform: scale(1.06); }
     .pcard:hover .i2 { opacity: 1; }
     .pcard-badge {
-      position: absolute; top: 10px; left: 10px;
-      font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
-      padding: 3px 9px; border-radius: 4px;
+      position: absolute; top: 10px; left: 0;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 0;
+      background: linear-gradient(100deg, #b07c28 0%, #e3b84e 35%, #f7df8a 50%, #e3b84e 65%, #b07c28 100%);
+      color: #3a2a00;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%);
+      padding-right: 18px;
     }
-    .b-sale { background: var(--red); color: #fff; }
-    .b-new  { background: #222; color: #fff; }
-    .b-best { background: #222; color: #fff; }
-    .b-bogo { background: #222; color: #fff; }
+    .b-sale, .b-new, .b-best, .b-bogo { background: linear-gradient(100deg, #b07c28 0%, #e3b84e 35%, #f7df8a 50%, #e3b84e 65%, #b07c28 100%); color: #3a2a00; }
     .pcard-wish {
       position: absolute; top: 10px; right: 10px;
       background: rgba(255,255,255,.9); border: none; width: 32px; height: 32px;
@@ -366,15 +367,17 @@
     }
     .pcard:hover .pcard-atb { transform: translateY(0); }
     .pcard-info { padding: 13px 14px 16px; }
-    .pcard-cat { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-    .pcard-name { font-size: 13.5px; font-weight: 500; line-height: 1.35; min-height: calc(1.35em * 2); margin-bottom: 8px; color: var(--dark); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .pcard-stars { color: var(--gold); font-size: 11px; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
+    .pcard-cat { display: none; }
+    .pcard-name { font-size: 13.5px; font-weight: 400; line-height: 1.4; min-height: calc(1.4em * 2); margin-bottom: 8px; color: var(--dark); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .pcard-stars { color: #f5a623; font-size: 11px; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
     .pcard-stars span { color: var(--muted); font-size: 11px; }
-    .pcard-price { display: flex; flex-direction: column; gap: 2px; }
-    .p-now { font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1; }
-    .p-meta { display: flex; align-items: center; gap: 6px; }
-    .p-was { font-size: 12px; color: #aaa; text-decoration: line-through; }
-    .p-off { font-size: 11.5px; color: var(--red); font-weight: 600; }
+    .pcard-price { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .p-now { font-size: 16px; font-weight: 600; color: #2a7d6e; line-height: 1; order: 2; }
+    .p-meta { display: contents; }
+    .p-was { order: 1; }
+    .p-off { order: 3; }
+    .p-was { font-size: 12.5px; color: #999; text-decoration: line-through; }
+    .p-off { font-size: 11px; color: #fff; font-weight: 600; background: #4caf50; padding: 4px 10px; border-radius: 50px; }
     .pcard-free { font-size: 11px; color: var(--green); margin-top: 5px; font-weight: 500; }
     .pcard-offer { font-size: 11px; color: #6a4cac; margin-top: 4px; font-weight: 600; }
 
@@ -751,7 +754,7 @@
             <div class="pcard-cat">Earrings</div>
             <div class="pcard-name">Gold Kundan Cluster Studs</div>
             <div class="pcard-stars">★★★★★ <span>(128)</span></div>
-            <div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">−46%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">46% OFF</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -768,7 +771,7 @@
             <div class="pcard-cat">Necklaces</div>
             <div class="pcard-name">Crystal Drop Pendant Necklace</div>
             <div class="pcard-stars">★★★★ <span>(84)</span></div>
-            <div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">−39%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -785,7 +788,7 @@
             <div class="pcard-cat">Zodiac</div>
             <div class="pcard-name">Aries Zodiac Silver Pendant</div>
             <div class="pcard-stars">★★★★★ <span>(56)</span></div>
-            <div class="pcard-price"><span class="p-now">₹449</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">−44%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹449</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">44% OFF</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -802,7 +805,7 @@
             <div class="pcard-cat">Ethnic</div>
             <div class="pcard-name">Antique Gold Jhumka Earrings</div>
             <div class="pcard-stars">★★★★★ <span>(203)</span></div>
-            <div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−30%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">30% OFF</span></div></div>
             <div class="pcard-offer">🎁 Buy 1 Get 2 Free</div>
           </div>
         </a>
@@ -818,7 +821,7 @@
             <div class="pcard-cat">Bracelets</div>
             <div class="pcard-name">Crystal Beaded Stretch Bracelet</div>
             <div class="pcard-stars">★★★★★ <span>(91)</span></div>
-            <div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">−40%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">40% OFF</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -827,7 +830,7 @@
           <div class="pcard-img">
             <img class="i1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt="Chandbali"/>
             <img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt="hover"/>
-            <span class="pcard-badge b-bogo">B1G2</span>
+            <span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span>
             <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
             <div class="pcard-atb">Add to Bag</div>
           </div>
@@ -835,7 +838,7 @@
             <div class="pcard-cat">Ethnic</div>
             <div class="pcard-name">Bridal Kundan Chandbali Set</div>
             <div class="pcard-stars">★★★★★ <span>(67)</span></div>
-            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div>
           </div>
         </a>
 
@@ -851,7 +854,7 @@
             <div class="pcard-cat">Maang Tikka</div>
             <div class="pcard-name">Pearl &amp; Kundan Maang Tikka</div>
             <div class="pcard-stars">★★★★★ <span>(44)</span></div>
-            <div class="pcard-price"><span class="p-now">₹499</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">−38%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹499</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">38% OFF</span></div></div>
           </div>
         </a>
 
@@ -873,11 +876,11 @@
     <div class="prod-row-wrap">
       <button class="row-arr row-prev" onclick="scrollRow('earRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
       <div class="prod-row" id="earRow">
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Gold Kundan Cluster Studs</div><div class="pcard-stars">★★★★★ <span>(128)</span></div><div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">−46%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><span class="pcard-badge b-bogo">B1G2</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Antique Gold Jhumka Earrings</div><div class="pcard-stars">★★★★★ <span>(203)</span></div><div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−30%</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Bridal Kundan Chandbali Set</div><div class="pcard-stars">★★★★★ <span>(67)</span></div><div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div></div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Pearl Drop Stud Earrings</div><div class="pcard-stars">★★★★★ <span>(312)</span></div><div class="pcard-price"><span class="p-now">₹349</span><div class="p-meta"><span class="p-was">₹599</span><span class="p-off">−42%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Oxidised Silver Hoop Earrings</div><div class="pcard-stars">★★★★ <span>(89)</span></div><div class="pcard-price"><span class="p-now">₹249</span><div class="p-meta"><span class="p-was">₹449</span><span class="p-off">−45%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Gold Kundan Cluster Studs</div><div class="pcard-stars">★★★★★ <span>(128)</span></div><div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">46% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Antique Gold Jhumka Earrings</div><div class="pcard-stars">★★★★★ <span>(203)</span></div><div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">30% OFF</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Bridal Kundan Chandbali Set</div><div class="pcard-stars">★★★★★ <span>(67)</span></div><div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Pearl Drop Stud Earrings</div><div class="pcard-stars">★★★★★ <span>(312)</span></div><div class="pcard-price"><span class="p-now">₹349</span><div class="p-meta"><span class="p-was">₹599</span><span class="p-off">42% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Oxidised Silver Hoop Earrings</div><div class="pcard-stars">★★★★ <span>(89)</span></div><div class="pcard-price"><span class="p-now">₹249</span><div class="p-meta"><span class="p-was">₹449</span><span class="p-off">45% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
       </div>
       <button class="row-arr row-next" onclick="scrollRow('earRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
@@ -894,11 +897,11 @@
     <div class="prod-row-wrap">
       <button class="row-arr row-prev" onclick="scrollRow('neckRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
       <div class="prod-row" id="neckRow">
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Crystal Drop Pendant Necklace</div><div class="pcard-stars">★★★★ <span>(84)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">−39%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Layered Gold Chain Set</div><div class="pcard-stars">★★★★★ <span>(187)</span></div><div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">−31%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Temple Choker Necklace</div><div class="pcard-stars">★★★★★ <span>(142)</span></div><div class="pcard-price"><span class="p-now">₹649</span><div class="p-meta"><span class="p-was">₹1,099</span><span class="p-off">−41%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Pearl Layered Necklace Set</div><div class="pcard-stars">★★★★ <span>(61)</span></div><div class="pcard-price"><span class="p-now">₹749</span><div class="p-meta"><span class="p-was">₹1,199</span><span class="p-off">−38%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Kundan Temple Chain</div><div class="pcard-stars">★★★★★ <span>(95)</span></div><div class="pcard-price"><span class="p-now">₹799</span><div class="p-meta"><span class="p-was">₹1,399</span><span class="p-off">−43%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Crystal Drop Pendant Necklace</div><div class="pcard-stars">★★★★ <span>(84)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Layered Gold Chain Set</div><div class="pcard-stars">★★★★★ <span>(187)</span></div><div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">31% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Temple Choker Necklace</div><div class="pcard-stars">★★★★★ <span>(142)</span></div><div class="pcard-price"><span class="p-now">₹649</span><div class="p-meta"><span class="p-was">₹1,099</span><span class="p-off">41% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Pearl Layered Necklace Set</div><div class="pcard-stars">★★★★ <span>(61)</span></div><div class="pcard-price"><span class="p-now">₹749</span><div class="p-meta"><span class="p-was">₹1,199</span><span class="p-off">38% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Kundan Temple Chain</div><div class="pcard-stars">★★★★★ <span>(95)</span></div><div class="pcard-price"><span class="p-now">₹799</span><div class="p-meta"><span class="p-was">₹1,399</span><span class="p-off">43% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
       </div>
       <button class="row-arr row-next" onclick="scrollRow('neckRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
@@ -915,11 +918,11 @@
     <div class="prod-row-wrap">
       <button class="row-arr row-prev" onclick="scrollRow('bangRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
       <div class="prod-row" id="bangRow">
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Gold Bangle Set of 4</div><div class="pcard-stars">★★★★ <span>(154)</span></div><div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−40%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><span class="pcard-badge b-bogo">B1G2</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bracelets</div><div class="pcard-name">Crystal Beaded Stretch Bracelet</div><div class="pcard-stars">★★★★★ <span>(91)</span></div><div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">−40%</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Oxidised Antique Bangle Pair</div><div class="pcard-stars">★★★★★ <span>(73)</span></div><div class="pcard-price"><span class="p-now">₹449</span><div class="p-meta"><span class="p-was">₹749</span><span class="p-off">−40%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bracelets</div><div class="pcard-name">Kundan Kada Bracelet</div><div class="pcard-stars">★★★★ <span>(48)</span></div><div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">−43%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Temple Design Bangle Set</div><div class="pcard-stars">★★★★★ <span>(112)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">−39%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Gold Bangle Set of 4</div><div class="pcard-stars">★★★★ <span>(154)</span></div><div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">40% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bracelets</div><div class="pcard-name">Crystal Beaded Stretch Bracelet</div><div class="pcard-stars">★★★★★ <span>(91)</span></div><div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">40% OFF</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Oxidised Antique Bangle Pair</div><div class="pcard-stars">★★★★★ <span>(73)</span></div><div class="pcard-price"><span class="p-now">₹449</span><div class="p-meta"><span class="p-was">₹749</span><span class="p-off">40% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bracelets</div><div class="pcard-name">Kundan Kada Bracelet</div><div class="pcard-stars">★★★★ <span>(48)</span></div><div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">43% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Temple Design Bangle Set</div><div class="pcard-stars">★★★★★ <span>(112)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
       </div>
       <button class="row-arr row-next" onclick="scrollRow('bangRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
@@ -936,11 +939,11 @@
     <div class="prod-row-wrap">
       <button class="row-arr row-prev" onclick="scrollRow('tikkaRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
       <div class="prod-row" id="tikkaRow">
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Pearl &amp; Kundan Maang Tikka</div><div class="pcard-stars">★★★★★ <span>(44)</span></div><div class="pcard-price"><span class="p-now">₹499</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">−38%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Bridal Gold Maang Tikka</div><div class="pcard-stars">★★★★★ <span>(118)</span></div><div class="pcard-price"><span class="p-now">₹649</span><div class="p-meta"><span class="p-was">₹1,099</span><span class="p-off">−41%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Oxidised Silver Tikka</div><div class="pcard-stars">★★★★ <span>(62)</span></div><div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">−43%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Kundan Floral Tikka</div><div class="pcard-stars">★★★★★ <span>(87)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">−39%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Meenakari Peacock Tikka</div><div class="pcard-stars">★★★★★ <span>(33)</span></div><div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−40%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Pearl &amp; Kundan Maang Tikka</div><div class="pcard-stars">★★★★★ <span>(44)</span></div><div class="pcard-price"><span class="p-now">₹499</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">38% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Bridal Gold Maang Tikka</div><div class="pcard-stars">★★★★★ <span>(118)</span></div><div class="pcard-price"><span class="p-now">₹649</span><div class="p-meta"><span class="p-was">₹1,099</span><span class="p-off">41% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Oxidised Silver Tikka</div><div class="pcard-stars">★★★★ <span>(62)</span></div><div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">43% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Kundan Floral Tikka</div><div class="pcard-stars">★★★★★ <span>(87)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Meenakari Peacock Tikka</div><div class="pcard-stars">★★★★★ <span>(33)</span></div><div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">40% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
       </div>
       <button class="row-arr row-next" onclick="scrollRow('tikkaRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
@@ -975,7 +978,7 @@
             <div class="pcard-cat">Earrings</div>
             <div class="pcard-name">Pearl Drop Stud Earrings</div>
             <div class="pcard-stars">★★★★★ <span>(312)</span></div>
-            <div class="pcard-price"><span class="p-now">₹349</span><div class="p-meta"><span class="p-was">₹599</span><span class="p-off">−42%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹349</span><div class="p-meta"><span class="p-was">₹599</span><span class="p-off">42% OFF</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -992,7 +995,7 @@
             <div class="pcard-cat">Necklaces</div>
             <div class="pcard-name">Layered Gold Chain Set</div>
             <div class="pcard-stars">★★★★★ <span>(187)</span></div>
-            <div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">−31%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">31% OFF</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -1009,7 +1012,7 @@
             <div class="pcard-cat">Ethnic</div>
             <div class="pcard-name">Chandbali Kundan Earrings</div>
             <div class="pcard-stars">★★★★★ <span>(241)</span></div>
-            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -1026,7 +1029,7 @@
             <div class="pcard-cat">Bangles</div>
             <div class="pcard-name">Gold Bangle Set of 4</div>
             <div class="pcard-stars">★★★★ <span>(154)</span></div>
-            <div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−40%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">40% OFF</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -1043,7 +1046,7 @@
             <div class="pcard-cat">Gift Set</div>
             <div class="pcard-name">Jewellery Gift Box — 3 Piece</div>
             <div class="pcard-stars">★★★★★ <span>(98)</span></div>
-            <div class="pcard-price"><span class="p-now">₹1,199</span><div class="p-meta"><span class="p-was">₹1,799</span><span class="p-off">−33%</span></div></div>
+            <div class="pcard-price"><span class="p-now">₹1,199</span><div class="p-meta"><span class="p-was">₹1,799</span><span class="p-off">33% OFF</span></div></div>
             <div class="pcard-offer">🎁 Perfect for Gifting</div>
           </div>
         </a>
