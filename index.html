@@ -426,13 +426,14 @@
     .zodiac-row { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
     .zodiac-row::-webkit-scrollbar { display: none; }
     .z-card {
-      display: flex; flex-direction: column; align-items: center; gap: 6px;
-      padding: 16px 12px; background: #fff; border: 1px solid var(--border);
-      border-radius: 12px; min-width: 82px; cursor: pointer; text-decoration: none;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 12px 10px; background: #fff; border: 1px solid var(--border);
+      border-radius: 14px; min-width: 96px; cursor: pointer; text-decoration: none;
       color: inherit; transition: all .22s; flex-shrink: 0;
     }
     .z-card:hover { border-color: var(--gold); background: var(--gold-bg); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(242,21,123,.14); }
-    .z-sym { font-size: 22px; line-height: 1; }
+    .z-img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--border); }
+    .z-card:hover .z-img { border-color: var(--gold); }
     .z-name { font-size: 12px; font-weight: 600; }
     .z-dates { font-size: 10px; color: var(--muted); text-align: center; }
 
@@ -1092,18 +1093,18 @@
       <h2 class="sec-title">Shop by Your <em>Zodiac</em></h2>
     </div>
     <div class="zodiac-row">
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♈</span><div class="z-name">Aries</div><div class="z-dates">Mar 21–Apr 19</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♉</span><div class="z-name">Taurus</div><div class="z-dates">Apr 20–May 20</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♊</span><div class="z-name">Gemini</div><div class="z-dates">May 21–Jun 20</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♋</span><div class="z-name">Cancer</div><div class="z-dates">Jun 21–Jul 22</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♌</span><div class="z-name">Leo</div><div class="z-dates">Jul 23–Aug 22</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♍</span><div class="z-name">Virgo</div><div class="z-dates">Aug 23–Sep 22</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♎</span><div class="z-name">Libra</div><div class="z-dates">Sep 23–Oct 22</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♏</span><div class="z-name">Scorpio</div><div class="z-dates">Oct 23–Nov 21</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♐</span><div class="z-name">Sagittarius</div><div class="z-dates">Nov 22–Dec 21</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♑</span><div class="z-name">Capricorn</div><div class="z-dates">Dec 22–Jan 19</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♒</span><div class="z-name">Aquarius</div><div class="z-dates">Jan 20–Feb 18</div></a>
-      <a href="collection-zodiac.html" class="z-card"><span class="z-sym">♓</span><div class="z-name">Pisces</div><div class="z-dates">Feb 19–Mar 20</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Aries"/><div class="z-name">Aries</div><div class="z-dates">Mar 21–Apr 19</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93281.jpg" alt="Taurus"/><div class="z-name">Taurus</div><div class="z-dates">Apr 20–May 20</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93251.jpg" alt="Gemini"/><div class="z-name">Gemini</div><div class="z-dates">May 21–Jun 20</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93291.jpg" alt="Cancer"/><div class="z-name">Cancer</div><div class="z-dates">Jun 21–Jul 22</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93331.jpg" alt="Leo"/><div class="z-name">Leo</div><div class="z-dates">Jul 23–Aug 22</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93351.jpg" alt="Virgo"/><div class="z-name">Virgo</div><div class="z-dates">Aug 23–Sep 22</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93341.jpg" alt="Libra"/><div class="z-name">Libra</div><div class="z-dates">Sep 23–Oct 22</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93211.jpg" alt="Scorpio"/><div class="z-name">Scorpio</div><div class="z-dates">Oct 23–Nov 21</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93271.jpg" alt="Sagittarius"/><div class="z-name">Sagittarius</div><div class="z-dates">Nov 22–Dec 21</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93221.jpg" alt="Capricorn"/><div class="z-name">Capricorn</div><div class="z-dates">Dec 22–Jan 19</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A9323.jpg" alt="Aquarius"/><div class="z-name">Aquarius</div><div class="z-dates">Jan 20–Feb 18</div></a>
+      <a href="collection-zodiac.html" class="z-card"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93371.jpg" alt="Pisces"/><div class="z-name">Pisces</div><div class="z-dates">Feb 19–Mar 20</div></a>
     </div>
   </div>
 </section>
