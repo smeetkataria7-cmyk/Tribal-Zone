@@ -317,15 +317,13 @@
     .view-all { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid var(--gold); padding-bottom: 1px; transition: gap .2s; white-space: nowrap; }
     .view-all:hover { gap: 9px; }
 
-    /* ── CATEGORY CIRCLES ── */
-    .cat-row { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; justify-content: center; flex-wrap: wrap; }
-    .cat-row::-webkit-scrollbar { display: none; }
-    .cat-item { display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: pointer; flex-shrink: 0; transition: transform .22s; text-decoration: none; color: inherit; }
-    .cat-item:hover { transform: translateY(-5px); }
-    .cat-circle { width: 112px; height: 112px; border-radius: 50%; border: 2.5px solid var(--border); overflow: hidden; transition: border-color .2s, box-shadow .2s; background: var(--cream); }
-    .cat-item:hover .cat-circle { border-color: var(--gold); box-shadow: 0 6px 24px rgba(242,21,123,.2); }
-    .cat-circle img { width: 100%; height: 100%; object-fit: cover; }
-    .cat-label { font-size: 12.5px; font-weight: 500; }
+    /* ── CATEGORY PILL STRIP ── */
+    .cat-strip-wrap { background: #fff; border-bottom: 1px solid var(--border); }
+    .cat-strip { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; padding: 16px 32px; max-width: 1400px; margin: 0 auto; }
+    .cat-strip::-webkit-scrollbar { display: none; }
+    .cat-pill { display: flex; align-items: center; gap: 7px; padding: 9px 18px; border: 1.5px solid var(--border); border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--dark); white-space: nowrap; text-decoration: none; transition: all .18s; flex-shrink: 0; background: #fff; }
+    .cat-pill:hover, .cat-pill.active { border-color: var(--gold); color: var(--gold); background: var(--gold-bg); }
+    .cat-pill-icon { font-size: 15px; }
 
     /* ── PRODUCT SCROLL ROW ── */
     .prod-row-wrap { position: relative; }
@@ -741,49 +739,19 @@
   </div>
 </div>
 
-<!-- SHOP BY CATEGORY -->
-<section class="sec">
-  <div class="sec-inner">
-    <div class="sec-head">
-      <div class="sec-tag">Shop by Category</div>
-      <h2 class="sec-title">What are you <em>looking for?</em></h2>
-    </div>
-    <div class="cat-row">
-      <a href="collection-earrings.html" class="cat-item">
-        <div class="cat-circle"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=220&q=70" alt="Earrings"/></div>
-        <span class="cat-label">Earrings</span>
-      </a>
-      <a href="collection-necklaces.html" class="cat-item">
-        <div class="cat-circle"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=220&q=70" alt="Necklaces"/></div>
-        <span class="cat-label">Necklaces</span>
-      </a>
-      <a href="collection-bangles.html" class="cat-item">
-        <div class="cat-circle"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=220&q=70" alt="Bangles"/></div>
-        <span class="cat-label">Bangles</span>
-      </a>
-      <a href="collection-maangtikka.html" class="cat-item">
-        <div class="cat-circle"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=220&q=70" alt="Maang Tikka"/></div>
-        <span class="cat-label">Maang Tikka</span>
-      </a>
-      <a href="collection-rings.html" class="cat-item">
-        <div class="cat-circle"><img src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=220&q=70" alt="Rings"/></div>
-        <span class="cat-label">Rings</span>
-      </a>
-      <a href="collection-hampers.html" class="cat-item">
-        <div class="cat-circle"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=220&q=70" alt="Gift Hampers"/></div>
-        <span class="cat-label">Hampers</span>
-      </a>
-      <a href="collection-zodiac.html" class="cat-item">
-        <div class="cat-circle"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=220&q=70" alt="Zodiac"/></div>
-        <span class="cat-label">Zodiac</span>
-      </a>
-      <a href="collection-sale.html" class="cat-item">
-        <div class="cat-circle" style="border-color:var(--red)"><img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=220&q=70" alt="Sale"/></div>
-        <span class="cat-label" style="color:var(--red);font-weight:600;">Sale 🔥</span>
-      </a>
-    </div>
+<!-- CATEGORY PILL STRIP -->
+<div class="cat-strip-wrap">
+  <div class="cat-strip">
+    <a href="collection-earrings.html" class="cat-pill"><span class="cat-pill-icon">💎</span> Earrings</a>
+    <a href="collection-necklaces.html" class="cat-pill"><span class="cat-pill-icon">📿</span> Necklaces</a>
+    <a href="collection-bangles.html" class="cat-pill"><span class="cat-pill-icon">⭕</span> Bangles &amp; Bracelets</a>
+    <a href="collection-maangtikka.html" class="cat-pill"><span class="cat-pill-icon">🌸</span> Maang Tikka</a>
+    <a href="collection-rings.html" class="cat-pill"><span class="cat-pill-icon">💍</span> Rings</a>
+    <a href="collection-zodiac.html" class="cat-pill"><span class="cat-pill-icon">✨</span> Zodiac</a>
+    <a href="collection-hampers.html" class="cat-pill"><span class="cat-pill-icon">🎁</span> Festive Hampers</a>
+    <a href="collection-sale.html" class="cat-pill" style="border-color:#fdd;color:var(--red);"><span class="cat-pill-icon">🔥</span> Sale</a>
   </div>
-</section>
+</div>
 
 <!-- NEW ARRIVALS ROW -->
 <section class="sec sec-cream">
@@ -925,38 +893,89 @@
   </div>
 </section>
 
-<!-- SHOP BY COLLECTION BANNERS -->
-<div style="padding:64px 0 0;background:#fff;">
-  <div style="max-width:1400px;margin:0 auto;padding:0 32px;">
-    <div class="sec-head">
-      <div class="sec-tag">Curated For You</div>
-      <h2 class="sec-title">Shop by <em>Collection</em></h2>
+<!-- EARRINGS ROW -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head"><div class="sec-tag">Top Picks</div><h2 class="sec-title">Earrings</h2></div>
+      <a href="collection-earrings.html" class="view-all">View All →</a>
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('earRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="prod-row" id="earRow">
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Gold Kundan Cluster Studs</div><div class="pcard-stars">★★★★★ <span>(128)</span></div><div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">−46%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><span class="pcard-badge b-bogo">B1G2</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Antique Gold Jhumka Earrings</div><div class="pcard-stars">★★★★★ <span>(203)</span></div><div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−30%</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Bridal Kundan Chandbali Set</div><div class="pcard-stars">★★★★★ <span>(67)</span></div><div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div></div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Pearl Drop Stud Earrings</div><div class="pcard-stars">★★★★★ <span>(312)</span></div><div class="pcard-price"><span class="p-now">₹349</span><div class="p-meta"><span class="p-was">₹599</span><span class="p-off">−42%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Earrings</div><div class="pcard-name">Oxidised Silver Hoop Earrings</div><div class="pcard-stars">★★★★ <span>(89)</span></div><div class="pcard-price"><span class="p-now">₹249</span><div class="p-meta"><span class="p-was">₹449</span><span class="p-off">−45%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('earRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
   </div>
-</div>
-<div class="banners-grid">
-  <div class="banner-tile" style="background-image:url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=700&q=75')">
-    <div class="banner-content">
-      <div class="banner-tag">Bestseller</div>
-      <div class="banner-title">Ethnic &amp; Festive</div>
-      <a href="collection-earrings.html" class="banner-btn">Shop Now</a>
+</section>
+
+<!-- NECKLACES ROW -->
+<section class="sec sec-cream">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head"><div class="sec-tag">Trending Now</div><h2 class="sec-title">Necklaces</h2></div>
+      <a href="collection-necklaces.html" class="view-all">View All →</a>
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('neckRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="prod-row" id="neckRow">
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Crystal Drop Pendant Necklace</div><div class="pcard-stars">★★★★ <span>(84)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">−39%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Layered Gold Chain Set</div><div class="pcard-stars">★★★★★ <span>(187)</span></div><div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">−31%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Temple Choker Necklace</div><div class="pcard-stars">★★★★★ <span>(142)</span></div><div class="pcard-price"><span class="p-now">₹649</span><div class="p-meta"><span class="p-was">₹1,099</span><span class="p-off">−41%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Pearl Layered Necklace Set</div><div class="pcard-stars">★★★★ <span>(61)</span></div><div class="pcard-price"><span class="p-now">₹749</span><div class="p-meta"><span class="p-was">₹1,199</span><span class="p-off">−38%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Necklaces</div><div class="pcard-name">Kundan Temple Chain</div><div class="pcard-stars">★★★★★ <span>(95)</span></div><div class="pcard-price"><span class="p-now">₹799</span><div class="p-meta"><span class="p-was">₹1,399</span><span class="p-off">−43%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('neckRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
   </div>
-  <div class="banner-tile" style="background-image:url('https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=700&q=75')">
-    <div class="banner-content">
-      <div class="banner-tag">Trending</div>
-      <div class="banner-title">Zodiac Pendants</div>
-      <a href="collection-zodiac.html" class="banner-btn">Shop Now</a>
+</section>
+
+<!-- BANGLES ROW -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head"><div class="sec-tag">Stack &amp; Style</div><h2 class="sec-title">Bangles &amp; Bracelets</h2></div>
+      <a href="collection-bangles.html" class="view-all">View All →</a>
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('bangRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="prod-row" id="bangRow">
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Gold Bangle Set of 4</div><div class="pcard-stars">★★★★ <span>(154)</span></div><div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−40%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><span class="pcard-badge b-bogo">B1G2</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bracelets</div><div class="pcard-name">Crystal Beaded Stretch Bracelet</div><div class="pcard-stars">★★★★★ <span>(91)</span></div><div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">−40%</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Oxidised Antique Bangle Pair</div><div class="pcard-stars">★★★★★ <span>(73)</span></div><div class="pcard-price"><span class="p-now">₹449</span><div class="p-meta"><span class="p-was">₹749</span><span class="p-off">−40%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bracelets</div><div class="pcard-name">Kundan Kada Bracelet</div><div class="pcard-stars">★★★★ <span>(48)</span></div><div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">−43%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Bangles</div><div class="pcard-name">Temple Design Bangle Set</div><div class="pcard-stars">★★★★★ <span>(112)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">−39%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('bangRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
   </div>
-  <div class="banner-tile" style="background-image:url('https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=700&q=75')">
-    <div class="banner-content">
-      <div class="banner-tag">Up to 50% Off</div>
-      <div class="banner-title">Sale Picks</div>
-      <a href="collection-sale.html" class="banner-btn">Shop Now</a>
+</section>
+
+<!-- MAANG TIKKA ROW -->
+<section class="sec sec-cream">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head"><div class="sec-tag">Bridal &amp; Ethnic</div><h2 class="sec-title">Maang Tikka</h2></div>
+      <a href="collection-maangtikka.html" class="view-all">View All →</a>
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('tikkaRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="prod-row" id="tikkaRow">
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Pearl &amp; Kundan Maang Tikka</div><div class="pcard-stars">★★★★★ <span>(44)</span></div><div class="pcard-price"><span class="p-now">₹499</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">−38%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=70" alt=""/><span class="pcard-badge b-best">Bestseller</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Bridal Gold Maang Tikka</div><div class="pcard-stars">★★★★★ <span>(118)</span></div><div class="pcard-price"><span class="p-now">₹649</span><div class="p-meta"><span class="p-was">₹1,099</span><span class="p-off">−41%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Oxidised Silver Tikka</div><div class="pcard-stars">★★★★ <span>(62)</span></div><div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">−43%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=70" alt=""/><span class="pcard-badge b-sale">Sale</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Kundan Floral Tikka</div><div class="pcard-stars">★★★★★ <span>(87)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">−39%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="product.html"><div class="pcard-img"><img class="i1" src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=500&q=70" alt=""/><img class="i2" src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=500&q=70" alt=""/><span class="pcard-badge b-new">New</span><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Meenakari Peacock Tikka</div><div class="pcard-stars">★★★★★ <span>(33)</span></div><div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−40%</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('tikkaRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
   </div>
-</div>
+</section>
 
 <!-- OFFER STRIP -->
 <div class="offer-strip">
@@ -1113,26 +1132,6 @@
       <a href="collection-zodiac.html" class="z-card"><div class="z-img-wrap"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A9323.jpg" alt="Aquarius"/></div><div class="z-info"><div class="z-name">Aquarius</div><div class="z-dates">Jan 20 – Feb 18</div></div></a>
       <a href="collection-zodiac.html" class="z-card"><div class="z-img-wrap"><img class="z-img" src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93371.jpg" alt="Pisces"/></div><div class="z-info"><div class="z-name">Pisces</div><div class="z-dates">Feb 19 – Mar 20</div></div></a>
     </div>
-    </div>
-  </div>
-</section>
-
-<!-- BRAND STORY -->
-<section class="brand-sec">
-  <div class="brand-inner">
-    <div class="brand-text">
-      <div class="sec-tag" style="color:var(--gold-lt)">Since 2003</div>
-      <h2>Crafting Beauty,<br/><em>One Piece</em> at a Time</h2>
-      <p>Tribal Zone was born from a deep love of Indian craftsmanship. For over two decades, we've been creating fashion accessories that honour our cultural heritage while embracing modern style.</p>
-      <p>Every jhumka, every pendant, every bracelet is thoughtfully made — because we believe jewellery is more than adornment. It's the story you wear.</p>
-      <div class="brand-nums">
-        <div class="brand-num"><strong>5L+</strong><span>Happy Customers</span></div>
-        <div class="brand-num"><strong>20+</strong><span>Years of Craft</span></div>
-        <div class="brand-num"><strong>2000+</strong><span>Designs</span></div>
-      </div>
-    </div>
-    <div class="brand-img">
-      <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=700&q=75" alt="Artisan crafting jewellery"/>
     </div>
   </div>
 </section>
