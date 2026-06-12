@@ -387,8 +387,9 @@
     .pcard-name { font-size: 13.5px; font-weight: 500; line-height: 1.35; margin-bottom: 8px; color: var(--dark); }
     .pcard-stars { color: var(--gold); font-size: 11px; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
     .pcard-stars span { color: var(--muted); font-size: 11px; }
-    .pcard-price { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-    .p-now { font-size: 15px; font-weight: 700; color: var(--dark); }
+    .pcard-price { display: flex; flex-direction: column; gap: 2px; }
+    .p-now { font-size: 15px; font-weight: 700; color: var(--dark); line-height: 1; }
+    .p-meta { display: flex; align-items: center; gap: 6px; }
     .p-was { font-size: 12px; color: #aaa; text-decoration: line-through; }
     .p-off { font-size: 11.5px; color: var(--red); font-weight: 600; }
     .pcard-free { font-size: 11px; color: var(--green); margin-top: 5px; font-weight: 500; }
@@ -803,7 +804,7 @@
             <div class="pcard-cat">Earrings</div>
             <div class="pcard-name">Gold Kundan Cluster Studs</div>
             <div class="pcard-stars">★★★★★ <span>(128)</span></div>
-            <div class="pcard-price"><span class="p-now">₹379</span><span class="p-was">₹699</span><span class="p-off">−46%</span></div>
+            <div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">−46%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -820,7 +821,7 @@
             <div class="pcard-cat">Necklaces</div>
             <div class="pcard-name">Crystal Drop Pendant Necklace</div>
             <div class="pcard-stars">★★★★ <span>(84)</span></div>
-            <div class="pcard-price"><span class="p-now">₹549</span><span class="p-was">₹899</span><span class="p-off">−39%</span></div>
+            <div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">−39%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -837,7 +838,7 @@
             <div class="pcard-cat">Zodiac</div>
             <div class="pcard-name">Aries Zodiac Silver Pendant</div>
             <div class="pcard-stars">★★★★★ <span>(56)</span></div>
-            <div class="pcard-price"><span class="p-now">₹449</span></div>
+            <div class="pcard-price"><span class="p-now">₹449</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">−44%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -854,7 +855,7 @@
             <div class="pcard-cat">Ethnic</div>
             <div class="pcard-name">Antique Gold Jhumka Earrings</div>
             <div class="pcard-stars">★★★★★ <span>(203)</span></div>
-            <div class="pcard-price"><span class="p-now">₹699</span><span class="p-was">₹999</span><span class="p-off">−30%</span></div>
+            <div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−30%</span></div></div>
             <div class="pcard-offer">🎁 Buy 1 Get 2 Free</div>
           </div>
         </a>
@@ -870,7 +871,7 @@
             <div class="pcard-cat">Bracelets</div>
             <div class="pcard-name">Crystal Beaded Stretch Bracelet</div>
             <div class="pcard-stars">★★★★★ <span>(91)</span></div>
-            <div class="pcard-price"><span class="p-now">₹299</span><span class="p-was">₹499</span><span class="p-off">−40%</span></div>
+            <div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">−40%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -887,7 +888,7 @@
             <div class="pcard-cat">Ethnic</div>
             <div class="pcard-name">Bridal Kundan Chandbali Set</div>
             <div class="pcard-stars">★★★★★ <span>(67)</span></div>
-            <div class="pcard-price"><span class="p-now">₹849</span><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div>
+            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div></div>
           </div>
         </a>
 
@@ -903,7 +904,7 @@
             <div class="pcard-cat">Maang Tikka</div>
             <div class="pcard-name">Pearl &amp; Kundan Maang Tikka</div>
             <div class="pcard-stars">★★★★★ <span>(44)</span></div>
-            <div class="pcard-price"><span class="p-now">₹499</span><span class="p-was">₹799</span><span class="p-off">−38%</span></div>
+            <div class="pcard-price"><span class="p-now">₹499</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">−38%</span></div></div>
           </div>
         </a>
 
@@ -983,7 +984,7 @@
             <div class="pcard-cat">Earrings</div>
             <div class="pcard-name">Pearl Drop Stud Earrings</div>
             <div class="pcard-stars">★★★★★ <span>(312)</span></div>
-            <div class="pcard-price"><span class="p-now">₹349</span><span class="p-was">₹599</span><span class="p-off">−42%</span></div>
+            <div class="pcard-price"><span class="p-now">₹349</span><div class="p-meta"><span class="p-was">₹599</span><span class="p-off">−42%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -1000,7 +1001,7 @@
             <div class="pcard-cat">Necklaces</div>
             <div class="pcard-name">Layered Gold Chain Set</div>
             <div class="pcard-stars">★★★★★ <span>(187)</span></div>
-            <div class="pcard-price"><span class="p-now">₹899</span><span class="p-was">₹1,299</span><span class="p-off">−31%</span></div>
+            <div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">−31%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -1017,7 +1018,7 @@
             <div class="pcard-cat">Ethnic</div>
             <div class="pcard-name">Chandbali Kundan Earrings</div>
             <div class="pcard-stars">★★★★★ <span>(241)</span></div>
-            <div class="pcard-price"><span class="p-now">₹849</span><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div>
+            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">−43%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -1034,7 +1035,7 @@
             <div class="pcard-cat">Bangles</div>
             <div class="pcard-name">Gold Bangle Set of 4</div>
             <div class="pcard-stars">★★★★ <span>(154)</span></div>
-            <div class="pcard-price"><span class="p-now">₹599</span><span class="p-was">₹999</span><span class="p-off">−40%</span></div>
+            <div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">−40%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
@@ -1051,7 +1052,7 @@
             <div class="pcard-cat">Gift Set</div>
             <div class="pcard-name">Jewellery Gift Box — 3 Piece</div>
             <div class="pcard-stars">★★★★★ <span>(98)</span></div>
-            <div class="pcard-price"><span class="p-now">₹1,199</span><span class="p-was">₹1,799</span><span class="p-off">−33%</span></div>
+            <div class="pcard-price"><span class="p-now">₹1,199</span><div class="p-meta"><span class="p-was">₹1,799</span><span class="p-off">−33%</span></div></div>
             <div class="pcard-offer">🎁 Perfect for Gifting</div>
           </div>
         </a>
@@ -1067,7 +1068,7 @@
             <div class="pcard-cat">Earrings</div>
             <div class="pcard-name">Oxidised Silver Tribal Hoops</div>
             <div class="pcard-stars">★★★★★ <span>(175)</span></div>
-            <div class="pcard-price"><span class="p-now">₹399</span></div>
+            <div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">-43%</span></div></div>
             <div class="pcard-free">✓ Free delivery</div>
           </div>
         </a>
