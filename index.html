@@ -296,13 +296,13 @@
     .hero-dot.on { background: #fff; width: 26px; border-radius: 4px; }
 
     /* ── PERKS STRIP ── */
-    .perks { background: var(--dark); }
+    .perks { background: #fff; border-bottom: 1px solid var(--border); }
     .perks-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; display: flex; align-items: stretch; justify-content: space-around; }
-    .perk { display: flex; align-items: center; gap: 12px; padding: 18px 16px; flex: 1; justify-content: center; border-right: 1px solid rgba(255,255,255,.07); color: rgba(255,255,255,.75); }
+    .perk { display: flex; align-items: center; gap: 10px; padding: 14px 16px; flex: 1; justify-content: center; border-right: 1px solid var(--border); color: var(--mid); }
     .perk:last-child { border-right: none; }
-    .perk-icon { font-size: 22px; flex-shrink: 0; }
-    .perk-text strong { display: block; font-size: 13px; font-weight: 600; color: #fff; }
-    .perk-text span { font-size: 11px; opacity: .5; }
+    .perk-icon { font-size: 18px; flex-shrink: 0; }
+    .perk-text strong { display: block; font-size: 12px; font-weight: 600; color: var(--dark); }
+    .perk-text span { font-size: 11px; color: var(--muted); }
 
     /* ── SECTIONS ── */
     .sec { padding: 64px 32px; }
@@ -317,13 +317,16 @@
     .view-all { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid var(--gold); padding-bottom: 1px; transition: gap .2s; white-space: nowrap; }
     .view-all:hover { gap: 9px; }
 
-    /* ── CATEGORY PILL STRIP ── */
-    .cat-strip-wrap { background: #fff; border-bottom: 1px solid var(--border); }
-    .cat-strip { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; padding: 16px 32px; max-width: 1400px; margin: 0 auto; }
-    .cat-strip::-webkit-scrollbar { display: none; }
-    .cat-pill { display: flex; align-items: center; gap: 7px; padding: 9px 18px; border: 1.5px solid var(--border); border-radius: 50px; font-size: 13px; font-weight: 500; color: var(--dark); white-space: nowrap; text-decoration: none; transition: all .18s; flex-shrink: 0; background: #fff; }
-    .cat-pill:hover, .cat-pill.active { border-color: var(--gold); color: var(--gold); background: var(--gold-bg); }
-    .cat-pill-icon { font-size: 15px; }
+    /* ── CATEGORY TILES ── */
+    .cat-tiles-wrap { background: #fff; padding: 36px 32px; border-bottom: 1px solid var(--border); }
+    .cat-tiles { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; max-width: 1400px; margin: 0 auto; }
+    .cat-tiles::-webkit-scrollbar { display: none; }
+    .cat-tile { display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .cat-tile-img { width: 90px; height: 90px; border-radius: 10px; overflow: hidden; border: 2px solid transparent; transition: border-color .18s; }
+    .cat-tile-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .cat-tile:hover .cat-tile-img { border-color: var(--gold); }
+    .cat-tile:hover .cat-tile-img img { transform: scale(1.07); }
+    .cat-tile-label { font-size: 12px; font-weight: 500; color: var(--dark); white-space: nowrap; text-align: center; }
 
     /* ── PRODUCT SCROLL ROW ── */
     .prod-row-wrap { position: relative; }
@@ -411,35 +414,35 @@
     .banner-btn:hover { background: #fff; color: var(--dark); border-color: #fff; }
 
     /* ── OFFER STRIP ── */
-    .offer-strip { background: linear-gradient(120deg, #120101 0%, #2a0a1a 40%, #1a0828 100%); padding: 96px 32px; text-align: center; color: #fff; position: relative; overflow: hidden; }
-    .offer-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(242,21,123,.2) 0%, transparent 70%); pointer-events: none; }
-    .offer-strip-tag { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-lt); opacity: .9; margin-bottom: 16px; position: relative; }
-    .offer-strip h2 { font-family: var(--serif); font-size: clamp(44px, 6vw, 80px); font-weight: 300; margin-bottom: 16px; line-height: 1.1; position: relative; }
-    .offer-strip h2 em { color: var(--gold-lt); font-style: italic; }
-    .offer-strip p { font-size: 15px; opacity: .55; margin-bottom: 40px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.65; position: relative; }
+    .offer-strip { background: var(--gold-bg); border-top: 1px solid #f9c0d8; border-bottom: 1px solid #f9c0d8; padding: 56px 32px; text-align: center; color: var(--dark); position: relative; overflow: hidden; }
+    .offer-strip::before { display: none; }
+    .offer-strip-tag { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); opacity: .9; margin-bottom: 16px; position: relative; }
+    .offer-strip h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 64px); font-weight: 300; margin-bottom: 16px; line-height: 1.1; color: var(--dark); }
+    .offer-strip h2 em { color: var(--gold); font-style: italic; }
+    .offer-strip p { font-size: 15px; color: var(--mid); margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.65; }
 
     /* ── ZODIAC STRIP ── */
-    .zodiac-sec { background: #0e0812; padding: 64px 0 72px; }
+    .zodiac-sec { background: #fff; padding: 64px 0 72px; border-top: 1px solid var(--border); }
     .zodiac-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; }
-    .zodiac-sec .sec-tag { color: var(--gold-lt); opacity: .8; }
-    .zodiac-sec .sec-title { color: #fff; }
+    .zodiac-sec .sec-tag { color: var(--gold); }
+    .zodiac-sec .sec-title { color: var(--dark); }
     .zodiac-sec .sec-title em { color: var(--gold-lt); }
     .zodiac-scroll-wrap { position: relative; margin-top: 36px; }
     .zodiac-row { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; padding: 8px 4px 16px; }
     .zodiac-row::-webkit-scrollbar { display: none; }
     .z-card {
       display: flex; flex-direction: column; align-items: center; gap: 0;
-      background: #1a0f22; border: 1px solid rgba(255,255,255,.08);
-      border-radius: 16px; width: 130px; flex-shrink: 0; cursor: pointer;
-      text-decoration: none; color: #fff; transition: all .22s; overflow: hidden;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 12px; width: 130px; flex-shrink: 0; cursor: pointer;
+      text-decoration: none; color: var(--dark); transition: all .22s; overflow: hidden;
     }
-    .z-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(242,21,123,.25); }
-    .z-img-wrap { width: 100%; aspect-ratio: 1; overflow: hidden; background: #f5f0eb; }
+    .z-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(242,21,123,.15); }
+    .z-img-wrap { width: 100%; aspect-ratio: 1; overflow: hidden; background: var(--cream); }
     .z-img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
     .z-card:hover .z-img { transform: scale(1.07); }
     .z-info { padding: 10px 10px 12px; text-align: center; width: 100%; }
     .z-name { font-size: 12.5px; font-weight: 600; letter-spacing: .02em; }
-    .z-dates { font-size: 9.5px; color: rgba(255,255,255,.4); margin-top: 2px; }
+    .z-dates { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
 
     /* ── BRAND STORY ── */
     .brand-sec { background: #111; color: rgba(255,255,255,.72); padding: 84px 32px; }
@@ -739,17 +742,17 @@
   </div>
 </div>
 
-<!-- CATEGORY PILL STRIP -->
-<div class="cat-strip-wrap">
-  <div class="cat-strip">
-    <a href="collection-earrings.html" class="cat-pill"><span class="cat-pill-icon">💎</span> Earrings</a>
-    <a href="collection-necklaces.html" class="cat-pill"><span class="cat-pill-icon">📿</span> Necklaces</a>
-    <a href="collection-bangles.html" class="cat-pill"><span class="cat-pill-icon">⭕</span> Bangles &amp; Bracelets</a>
-    <a href="collection-maangtikka.html" class="cat-pill"><span class="cat-pill-icon">🌸</span> Maang Tikka</a>
-    <a href="collection-rings.html" class="cat-pill"><span class="cat-pill-icon">💍</span> Rings</a>
-    <a href="collection-zodiac.html" class="cat-pill"><span class="cat-pill-icon">✨</span> Zodiac</a>
-    <a href="collection-hampers.html" class="cat-pill"><span class="cat-pill-icon">🎁</span> Festive Hampers</a>
-    <a href="collection-sale.html" class="cat-pill" style="border-color:#fdd;color:var(--red);"><span class="cat-pill-icon">🔥</span> Sale</a>
+<!-- CATEGORY TILES -->
+<div class="cat-tiles-wrap">
+  <div class="cat-tiles">
+    <a href="collection-earrings.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&q=70" alt="Earrings"/></div><div class="cat-tile-label">Earrings</div></a>
+    <a href="collection-necklaces.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&q=70" alt="Necklaces"/></div><div class="cat-tile-label">Necklaces</div></a>
+    <a href="collection-bangles.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=200&q=70" alt="Bangles"/></div><div class="cat-tile-label">Bangles</div></a>
+    <a href="collection-maangtikka.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=200&q=70" alt="Maang Tikka"/></div><div class="cat-tile-label">Maang Tikka</div></a>
+    <a href="collection-rings.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=70" alt="Rings"/></div><div class="cat-tile-label">Rings</div></a>
+    <a href="collection-zodiac.html" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac"/></div><div class="cat-tile-label">Zodiac</div></a>
+    <a href="collection-hampers.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=200&q=70" alt="Hampers"/></div><div class="cat-tile-label">Festive Hampers</div></a>
+    <a href="collection-sale.html" class="cat-tile"><div class="cat-tile-img" style="border-color:var(--red)"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=200&q=70" alt="Sale"/></div><div class="cat-tile-label" style="color:var(--red)">Sale 🔥</div></a>
   </div>
 </div>
 
