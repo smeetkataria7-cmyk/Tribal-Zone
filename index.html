@@ -319,15 +319,15 @@
     .view-all:hover { gap: 9px; }
 
     /* ── CATEGORY TILES ── */
-    .cat-tiles-wrap { background: #fff; padding: 36px 32px; border-bottom: 1px solid var(--border); }
-    .cat-tiles { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; max-width: 1400px; margin: 0 auto; }
+    .cat-tiles-wrap { background: #fff; padding: 32px 32px; border-bottom: 1px solid var(--border); }
+    .cat-tiles { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; max-width: 1400px; margin: 0 auto; justify-content: center; }
     .cat-tiles::-webkit-scrollbar { display: none; }
-    .cat-tile { display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-    .cat-tile-img { width: 90px; height: 90px; border-radius: 10px; overflow: hidden; border: 2px solid transparent; transition: border-color .18s; }
+    .cat-tile { display: flex; flex-direction: column; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .cat-tile-img { width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 2.5px solid var(--border); transition: border-color .18s, box-shadow .18s; }
     .cat-tile-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
-    .cat-tile:hover .cat-tile-img { border-color: var(--gold); }
+    .cat-tile:hover .cat-tile-img { border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-bg); }
     .cat-tile:hover .cat-tile-img img { transform: scale(1.07); }
-    .cat-tile-label { font-size: 12px; font-weight: 500; color: var(--dark); white-space: nowrap; text-align: center; }
+    .cat-tile-label { font-size: 10.5px; font-weight: 500; color: var(--dark); white-space: nowrap; text-align: center; letter-spacing: 0.08em; text-transform: uppercase; }
 
     /* ── PRODUCT SCROLL ROW ── */
     .prod-row-wrap { position: relative; }
@@ -674,6 +674,20 @@
   </div>
 </div>
 
+<!-- CATEGORY TILES -->
+<div class="cat-tiles-wrap">
+  <div class="cat-tiles">
+    <a href="collection-earrings.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&q=70" alt="Earrings"/></div><div class="cat-tile-label">Earrings</div></a>
+    <a href="collection-necklaces.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&q=70" alt="Necklaces"/></div><div class="cat-tile-label">Necklaces</div></a>
+    <a href="collection-bangles.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=200&q=70" alt="Bangles"/></div><div class="cat-tile-label">Bangles</div></a>
+    <a href="collection-maangtikka.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=200&q=70" alt="Maang Tikka"/></div><div class="cat-tile-label">Maang Tikka</div></a>
+    <a href="collection-rings.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=70" alt="Rings"/></div><div class="cat-tile-label">Rings</div></a>
+    <a href="collection-zodiac.html" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac"/></div><div class="cat-tile-label">Zodiac</div></a>
+    <a href="collection-hampers.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=200&q=70" alt="Hampers"/></div><div class="cat-tile-label">Festive Hampers</div></a>
+    <a href="collection-sale.html" class="cat-tile"><div class="cat-tile-img" style="border-color:var(--red)"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=200&q=70" alt="Sale"/></div><div class="cat-tile-label" style="color:var(--red)">Sale 🔥</div></a>
+  </div>
+</div>
+
 <!-- HERO CAROUSEL -->
 <section class="hero">
   <div class="hero-track" id="heroTrack">
@@ -740,20 +754,6 @@
     <div class="perk"><div class="perk-icon">♻️</div><div class="perk-text"><strong>Easy Returns</strong><span>7-day hassle-free</span></div></div>
     <div class="perk"><div class="perk-icon">🛡️</div><div class="perk-text"><strong>Skin Safe</strong><span>Anti-tarnish metals</span></div></div>
     <div class="perk"><div class="perk-icon">🇮🇳</div><div class="perk-text"><strong>Made in India</strong><span>By skilled artisans</span></div></div>
-  </div>
-</div>
-
-<!-- CATEGORY TILES -->
-<div class="cat-tiles-wrap">
-  <div class="cat-tiles">
-    <a href="collection-earrings.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&q=70" alt="Earrings"/></div><div class="cat-tile-label">Earrings</div></a>
-    <a href="collection-necklaces.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&q=70" alt="Necklaces"/></div><div class="cat-tile-label">Necklaces</div></a>
-    <a href="collection-bangles.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=200&q=70" alt="Bangles"/></div><div class="cat-tile-label">Bangles</div></a>
-    <a href="collection-maangtikka.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=200&q=70" alt="Maang Tikka"/></div><div class="cat-tile-label">Maang Tikka</div></a>
-    <a href="collection-rings.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=70" alt="Rings"/></div><div class="cat-tile-label">Rings</div></a>
-    <a href="collection-zodiac.html" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac"/></div><div class="cat-tile-label">Zodiac</div></a>
-    <a href="collection-hampers.html" class="cat-tile"><div class="cat-tile-img"><img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=200&q=70" alt="Hampers"/></div><div class="cat-tile-label">Festive Hampers</div></a>
-    <a href="collection-sale.html" class="cat-tile"><div class="cat-tile-img" style="border-color:var(--red)"><img src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=200&q=70" alt="Sale"/></div><div class="cat-tile-label" style="color:var(--red)">Sale 🔥</div></a>
   </div>
 </div>
 
