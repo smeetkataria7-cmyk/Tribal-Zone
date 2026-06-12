@@ -341,19 +341,18 @@
     }
     .prod-row .pcard { width: 224px; }
     .pcard:hover { box-shadow: 0 10px 36px rgba(242,21,123,.12); transform: translateY(-4px); }
-    .pcard-img { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--cream); }
+    .pcard-img { position: relative; aspect-ratio: 4/5; overflow: hidden; background: var(--cream); }
     .pcard-img .i1 { width: 100%; height: 100%; object-fit: cover; transition: opacity .4s, transform .5s; }
     .pcard-img .i2 { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s; }
     .pcard:hover .i1 { opacity: 0; transform: scale(1.06); }
     .pcard:hover .i2 { opacity: 1; }
     .pcard-badge {
-      position: absolute; top: 10px; left: 0;
+      position: absolute; bottom: 12px; left: 0;
       font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 5px 12px; border-radius: 0;
+      padding: 5px 14px 5px 10px; border-radius: 0;
       background: linear-gradient(100deg, #b07c28 0%, #e3b84e 35%, #f7df8a 50%, #e3b84e 65%, #b07c28 100%);
       color: #3a2a00;
       clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%);
-      padding-right: 18px;
     }
     .b-sale, .b-new, .b-best, .b-bogo { background: linear-gradient(100deg, #b07c28 0%, #e3b84e 35%, #f7df8a 50%, #e3b84e 65%, #b07c28 100%); color: #3a2a00; }
     .pcard-wish {
@@ -375,18 +374,18 @@
     .pcard:hover .pcard-atb { transform: translateY(0); }
     .pcard-info { padding: 13px 14px 16px; }
     .pcard-cat { display: none; }
-    .pcard-name { font-size: 13.5px; font-weight: 400; line-height: 1.4; min-height: calc(1.4em * 2); margin-bottom: 8px; color: var(--dark); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .pcard-name { font-size: 13.5px; font-weight: 400; line-height: 1.4; min-height: calc(1.4em * 2); margin-bottom: 8px; color: var(--dark); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .pcard-stars { color: #f5a623; font-size: 11px; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
     .pcard-stars span { color: var(--muted); font-size: 11px; }
     .pcard-price { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .p-now { font-size: 16px; font-weight: 600; color: var(--gold); line-height: 1; order: 2; }
+    .p-now { font-size: 16px; font-weight: 600; color: var(--dark); line-height: 1; order: 2; }
     .p-meta { display: contents; }
     .p-was { order: 1; }
     .p-off { order: 3; }
     .p-was { font-size: 12.5px; color: #999; text-decoration: line-through; }
     .p-off { font-size: 11px; color: #fff; font-weight: 600; background: #4caf50; padding: 4px 10px; border-radius: 50px; }
-    .pcard-free { font-size: 11px; color: var(--green); margin-top: 5px; font-weight: 500; }
-    .pcard-offer { font-size: 11px; color: #6a4cac; margin-top: 4px; font-weight: 600; }
+    .pcard-free { display: none; }
+    .pcard-offer { font-size: 11px; color: var(--gold); margin-top: 4px; font-weight: 500; }
 
     /* ── BANNER TILES (3-col) ── */
     .banners-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; max-width: 1400px; margin: 0 auto; padding: 0 32px 64px; }
