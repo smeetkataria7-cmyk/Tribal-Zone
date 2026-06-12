@@ -413,10 +413,12 @@
     .banner-btn:hover { background: #fff; color: var(--dark); border-color: #fff; }
 
     /* ── OFFER STRIP ── */
-    .offer-strip { background: linear-gradient(135deg, var(--dark) 0%, #2a1030 100%); padding: 40px 32px; text-align: center; color: #fff; }
-    .offer-strip h2 { font-family: var(--serif); font-size: clamp(28px, 4vw, 50px); font-weight: 300; margin-bottom: 8px; }
+    .offer-strip { background: linear-gradient(120deg, #120101 0%, #2a0a1a 40%, #1a0828 100%); padding: 96px 32px; text-align: center; color: #fff; position: relative; overflow: hidden; }
+    .offer-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(242,21,123,.2) 0%, transparent 70%); pointer-events: none; }
+    .offer-strip-tag { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-lt); opacity: .9; margin-bottom: 16px; position: relative; }
+    .offer-strip h2 { font-family: var(--serif); font-size: clamp(44px, 6vw, 80px); font-weight: 300; margin-bottom: 16px; line-height: 1.1; position: relative; }
     .offer-strip h2 em { color: var(--gold-lt); font-style: italic; }
-    .offer-strip p { font-size: 14px; opacity: .6; margin-bottom: 24px; }
+    .offer-strip p { font-size: 15px; opacity: .55; margin-bottom: 40px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.65; position: relative; }
 
     /* ── ZODIAC STRIP ── */
     .zodiac-sec { background: var(--cream); padding: 56px 32px; }
@@ -951,9 +953,10 @@
 
 <!-- OFFER STRIP -->
 <div class="offer-strip">
+  <div class="offer-strip-tag">✦ Limited Time Offer ✦</div>
   <h2>Buy 1 Get <em>2 Free</em> 🎉</h2>
-  <p>On all earrings &amp; bracelets — limited time offer. No code needed.</p>
-  <a href="collection-earrings.html" class="btn-fill" style="font-size:13px;padding:14px 40px;">Shop the Offer →</a>
+  <p>On all earrings &amp; bracelets — no code needed. While stocks last.</p>
+  <a href="collection-earrings.html" class="btn-fill" style="font-size:13px;padding:16px 48px;position:relative;">Shop the Offer →</a>
 </div>
 
 <!-- BEST SELLERS ROW -->
