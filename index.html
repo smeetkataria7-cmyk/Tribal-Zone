@@ -64,44 +64,24 @@
     }
     .hdr-row {
       max-width: 1400px; margin: 0 auto; padding: 0 32px;
-      height: 70px; display: flex; align-items: center; gap: 24px;
+      height: 64px; display: flex; align-items: center; gap: 0;
     }
-    .hdr-logo { flex-shrink: 0; display: flex; align-items: center; }
-    .hdr-logo img { height: 48px; width: auto; display: block; }
-    .hdr-search {
-      flex: 1; max-width: 480px; display: flex; align-items: center;
-      border: 1.5px solid var(--border); border-radius: 50px; overflow: hidden;
-      background: #fafafa; transition: border-color .2s, box-shadow .2s;
-    }
-    .hdr-search:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(242,21,123,.1); background: #fff; }
-    .hdr-search input {
-      flex: 1; border: none; outline: none; padding: 10px 18px;
-      font-size: 13px; font-family: var(--sans); background: transparent;
-    }
-    .hdr-search-btn {
-      background: var(--dark); border: none; padding: 10px 18px;
-      color: #fff; display: flex; align-items: center; transition: background .2s;
-    }
-    .hdr-search-btn:hover { background: var(--gold); }
+    .hdr-logo { flex-shrink: 0; display: flex; align-items: center; margin-right: 32px; }
+    .hdr-logo img { height: 42px; width: auto; display: block; }
+    .hdr-search { display: none; }
     .hdr-right { display: flex; align-items: center; gap: 2px; flex-shrink: 0; margin-left: auto; }
     .hdr-icon {
-      background: none; border: none; padding: 9px; color: var(--muted);
+      background: none; border: none; padding: 9px; color: var(--mid);
       display: flex; align-items: center; position: relative;
       border-radius: 50%; transition: color .2s, background .2s;
     }
     .hdr-icon:hover { color: var(--gold); background: var(--gold-bg); }
-    .hdr-icon .bdg {
-      position: absolute; top: 4px; right: 4px;
-      background: var(--gold); color: #fff; font-size: 9px; font-weight: 700;
-      width: 16px; height: 16px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
     .cart-toggle {
       display: flex; align-items: center; gap: 7px;
-      padding: 10px 20px; background: var(--dark); color: #fff;
+      padding: 9px 18px; background: var(--dark); color: #fff;
       border: none; border-radius: 50px; font-size: 12px;
-      letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
-      transition: background .2s; position: relative;
+      letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;
+      transition: background .2s; position: relative; margin-left: 6px;
     }
     .cart-toggle:hover { background: var(--gold); }
     .cart-toggle .bdg {
@@ -113,13 +93,13 @@
     .ham-btn { display: none; background: none; border: none; padding: 8px; color: var(--dark); }
 
     /* ── NAV ── */
-    .nav { border-top: 1px solid var(--border); background: #fff; }
-    .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; }
+    .nav { flex: 1; }
+    .nav-inner { display: flex; align-items: center; height: 100%; }
     .nav-item { position: relative; }
     .nav-lnk {
-      display: block; padding: 14px 16px; font-size: 12px;
-      letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500;
-      color: var(--mid); transition: color .2s; white-space: nowrap;
+      display: block; padding: 0 14px; font-size: 13px;
+      font-weight: 500; color: var(--mid); transition: color .2s;
+      white-space: nowrap; line-height: 64px;
     }
     .nav-lnk:hover { color: var(--dark); }
     .nav-lnk.active { color: var(--dark); border-bottom: 2px solid var(--gold); }
@@ -313,8 +293,9 @@
     .sec-tag { display: none; }
     .sec-title { font-family: var(--sans); font-size: clamp(20px, 2.5vw, 28px); font-weight: 600; line-height: 1.2; color: var(--dark); }
     .sec-title em { font-style: normal; color: var(--dark); }
-    .row-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 12px; }
+    .row-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
     .row-head .sec-head { text-align: left; margin-bottom: 0; }
+    .view-all { font-size: 13px; font-weight: 500; color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
     .view-all { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid var(--gold); padding-bottom: 1px; transition: gap .2s; white-space: nowrap; }
     .view-all:hover { gap: 9px; }
 
@@ -549,14 +530,41 @@
   <div class="hdr-row">
     <a href="index.html" class="hdr-logo"><img src="logo.png" alt="Tribal Zone"/></a>
 
-    <div class="hdr-search">
-      <input type="search" placeholder="Search earrings, necklaces, zodiac…"/>
-      <button class="hdr-search-btn" aria-label="Search">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </button>
-    </div>
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="nav-item"><a href="index.html" class="nav-lnk active">Home</a></div>
+        <div class="nav-item">
+          <a href="collection-earrings.html" class="nav-lnk">Earrings ▾</a>
+          <div class="nav-drop">
+            <a href="collection-earrings.html">Jhumkas</a>
+            <a href="collection-earrings.html">Studs</a>
+            <a href="collection-earrings.html">Hoops</a>
+            <a href="collection-earrings.html">Chandbalis</a>
+            <a href="collection-earrings.html">Danglers</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="collection-necklaces.html" class="nav-lnk">Necklaces ▾</a>
+          <div class="nav-drop">
+            <a href="collection-necklaces.html">Chokers</a>
+            <a href="collection-necklaces.html">Long Chains</a>
+            <a href="collection-necklaces.html">Layered Sets</a>
+            <a href="collection-necklaces.html">Temple Jewellery</a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="collection-bangles.html" class="nav-lnk">Bangles &amp; Bracelets</a></div>
+        <div class="nav-item"><a href="collection-maangtikka.html" class="nav-lnk">Maang Tikka</a></div>
+        <div class="nav-item"><a href="collection-rings.html" class="nav-lnk">Rings</a></div>
+        <div class="nav-item"><a href="collection-zodiac.html" class="nav-lnk">Zodiac</a></div>
+        <div class="nav-item"><a href="collection-hampers.html" class="nav-lnk">Festive Hampers</a></div>
+        <div class="nav-item"><a href="collection-sale.html" class="nav-lnk sale">Sale 🔥</a></div>
+      </div>
+    </nav>
 
     <div class="hdr-right">
+      <button class="hdr-icon" title="Search">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
       <button class="hdr-icon" title="Wishlist">
         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </button>
@@ -572,37 +580,6 @@
       </button>
     </div>
   </div>
-
-  <nav class="nav">
-    <div class="nav-inner">
-      <div class="nav-item"><a href="index.html" class="nav-lnk active">New Arrivals</a></div>
-      <div class="nav-item">
-        <a href="collection-earrings.html" class="nav-lnk">Earrings ▾</a>
-        <div class="nav-drop">
-          <a href="collection-earrings.html">Jhumkas</a>
-          <a href="collection-earrings.html">Studs</a>
-          <a href="collection-earrings.html">Hoops</a>
-          <a href="collection-earrings.html">Chandbalis</a>
-          <a href="collection-earrings.html">Danglers</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="collection-necklaces.html" class="nav-lnk">Necklaces ▾</a>
-        <div class="nav-drop">
-          <a href="collection-necklaces.html">Chokers</a>
-          <a href="collection-necklaces.html">Long Chains</a>
-          <a href="collection-necklaces.html">Layered Sets</a>
-          <a href="collection-necklaces.html">Temple Jewellery</a>
-        </div>
-      </div>
-      <div class="nav-item"><a href="collection-bangles.html" class="nav-lnk">Bangles &amp; Bracelets</a></div>
-      <div class="nav-item"><a href="collection-maangtikka.html" class="nav-lnk">Maang Tikka</a></div>
-      <div class="nav-item"><a href="collection-rings.html" class="nav-lnk">Rings</a></div>
-      <div class="nav-item"><a href="collection-zodiac.html" class="nav-lnk">Zodiac</a></div>
-      <div class="nav-item"><a href="collection-hampers.html" class="nav-lnk">Festive Hampers 🎁</a></div>
-      <div class="nav-item"><a href="collection-sale.html" class="nav-lnk sale">Sale 🔥</a></div>
-    </div>
-  </nav>
 </header>
 
 <!-- MOBILE DRAWER -->
@@ -752,8 +729,7 @@
   <div class="sec-inner">
     <div class="row-head">
       <div class="sec-head">
-        <div class="sec-tag">Just In</div>
-        <h2 class="sec-title">New <em>Arrivals</em></h2>
+        <h2 class="sec-title">New Arrivals</h2>
       </div>
       <a href="collection-earrings.html" class="view-all">View All →</a>
     </div>
@@ -891,7 +867,7 @@
 <section class="sec">
   <div class="sec-inner">
     <div class="row-head">
-      <div class="sec-head"><div class="sec-tag">Top Picks</div><h2 class="sec-title">Earrings</h2></div>
+      <div class="sec-head"><h2 class="sec-title">Earrings</h2></div>
       <a href="collection-earrings.html" class="view-all">View All →</a>
     </div>
     <div class="prod-row-wrap">
@@ -912,7 +888,7 @@
 <section class="sec sec-cream">
   <div class="sec-inner">
     <div class="row-head">
-      <div class="sec-head"><div class="sec-tag">Trending Now</div><h2 class="sec-title">Necklaces</h2></div>
+      <div class="sec-head"><h2 class="sec-title">Necklaces</h2></div>
       <a href="collection-necklaces.html" class="view-all">View All →</a>
     </div>
     <div class="prod-row-wrap">
@@ -933,7 +909,7 @@
 <section class="sec">
   <div class="sec-inner">
     <div class="row-head">
-      <div class="sec-head"><div class="sec-tag">Stack &amp; Style</div><h2 class="sec-title">Bangles &amp; Bracelets</h2></div>
+      <div class="sec-head"><h2 class="sec-title">Bangles &amp; Bracelets</h2></div>
       <a href="collection-bangles.html" class="view-all">View All →</a>
     </div>
     <div class="prod-row-wrap">
@@ -954,7 +930,7 @@
 <section class="sec sec-cream">
   <div class="sec-inner">
     <div class="row-head">
-      <div class="sec-head"><div class="sec-tag">Bridal &amp; Ethnic</div><h2 class="sec-title">Maang Tikka</h2></div>
+      <div class="sec-head"><h2 class="sec-title">Maang Tikka</h2></div>
       <a href="collection-maangtikka.html" class="view-all">View All →</a>
     </div>
     <div class="prod-row-wrap">
@@ -971,21 +947,13 @@
   </div>
 </section>
 
-<!-- OFFER STRIP -->
-<div class="offer-strip">
-  <div class="offer-strip-tag">✦ Limited Time Offer ✦</div>
-  <h2>Buy 1 Get <em>2 Free</em> 🎉</h2>
-  <p>On all earrings &amp; bracelets — no code needed. While stocks last.</p>
-  <a href="collection-earrings.html" class="btn-fill" style="font-size:13px;padding:16px 48px;position:relative;">Shop the Offer →</a>
-</div>
 
 <!-- BEST SELLERS ROW -->
 <section class="sec">
   <div class="sec-inner">
     <div class="row-head">
       <div class="sec-head">
-        <div class="sec-tag">Most Loved</div>
-        <h2 class="sec-title">Best <em>Sellers</em></h2>
+        <h2 class="sec-title">Best Sellers</h2>
       </div>
       <a href="collection-earrings.html" class="view-all">View All →</a>
     </div>
@@ -1108,8 +1076,7 @@
 <section class="zodiac-sec">
   <div class="zodiac-inner">
     <div class="sec-head">
-      <div class="sec-tag">Celestial Collection</div>
-      <h2 class="sec-title">Shop by Your <em>Zodiac</em></h2>
+      <h2 class="sec-title">Shop by Zodiac</h2>
     </div>
     <div class="zodiac-scroll-wrap">
     <div class="zodiac-row">
