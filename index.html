@@ -384,7 +384,7 @@
     .pcard:hover .pcard-atb { transform: translateY(0); }
     .pcard-info { padding: 13px 14px 16px; }
     .pcard-cat { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-    .pcard-name { font-size: 13.5px; font-weight: 500; line-height: 1.35; margin-bottom: 8px; color: var(--dark); }
+    .pcard-name { font-size: 13.5px; font-weight: 500; line-height: 1.35; min-height: calc(1.35em * 2); margin-bottom: 8px; color: var(--dark); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .pcard-stars { color: var(--gold); font-size: 11px; margin-bottom: 7px; display: flex; align-items: center; gap: 5px; }
     .pcard-stars span { color: var(--muted); font-size: 11px; }
     .pcard-price { display: flex; flex-direction: column; gap: 2px; }
