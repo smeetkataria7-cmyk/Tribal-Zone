@@ -1,117 +1,122 @@
 {% comment %} TribalZone Redesign — product-card-grid.liquid {% endcomment %}
-{%- assign img_url = product.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
 <style>
-.tz-card {
-  background: #fff;
-  border: 1px solid #ececec;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: box-shadow .25s, transform .25s;
-  cursor: pointer;
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  font-family: var(--tz-sans, 'Inter', sans-serif);
-}
-.tz-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,.11);
-  transform: translateY(-3px);
-}
-.tz-card-img {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 1;
-  background: #f8f4ef;
-}
-.tz-card-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .5s;
-}
-.tz-card:hover .tz-card-img img { transform: scale(1.05); }
-.tz-card-badge {
-  position: absolute; top: 8px; left: 8px;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 3px 8px; border-radius: 3px;
-}
-.tz-badge-sale { background: #e74c3c; color: #fff; }
-.tz-badge-new { background: #b8913a; color: #fff; }
-.tz-badge-out { background: #888; color: #fff; }
-.tz-card-atb {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: rgba(28,28,28,.9); color: #fff;
-  font-size: 11px; letter-spacing: 0.1em;
-  text-transform: uppercase; font-weight: 600;
-  padding: 11px; text-align: center;
-  transform: translateY(100%);
-  transition: transform .28s ease;
-}
-.tz-card:hover .tz-card-atb { transform: translateY(0); }
-.tz-card-info { padding: 12px 12px 14px; }
-.tz-card-cat {
-  font-size: 10.5px; color: #888;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  margin-bottom: 3px;
-}
-.tz-card-name {
-  font-size: 13.5px; font-weight: 500;
-  line-height: 1.35; margin-bottom: 7px;
-  color: #1c1c1c;
-}
-.tz-card-stars {
-  color: #b8913a; font-size: 11px;
-  letter-spacing: 1px; margin-bottom: 7px;
-}
-.tz-card-price { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
-.tz-price-now { font-size: 14.5px; font-weight: 700; color: #1c1c1c; }
-.tz-price-was { font-size: 12px; color: #aaa; text-decoration: line-through; }
-.tz-price-off { font-size: 11.5px; color: #e74c3c; font-weight: 600; }
-.tz-card-free { font-size: 11px; color: #2ecc71; margin-top: 4px; font-weight: 500; }
+  .pcard {
+    background: #fff; border: none;
+    overflow: hidden; transition: box-shadow .25s, transform .25s;
+    cursor: pointer; display: block; color: inherit; text-decoration: none;
+    scroll-snap-align: start; flex-shrink: 0;
+  }
+  .pcard:hover { box-shadow: 0 8px 24px rgba(0,0,0,.1); transform: translateY(-2px); }
+
+  .pcard-img {
+    position: relative; aspect-ratio: 4/5; overflow: hidden; background: #fdf9f4;
+  }
+  .pcard-img img.i1 { width: 100%; height: 100%; object-fit: cover; transition: opacity .4s, transform .5s; }
+  .pcard-img img.i2 { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .4s; }
+  .pcard:hover .i1 { opacity: 0; transform: scale(1.06); }
+  .pcard:hover .i2 { opacity: 1; }
+
+  .pcard-badge {
+    display: inline-block; margin-bottom: 8px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 4px 12px 4px 8px; border-radius: 0;
+    background: linear-gradient(100deg, #b07c28 0%, #e3b84e 35%, #f7df8a 50%, #e3b84e 65%, #b07c28 100%);
+    color: #3a2a00;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%);
+  }
+
+  .pcard-wish {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(255,255,255,.9); border: none; width: 32px; height: 32px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 15px; cursor: pointer; transition: all .2s; color: #888;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  }
+  .pcard-wish:hover { color: #ED1A43; transform: scale(1.12); }
+
+  .pcard-atb {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(18,1,1,.92); color: #fff; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600;
+    padding: 12px; text-align: center;
+    transform: translateY(100%); transition: transform .28s ease;
+  }
+  .pcard:hover .pcard-atb { transform: translateY(0); }
+
+  .pcard-info { padding: 13px 14px 16px; display: flex; flex-direction: column; }
+  .pcard-cat { display: none; }
+  .pcard-name {
+    font-size: 13.5px; font-weight: 400; line-height: 1.4; min-height: calc(1.4em * 2);
+    margin-bottom: 8px; color: #120101; text-decoration: none;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  .pcard-price { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 2px; }
+  .p-now { font-size: 16px; font-weight: 600; color: #F2157B; line-height: 1; }
+  .p-meta { display: contents; }
+  .p-was { font-size: 12.5px; color: #999; text-decoration: line-through; }
+  .p-off { font-size: 11px; color: #fff; font-weight: 600; background: #4caf50; padding: 4px 10px; border-radius: 50px; }
+
+  .pcard-stars { color: #f5a623; font-size: 11px; display: flex; align-items: center; gap: 5px; order: 10; }
+  .pcard-stars span { color: #888; font-size: 11px; }
+
+  .pcard-free { display: none; }
+  .pcard-offer { display: none; }
 </style>
 
-<a class="tz-card" href="{{ product.url }}">
-  <div class="tz-card-img">
+<a class="pcard" href="{{ product.url }}">
+  <div class="pcard-img">
     {% if product.featured_image %}
       <img
+        class="i1"
         src="{{ product.featured_image | img_url: '500x' }}"
         alt="{{ product.featured_image.alt | escape | default: product.title }}"
         loading="lazy"
       />
+      {% if product.images[1] %}
+        <img
+          class="i2"
+          src="{{ product.images[1] | img_url: '500x' }}"
+          alt="hover"
+        />
+      {% else %}
+        <img class="i2" src="{{ product.featured_image | img_url: '500x' }}" alt="hover" />
+      {% endif %}
     {% else %}
       <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;color:#ddd;">💎</div>
     {% endif %}
 
+    <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+    <div class="pcard-atb">Add to Bag</div>
+  </div>
+
+  <div class="pcard-info">
     {% unless product.available %}
-      <span class="tz-card-badge tz-badge-out">Sold Out</span>
+      <span class="pcard-badge">Sold Out</span>
     {% else %}
       {% if product.compare_at_price > product.price %}
-        <span class="tz-card-badge tz-badge-sale">Sale</span>
+        <span class="pcard-badge b-sale">Sale</span>
       {% else %}
-        <span class="tz-card-badge tz-badge-new">New</span>
+        <span class="pcard-badge b-new">New</span>
       {% endif %}
     {% endunless %}
 
-    <div class="tz-card-atb">Add to Bag</div>
-  </div>
-
-  <div class="tz-card-info">
-    <div class="tz-card-cat">{{ product.type }}</div>
-    <div class="tz-card-name">{{ product.title }}</div>
-    <div class="tz-card-stars">★★★★★</div>
-    <div class="tz-card-price">
-      <span class="tz-price-now">{{ product.price | money }}</span>
+    <div class="pcard-cat">{{ product.type }}</div>
+    <div class="pcard-name">{{ product.title }}</div>
+    <div class="pcard-price">
+      <span class="p-now">{{ product.price | money }}</span>
       {% if product.compare_at_price > product.price %}
-        <span class="tz-price-was">{{ product.compare_at_price | money }}</span>
-        <span class="tz-price-off">
-          -{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%
-        </span>
+        <div class="p-meta">
+          <span class="p-was">{{ product.compare_at_price | money }}</span>
+          <span class="p-off">{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round }}% OFF</span>
+        </div>
       {% endif %}
     </div>
+    <div class="pcard-stars">★★★★★ <span>({{ product.reviews_count | default: 0 }})</span></div>
+
     {% if product.price >= 50000 %}
-      <div class="tz-card-free">✓ Free delivery</div>
+      <div class="pcard-free">✓ Free delivery</div>
     {% endif %}
   </div>
 </a>
