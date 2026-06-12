@@ -6,8 +6,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_input.command // \"\"' | grep -q '^git commit' && git push 2>/dev/null || true",
-            "shell": "bash"
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \".claude\\autopush.ps1\"",
+            "timeout": 30
           }
         ]
       }
