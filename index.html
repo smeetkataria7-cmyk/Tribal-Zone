@@ -1335,16 +1335,17 @@
 
 <script>
   /* ── Hero carousel ── */
-  var heroIdx = 0, heroTotal = 3, heroTimer;
-  function heroMove(d) { heroIdx = (heroIdx + d + heroTotal) % heroTotal; heroRender(); }
+  var heroIdx = 0, heroTotal = 3, heroTimer, heroPrevIdx = 0;
+  function heroMove(d) { heroPrevIdx = heroIdx; heroIdx = (heroIdx + d + heroTotal) % heroTotal; heroRender(); }
   function heroGo(i) { heroIdx = i; heroRender(); }
   function heroRender() {
-    document.getElementById('heroTrack').style.transform = 'translateX(-' + (heroIdx * 100) + '%)';
+    var track = document.getElementById('heroTrack');
+    track.style.transform = 'translateX(-' + (heroIdx * 100) + '%)';
     document.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('on', i===heroIdx));
   }
   function heroAuto() { heroTimer = setInterval(() => heroMove(1), 5000); }
   document.querySelector('.hero').addEventListener('mouseenter', () => clearInterval(heroTimer));
-  document.querySelector('.hero').addEventListener('mouseleave', heroAuto);
+  document.querySelector('.hero').addEventListener('mouseleave', () => { heroAuto(); });
   var heroTouchStart = 0;
   document.querySelector('.hero').addEventListener('touchstart', (e) => { heroTouchStart = e.touches[0].clientX; clearInterval(heroTimer); });
   document.querySelector('.hero').addEventListener('touchend', (e) => { var diff = heroTouchStart - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) heroMove(diff > 0 ? 1 : -1); heroAuto(); });
