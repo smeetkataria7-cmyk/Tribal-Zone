@@ -791,6 +791,16 @@
       card.style.display = match ? 'block' : 'none';
     });
   }
+
+  /* ── Randomize product ratings (4-5 stars) ── */
+  function randomizeRatings() {
+    document.querySelectorAll('.pcard-stars').forEach(el => {
+      var stars = Math.random() < 0.5 ? 4 : 5;
+      var reviews = Math.floor(Math.random() * (400 - 30) + 30);
+      el.innerHTML = '★'.repeat(stars) + ' <span>(' + reviews + ')</span>';
+    });
+  }
+  randomizeRatings();
 </script>
 </body>
 </html>

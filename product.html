@@ -961,6 +961,16 @@
   function closeCart() { document.getElementById('cartOverlay').classList.remove('on'); document.getElementById('cartDrawer').classList.remove('on'); }
   function openMob() { document.getElementById('mobOverlay').classList.add('on'); document.getElementById('mobDrawer').classList.add('on'); }
   function closeMob() { document.getElementById('mobOverlay').classList.remove('on'); document.getElementById('mobDrawer').classList.remove('on'); }
+
+  /* ── Randomize product ratings (4-5 stars) ── */
+  function randomizeRatings() {
+    document.querySelectorAll('.pcard-stars').forEach(el => {
+      var stars = Math.random() < 0.5 ? 4 : 5;
+      var reviews = Math.floor(Math.random() * (400 - 30) + 30);
+      el.innerHTML = '★'.repeat(stars) + ' <span>(' + reviews + ')</span>';
+    });
+  }
+  randomizeRatings();
 </script>
 </body>
 </html>
