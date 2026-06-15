@@ -23,10 +23,10 @@
 
 .tz-sb-head {
   display: flex; justify-content: space-between; align-items: center;
-  padding-bottom: 14px; border-bottom: 2px solid #1c1c1c; margin-bottom: 4px;
+  padding-bottom: 14px; border-bottom: 2px solid #120101; margin-bottom: 4px;
 }
 .tz-sb-head span { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
-.tz-clear { font-size: 12px; color: #b8913a; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
+.tz-clear { font-size: 12px; color: #f2157b; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
 .tz-clear:hover { text-decoration: underline; }
 
 .tz-fg { border-bottom: 1px solid #ececec; }
@@ -47,7 +47,7 @@
   flex-shrink: 0; display: flex; align-items: center; justify-content: center;
   background: #fff; transition: all .15s;
 }
-.tz-opt input:checked ~ .tz-box { background: #b8913a; border-color: #b8913a; }
+.tz-opt input:checked ~ .tz-box { background: #f2157b; border-color: #f2157b; }
 .tz-opt input:checked ~ .tz-box::after { content: '✓'; font-size: 10px; color: #fff; font-weight: 700; }
 .tz-opt-lbl { font-size: 13px; flex: 1; }
 .tz-opt-cnt { font-size: 11px; color: #888; }
@@ -57,26 +57,26 @@
   flex: 1; padding: 7px 9px; border: 1px solid #ececec;
   font-size: 13px; font-family: inherit; border-radius: 2px; outline: none;
 }
-.tz-pi:focus { border-color: #b8913a; }
+.tz-pi:focus { border-color: #f2157b; }
 .tz-price-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .tz-ptag {
   padding: 4px 10px; border: 1px solid #ececec; border-radius: 12px;
   font-size: 11px; background: none; cursor: pointer; font-family: inherit;
   transition: border-color .15s, color .15s;
 }
-.tz-ptag:hover { border-color: #b8913a; color: #b8913a; }
+.tz-ptag:hover { border-color: #f2157b; color: #f2157b; }
 
 .tz-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
 .tz-sw {
   width: 26px; height: 26px; border-radius: 50%;
   border: 2px solid transparent; cursor: pointer; transition: border-color .15s;
 }
-.tz-sw:hover, .tz-sw.on { border-color: #b8913a; }
+.tz-sw:hover, .tz-sw.on { border-color: #f2157b; }
 
 .tz-active-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .tz-atag {
   display: inline-flex; align-items: center; gap: 5px;
-  background: #fff8ed; border: 1px solid #d4a853;
+  background: #fff8ed; border: 1px solid #f5488e;
   font-size: 12px; padding: 4px 10px; border-radius: 20px; cursor: pointer;
 }
 .tz-atag:hover { background: #ffefd4; }
@@ -88,21 +88,21 @@
   margin-bottom: 20px; gap: 12px; flex-wrap: wrap;
 }
 .tz-count { font-size: 14px; color: #888; }
-.tz-count b { color: #1c1c1c; }
+.tz-count b { color: #120101; }
 .tz-toolbar-right { display: flex; align-items: center; gap: 10px; }
 .tz-sort {
   padding: 9px 32px 9px 12px; border: 1px solid #ececec; font-size: 13px;
   font-family: inherit; outline: none; cursor: pointer; border-radius: 2px;
   appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 10px center;
 }
-.tz-sort:focus { border-color: #b8913a; }
+.tz-sort:focus { border-color: #f2157b; }
 .tz-mob-filter {
   display: none; align-items: center; gap: 8px;
   padding: 9px 16px; border: 1px solid #ececec;
   background: none; font-size: 13px; font-family: inherit;
   cursor: pointer; border-radius: 2px;
 }
-.tz-mob-filter:hover { border-color: #b8913a; color: #b8913a; }
+.tz-mob-filter:hover { border-color: #f2157b; color: #f2157b; }
 
 .tz-products {
   display: grid;
@@ -117,14 +117,14 @@
   font-family: var(--tz-sans, sans-serif);
 }
 .tz-breadcrumb a { color: #888; text-decoration: none; }
-.tz-breadcrumb a:hover { color: #b8913a; }
+.tz-breadcrumb a:hover { color: #f2157b; }
 .tz-bc-sep { margin: 0 6px; opacity: .4; }
-.tz-bc-cur { color: #1c1c1c; font-weight: 500; }
+.tz-bc-cur { color: #120101; font-weight: 500; }
 
 /* Collection header banner */
 .tz-coll-banner {
   position: relative; overflow: hidden;
-  height: 220px; background: linear-gradient(135deg, #1c1c1c, #2e2620);
+  height: 220px; background: linear-gradient(135deg, #120101, #2e2620);
   display: flex; align-items: center;
 }
 .tz-coll-banner img {
@@ -152,11 +152,11 @@
   display: flex; align-items: center; justify-content: center;
   border: 1px solid #ececec; background: #fff;
   font-size: 13px; cursor: pointer; border-radius: 2px;
-  text-decoration: none; color: #1c1c1c; transition: all .15s;
+  text-decoration: none; color: #120101; transition: all .15s;
   font-family: inherit;
 }
-.tz-pg-btn:hover { border-color: #b8913a; color: #b8913a; }
-.tz-pg-btn.active { background: #1c1c1c; color: #fff; border-color: #1c1c1c; }
+.tz-pg-btn:hover { border-color: #f2157b; color: #f2157b; }
+.tz-pg-btn.active { background: #120101; color: #fff; border-color: #120101; }
 
 /* Mobile drawer */
 .tz-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 500; }
@@ -251,9 +251,9 @@
         {% render 'product-card-grid', product: product, collection: collection %}
       {% else %}
         <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;">
-          <p style="font-family:var(--tz-serif,serif);font-size:28px;font-weight:300;margin-bottom:12px;color:#1c1c1c;">No products found</p>
+          <p style="font-family:var(--tz-serif,serif);font-size:28px;font-weight:300;margin-bottom:12px;color:#120101;">No products found</p>
           <p>Try clearing your filters or browse all collections.</p>
-          <a href="/collections/all" style="display:inline-block;margin-top:16px;padding:12px 28px;background:#1c1c1c;color:#fff;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">Browse All</a>
+          <a href="/collections/all" style="display:inline-block;margin-top:16px;padding:12px 28px;background:#120101;color:#fff;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">Browse All</a>
         </div>
       {% endfor %}
     </div>

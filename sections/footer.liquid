@@ -20,7 +20,7 @@
   margin-bottom: 14px; display: block;
   text-decoration: none;
 }
-.tz-footer-logo span { color: #b8913a; }
+.tz-footer-logo span { color: #f2157b; }
 .tz-footer-about {
   font-size: 13px; line-height: 1.85;
   color: rgba(255,255,255,.4); max-width: 260px;
@@ -32,7 +32,7 @@
   display: flex; align-items: center; justify-content: center;
   transition: all .2s; text-decoration: none; color: rgba(255,255,255,.5);
 }
-.tz-soc:hover { border-color: #b8913a; color: #b8913a; }
+.tz-soc:hover { border-color: #f2157b; color: #f2157b; }
 .tz-footer-col h5 {
   color: #fff; font-size: 11.5px;
   letter-spacing: 0.14em; text-transform: uppercase;
@@ -44,7 +44,7 @@
   font-size: 13px; color: rgba(255,255,255,.42);
   transition: color .2s; text-decoration: none;
 }
-.tz-footer-col a:hover { color: #d4a853; }
+.tz-footer-col a:hover { color: #f5488e; }
 .tz-footer-newsletter { margin-top: 20px; }
 .tz-footer-newsletter p { font-size: 12px; color: rgba(255,255,255,.4); margin-bottom: 12px; line-height: 1.7; }
 .tz-nl-form { display: flex; border-radius: 4px; overflow: hidden; }
@@ -53,13 +53,13 @@
   font-size: 13px; font-family: var(--tz-sans, sans-serif);
 }
 .tz-nl-form button {
-  background: #b8913a; color: #fff; border: none;
+  background: #f2157b; color: #fff; border: none;
   padding: 10px 16px; font-size: 11px; letter-spacing: 0.1em;
   text-transform: uppercase; font-weight: 600; cursor: pointer;
   font-family: var(--tz-sans, sans-serif); transition: background .2s;
   white-space: nowrap;
 }
-.tz-nl-form button:hover { background: #d4a853; }
+.tz-nl-form button:hover { background: #f5488e; }
 .tz-footer-bot {
   padding-top: 22px; display: flex;
   justify-content: space-between; align-items: center;
@@ -125,7 +125,7 @@
                 <p>Subscribe for exclusive offers and 10% off your first order.</p>
                 {%- form 'customer', id: 'ContactFooter', novalidate: 'novalidate' -%}
                   {%- if form.posted_successfully? -%}
-                    <p style="color:#b8913a;font-size:13px;">✓ Thanks for subscribing!</p>
+                    <p style="color:#f2157b;font-size:13px;">✓ Thanks for subscribing!</p>
                   {%- endif -%}
                   <input type="hidden" name="contact[tags]" value="newsletter">
                   <div class="tz-nl-form">
