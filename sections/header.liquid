@@ -190,7 +190,7 @@
   .tz-hbtn span { display: none; }
   .tz-announce { height: 48px; font-size: 12px; padding: 0 12px; }
   .tz-announce-msg { height: 18px; font-size: 12px; white-space: normal; }
-  .tz-logo img { max-height: 70px !important; }
+  .tz-logo img { max-height: 40px !important; }
 }
 </style>
 
@@ -211,7 +211,7 @@
     {% if template.name == 'index' %}<h1 style="margin:0;font-size:inherit;">{% endif %}
     <a href="/" class="tz-logo">
       {% if section.settings.logo %}
-        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" style="max-height:90px;width:auto;display:block;">
+        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" style="max-height:48px;width:auto;display:block;">
       {% else %}
         Tribal<span>Zone</span>
       {% endif %}
