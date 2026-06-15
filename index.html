@@ -312,7 +312,7 @@
 
     /* ── PRODUCT SCROLL ROW ── */
     .prod-row-wrap { position: relative; }
-    .prod-row { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .prod-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .prod-row::-webkit-scrollbar { display: none; }
     .row-arr { display: none; }
     .row-footer { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 24px; }
@@ -364,7 +364,7 @@
       transform: translateY(100%); transition: transform .28s ease;
     }
     .pcard:hover .pcard-atb { transform: translateY(0); }
-    .pcard-info { padding: 13px 14px 16px; display: flex; flex-direction: column; flex-grow: 1; justify-content: flex-end; }
+    .pcard-info { padding: 10px 12px 12px; display: flex; flex-direction: column; flex-grow: 1; justify-content: flex-end; }
     .pcard-cat { display: none; }
     .pcard-name { font-size: 13.5px; font-weight: 400; line-height: 1.4; height: 38px; margin-bottom: 8px; color: var(--dark); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .pcard-stars { color: #f5a623; font-size: 11px; margin-top: 8px; display: flex; align-items: center; gap: 5px; order: 10; }
@@ -552,14 +552,14 @@
       .view-all { display: none; }
 
       /* ── PRODUCT ROW — big cards like Lili Origin ── */
-      .prod-row { gap: 12px; padding: 0 0 8px; }
+      .prod-row { gap: 8px; padding: 0 0 8px; }
       .prod-row .pcard { width: 170px; }
       .row-arr { display: none !important; }
       .row-pager { display: flex; }
 
       /* ── PRODUCT CARD — match Lili Origin sizing ── */
       .pcard-img { aspect-ratio: 4/5; }
-      .pcard-info { padding: 12px 14px 16px; }
+      .pcard-info { padding: 10px 12px 12px; }
       .pcard-badge { font-size: 10px; padding: 4px 12px 4px 8px; margin-bottom: 6px; }
       .pcard-name { font-size: 14px; min-height: auto; margin-bottom: 6px; font-weight: 500; }
       .p-now { font-size: 18px; font-weight: 700; }
