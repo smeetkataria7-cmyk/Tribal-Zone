@@ -249,15 +249,15 @@
     .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn-fill {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 36px; background: var(--gold); color: #fff; border: none;
-      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+      padding: 10px 24px; background: var(--gold); color: #fff; border: none;
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
       border-radius: 50px; transition: all .25s;
     }
     .btn-fill:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(242,21,123,.35); }
     .btn-outline-w {
       display: inline-flex; align-items: center;
-      padding: 14px 36px; background: transparent; color: #fff;
-      border: 2px solid rgba(255,255,255,.65); font-size: 12px; letter-spacing: 0.1em;
+      padding: 10px 24px; background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,.65); font-size: 10px; letter-spacing: 0.1em;
       text-transform: uppercase; font-weight: 600; border-radius: 50px; transition: all .25s;
     }
     .btn-outline-w:hover { background: #fff; color: var(--dark); border-color: #fff; }
@@ -1345,6 +1345,9 @@
   function heroAuto() { heroTimer = setInterval(() => heroMove(1), 5000); }
   document.querySelector('.hero').addEventListener('mouseenter', () => clearInterval(heroTimer));
   document.querySelector('.hero').addEventListener('mouseleave', heroAuto);
+  var heroTouchStart = 0;
+  document.querySelector('.hero').addEventListener('touchstart', (e) => { heroTouchStart = e.touches[0].clientX; clearInterval(heroTimer); });
+  document.querySelector('.hero').addEventListener('touchend', (e) => { var diff = heroTouchStart - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) heroMove(diff > 0 ? 1 : -1); heroAuto(); });
   heroAuto();
 
   /* ── Row scroll ── */
