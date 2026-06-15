@@ -501,16 +501,101 @@
       .banners-grid { grid-template-columns: 1fr; padding: 0 16px 40px; }
     }
     @media (max-width: 600px) {
-      .hdr-row { padding: 0 16px; gap: 12px; }
+      /* ── ANNOUNCE ── */
+      .announce { height: 32px; font-size: 11px; padding: 0 12px; }
+      .announce-track { height: 16px; }
+      .announce-msg { height: 16px; font-size: 11px; }
+
+      /* ── HEADER ── */
+      .hdr-row { padding: 0 14px; gap: 8px; height: 56px; }
+      .hdr-logo img { height: 34px; }
+      .hdr-logo { margin-right: 0; }
       .hdr-search { display: none; }
-      .sec { padding: 44px 16px; }
-      .hero-slide { height: 340px; }
-      .hero-content { padding: 0 24px; }
-      .hero-h1 { font-size: 36px; }
-      .footer-top { grid-template-columns: 1fr; }
+      .hdr-icon { padding: 7px; }
+      .hdr-icon svg { width: 20px; height: 20px; }
+      .cart-toggle { padding: 7px 14px; font-size: 11px; margin-left: 4px; }
+
+      /* ── CATEGORY TILES ── */
+      .cat-tiles-wrap { padding: 16px 14px; }
+      .cat-tiles { gap: 16px; justify-content: flex-start; }
+      .cat-tile-img { width: 68px; height: 68px; }
+      .cat-tile-label { font-size: 9.5px; }
+
+      /* ── HERO ── */
+      .hero-slide { height: 60vh; min-height: 320px; }
+      .hero-content { padding: 0 20px; }
+      .hero-h1 { font-size: 32px; margin-bottom: 14px; }
+      .hero-eyebrow { font-size: 10px; margin-bottom: 12px; }
+      .hero-desc { font-size: 13px; margin-bottom: 24px; line-height: 1.7; }
+      .btn-fill { padding: 12px 28px; font-size: 11px; }
+      .btn-outline-w { padding: 12px 28px; font-size: 11px; }
+      .hero-arr { width: 38px; height: 38px; }
+      .hero-prev { left: 12px; }
+      .hero-next { right: 12px; }
+      .hero-dots { bottom: 16px; gap: 6px; }
+
+      /* ── PERKS — hide on mobile like Lili Origin ── */
+      .perks { display: none; }
+
+      /* ── SECTIONS ── */
+      .sec { padding: 32px 14px; }
+      .sec-head { margin-bottom: 20px; }
+      .sec-title { font-size: 20px; }
+      .row-head { margin-bottom: 16px; }
+
+      /* ── PRODUCT ROW → 2-COL GRID ON MOBILE ── */
+      .prod-row {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        overflow-x: visible;
+        padding-bottom: 0;
+        scroll-snap-type: none;
+      }
+      .prod-row .pcard {
+        width: auto !important;
+        scroll-snap-align: none;
+      }
+      .row-arr { display: none !important; }
+      .row-pager { display: none; }
+
+      /* ── PRODUCT CARD — compact for mobile ── */
+      .pcard-img { aspect-ratio: 3/4; }
+      .pcard-info { padding: 10px 10px 12px; }
+      .pcard-badge { font-size: 9px; padding: 3px 10px 3px 6px; margin-bottom: 5px; }
+      .pcard-name { font-size: 12px; min-height: calc(1.35em * 2); margin-bottom: 5px; }
+      .p-now { font-size: 14px; }
+      .p-was { font-size: 11px; }
+      .p-off { font-size: 9.5px; padding: 3px 8px; }
+      .pcard-stars { font-size: 10px; margin-top: 5px; }
+      .pcard-stars span { font-size: 10px; }
+      .pcard-wish { width: 28px; height: 28px; font-size: 13px; top: 8px; right: 8px; }
+
+      /* ── BEST SELLERS GRID ── */
+      .best-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .best-grid .pcard { width: auto !important; }
+
+      /* ── VIEW ALL ROW ── */
+      .row-footer { margin-top: 16px; gap: 10px; }
+      .row-view-all { padding: 10px 32px; font-size: 12px; }
+
+      /* ── ZODIAC SECTION ── */
+      .zodiac-row { gap: 10px; }
+      .zodiac-card { min-width: 130px; }
+
+      /* ── TESTIMONIALS ── */
+      .testi-grid { grid-template-columns: 1fr; gap: 14px; }
+
+      /* ── NEWSLETTER ── */
+      .nl-sec { padding: 40px 14px; }
+
+      /* ── FOOTER ── */
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
       .brand-nums { gap: 24px; }
-      .perks-inner { padding: 0 16px; }
-      .perk { width: 100%; }
     }
   </style>
 </head>
