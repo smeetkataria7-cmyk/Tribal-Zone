@@ -1334,22 +1334,59 @@
 </footer>
 
 <script>
-  /* ── Hero carousel ── */
-  var heroIdx = 0, heroTotal = 3, heroTimer, heroPrevIdx = 0;
-  function heroMove(d) { heroPrevIdx = heroIdx; heroIdx = (heroIdx + d + heroTotal) % heroTotal; heroRender(); }
-  function heroGo(i) { heroIdx = i; heroRender(); }
-  function heroRender() {
+  /* ── Hero carousel (seamless infinite loop — always moves forward) ── */
+  (function(){
     var track = document.getElementById('heroTrack');
-    track.style.transform = 'translateX(-' + (heroIdx * 100) + '%)';
-    document.querySelectorAll('.hero-dot').forEach((d,i) => d.classList.toggle('on', i===heroIdx));
-  }
-  function heroAuto() { heroTimer = setInterval(() => heroMove(1), 5000); }
-  document.querySelector('.hero').addEventListener('mouseenter', () => clearInterval(heroTimer));
-  document.querySelector('.hero').addEventListener('mouseleave', () => { heroAuto(); });
-  var heroTouchStart = 0;
-  document.querySelector('.hero').addEventListener('touchstart', (e) => { heroTouchStart = e.touches[0].clientX; clearInterval(heroTimer); });
-  document.querySelector('.hero').addEventListener('touchend', (e) => { var diff = heroTouchStart - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) heroMove(diff > 0 ? 1 : -1); heroAuto(); });
-  heroAuto();
+    if (!track) return;
+    var realSlides = Array.prototype.slice.call(track.children);
+    var realCount = realSlides.length;
+    if (realCount < 2) return;
+    var firstClone = realSlides[0].cloneNode(true);
+    var lastClone = realSlides[realCount - 1].cloneNode(true);
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, realSlides[0]);
+
+    var curIdx = 1, heroTimer, animating = false;
+    function setX(animate) {
+      if (animate) {
+        track.style.transition = 'transform .7s cubic-bezier(.4,0,.2,1)';
+        track.style.transform = 'translateX(-' + (curIdx * 100) + '%)';
+      } else {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(-' + (curIdx * 100) + '%)';
+        void track.offsetWidth; /* force reflow so the next move animates */
+      }
+    }
+    function updateDots() {
+      var active = (curIdx - 1 + realCount) % realCount;
+      document.querySelectorAll('.hero-dot').forEach(function(d, i){ d.classList.toggle('on', i === active); });
+    }
+    window.heroMove = function(dir) {
+      if (animating) return;
+      animating = true;
+      curIdx += dir;
+      setX(true); updateDots();
+    };
+    window.heroGo = function(i) {
+      if (animating) return;
+      curIdx = i + 1;
+      setX(true); updateDots();
+    };
+    track.addEventListener('transitionend', function() {
+      if (curIdx === 0) { curIdx = realCount; setX(false); }
+      else if (curIdx === realCount + 1) { curIdx = 1; setX(false); }
+      animating = false;
+    });
+    function heroAuto() { heroTimer = setInterval(function(){ window.heroMove(1); }, 5000); }
+    var hero = document.querySelector('.hero');
+    hero.addEventListener('mouseenter', function(){ clearInterval(heroTimer); });
+    hero.addEventListener('mouseleave', heroAuto);
+    var startX = 0;
+    hero.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; clearInterval(heroTimer); }, { passive: true });
+    hero.addEventListener('touchend', function(e){ var diff = startX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) window.heroMove(diff > 0 ? 1 : -1); heroAuto(); });
+
+    setX(false); updateDots(); heroAuto();
+  })();
 
   /* ── Row scroll ── */
   function scrollRow(id, d) { document.getElementById(id).scrollBy({ left: d * 480, behavior: 'smooth' }); }
