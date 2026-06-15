@@ -65,7 +65,12 @@
   .pcard-offer { display: none; }
 </style>
 
-<a class="pcard" href="{{ product.url }}">
+<a class="pcard" href="{{ product.url }}"
+   data-tags="{{ product.tags | join: '||' | downcase }}"
+   data-type="{{ product.type | downcase }}"
+   data-price="{{ product.price }}"
+   data-available="{{ product.available }}"
+   data-onsale="{% if product.compare_at_price > product.price %}true{% else %}false{% endif %}">
   <div class="pcard-img">
     {% if product.featured_image %}
       <img

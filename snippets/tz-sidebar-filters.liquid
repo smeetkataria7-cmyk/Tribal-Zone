@@ -1,95 +1,148 @@
 {% comment %}
   TribalZone — tz-sidebar-filters.liquid
-  Native Shopify faceted filtering (multi-select). Requires the free
-  "Search & Discovery" app to define which filters appear (collection.filters).
+  No-app client-side MULTI-SELECT filtering. Filters the products currently
+  rendered on the page (up to the paginate limit) by tags, availability and
+  price. Rendered in both the desktop sidebar and the mobile drawer; the JS
+  keeps both copies in sync and dedupes via the data-* keys.
 {% endcomment %}
 
 <div class="tz-sb-head">
   <span>Filters</span>
-  <a href="{{ collection.url }}" class="tz-clear">Clear All</a>
+  <button type="button" class="tz-clear" onclick="tzClearAll()">Clear All</button>
 </div>
 
-{% if collection.filters.size > 0 %}
-
-  {%- comment -%} Active filter chips (multi-select aware) {%- endcomment -%}
-  {%- assign has_active = false -%}
-  {%- for filter in collection.filters -%}
-    {%- if filter.active_values.size > 0 -%}{%- assign has_active = true -%}{%- endif -%}
-    {%- if filter.type == 'price_range' -%}
-      {%- if filter.min_value.value != blank or filter.max_value.value != blank -%}{%- assign has_active = true -%}{%- endif -%}
-    {%- endif -%}
-  {%- endfor -%}
-
-  {%- if has_active -%}
-    <div class="tz-active-chips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">
-      {%- for filter in collection.filters -%}
-        {%- for value in filter.active_values -%}
-          <a class="tz-atag" href="{{ value.url_to_remove }}" style="display:inline-flex;align-items:center;gap:5px;background:#fff0f5;border:1px solid #f5488e;font-size:12px;padding:4px 10px;border-radius:20px;text-decoration:none;color:#120101;">{{ value.label }} <span>×</span></a>
-        {%- endfor -%}
-        {%- if filter.type == 'price_range' -%}
-          {%- if filter.min_value.value != blank or filter.max_value.value != blank -%}
-            <a class="tz-atag" href="{{ filter.url_to_remove }}" style="display:inline-flex;align-items:center;gap:5px;background:#fff0f5;border:1px solid #f5488e;font-size:12px;padding:4px 10px;border-radius:20px;text-decoration:none;color:#120101;">{{ filter.label }} <span>×</span></a>
-          {%- endif -%}
-        {%- endif -%}
-      {%- endfor -%}
+{% comment %} ── Tags ── {% endcomment %}
+{% if collection.all_tags.size > 0 %}
+  <div class="tz-fg open">
+    <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+      <span>Filter by</span>
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
     </div>
-  {%- endif -%}
-
-  <form method="get" class="tz-filter-form">
-    {%- comment -%} Preserve current sort when a filter changes {%- endcomment -%}
-    {%- if collection.sort_by != blank -%}
-      <input type="hidden" name="sort_by" value="{{ collection.sort_by }}">
-    {%- endif -%}
-
-    {% for filter in collection.filters %}
-      <div class="tz-fg open">
-        <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
-          <span>{{ filter.label }}</span>
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
-        <div class="tz-fg-body">
-          {% case filter.type %}
-
-            {% when 'list', 'boolean' %}
-              {% for value in filter.values %}
-                <label class="tz-opt">
-                  <input
-                    type="checkbox"
-                    name="{{ value.param_name }}"
-                    value="{{ value.value }}"
-                    {% if value.active %}checked{% endif %}
-                    {% if value.count == 0 and value.active == false %}disabled{% endif %}
-                    onchange="this.form.submit()">
-                  <span class="tz-box"></span>
-                  <span class="tz-opt-lbl">{{ value.label }}</span>
-                  <span class="tz-opt-cnt">({{ value.count }})</span>
-                </label>
-              {% endfor %}
-
-            {% when 'price_range' %}
-              <div class="tz-price-inputs">
-                <input class="tz-pi" type="number" inputmode="decimal" min="0"
-                  name="{{ filter.min_value.param_name }}"
-                  value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
-                  placeholder="₹ Min">
-                <input class="tz-pi" type="number" inputmode="decimal" min="0"
-                  name="{{ filter.max_value.param_name }}"
-                  value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
-                  placeholder="₹ Max">
-              </div>
-              <button type="submit" class="tz-ptag" style="margin-top:10px;">Apply price</button>
-
-          {% endcase %}
-        </div>
-      </div>
-    {% endfor %}
-  </form>
-
-{% else %}
-
-  <p style="font-size:12.5px;color:#888;line-height:1.6;padding:8px 0;">
-    No filters configured yet. Add filters in the <b>Search &amp; Discovery</b> app
-    (Filters tab) and they'll appear here automatically.
-  </p>
-
+    <div class="tz-fg-body">
+      {% for tag in collection.all_tags %}
+        <label class="tz-opt">
+          <input type="checkbox" class="tzf" data-kind="tag" data-val="{{ tag | downcase }}" data-label="{{ tag | escape }}" onchange="tzOnChange(this)">
+          <span class="tz-box"></span>
+          <span class="tz-opt-lbl">{{ tag }}</span>
+        </label>
+      {% endfor %}
+    </div>
+  </div>
 {% endif %}
+
+{% comment %} ── Price ── {% endcomment %}
+<div class="tz-fg open">
+  <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+    <span>Price Range</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="tz-fg-body">
+    <label class="tz-opt"><input type="checkbox" class="tzf" data-kind="price" data-min="0" data-max="500" data-label="Under ₹500" onchange="tzOnChange(this)"><span class="tz-box"></span><span class="tz-opt-lbl">Under ₹500</span></label>
+    <label class="tz-opt"><input type="checkbox" class="tzf" data-kind="price" data-min="500" data-max="999" data-label="₹500–₹999" onchange="tzOnChange(this)"><span class="tz-box"></span><span class="tz-opt-lbl">₹500 – ₹999</span></label>
+    <label class="tz-opt"><input type="checkbox" class="tzf" data-kind="price" data-min="1000" data-max="3000" data-label="₹1K–₹3K" onchange="tzOnChange(this)"><span class="tz-box"></span><span class="tz-opt-lbl">₹1,000 – ₹3,000</span></label>
+    <label class="tz-opt"><input type="checkbox" class="tzf" data-kind="price" data-min="3000" data-max="9999999" data-label="Above ₹3K" onchange="tzOnChange(this)"><span class="tz-box"></span><span class="tz-opt-lbl">Above ₹3,000</span></label>
+  </div>
+</div>
+
+{% comment %} ── Availability ── {% endcomment %}
+<div class="tz-fg open">
+  <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+    <span>Availability</span>
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+  <div class="tz-fg-body">
+    <label class="tz-opt"><input type="checkbox" class="tzf" data-kind="avail" data-val="instock" data-label="In Stock" onchange="tzOnChange(this)"><span class="tz-box"></span><span class="tz-opt-lbl">In Stock</span></label>
+    <label class="tz-opt"><input type="checkbox" class="tzf" data-kind="avail" data-val="onsale" data-label="On Sale" onchange="tzOnChange(this)"><span class="tz-box"></span><span class="tz-opt-lbl">On Sale</span></label>
+  </div>
+</div>
+
+<script>
+if (typeof window.tzFilterInit === 'undefined') {
+  window.tzFilterInit = true;
+
+  // Mirror a toggled checkbox to its twin in the other copy (desktop/mobile), then apply.
+  window.tzOnChange = function(el) {
+    var sel = '.tzf[data-kind="' + el.dataset.kind + '"]'
+      + (el.dataset.val ? '[data-val="' + el.dataset.val + '"]' : '')
+      + (el.dataset.min ? '[data-min="' + el.dataset.min + '"][data-max="' + el.dataset.max + '"]' : '');
+    document.querySelectorAll(sel).forEach(function(t){ t.checked = el.checked; });
+    tzApplyFilters();
+  };
+
+  window.tzClearAll = function() {
+    document.querySelectorAll('.tzf').forEach(function(c){ c.checked = false; });
+    tzApplyFilters();
+  };
+
+  window.tzApplyFilters = function() {
+    // Collect checked filters (Set-dedup across the two rendered copies)
+    var tags = new Set(), avails = new Set(), ranges = [], rangeKeys = new Set();
+    document.querySelectorAll('.tzf:checked').forEach(function(i){
+      var k = i.dataset.kind;
+      if (k === 'tag') tags.add(i.dataset.val);
+      else if (k === 'avail') avails.add(i.dataset.val);
+      else if (k === 'price') {
+        var key = i.dataset.min + '-' + i.dataset.max;
+        if (!rangeKeys.has(key)) { rangeKeys.add(key); ranges.push([+i.dataset.min, +i.dataset.max]); }
+      }
+    });
+
+    var shown = 0;
+    document.querySelectorAll('#Collection .pcard').forEach(function(card){
+      var cardTags = (card.dataset.tags || '').split('||');
+      var rupees = (parseInt(card.dataset.price, 10) || 0) / 100;
+      var available = card.dataset.available === 'true';
+      var onsale = card.dataset.onsale === 'true';
+
+      var tagOk = tags.size === 0 || Array.from(tags).some(function(t){ return cardTags.indexOf(t) !== -1; });
+      var priceOk = ranges.length === 0 || ranges.some(function(r){ return rupees >= r[0] && rupees <= r[1]; });
+      var availOk = avails.size === 0 || Array.from(avails).some(function(a){
+        return (a === 'instock' && available) || (a === 'onsale' && onsale);
+      });
+
+      var show = tagOk && priceOk && availOk;
+      card.style.display = show ? '' : 'none';
+      if (show) shown++;
+    });
+
+    var cnt = document.getElementById('tzCount');
+    if (cnt) cnt.textContent = shown;
+
+    // Active filter chips
+    var chips = document.getElementById('tzActiveTags');
+    if (chips) {
+      var seen = {}, html = '';
+      document.querySelectorAll('.tzf:checked').forEach(function(i){
+        var label = i.dataset.label || i.dataset.val;
+        var id = i.dataset.kind + ':' + (i.dataset.val || (i.dataset.min + '-' + i.dataset.max));
+        if (seen[id]) return; seen[id] = 1;
+        html += '<button type="button" class="tz-atag" onclick="tzRemoveChip(\'' + i.dataset.kind + '\',\'' + (i.dataset.val || '') + '\',\'' + (i.dataset.min || '') + '\',\'' + (i.dataset.max || '') + '\')">' + label + ' <span>×</span></button>';
+      });
+      chips.innerHTML = html;
+    }
+
+    // Empty state
+    var grid = document.getElementById('Collection');
+    var empty = document.getElementById('tzEmpty');
+    if (grid) {
+      if (shown === 0 && !empty) {
+        empty = document.createElement('div');
+        empty.id = 'tzEmpty';
+        empty.style.cssText = 'grid-column:1/-1;text-align:center;padding:48px 20px;color:#888;';
+        empty.innerHTML = '<p style="font-family:var(--tz-serif,serif);font-size:24px;font-weight:300;color:#120101;margin-bottom:8px;">No products match</p><p>Try removing a filter.</p>';
+        grid.appendChild(empty);
+      } else if (shown > 0 && empty) {
+        empty.remove();
+      }
+    }
+  };
+
+  window.tzRemoveChip = function(kind, val, min, max) {
+    var sel = '.tzf[data-kind="' + kind + '"]'
+      + (val ? '[data-val="' + val + '"]' : '')
+      + (min ? '[data-min="' + min + '"][data-max="' + max + '"]' : '');
+    document.querySelectorAll(sel).forEach(function(t){ t.checked = false; });
+    tzApplyFilters();
+  };
+}
+</script>
