@@ -543,21 +543,11 @@
       .sec-title { font-size: 20px; }
       .row-head { margin-bottom: 16px; }
 
-      /* ── PRODUCT ROW → 2-COL GRID ON MOBILE ── */
-      .prod-row {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        overflow-x: visible;
-        padding-bottom: 0;
-        scroll-snap-type: none;
-      }
-      .prod-row .pcard {
-        width: auto !important;
-        scroll-snap-align: none;
-      }
+      /* ── PRODUCT ROW — horizontal scroll like Lili Origin ── */
+      .prod-row { gap: 10px; padding: 0 0 6px; }
+      .prod-row .pcard { width: 156px; }
       .row-arr { display: none !important; }
-      .row-pager { display: none; }
+      .row-pager { display: flex; }
 
       /* ── PRODUCT CARD — compact for mobile ── */
       .pcard-img { aspect-ratio: 3/4; }
