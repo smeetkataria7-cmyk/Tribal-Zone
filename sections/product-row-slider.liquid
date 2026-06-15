@@ -1,0 +1,71 @@
+{% comment %} TribalZone — Product Row Slider (matches static preview, 300px cards) {% endcomment %}
+<style>
+  .tzpr-sec { max-width:1400px; margin:0 auto; padding:48px 32px; }
+  .tzpr-sec--cream { background:#fdf9f4; max-width:none; }
+  .tzpr-sec--cream .tzpr-inner { max-width:1400px; margin:0 auto; }
+  .tzpr-head { text-align:center; margin-bottom:28px; }
+  .tzpr-tag { font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#F2157B; display:block; margin-bottom:8px; }
+  .tzpr-title { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(28px,4vw,44px); font-weight:300; color:#120101; }
+  .tzpr-title em { color:#f5488e; font-style:italic; }
+  .tzpr-row { display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding-bottom:8px; }
+  .tzpr-row::-webkit-scrollbar { display:none; }
+  .tzpr-row .pcard { width:300px; flex-shrink:0; scroll-snap-align:start; }
+  .tzpr-foot { text-align:center; margin-top:28px; }
+  .tzpr-viewall { display:inline-block; background:#120101; color:#fff; padding:12px 40px; border-radius:50px; font-size:13px; font-weight:500; text-decoration:none; transition:background .2s; font-family:'Poppins',system-ui,sans-serif; }
+  .tzpr-viewall:hover { background:#F2157B; }
+  @media (max-width:600px) {
+    .tzpr-sec { padding:28px 14px; }
+    .tzpr-row { gap:8px; }
+    .tzpr-row .pcard { width:170px; }
+  }
+</style>
+
+{%- assign coll = collections[section.settings.collection] -%}
+<div class="tzpr-sec{% if section.settings.cream_bg %} tzpr-sec--cream{% endif %}" data-section-id="{{ section.id }}">
+  <div class="tzpr-inner">
+    {% if section.settings.title != blank or section.settings.tag != blank %}
+      <div class="tzpr-head">
+        {% if section.settings.tag != blank %}<span class="tzpr-tag">{{ section.settings.tag }}</span>{% endif %}
+        {% if section.settings.title != blank %}<h2 class="tzpr-title">{{ section.settings.title }}</h2>{% endif %}
+      </div>
+    {% endif %}
+
+    <div class="tzpr-row">
+      {% for product in coll.products limit: section.settings.limit %}
+        {% render 'product-card-grid', product: product %}
+      {% else %}
+        {% for i in (1..6) %}
+          <div class="pcard" style="width:300px;flex-shrink:0;">
+            <div class="pcard-img" style="background:#fdf9f4;"></div>
+            <div class="pcard-info"><div class="pcard-name">Product title</div></div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_view_all and coll != blank %}
+      <div class="tzpr-foot">
+        <a href="{{ coll.url }}" class="tzpr-viewall">{{ section.settings.view_all_text | default: 'View All' }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Row Slider",
+  "class": "index-section",
+  "settings": [
+    { "type": "text", "id": "tag", "label": "Eyebrow tag", "default": "Just In" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "New Launch" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "limit", "label": "Products to show", "min": 4, "max": 20, "step": 1, "default": 12 },
+    { "type": "checkbox", "id": "cream_bg", "label": "Cream background", "default": false },
+    { "type": "checkbox", "id": "show_view_all", "label": "Show 'View All' button", "default": true },
+    { "type": "text", "id": "view_all_text", "label": "View All button text", "default": "View All" }
+  ],
+  "presets": [
+    { "name": "Product Row Slider", "category": "Collection" }
+  ]
+}
+{% endschema %}

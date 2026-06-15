@@ -1,0 +1,74 @@
+{% comment %} TribalZone — Category Circles (matches static preview) {% endcomment %}
+<style>
+  .tzcc-wrap { background:#fff; padding:32px; border-bottom:1px solid #e8e8e8; }
+  .tzcc-row { display:flex; gap:28px; overflow-x:auto; scrollbar-width:none; max-width:1400px; margin:0 auto; justify-content:center; }
+  .tzcc-row::-webkit-scrollbar { display:none; }
+  .tzcc-tile { display:flex; flex-direction:column; align-items:center; gap:12px; text-decoration:none; flex-shrink:0; }
+  .tzcc-img { width:110px; height:110px; border-radius:50%; overflow:hidden; border:3px solid #120101; transition:border-color .18s, box-shadow .18s; }
+  .tzcc-img img { width:100%; height:100%; object-fit:cover; transition:transform .3s; }
+  .tzcc-tile:hover .tzcc-img { border-color:#F2157B; box-shadow:0 0 0 3px #fff0f8; }
+  .tzcc-tile:hover .tzcc-img img { transform:scale(1.07); }
+  .tzcc-label { font-size:10.5px; font-weight:500; color:#120101; white-space:nowrap; text-align:center; letter-spacing:.08em; text-transform:uppercase; font-family:'Poppins',system-ui,sans-serif; }
+  .tzcc-tile.is-sale .tzcc-img { border-color:#ED1A43; }
+  .tzcc-tile.is-sale .tzcc-label { color:#ED1A43; }
+  @media (max-width:600px) {
+    .tzcc-wrap { padding:20px 14px; }
+    .tzcc-row { gap:20px; justify-content:flex-start; }
+    .tzcc-img { width:90px; height:90px; }
+    .tzcc-label { font-size:10px; font-weight:600; }
+  }
+</style>
+
+<div class="tzcc-wrap" data-section-id="{{ section.id }}">
+  <div class="tzcc-row">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link | default: '#' }}" class="tzcc-tile{% if block.settings.is_sale %} is-sale{% endif %}" {{ block.shopify_attributes }}>
+        <div class="tzcc-img">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | img_url: '300x300', crop: 'center' }}" alt="{{ block.settings.label | escape }}" loading="lazy">
+          {% elsif block.settings.image_url != blank %}
+            <img src="{{ block.settings.image_url }}" alt="{{ block.settings.label | escape }}" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="tzcc-label">{{ block.settings.label }}</div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Category Circles",
+  "class": "index-section",
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image (overrides URL below)" },
+        { "type": "text", "id": "image_url", "label": "Image URL fallback", "info": "Used if no image is uploaded" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Category" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "is_sale", "label": "Sale styling (red)", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Circles",
+      "category": "Collection",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Earrings", "link": "/collections/earrings", "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" } },
+        { "type": "category", "settings": { "label": "Necklaces", "link": "/collections/necklaces", "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" } },
+        { "type": "category", "settings": { "label": "Bangles", "link": "/collections/bangles-bracelets", "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" } },
+        { "type": "category", "settings": { "label": "Maang Tikka", "link": "/collections/maang-tikka", "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" } },
+        { "type": "category", "settings": { "label": "Rings", "link": "/collections/rings", "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" } },
+        { "type": "category", "settings": { "label": "Zodiac", "link": "/collections/zodiac", "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" } },
+        { "type": "category", "settings": { "label": "Festive Hampers", "link": "/collections/festive-hampers", "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" } },
+        { "type": "category", "settings": { "label": "Sale", "link": "/collections/sale", "is_sale": true, "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
