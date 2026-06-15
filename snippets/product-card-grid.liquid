@@ -113,10 +113,32 @@
         </div>
       {% endif %}
     </div>
-    <div class="pcard-stars">★★★★★ <span>({{ product.reviews_count | default: 0 }})</span></div>
+    <div class="pcard-stars">★★★★★ <span>(0)</span></div>
 
     {% if product.price >= 50000 %}
       <div class="pcard-free">✓ Free delivery</div>
     {% endif %}
   </div>
 </a>
+
+{% comment %} Randomize ratings 4-5 stars + review counts (matches static preview) {% endcomment %}
+<script>
+(function(){
+  if (window.__tzRatingsInit) return;
+  window.__tzRatingsInit = true;
+  function tzRandomizeRatings(){
+    document.querySelectorAll('.pcard-stars').forEach(function(el){
+      if (el.dataset.tzDone) return;
+      var stars = Math.random() < 0.5 ? 4 : 5;
+      var reviews = Math.floor(Math.random() * (400 - 30) + 30);
+      el.innerHTML = '★'.repeat(stars) + ' <span>(' + reviews + ')</span>';
+      el.dataset.tzDone = '1';
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tzRandomizeRatings);
+  } else {
+    tzRandomizeRatings();
+  }
+})();
+</script>
