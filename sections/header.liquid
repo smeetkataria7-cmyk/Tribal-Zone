@@ -19,14 +19,41 @@
 /* ── ANNOUNCE BAR ── */
 .tz-announce {
   background: var(--tz-dark);
-  color: rgba(255,255,255,.82);
-  text-align: center;
-  padding: 9px 20px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  color: rgba(255,255,255,.85);
+  padding: 0 20px;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  height: 38px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
   font-family: var(--tz-sans);
 }
+.tz-announce-track {
+  display: flex;
+  flex-direction: column;
+  height: 18px;
+  overflow: hidden;
+}
+.tz-announce-msg {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  animation: tzSlide 12s infinite;
+}
 .tz-announce b { color: var(--tz-gold-lt); }
+@keyframes tzSlide {
+  0%,28%{transform:translateY(0)}
+  33%,61%{transform:translateY(-18px)}
+  66%,94%{transform:translateY(-36px)}
+  100%{transform:translateY(0)}
+}
 
 /* ── HEADER ── */
 .tz-header {
@@ -161,12 +188,19 @@
 @media (max-width: 480px) {
   .tz-header-top { padding: 0 16px; }
   .tz-hbtn span { display: none; }
+  .tz-announce { height: 48px; font-size: 12px; padding: 0 12px; }
+  .tz-announce-msg { height: 18px; font-size: 12px; white-space: normal; }
+  .tz-logo img { max-height: 70px !important; }
 }
 </style>
 
 <!-- ANNOUNCE BAR -->
 <div class="tz-announce">
-  Free shipping on orders above ₹500 &nbsp;·&nbsp; <b>FLAT 10% OFF</b> on your first order &nbsp;·&nbsp; 🎁 Gift wrapping on all orders
+  <div class="tz-announce-track">
+    <div class="tz-announce-msg">Free shipping on <b>₹999+</b></div>
+    <div class="tz-announce-msg">Code <b>TRIBAL10</b> for 10% off</div>
+    <div class="tz-announce-msg">Handcrafted in India since <b>2003</b></div>
+  </div>
 </div>
 
 <!-- HEADER -->
@@ -177,7 +211,7 @@
     {% if template.name == 'index' %}<h1 style="margin:0;font-size:inherit;">{% endif %}
     <a href="/" class="tz-logo">
       {% if section.settings.logo %}
-        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" style="max-height:44px;width:auto;display:block;">
+        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" style="max-height:90px;width:auto;display:block;">
       {% else %}
         Tribal<span>Zone</span>
       {% endif %}
