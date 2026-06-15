@@ -7,7 +7,7 @@ var PRODUCTS = [
     compareAtPrice: 458,
     featured: true,
     image1: 'https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637',
-    image2: 'https://cdn.shopify.com/s/files/1/0301/2793/files/DSC00852.jpg?v=1781088638'
+    image2: 'https://cdn.shopify.com/s/files/1/0301/2793/files/DSC00853.jpg?v=1781088637'
   },
   {
     id: 'TZ4357-12',
@@ -17,7 +17,7 @@ var PRODUCTS = [
     compareAtPrice: 688,
     featured: true,
     image1: 'https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928',
-    image2: 'https://cdn.shopify.com/s/files/1/0301/2793/files/DSC04131.jpg?v=1781081928'
+    image2: 'https://cdn.shopify.com/s/files/1/0301/2793/files/DSC04132.jpg?v=1781081928'
   },
   {
     id: 'TZ4357-19',
