@@ -590,3 +590,19 @@
 .tz-mq-item { display:inline-flex; align-items:center; gap:14px; padding:0 26px; font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
 .tz-mq-item .star { color:var(--gold-lt); font-size:13px; }
 @keyframes tzMarquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+
+/* ── SHOP BY ZODIAC PICKER ── */
+.tz-zodiac-pick { background:#fff; padding:60px 24px 12px; }
+.tz-zp-inner { max-width:1100px; margin:0 auto; text-align:center; }
+.tz-zp-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+.tz-zp-title { font-family:var(--serif); font-size:clamp(28px,4vw,44px); font-weight:300; color:var(--dark); margin-top:6px; }
+.tz-zp-title em { color:var(--gold-lt); font-style:italic; }
+.tz-zp-sub { font-size:13.5px; color:var(--mid); margin-top:8px; }
+.tz-zp-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-top:30px; }
+.tz-zp { display:flex; flex-direction:column; align-items:center; gap:8px; padding:18px 8px; border:1.5px solid var(--border); border-radius:14px; text-decoration:none; color:var(--dark); transition:all .2s; }
+.tz-zp:hover { border-color:var(--gold); background:var(--gold-bg); transform:translateY(-3px); box-shadow:0 8px 22px rgba(242,21,123,.14); }
+.tz-zp-sym { font-size:26px; color:var(--gold); line-height:1; }
+.tz-zp-name { font-size:11.5px; font-weight:600; letter-spacing:.03em; }
+@media (max-width:760px){ .tz-zp-grid{ grid-template-columns:repeat(4,1fr);} }
+@media (max-width:430px){ .tz-zp-grid{ grid-template-columns:repeat(3,1fr);} }
