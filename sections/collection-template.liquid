@@ -230,7 +230,7 @@
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
           Filters
         </button>
-        <span class="tz-count">Showing <b id="tzCount">{{ collection.products_count }}</b> products</span>
+        <span class="tz-count">Showing <b id="tzCount">{{ collection.products_count }}</b> {{ collection.products_count | pluralize: 'product', 'products' }}</span>
       </div>
       <div class="tz-toolbar-right">
         {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
