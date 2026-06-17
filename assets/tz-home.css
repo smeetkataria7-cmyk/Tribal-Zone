@@ -623,3 +623,13 @@
 .tz-occ-label { position:relative; z-index:2; color:#fff; width:100%; text-align:center; padding:18px 8px; font-family:var(--serif); font-size:20px; font-weight:500; }
 @media(max-width:900px){ .tz-occ-grid{ grid-template-columns:repeat(3,1fr);} }
 @media(max-width:560px){ .tz-occ-grid{ grid-template-columns:repeat(2,1fr);} }
+
+
+/* ── TRUST / USP STRIP ── */
+.tz-usp { background:var(--cream); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:34px 24px; }
+.tz-usp-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
+.tz-usp-item { display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; }
+.tz-usp-ic { width:42px; height:42px; border-radius:50%; background:var(--gold-bg); display:flex; align-items:center; justify-content:center; color:var(--gold); }
+.tz-usp-ic svg { width:22px; height:22px; }
+.tz-usp-lbl { font-size:12px; font-weight:600; letter-spacing:.04em; color:var(--dark); line-height:1.4; }
+@media(max-width:760px){ .tz-usp-grid{ grid-template-columns:repeat(2,1fr); gap:22px;} }
