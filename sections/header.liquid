@@ -1,638 +1,231 @@
-{% comment %} TribalZone Redesign — header.liquid {% endcomment %}
+{% comment %} TribalZone header — same on every page {% endcomment %}
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --tz-gold: #f2157b;
-  --tz-gold-lt: #f5488e;
-  --tz-dark: #120101;
-  --tz-mid: #4a4a4a;
-  --tz-muted: #888;
-  --tz-border: #ececec;
-  --tz-cream: #fdf9f4;
-  --tz-serif: 'Cormorant Garamond', Georgia, serif;
-  --tz-sans: 'Inter', system-ui, sans-serif;
-}
+    :root {
+      --gold:    #F2157B;
+      --gold-lt: #f5488e;
+      --gold-bg: #fff0f8;
+      --cream:   #fdf9f4;
+      --white:   #ffffff;
+      --dark:    #120101;
+      --navy:    #162950;
+      --mid:     #3a3a3a;
+      --muted:   #888888;
+      --border:  #e8e8e8;
+      --red:     #ED1A43;
+      --green:   #27ae60;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --sans:    'Poppins', system-ui, sans-serif;
+      --radius:  12px;
+    }
+    /* ── ANNOUNCE BAR ── */
+    .announce {
+      background: var(--dark); color: rgba(255,255,255,.85);
+      text-align: center; padding: 0 20px; font-size: 12.5px;
+      letter-spacing: 0.06em; height: 38px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 500;
+    }
+    .announce-track { display: flex; flex-direction: column; height: 18px; overflow: hidden; }
+    .announce-msg {
+      height: 18px; display: flex; align-items: center; justify-content: center;
+      gap: 8px; flex-shrink: 0; white-space: nowrap;
+      animation: aRoll 12s infinite;
+    }
+    .announce b { color: var(--gold-lt); }
+    .announce .sep { opacity: .35; margin: 0 6px; }
+    @keyframes aRoll {
+      0%,28%  { transform: translateY(0); }
+      33%,61% { transform: translateY(-18px); }
+      66%,94% { transform: translateY(-36px); }
+      100%    { transform: translateY(0); }
+    }
 
-/* ── ANNOUNCE BAR ── */
-.tz-announce {
-  background: var(--tz-dark);
-  color: rgba(255,255,255,.85);
-  padding: 0 20px;
-  font-size: 12.5px;
-  letter-spacing: 0.06em;
-  height: 38px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  font-family: var(--tz-sans);
-}
-.tz-announce-track {
-  display: flex;
-  flex-direction: column;
-  height: 18px;
-  overflow: hidden;
-}
-.tz-announce-msg {
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex-shrink: 0;
-  white-space: nowrap;
-  animation: tzSlide 12s infinite;
-}
-.tz-announce b { color: var(--tz-gold-lt); }
-@keyframes tzSlide {
-  0%,28%{transform:translateY(0)}
-  33%,61%{transform:translateY(-18px)}
-  66%,94%{transform:translateY(-36px)}
-  100%{transform:translateY(0)}
-}
+    /* ── HEADER ── */
+    .hdr {
+      position: sticky; top: 0; z-index: 300;
+      background: rgba(255,255,255,.98); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+    .hdr-row {
+      max-width: 1400px; margin: 0 auto; padding: 0 32px;
+      height: 64px; display: flex; align-items: center; gap: 0;
+    }
+    .hdr-logo { flex-shrink: 0; display: flex; align-items: center; margin-right: 32px; }
+    .hdr-logo img { height: 40px; width: auto; display: block; }
+    .hdr-search { display: none; }
+    .hdr-right { display: flex; align-items: center; gap: 2px; flex-shrink: 0; margin-left: auto; }
+    .hdr-icon {
+      background: none; border: none; padding: 9px; color: var(--mid);
+      display: flex; align-items: center; position: relative;
+      border-radius: 50%; transition: color .2s, background .2s;
+    }
+    .hdr-icon:hover { color: var(--gold); background: var(--gold-bg); }
+    .cart-toggle {
+      display: flex; align-items: center; gap: 7px;
+      padding: 9px 18px; background: var(--dark); color: #fff;
+      border: none; border-radius: 50px; font-size: 12px;
+      letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;
+      transition: background .2s; position: relative; margin-left: 6px;
+    }
+    .cart-toggle:hover { background: var(--gold); }
+    .cart-toggle .bdg {
+      background: var(--gold); color: #fff; font-size: 9px; font-weight: 700;
+      width: 16px; height: 16px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .cart-toggle:hover .bdg { background: #fff; color: var(--gold); }
+    .ham-btn { display: none; background: none; border: none; padding: 8px; color: var(--dark); }
 
-/* ── HEADER ── */
-.tz-header {
-  position: sticky; top: 0; z-index: 300;
-  background: rgba(255,255,255,.97);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--tz-border);
-  font-family: var(--tz-sans);
-}
-.tz-header-top {
-  max-width: 1340px; margin: 0 auto;
-  padding: 0 24px; height: 68px;
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 16px;
-}
+    /* ── NAV ── */
+    .nav { flex: 1; }
+    .nav-inner { display: flex; align-items: center; height: 100%; }
+    .nav-item { position: relative; }
+    .nav-lnk {
+      display: block; padding: 0 14px; font-size: 13px;
+      font-weight: 500; color: var(--mid); transition: color .2s;
+      white-space: nowrap; line-height: 64px;
+    }
+    .nav-lnk:hover { color: var(--dark); }
+    .nav-lnk.active { color: var(--dark); border-bottom: 2px solid var(--gold); }
+    .nav-lnk.sale { color: var(--red); font-weight: 600; }
+    .nav-item:hover .nav-drop { display: block; }
+    .nav-drop {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: #fff; border: 1px solid var(--border);
+      box-shadow: 0 12px 36px rgba(0,0,0,.1); min-width: 190px;
+      border-radius: 0 0 10px 10px; z-index: 400; padding: 6px 0;
+    }
+    .nav-drop a {
+      display: block; padding: 10px 20px; font-size: 13px;
+      color: var(--mid); transition: all .15s;
+    }
+    .nav-drop a:hover { color: var(--gold); background: var(--gold-bg); padding-left: 26px; }
 
-/* Logo */
-.tz-logo {
-  font-family: var(--tz-serif);
-  font-size: 26px; font-weight: 400;
-  letter-spacing: 0.04em; color: var(--tz-dark);
-  text-decoration: none; white-space: nowrap; flex-shrink: 0;
-}
-.tz-logo span { color: var(--tz-gold); font-weight: 600; }
+    /* ── MOBILE NAV DRAWER ── */
+    .mob-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.5); z-index: 490;
+    }
+    .mob-overlay.on { display: block; }
+    .mob-drawer {
+      position: fixed; top: 0; left: -100%; bottom: 0; width: 310px;
+      background: #fff; z-index: 500; padding: 0; overflow-y: auto;
+      transition: left .32s cubic-bezier(.4,0,.2,1);
+      box-shadow: 4px 0 32px rgba(0,0,0,.18);
+    }
+    .mob-drawer.on { left: 0; }
+    .mob-drawer-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; border-bottom: 1px solid var(--border);
+    }
+    .mob-close { background: none; border: none; font-size: 26px; color: var(--muted); line-height: 1; }
+    .mob-nav { padding: 12px 0; }
+    .mob-nav a {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; font-size: 14px; color: var(--dark);
+      border-bottom: 1px solid var(--border); transition: color .15s;
+    }
+    .mob-nav a:hover { color: var(--gold); }
+    .mob-nav .sale-m { color: var(--red); font-weight: 600; }
 
-/* Search */
-.tz-search-wrap {
-  flex: 1; max-width: 420px;
-  display: flex; align-items: center;
-  border: 1.5px solid var(--tz-border); border-radius: 6px;
-  overflow: hidden; transition: border-color .2s;
-}
-.tz-search-wrap:focus-within { border-color: var(--tz-gold); }
-.tz-search-wrap input {
-  flex: 1; border: none; outline: none;
-  padding: 9px 14px; font-size: 13px;
-  font-family: var(--tz-sans); color: var(--tz-dark); background: transparent;
-}
-.tz-search-wrap input::placeholder { color: var(--tz-muted); }
-.tz-search-wrap button {
-  background: none; border: none; padding: 0 14px;
-  display: flex; align-items: center; cursor: pointer;
-  color: var(--tz-muted); transition: color .2s;
-}
-.tz-search-wrap button:hover { color: var(--tz-gold); }
+    @media (max-width: 900px) { .nav { display:none; } .ham-btn { display:flex; } }
+    @media (max-width: 600px) {
+      .announce { height:48px; font-size:12px; padding:0 12px; }
+      .announce-msg { font-size:12px; white-space:normal; }
+      .hdr-row { padding:0 14px; gap:0; height:64px; position:relative; }
+      .hdr-logo { margin:0; position:absolute; left:50%; transform:translateX(-50%); }
+      .hdr-logo img { height:44px; }
+      .ham-btn { position:absolute; left:14px; top:50%; transform:translateY(-50%); padding:8px; }
+      .nav { display:none; }
+      .hdr-right { position:absolute; right:14px; top:50%; transform:translateY(-50%); gap:6px; }
+      .cart-toggle { padding:8px; font-size:0; margin-left:0; background:none; color:var(--dark); }
+      .cart-toggle .bdg { position:absolute; top:0; right:0; }
+    }
 
-/* Header actions */
-.tz-header-actions { display: flex; align-items: center; gap: 2px; }
-.tz-hbtn {
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  background: none; border: none; padding: 8px 10px;
-  color: var(--tz-mid); font-size: 10px; letter-spacing: 0.06em;
-  text-transform: uppercase; cursor: pointer; transition: color .2s;
-  text-decoration: none; font-family: var(--tz-sans);
-}
-.tz-hbtn:hover { color: var(--tz-gold); }
-.tz-hbtn-cart {
-  position: relative;
-  background: var(--tz-dark) !important;
-  color: #fff !important;
-  border-radius: 4px; padding: 8px 14px !important;
-  transition: background .2s !important;
-}
-.tz-hbtn-cart:hover { background: var(--tz-gold) !important; }
-.tz-cart-count {
-  background: var(--tz-gold); color: #fff;
-  font-size: 9px; font-weight: 700;
-  width: 16px; height: 16px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  position: absolute; top: -4px; right: -4px;
-}
-
-/* Nav row */
-.tz-nav-row {
-  border-top: 1px solid var(--tz-border);
-  background: #fff;
-}
-.tz-nav-inner {
-  max-width: 1340px; margin: 0 auto;
-  padding: 0 24px; display: flex; align-items: stretch;
-}
-.tz-nav-item { position: relative; }
-.tz-nav-link {
-  display: block; padding: 12px 16px;
-  font-size: 13px; font-weight: 500;
-  letter-spacing: 0.04em; color: var(--tz-mid);
-  transition: color .2s; white-space: nowrap;
-  text-decoration: none;
-}
-.tz-nav-link:hover, .tz-nav-link.active { color: var(--tz-gold); }
-.tz-nav-link.sale { color: #c0392b; font-weight: 600; }
-.tz-nav-item:hover > .tz-dropdown { display: block; }
-.tz-dropdown {
-  display: none; position: absolute; top: 100%; left: 0;
-  background: #fff; border: 1px solid var(--tz-border);
-  border-top: 2px solid var(--tz-gold);
-  box-shadow: 0 8px 28px rgba(0,0,0,.10);
-  min-width: 200px; z-index: 400; padding: 8px 0;
-}
-.tz-dropdown a {
-  display: block; padding: 10px 20px;
-  font-size: 13px; color: var(--tz-mid);
-  transition: color .2s, background .2s;
-  text-decoration: none;
-}
-.tz-dropdown a:hover { color: var(--tz-gold); background: var(--tz-cream); }
-
-/* Mobile nav */
-.tz-mobile-toggle {
-  display: none; background: none; border: none;
-  cursor: pointer; color: var(--tz-dark); padding: 8px;
-}
-.tz-mobile-nav {
-  display: none; flex-direction: column;
-  border-top: 1px solid var(--tz-border);
-  background: #fff;
-}
-.tz-mobile-nav.open { display: flex; }
-.tz-mobile-nav a {
-  display: block; padding: 14px 24px;
-  font-size: 14px; color: var(--tz-mid);
-  border-bottom: 1px solid var(--tz-border);
-  text-decoration: none;
-}
-.tz-mobile-nav a.sale { color: #c0392b; font-weight: 600; }
-
-@media (max-width: 860px) {
-  .tz-search-wrap { display: none; }
-  .tz-nav-row { display: none; }
-  .tz-mobile-toggle { display: flex; }
-}
-@media (max-width: 480px) {
-  .tz-header-top { padding: 0 16px; }
-  .tz-hbtn span { display: none; }
-  .tz-announce { height: 48px; font-size: 12px; padding: 0 12px; }
-  .tz-announce-msg { height: 18px; font-size: 12px; white-space: normal; }
-  .tz-logo img { max-height: 40px !important; }
-}
 </style>
 
 <!-- ANNOUNCE BAR -->
-<div class="tz-announce">
-  <div class="tz-announce-track">
-    <div class="tz-announce-msg">Free shipping on <b>₹999+</b></div>
-    <div class="tz-announce-msg">Code <b>TRIBAL10</b> for 10% off</div>
-    <div class="tz-announce-msg">Handcrafted in India since <b>2003</b></div>
+<div class="announce">
+  <div class="announce-track">
+    <div class="announce-msg">Free shipping on <b>&#8377;999+</b></div>
+    <div class="announce-msg">Code <b>TRIBAL10</b> for 10% off</div>
+    <div class="announce-msg">Handcrafted in India since <b>2003</b></div>
   </div>
 </div>
 
 <!-- HEADER -->
-<div class="tz-header" data-section-id="{{ section.id }}" data-section-type="header-section">
-  <div class="tz-header-top">
+<header class="hdr" id="siteHeader">
+  <div class="hdr-row">
+    <button class="ham-btn" id="hamBtn" onclick="openMob()" aria-label="Menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="/" class="hdr-logo"><img src="{{ 'logo_2.png' | asset_url }}" alt="Tribal Zone"/></a>
 
-    <!-- Logo -->
-    {% if template.name == 'index' %}<h1 style="margin:0;font-size:inherit;">{% endif %}
-    <a href="/" class="tz-logo">
-      {% if section.settings.logo %}
-        <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" style="max-height:48px;width:auto;display:block;">
-      {% else %}
-        Tribal<span>Zone</span>
-      {% endif %}
-    </a>
-    {% if template.name == 'index' %}</h1>{% endif %}
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="nav-item"><a href="/" class="nav-lnk{% if template.name == 'index' %} active{% endif %}">Home</a></div>
+        <div class="nav-item"><a href="/collections/earrings" class="nav-lnk">Earrings</a></div>
+        <div class="nav-item"><a href="/collections/necklace" class="nav-lnk">Necklaces</a></div>
+        <div class="nav-item"><a href="/collections/bracelets" class="nav-lnk">Bangles &amp; Bracelets</a></div>
+        <div class="nav-item"><a href="/collections/maang-tikka" class="nav-lnk">Maang Tikka</a></div>
+        <div class="nav-item"><a href="/collections/rings" class="nav-lnk">Rings</a></div>
+        <div class="nav-item"><a href="/collections/zodiac-pendants" class="nav-lnk">Zodiac</a></div>
+        <div class="nav-item"><a href="/collections/festive-hampers" class="nav-lnk">Festive Hampers</a></div>
+        <div class="nav-item"><a href="/collections/sale" class="nav-lnk sale">Sale</a></div>
+      </div>
+    </nav>
 
-    <!-- Search -->
-    <form class="tz-search-wrap" action="/search" method="get" role="search">
-      <input type="search" name="q" placeholder="Search earrings, necklaces, zodiac…" value="{{ search.terms | escape }}" autocomplete="off"/>
-      <button type="submit" aria-label="Search">
-        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </button>
-    </form>
-
-    <!-- Actions -->
-    <div class="tz-header-actions">
-      {% if shop.customer_accounts_enabled %}
-        <a href="{% if customer %}/account{% else %}/account/login{% endif %}" class="tz-hbtn">
-          <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>Account</span>
-        </a>
-      {% endif %}
-      <a href="/cart" class="tz-hbtn tz-hbtn-cart">
-        <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        {% if cart.item_count > 0 %}<span class="tz-cart-count">{{ cart.item_count }}</span>{% endif %}
-        <span>Bag</span>
+    <div class="hdr-right">
+      <a href="/search" class="hdr-icon" title="Search" aria-label="Search">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       </a>
-      <button class="tz-mobile-toggle" id="tzMobileToggle" aria-label="Menu">
-        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
+      <a href="/account" class="hdr-icon" title="Account" aria-label="Account">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="/cart" class="cart-toggle" id="cartToggle">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Bag <span class="bdg" id="cartCount">{{ cart.item_count }}</span>
+      </a>
     </div>
-
   </div>
+</header>
 
-  <!-- Desktop nav -->
-  <nav class="tz-nav-row" role="navigation">
-    <div class="tz-nav-inner">
-      {% if linklists[section.settings.main_linklist].links != blank %}
-        {% for link in linklists[section.settings.main_linklist].links %}
-          <div class="tz-nav-item">
-            <a href="{{ link.url }}" class="tz-nav-link{% if link.active %} active{% endif %}{% if link.title contains 'Sale' or link.title contains 'sale' %} sale{% endif %}">
-              {{ link.title }}{% if link.links != blank %} ▾{% endif %}
-            </a>
-            {% if link.links != blank %}
-              <div class="tz-dropdown">
-                {% for childlink in link.links %}
-                  <a href="{{ childlink.url }}">{{ childlink.title }}</a>
-                {% endfor %}
-              </div>
-            {% endif %}
-          </div>
-        {% endfor %}
-      {% else %}
-        {%- comment -%} Fallback hardcoded nav — matches all 8 collection tabs {%- endcomment -%}
-        <div class="tz-nav-item"><a href="/collections/new-arrivals" class="tz-nav-link{% if collection.handle == 'new-arrivals' %} active{% endif %}">New Arrivals</a></div>
-        <div class="tz-nav-item">
-          <a href="/collections/earrings" class="tz-nav-link{% if collection.handle == 'earrings' %} active{% endif %}">Earrings ▾</a>
-          <div class="tz-dropdown">
-            <a href="/collections/earrings/jhumkas">Jhumkas</a>
-            <a href="/collections/earrings/studs">Studs</a>
-            <a href="/collections/earrings/hoops">Hoops</a>
-            <a href="/collections/earrings/danglers">Danglers</a>
-            <a href="/collections/earrings/chandbalis">Chandbalis</a>
-          </div>
-        </div>
-        <div class="tz-nav-item">
-          <a href="/collections/necklaces" class="tz-nav-link{% if collection.handle == 'necklaces' %} active{% endif %}">Necklaces ▾</a>
-          <div class="tz-dropdown">
-            <a href="/collections/necklaces/chokers">Chokers</a>
-            <a href="/collections/necklaces/long-chains">Long Chains</a>
-            <a href="/collections/necklaces/layered-sets">Layered Sets</a>
-            <a href="/collections/necklaces/temple-jewellery">Temple Jewellery</a>
-          </div>
-        </div>
-        <div class="tz-nav-item"><a href="/collections/bangles-bracelets" class="tz-nav-link{% if collection.handle == 'bangles-bracelets' %} active{% endif %}">Bangles &amp; Bracelets</a></div>
-        <div class="tz-nav-item"><a href="/collections/maang-tikka" class="tz-nav-link{% if collection.handle == 'maang-tikka' %} active{% endif %}">Maang Tikka</a></div>
-        <div class="tz-nav-item"><a href="/collections/rings" class="tz-nav-link{% if collection.handle == 'rings' %} active{% endif %}">Rings</a></div>
-        <div class="tz-nav-item"><a href="/collections/zodiac" class="tz-nav-link{% if collection.handle == 'zodiac' %} active{% endif %}">Zodiac</a></div>
-        <div class="tz-nav-item"><a href="/collections/festive-hampers" class="tz-nav-link{% if collection.handle == 'festive-hampers' %} active{% endif %}">Festive Hampers</a></div>
-        <div class="tz-nav-item"><a href="/collections/sale" class="tz-nav-link sale{% if collection.handle == 'sale' %} active{% endif %}">Sale</a></div>
-      {% endif %}
-    </div>
-  </nav>
-
-  <!-- Mobile nav -->
-  <nav class="tz-mobile-nav" id="tzMobileNav" role="navigation">
-    {% if linklists[section.settings.main_linklist].links != blank %}
-      {% for link in linklists[section.settings.main_linklist].links %}
-        <a href="{{ link.url }}" {% if link.title contains 'Sale' or link.title contains 'sale' %}class="sale"{% endif %}>{{ link.title }}</a>
-      {% endfor %}
-    {% else %}
-      <a href="/collections/new-arrivals">New Arrivals</a>
-      <a href="/collections/earrings">Earrings</a>
-      <a href="/collections/necklaces">Necklaces</a>
-      <a href="/collections/bangles-bracelets">Bangles &amp; Bracelets</a>
-      <a href="/collections/maang-tikka">Maang Tikka</a>
-      <a href="/collections/rings">Rings</a>
-      <a href="/collections/zodiac">Zodiac</a>
-      <a href="/collections/festive-hampers">Festive Hampers</a>
-      <a href="/collections/sale" class="sale">Sale</a>
-    {% endif %}
+<!-- MOBILE DRAWER -->
+<div class="mob-overlay" id="mobOverlay" onclick="closeMob()"></div>
+<div class="mob-drawer" id="mobDrawer">
+  <div class="mob-drawer-head">
+    <a href="/"><img src="{{ 'logo_2.png' | asset_url }}" alt="Tribal Zone" style="height:40px;width:auto;"/></a>
+    <button class="mob-close" onclick="closeMob()" aria-label="Close">&times;</button>
+  </div>
+  <nav class="mob-nav">
+    <a href="/">Home</a>
+    <a href="/collections/earrings">Earrings</a>
+    <a href="/collections/necklace">Necklaces</a>
+    <a href="/collections/bracelets">Bangles &amp; Bracelets</a>
+    <a href="/collections/maang-tikka">Maang Tikka</a>
+    <a href="/collections/rings">Rings</a>
+    <a href="/collections/zodiac-pendants">Zodiac</a>
+    <a href="/collections/festive-hampers">Festive Hampers</a>
+    <a href="/collections/sale" class="sale-m">Sale</a>
   </nav>
 </div>
 
 <script>
-  document.getElementById('tzMobileToggle').addEventListener('click', function() {
-    document.getElementById('tzMobileNav').classList.toggle('open');
-  });
+  function openMob(){ document.getElementById('mobOverlay').classList.add('on'); document.getElementById('mobDrawer').classList.add('on'); }
+  function closeMob(){ document.getElementById('mobOverlay').classList.remove('on'); document.getElementById('mobDrawer').classList.remove('on'); }
 </script>
 
-
-
-
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org",
-  "@type": "Organization",
-  "name": {{ shop.name | json }},
-  {% if section.settings.logo %}
-    {% assign image_size = section.settings.logo.width | append:'x' %}
-    "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
-  {% endif %}
-  "sameAs": [
-    {{ settings.social_twitter_link | json }},
-    {{ settings.social_facebook_link | json }},
-    {{ settings.social_pinterest_link | json }},
-    {{ settings.social_instagram_link | json }},
-    {{ settings.social_tumblr_link | json }},
-    {{ settings.social_snapchat_link | json }},
-    {{ settings.social_youtube_link | json }},
-    {{ settings.social_vimeo_link | json }}
-  ],
-  "url": {{ shop.url | append: page.url | json }}
-}
-</script>
-
-{% if template.name == 'index' %}
-  {% assign potential_action_target = shop.url | append: "/search?q={search_term_string}" %}
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": {{ shop.name | json }},
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {{ potential_action_target | json }},
-        "query-input": "required name=search_term_string"
-      },
-      "url": {{ shop.url | append: page.url | json }}
-    }
-  </script>
-{% endif %}
 
 {% schema %}
 {
-  "name": {
-    "de": "Titel",
-    "en": "Header",
-    "es": "Encabezado",
-    "fr": "En-tête",
-    "it": "Header",
-    "ja": "ヘッダー",
-    "nl": "Koptekst",
-    "pt-BR": "Cabeçalho",
-    "zh-CN": "标头",
-    "zh-TW": "標頭"
-  },
+  "name": "Header",
   "settings": [
-    {
-      "type": "radio",
-      "id": "align_logo",
-      "label": {
-        "de": "Logo-Ausrichtung",
-        "en": "Logo alignment",
-        "es": "Alineación de logotipo",
-        "fr": "Alignement du logo",
-        "it": "Allineamento logo",
-        "ja": "ロゴアラインメント",
-        "nl": "Logo-uitlijning",
-        "pt-BR": "Alinhamento do logotipo",
-        "zh-CN": "徽标对齐方式",
-        "zh-TW": "商標對齊"
-      },
-      "default": "left",
-      "options": [
-        {
-          "value": "left",
-          "label": {
-            "de": "Links",
-            "en": "Left",
-            "es": "Izquierda",
-            "fr": "Gauche",
-            "it": "Sinistra",
-            "ja": "左",
-            "nl": "Links",
-            "pt-BR": "Esquerda",
-            "zh-CN": "左侧",
-            "zh-TW": "左方"
-          }
-        },
-        {
-          "value": "center",
-          "label": {
-            "de": "Mittig",
-            "en": "Centered",
-            "es": "Centrada",
-            "fr": "Centré",
-            "it": "Centrato",
-            "ja": "中央揃え",
-            "nl": "Gecentreerd",
-            "pt-BR": "Centralizado",
-            "zh-CN": "居中",
-            "zh-TW": "置中"
-          }
-        }
-      ]
-    },
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": {
-        "de": "Logo-Foto",
-        "en": "Logo image",
-        "es": "Logotipo",
-        "fr": "Image du logo",
-        "it": "Immagine del logo",
-        "ja": "ロゴ画像",
-        "nl": "Afbeelding van logo",
-        "pt-BR": "Imagem do logotipo",
-        "zh-CN": "徽标图片",
-        "zh-TW": "標誌圖片"
-      }
-    },
-    {
-      "type": "range",
-      "id": "logo_max_width",
-      "label": {
-        "de": "Logobreite",
-        "en": "Custom logo width",
-        "es": "Ancho del logotipo personalizado",
-        "fr": "Largeur personnalisée du logo",
-        "it": "Larghezza logo personalizzato",
-        "ja": "ロゴの幅をカスタムする",
-        "nl": "Aangepaste logo-breedte",
-        "pt-BR": "Largura do logotipo personalizado",
-        "zh-CN": "自定义徽标宽度",
-        "zh-TW": "自訂商標寬度"
-      },
-      "min": 50,
-      "max": 250,
-      "step": 5,
-      "unit": {
-        "de": "px",
-        "en": "px",
-        "es": "px",
-        "fr": "px",
-        "it": "px",
-        "ja": "px",
-        "nl": "px",
-        "pt-BR": "px",
-        "zh-CN": "px",
-        "zh-TW": "像素"
-      },
-      "default": 100
-    },
-    {
-      "type": "link_list",
-      "id": "main_linklist",
-      "label": {
-        "de": "Menü",
-        "en": "Menu",
-        "es": "Menú",
-        "fr": "Menu",
-        "it": "Menu",
-        "ja": "メニュー",
-        "nl": "Menu",
-        "pt-BR": "Menu",
-        "zh-CN": "菜单",
-        "zh-TW": "選單"
-      },
-      "default": "main-menu"
-    },
-    {
-      "type": "header",
-      "content": {
-        "de": "Ankündigungsbereich",
-        "en": "Announcement bar",
-        "es": "Barra de anuncios",
-        "fr": "Barre d'annonces",
-        "it": "Barra degli annunci",
-        "ja": "告知バー",
-        "nl": "Aankondigingsbalk",
-        "pt-BR": "Barra de anúncios",
-        "zh-CN": "公告栏",
-        "zh-TW": "公告列"
-      }
-    },
-    {
-      "type": "checkbox",
-      "id": "message",
-      "label": {
-        "de": "Ankündigung anzeigen",
-        "en": "Show announcement",
-        "es": "Mostrar anuncio",
-        "fr": "Afficher l'annonce",
-        "it": "Mostra annuncio",
-        "ja": "告知を表示する",
-        "nl": "Aankondiging weergeven",
-        "pt-BR": "Exibir anúncio",
-        "zh-CN": "显示公告",
-        "zh-TW": "顯示公告"
-      },
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "home_page_only",
-      "label": {
-        "de": "Nur Startseite",
-        "en": "Home page only",
-        "es": "Solo página de inicio",
-        "fr": "Page d'accueil uniquement",
-        "it": "Solo home page",
-        "ja": "ホームページのみ",
-        "nl": "Alleen startpagina",
-        "pt-BR": "Apenas página inicial",
-        "zh-CN": "仅主页",
-        "zh-TW": "僅限首頁"
-      },
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "message_text",
-      "label": {
-        "de": "Text",
-        "en": "Text",
-        "es": "Texto",
-        "fr": "Texte",
-        "it": "Testo",
-        "ja": "テキスト",
-        "nl": "Tekst",
-        "pt-BR": "Texto",
-        "zh-CN": "文本",
-        "zh-TW": "文字"
-      },
-      "default": {
-        "de": "Hier etwas ankündigen",
-        "en": "Announce something here",
-        "es": "Anuncia algo aquí",
-        "fr": "Annoncez quelque chose ici",
-        "it": "Annuncia qualcosa qui",
-        "ja": "ここで告知してください",
-        "nl": "Kondig hier iets aan",
-        "pt-BR": "Anuncie algo aqui",
-        "zh-CN": "在此处进行公告",
-        "zh-TW": "在此公告資訊"
-      }
-    },
-    {
-      "type": "url",
-      "id": "message_link",
-      "label": {
-        "de": "Link",
-        "en": "Link",
-        "es": "Enlace",
-        "fr": "Lien",
-        "it": "Link",
-        "ja": "リンク",
-        "nl": "Link",
-        "pt-BR": "Link",
-        "zh-CN": "链接",
-        "zh-TW": "連結"
-      },
-      "info": {
-        "de": "Optional",
-        "en": "Optional",
-        "es": "Opcional",
-        "fr": "Facultatif",
-        "it": "Facoltativo",
-        "ja": "選択させる",
-        "nl": "Optioneel",
-        "pt-BR": "Opcional",
-        "zh-CN": "可选",
-        "zh-TW": "(選填)"
-      }
-    },
-    {
-      "type": "color",
-      "id": "color_bg",
-      "label": {
-        "de": "Zeile",
-        "en": "Bar",
-        "es": "Barra",
-        "fr": "Barre",
-        "it": "Barra",
-        "ja": "バー",
-        "nl": "Balk",
-        "pt-BR": "Barra",
-        "zh-CN": "栏",
-        "zh-TW": "橫條"
-      },
-      "default": "#7796a8"
-    },
-    {
-      "type": "color",
-      "id": "color_text",
-      "label": {
-        "de": "Text",
-        "en": "Text",
-        "es": "Texto",
-        "fr": "Texte",
-        "it": "Testo",
-        "ja": "テキスト",
-        "nl": "Tekst",
-        "pt-BR": "Texto",
-        "zh-CN": "文本",
-        "zh-TW": "文字"
-      },
-      "default": "#fff"
-    }
+    { "type": "image_picker", "id": "logo", "label": "Logo (optional, overrides default)" },
+    { "type": "link_list", "id": "main_linklist", "label": "Menu (not used by fixed nav)" }
   ]
 }
 {% endschema %}
