@@ -581,3 +581,12 @@
       .footer-bottom { padding-top: 16px; }
       .brand-nums { gap: 24px; }
     }
+
+
+/* ── PINK VALUES MARQUEE ── */
+.tz-marquee { background: linear-gradient(90deg,#fff0f8,#ffe3f1,#fff0f8); border-top:1px solid #f9c0d8; border-bottom:1px solid #f9c0d8; overflow:hidden; padding:13px 0; }
+.tz-marquee-track { display:flex; width:max-content; white-space:nowrap; animation: tzMarquee 30s linear infinite; }
+.tz-marquee:hover .tz-marquee-track { animation-play-state:paused; }
+.tz-mq-item { display:inline-flex; align-items:center; gap:14px; padding:0 26px; font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+.tz-mq-item .star { color:var(--gold-lt); font-size:13px; }
+@keyframes tzMarquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
