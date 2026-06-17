@@ -606,3 +606,10 @@
 .tz-zp-name { font-size:11.5px; font-weight:600; letter-spacing:.03em; }
 @media (max-width:760px){ .tz-zp-grid{ grid-template-columns:repeat(4,1fr);} }
 @media (max-width:430px){ .tz-zp-grid{ grid-template-columns:repeat(3,1fr);} }
+
+
+/* ── DRAGONFLY DIVIDER (brand motif) ── */
+.tz-divider { display:flex; align-items:center; justify-content:center; gap:20px; max-width:620px; margin:0 auto; padding:48px 24px 4px; }
+.tz-divider::before, .tz-divider::after { content:''; height:1px; flex:1; background:linear-gradient(90deg,transparent,#e8d6e0,transparent); }
+.tz-dfly { flex-shrink:0; color:var(--gold); }
+.tz-dfly svg { display:block; width:46px; height:auto; }
