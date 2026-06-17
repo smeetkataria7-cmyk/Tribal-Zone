@@ -251,8 +251,8 @@
         {% render 'product-card-grid', product: product, collection: collection %}
       {% else %}
         <div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;">
-          <p style="font-family:var(--tz-serif,serif);font-size:28px;font-weight:300;margin-bottom:12px;color:#120101;">No products found</p>
-          <p>Try clearing your filters or browse all collections.</p>
+          <p style="font-family:var(--tz-serif,serif);font-size:28px;font-weight:300;margin-bottom:12px;color:#120101;">Oh, we’re currently out of stock for {{ collection.title }}</p>
+          <p>Please come again later — or browse the rest of our collection.</p>
           <a href="/collections/all" style="display:inline-block;margin-top:16px;padding:12px 28px;background:#120101;color:#fff;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;">Browse All</a>
         </div>
       {% endfor %}

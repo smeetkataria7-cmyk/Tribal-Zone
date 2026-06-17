@@ -331,12 +331,12 @@
       display: inline-block; margin-bottom: 8px;
       font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
       padding: 4px 12px 4px 8px; border-radius: 0;
-      background: linear-gradient(100deg, #b07c28 0%, #e3b84e 35%, #f7df8a 50%, #e3b84e 65%, #b07c28 100%);
-      color: #3a2a00;
+      background: linear-gradient(100deg, #d11473 0%, #f2157b 50%, #f5488e 100%);
+      color: #ffffff;
       clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%);
       position: static;
     }
-    .b-sale, .b-new, .b-best, .b-bogo { background: linear-gradient(100deg, #b07c28 0%, #e3b84e 35%, #f7df8a 50%, #e3b84e 65%, #b07c28 100%); color: #3a2a00; }
+    .b-sale, .b-new, .b-best, .b-bogo { background: linear-gradient(100deg, #d11473 0%, #f2157b 50%, #f5488e 100%); color: #ffffff; }
     .pcard-wish {
       position: absolute; top: 10px; right: 10px;
       background: rgba(255,255,255,.9); border: none; width: 32px; height: 32px;
@@ -360,7 +360,7 @@
     .pcard-stars { color: #f5a623; font-size: 10px; margin-top: 8px; display: flex; align-items: center; gap: 5px; order: 10; }
     .pcard-stars span { color: var(--muted); font-size: 9px; }
     .pcard-price { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 2px; }
-    .p-now { font-size: 14px; font-weight: 600; color: var(--gold); line-height: 1; }
+    .p-now { font-size: 14px; font-weight: 600; color: #7a1f3d; line-height: 1; }
     .p-meta { display: contents; }
     .p-was { font-size: 11px; color: #aaa; text-decoration: line-through; }
     .p-off { font-size: 10px; color: #fff; font-weight: 600; background: #4caf50; padding: 4px 10px; border-radius: 50px; }
