@@ -606,3 +606,20 @@
 .tz-zp-name { font-size:11.5px; font-weight:600; letter-spacing:.03em; }
 @media (max-width:760px){ .tz-zp-grid{ grid-template-columns:repeat(4,1fr);} }
 @media (max-width:430px){ .tz-zp-grid{ grid-template-columns:repeat(3,1fr);} }
+
+
+/* ── SHOP BY OCCASION ── */
+.tz-occ { background:#fff; padding:60px 24px; }
+.tz-occ-inner { max-width:1400px; margin:0 auto; }
+.tz-occ-head { text-align:center; margin-bottom:30px; }
+.tz-occ-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
+.tz-occ-title { font-family:var(--serif); font-size:clamp(28px,4vw,44px); font-weight:300; color:var(--dark); margin-top:6px; }
+.tz-occ-title em { color:var(--gold-lt); font-style:italic; }
+.tz-occ-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+.tz-occ-card { position:relative; aspect-ratio:3/4; border-radius:14px; overflow:hidden; display:flex; align-items:flex-end; text-decoration:none; }
+.tz-occ-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .45s; }
+.tz-occ-card:hover img { transform:scale(1.07); }
+.tz-occ-card::after { content:''; position:absolute; inset:0; background:linear-gradient(0deg,rgba(18,1,1,.74),rgba(18,1,1,.06) 60%,transparent); }
+.tz-occ-label { position:relative; z-index:2; color:#fff; width:100%; text-align:center; padding:18px 8px; font-family:var(--serif); font-size:20px; font-weight:500; }
+@media(max-width:900px){ .tz-occ-grid{ grid-template-columns:repeat(3,1fr);} }
+@media(max-width:560px){ .tz-occ-grid{ grid-template-columns:repeat(2,1fr);} }
