@@ -52,7 +52,6 @@
       border-bottom: none;
       box-shadow: none;
       margin: 0;
-      padding: 0;
     }
     .hdr-row {
       max-width: 1400px; margin: 0 auto; padding: 0 32px;
@@ -218,7 +217,7 @@
     .cart-empty a:hover { background: var(--gold); }
 
     /* ── HERO ── */
-    .hero { position: relative; overflow: hidden; margin-top: 0; padding-top: 0; }
+    .hero { position: relative; overflow: hidden; margin-top: 0; }
     .hero-track { display: flex; transition: transform .7s cubic-bezier(.77,0,.175,1); }
     .hero-slide { min-width: 100%; height: 600px; position: relative; display: flex; align-items: center; justify-content: flex-start; }
     .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
