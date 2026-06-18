@@ -18,6 +18,8 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--sans); color: var(--dark); background: #fff; font-size: 14px; line-height: 1.6; }
+    /* Kill base-theme .main-content top padding that creates the header↔hero gap (homepage only) */
+    .main-content { padding-top: 0 !important; margin-top: 0 !important; }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
     button { font-family: var(--sans); cursor: pointer; }
