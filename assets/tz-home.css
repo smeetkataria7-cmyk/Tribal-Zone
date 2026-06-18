@@ -54,10 +54,10 @@
     }
     .hdr-row {
       max-width: 1400px; margin: 0 auto; padding: 0 32px;
-      height: 64px; display: flex; align-items: center; gap: 0;
+      height: 80px; display: flex; align-items: center; gap: 0;
     }
     .hdr-logo { flex-shrink: 0; display: flex; align-items: center; margin-right: 32px; }
-    .hdr-logo img { height: 50px; width: auto; display: block; }
+    .hdr-logo img { height: 60px; width: auto; display: block; }
     .hdr-search { display: none; }
     .hdr-right { display: flex; align-items: center; gap: 2px; flex-shrink: 0; margin-left: auto; }
     .hdr-icon {
@@ -87,9 +87,9 @@
     .nav-inner { display: flex; align-items: center; height: 100%; }
     .nav-item { position: relative; }
     .nav-lnk {
-      display: block; padding: 0 14px; font-size: 14px; font-weight: 600;
+      display: block; padding: 0 16px; font-size: 15px; font-weight: 600;
       color: var(--mid); transition: color .2s;
-      white-space: nowrap; line-height: 64px;
+      white-space: nowrap; line-height: 80px;
     }
     .nav-lnk:hover { color: var(--dark); }
     .nav-lnk.active { color: var(--dark); border-bottom: 2px solid var(--gold); }
