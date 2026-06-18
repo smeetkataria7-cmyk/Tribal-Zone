@@ -82,6 +82,7 @@
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
   {{ content_for_header }}
+{% if template.name == 'index' %}{{ 'tz-home.css' | asset_url | stylesheet_tag }}<script src="{{ 'tz-home.js' | asset_url }}" defer></script>{% endif %}
 </head>
 
 <body class="template-{{ template | split: '.' | first }}">
