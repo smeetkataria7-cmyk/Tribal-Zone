@@ -627,7 +627,7 @@
 
 
 /* ── TRUST / USP STRIP ── */
-.tz-usp { background:var(--cream); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:16px 24px; }
+.tz-usp { background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:16px 24px; }
 .tz-usp-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
 .tz-usp-item { display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; }
 .tz-usp-ic { width:42px; height:42px; border-radius:50%; background:var(--gold-bg); display:flex; align-items:center; justify-content:center; color:var(--gold); }
