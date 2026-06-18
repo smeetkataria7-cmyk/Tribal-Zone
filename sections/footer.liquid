@@ -1,14 +1,14 @@
 {% comment %} TribalZone — footer.liquid (clean custom footer) {% endcomment %}
 <style>
-  .tzf-footer { background:#111; color:rgba(255,255,255,.6); padding:60px 24px 24px; font-family:'Poppins',system-ui,sans-serif; }
+  .tzf-footer { background:#000; color:rgba(255,255,255,.6); padding:60px 24px 24px; font-family:'Poppins',system-ui,sans-serif; }
   .tzf-inner { max-width:1340px; margin:0 auto; }
   .tzf-top { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.08); }
-  .tzf-brand-logo { margin-bottom:14px; display:inline-block; text-decoration:none; }
-  .tzf-brand-logo img { height:80px; width:auto; display:block; }
+  .tzf-brand-logo { font-family:'Cormorant Garamond',Georgia,serif; font-size:24px; color:#fff; margin-bottom:14px; display:inline-block; text-decoration:none; }
+  .tzf-brand-logo span { color:#f2157b; }
   .tzf-about { font-size:13px; line-height:1.9; color:rgba(255,255,255,.4); max-width:280px; }
   .tzf-socials { display:flex; gap:8px; margin-top:18px; }
-  .tzf-soc { width:34px; height:34px; border:1px solid rgba(255,255,255,.15); border-radius:6px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.6); transition:all .2s; }
-  .tzf-soc:hover { border-color:#f2157b; color:#f2157b; }
+  .tzf-soc { width:34px; height:34px; border:1px solid #f2157b; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#f2157b; transition:all .2s; }
+  .tzf-soc:hover { border-color:#f5488e; color:#f5488e; }
   .tzf-col h5 { color:#fff; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:16px; font-weight:600; }
   .tzf-col ul { list-style:none; margin:0; padding:0; }
   .tzf-col li { margin-bottom:9px; }
@@ -26,15 +26,13 @@
   <div class="tzf-inner">
     <div class="tzf-top">
       <div>
-        <a href="/" class="tzf-brand-logo">
-          <img src="{{ 'tribal-zone-logo.svg' | asset_url }}" alt="Tribal Zone - Expressive accessories">
-        </a>
+        <a href="/" class="tzf-brand-logo" style="display:inline-block;"><img src="{{ 'tribalzone-footer-logo.jpg' | asset_url }}" alt="Tribal Zone" style="height:96px;width:auto;display:block;"/></a>
         <p class="tzf-about">India's leading fashion accessories brand since 2003. Handcrafted jewellery celebrating our rich cultural heritage. Skin-safe, affordable &amp; unique.</p>
         <div class="tzf-socials">
-          {% if settings.social_instagram_link != blank %}<a href="{{ settings.social_instagram_link }}" class="tzf-soc" title="Instagram" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>{% endif %}
-          {% if settings.social_facebook_link != blank %}<a href="{{ settings.social_facebook_link }}" class="tzf-soc" title="Facebook" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.66 0-3 1.34-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9.5c0-.28.22-.5.5-.5z"/></svg></a>{% endif %}
-          {% if settings.social_pinterest_link != blank %}<a href="{{ settings.social_pinterest_link }}" class="tzf-soc" title="Pinterest" aria-label="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.08 2.45 7.58 5.95 9.12-.08-.78-.16-1.97.03-2.82.17-.75 1.1-4.77 1.1-4.77s-.28-.56-.28-1.39c0-1.3.76-2.27 1.7-2.27.8 0 1.19.6 1.19 1.32 0 .8-.51 2-.78 3.12-.22.93.47 1.69 1.39 1.69 1.66 0 2.94-1.75 2.94-4.28 0-2.24-1.61-3.8-3.91-3.8-2.66 0-4.22 2-4.22 4.06 0 .8.31 1.67.7 2.14a.28.28 0 0 1 .06.27c-.07.29-.23.93-.26 1.06-.04.17-.14.21-.32.13-1.2-.56-1.95-2.3-1.95-3.7 0-3.02 2.19-5.79 6.32-5.79 3.32 0 5.9 2.36 5.9 5.52 0 3.3-2.08 5.95-4.96 5.95-.97 0-1.88-.5-2.19-1.1l-.6 2.27c-.21.84-.8 1.88-1.19 2.51.9.28 1.84.43 2.83.43 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a>{% endif %}
-          {% if settings.social_youtube_link != blank %}<a href="{{ settings.social_youtube_link }}" class="tzf-soc" title="YouTube" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 7.2a2.8 2.8 0 0 0-1.96-1.98C18.8 4.75 12 4.75 12 4.75s-6.8 0-8.54.47A2.8 2.8 0 0 0 1.5 7.2C1.04 8.95 1.04 12 1.04 12s0 3.05.46 4.8a2.8 2.8 0 0 0 1.96 1.98c1.74.47 8.54.47 8.54.47s6.8 0 8.54-.47a2.8 2.8 0 0 0 1.96-1.98c.46-1.75.46-4.8.46-4.8s0-3.05-.46-4.8zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg></a>{% endif %}
+          <a href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener" class="tzf-soc" title="Instagram" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="{{ settings.social_linkedin_link | default: '#' }}" target="_blank" rel="noopener" class="tzf-soc" title="LinkedIn" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.2 8h4.6v14H.2V8zm7.4 0h4.4v1.9h.06c.61-1.1 2.1-2.26 4.32-2.26 4.62 0 5.48 2.86 5.48 6.58V22h-4.6v-6.16c0-1.47-.03-3.36-2.05-3.36-2.05 0-2.37 1.6-2.37 3.25V22H7.6V8z"/></svg></a>
+          <a href="{{ settings.social_facebook_link | default: '#' }}" target="_blank" rel="noopener" class="tzf-soc" title="Facebook" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.66 0-3 1.34-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9.5c0-.28.22-.5.5-.5z"/></svg></a>
+          <a href="{{ settings.social_twitter_link | default: '#' }}" target="_blank" rel="noopener" class="tzf-soc" title="X" aria-label="X"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.39 8.45L23.5 22h-6.83l-5.35-6.99L5.2 22H2.1l7.9-9.04L1 2h6.97l4.83 6.39L18.9 2zm-1.2 18h1.9L7.4 4H5.36l12.34 16z"/></svg></a>
         </div>
       </div>
       <div class="tzf-col">
