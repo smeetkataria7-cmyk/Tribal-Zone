@@ -1,3 +1,8 @@
+<style>
+  .product-form__cart-submit { background: #f2157b !important; color: #fff !important; border-color: #f2157b !important; text-transform: uppercase; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; }
+  .product-form__cart-submit:hover { background: #f5488e !important; border-color: #f5488e !important; }
+</style>
+
 <div class="product-template__container page-width"
   id="ProductSection-{{ section.id }}"
   data-section-id="{{ section.id }}"
@@ -176,9 +181,9 @@
               <button type="submit" name="add" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn product-form__cart-submit{% if section.settings.enable_payment_button %} btn--secondary-accent{% endif %}" data-add-to-cart>
                 <span data-add-to-cart-text>
                   {% unless current_variant.available %}
-                    {{ 'products.product.sold_out' | t }}
+                    SOLD OUT
                   {% else %}
-                    {{ 'products.product.add_to_cart' | t }}
+                    ADD TO BAG
                   {% endunless %}
                 </span>
               </button>
