@@ -3,6 +3,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
+    /* Cart & general buttons → brand pink (loads on every page, incl. cart) */
+    .btn, .cart__submit, input[type="submit"].btn, .cart__submit-control {
+      background: #f2157b !important; border-color: #f2157b !important; color: #fff !important;
+    }
+    .btn--secondary, .cart__submit-control.btn--secondary {
+      background: #fff !important; color: #f2157b !important; border: 1px solid #f2157b !important;
+    }
+    .btn:hover, .cart__submit:hover, .cart__submit-control:hover {
+      background: #f5488e !important; border-color: #f5488e !important;
+    }
     :root {
       --gold:    #F2157B;
       --gold-lt: #f5488e;
