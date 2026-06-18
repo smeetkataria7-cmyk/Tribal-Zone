@@ -276,14 +276,14 @@
     .perk-text span { font-size: 11px; color: var(--muted); }
 
     /* ── SECTIONS ── */
-    .sec { padding: 32px 32px; }
+    .sec { padding: 16px 32px; }
     .sec-cream { background: var(--cream); }
     .sec-inner { max-width: 1400px; margin: 0 auto; }
-    .sec-head { text-align: left; margin-bottom: 40px; }
+    .sec-head { text-align: left; margin-bottom: 16px; }
     .sec-tag { display: none; }
     .sec-title { font-family: var(--sans); font-size: clamp(20px, 2.5vw, 28px); font-weight: 600; line-height: 1.2; color: var(--dark); }
     .sec-title em { font-style: normal; color: var(--dark); }
-    .row-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+    .row-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 12px; }
     .row-head .sec-head { text-align: left; margin-bottom: 0; }
     .view-all { font-size: 13px; font-weight: 500; color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 1px; }
     .view-all { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid var(--gold); padding-bottom: 1px; transition: gap .2s; white-space: nowrap; }
