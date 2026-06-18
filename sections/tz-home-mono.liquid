@@ -1,51 +1,574 @@
-<!-- MONOLITHIC HOMEPAGE SECTION - All 17 sections combined, no Shopify inter-section gaps -->
+<!-- MONOLITHIC HOMEPAGE - All sections combined, populated product rows -->
 
-<!-- HERO -->
+<!-- HERO CAROUSEL -->
 <section class="hero">
   <div class="hero-track" id="heroTrack">
-    <div class="hero-slide"><div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553')"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-eyebrow">New Arrivals — 2024</div><h1 class="hero-h1">Elevate Your<br/><em>Everyday</em><br/>with Jewellery</h1><p class="hero-desc">Handcrafted fashion accessories blending Indian tradition with modern elegance — since 2003.</p><div class="hero-btns"><a href="/collections/earrings" class="btn-fill">Shop New Arrivals →</a><a href="/collections/earrings" class="btn-outline-w">Explore All</a></div></div></div>
-    <div class="hero-slide"><div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637')"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-eyebrow">Limited Time Offer</div><h1 class="hero-h1">Up to<br/><em>50% Off</em><br/>Sale is Live</h1><p class="hero-desc">Shop our biggest sale of the season. Stunning earrings, necklaces &amp; more at unbeatable prices.</p><div class="hero-btns"><a href="/collections/sale" class="btn-fill">Shop the Sale →</a></div></div></div>
-    <div class="hero-slide"><div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928')"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-eyebrow">Celestial Collection</div><h1 class="hero-h1">Wear Your<br/><em>Zodiac</em><br/>Story</h1><p class="hero-desc">Meaningful pendants for all 12 star signs. The perfect personalised gift for someone special.</p><div class="hero-btns"><a href="/collections/zodiac-pendants" class="btn-fill">Shop Zodiac →</a></div></div></div>
+
+    <div class="hero-slide">
+      <div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">New Arrivals — 2024</div>
+        <h1 class="hero-h1">Elevate Your<br/><em>Everyday</em><br/>with Jewellery</h1>
+        <p class="hero-desc">Handcrafted fashion accessories blending Indian tradition with modern elegance — since 2003.</p>
+        <div class="hero-btns">
+          <a href="/collections/earrings" class="btn-fill">Shop New Arrivals →</a>
+          <a href="/collections/earrings" class="btn-outline-w">Explore All</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Limited Time Offer</div>
+        <h1 class="hero-h1">Up to<br/><em>50% Off</em><br/>Sale is Live</h1>
+        <p class="hero-desc">Shop our biggest sale of the season. Stunning earrings, necklaces &amp; more at unbeatable prices.</p>
+        <div class="hero-btns">
+          <a href="/collections/sale" class="btn-fill">Shop the Sale →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slide">
+      <div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-eyebrow">Celestial Collection</div>
+        <h1 class="hero-h1">Wear Your<br/><em>Zodiac</em><br/>Story</h1>
+        <p class="hero-desc">Meaningful pendants for all 12 star signs. The perfect personalised gift for someone special.</p>
+        <div class="hero-btns">
+          <a href="/collections/zodiac-pendants" class="btn-fill">Shop Zodiac →</a>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <button class="hero-arr hero-prev" onclick="heroMove(-1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
-  <button class="hero-arr hero-next" onclick="heroMove(1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
-  <div class="hero-dots" id="heroDots"><div class="hero-dot on" onclick="heroGo(0)"></div><div class="hero-dot" onclick="heroGo(1)"></div><div class="hero-dot" onclick="heroGo(2)"></div></div>
+  <button class="hero-arr hero-prev" onclick="heroMove(-1)">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+  </button>
+  <button class="hero-arr hero-next" onclick="heroMove(1)">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+  </button>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot on" onclick="heroGo(0)"></div>
+    <div class="hero-dot" onclick="heroGo(1)"></div>
+    <div class="hero-dot" onclick="heroGo(2)"></div>
+  </div>
 </section>
 
-<!-- MARQUEE -->
+
+<!-- VALUES MARQUEE -->
 <div class="tz-marquee"><div class="tz-marquee-track"><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> Made in India with &#9829;</span><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> Made in India with &#9829;</span></div></div>
 
-<!-- CATEGORIES -->
-<div class="cat-tiles-wrap"><div class="cat-tiles"><a href="/collections/earrings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Earrings"/></div><div class="cat-tile-label">Earrings</div></a><a href="/collections/necklace" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Necklaces"/></div><div class="cat-tile-label">Necklaces</div></a><a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bangles"/></div><div class="cat-tile-label">Bangles</div></a><a href="/collections/maang-tikka" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" alt="Maang Tikka"/></div><div class="cat-tile-label">Maang Tikka</div></a><a href="/collections/rings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Rings"/></div><div class="cat-tile-label">Rings</div></a><a href="/collections/zodiac-pendants" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac"/></div><div class="cat-tile-label">Zodiac</div></a><a href="/collections/festive-hampers" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Hampers"/></div><div class="cat-tile-label">Festive Hampers</div></a><a href="/collections/sale" class="cat-tile"><div class="cat-tile-img" style="border-color:var(--red)"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Sale"/></div><div class="cat-tile-label" style="color:var(--red)">Sale 🔥</div></a></div></div>
 
-<!-- OCCASION -->
-<section class="tz-occ"><div class="tz-occ-inner"><div class="tz-occ-head"><span class="tz-occ-eyebrow">Curated For You</span><h2 class="tz-occ-title">Shop by <em>Occasion</em></h2></div><div class="tz-occ-grid"><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Wedding" loading="lazy"/><div class="tz-occ-label">Wedding</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Festive" loading="lazy"/><div class="tz-occ-label">Festive</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Office" loading="lazy"/><div class="tz-occ-label">Office</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Everyday" loading="lazy"/><div class="tz-occ-label">Everyday</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Gifting" loading="lazy"/><div class="tz-occ-label">Gifting</div></a></div></div></section>
+<!-- CATEGORY TILES -->
+<div class="cat-tiles-wrap">
+  <div class="cat-tiles">
+    <a href="/collections/earrings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Earrings"/></div><div class="cat-tile-label">Earrings</div></a>
+    <a href="/collections/necklace" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Necklaces"/></div><div class="cat-tile-label">Necklaces</div></a>
+    <a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bangles"/></div><div class="cat-tile-label">Bangles</div></a>
+    <a href="/collections/maang-tikka" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" alt="Maang Tikka"/></div><div class="cat-tile-label">Maang Tikka</div></a>
+    <a href="/collections/rings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Rings"/></div><div class="cat-tile-label">Rings</div></a>
+    <a href="/collections/zodiac-pendants" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac"/></div><div class="cat-tile-label">Zodiac</div></a>
+    <a href="/collections/festive-hampers" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Hampers"/></div><div class="cat-tile-label">Festive Hampers</div></a>
+    <a href="/collections/sale" class="cat-tile"><div class="cat-tile-img" style="border-color:var(--red)"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Sale"/></div><div class="cat-tile-label" style="color:var(--red)">Sale 🔥</div></a>
+  </div>
+</div>
 
-<!-- ROWS -->
-<div class="sec"><div class="row-head"><h3 class="sec-head">NEW ARRIVALS</h3><a href="/collections/all" class="row-view-all">View All →</a></div><div class="prod-row" id="prodRowNew"></div></div>
-<div class="sec"><div class="row-head"><h3 class="sec-head">EARRINGS</h3><a href="/collections/earrings" class="row-view-all">View All →</a></div><div class="prod-row" id="prodRowEar"></div></div>
-<div class="sec"><div class="row-head"><h3 class="sec-head">NECKLACES</h3><a href="/collections/necklace" class="row-view-all">View All →</a></div><div class="prod-row" id="prodRowNeck"></div></div>
-<div class="sec"><div class="row-head"><h3 class="sec-head">BANGLES &amp; BRACELETS</h3><a href="/collections/bracelets" class="row-view-all">View All →</a></div><div class="prod-row" id="prodRowBng"></div></div>
-<div class="sec"><div class="row-head"><h3 class="sec-head">MAANG TIKKA</h3><a href="/collections/maang-tikka" class="row-view-all">View All →</a></div><div class="prod-row" id="prodRowMt"></div></div>
-<div class="sec"><div class="row-head"><h3 class="sec-head">BEST SELLERS</h3><a href="/collections/all" class="row-view-all">View All →</a></div><div class="prod-row" id="prodRowBest"></div></div>
 
-<!-- USP -->
-<div class="tz-usp"><div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);gap:20px;text-align:center;"><div class="perk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="font-size:13px;font-weight:600;color:var(--dark);">Skin-Safe</span></div><div class="perk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="font-size:13px;font-weight:600;color:var(--dark);">Anti-Tarnish</span></div><div class="perk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="font-size:13px;font-weight:600;color:var(--dark);">Cash on Delivery</span></div><div class="perk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="font-size:13px;font-weight:600;color:var(--dark);">Easy Returns</span></div><div class="perk"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span style="font-size:13px;font-weight:600;color:var(--dark);">Since 2003</span></div></div></div>
+<!-- SHOP BY OCCASION -->
+<section class="tz-occ"><div class="tz-occ-inner">
+  <div class="tz-occ-head"><span class="tz-occ-eyebrow">Curated For You</span><h2 class="tz-occ-title">Shop by <em>Occasion</em></h2></div>
+  <div class="tz-occ-grid"><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Wedding" loading="lazy"/><div class="tz-occ-label">Wedding</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Festive" loading="lazy"/><div class="tz-occ-label">Festive</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Office" loading="lazy"/><div class="tz-occ-label">Office</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Everyday" loading="lazy"/><div class="tz-occ-label">Everyday</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Gifting" loading="lazy"/><div class="tz-occ-label">Gifting</div></a></div>
+</div></section>
 
-<!-- ZODIAC -->
-<section class="tz-zodiac-pick"><div class="tz-zp-inner"><span class="tz-zp-eyebrow">Celestial Collection</span><h2 class="tz-zp-title">Shop by <em>Zodiac</em></h2><p class="tz-zp-sub">Find a pendant for your star sign &mdash; the perfect personalised gift.</p><div class="tz-zp-grid">{% assign zodiac_collection = collections['zodiac-pendants'] %}{% for product in zodiac_collection.products limit:12 %}<a href="{{ product.url }}" class="tz-zp-card">{% if product.featured_image %}<img src="{{ product.featured_image | img_url: '240x240' }}" alt="{{ product.title }}" class="tz-zp-img"/>{% endif %}<span class="tz-zp-pname">{{ product.title }}</span></a>{% endfor %}</div></div></section>
 
-<!-- BRAND BAND -->
-<div class="tz-band"><div class="brand-sec"><div style="max-width:900px;margin:0 auto;text-align:center;"><p style="font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.9;">Expressive Accessories</p><h2 style="font-family:var(--serif);font-size:clamp(32px,4vw,56px);font-weight:300;margin:12px 0 20px;color:#fff;">Tribal Zone</h2><p style="font-size:15px;line-height:1.8;opacity:.8;max-width:700px;margin:0 auto 28px;">Handcrafted jewellery celebrating India's rich cultural heritage. Skin-safe, affordable &amp; uniquely yours since 2003.</p><div style="width:80px;height:1px;background:rgba(255,255,255,.3);margin:0 auto;"></div></div></div></div>
+<!-- NEW ARRIVALS ROW -->
+<section class="sec sec-cream">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head">
+        <h2 class="sec-title">New Arrivals</h2>
+      </div>
+      
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('newRow',-1)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="prod-row" id="newRow">
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553" alt="Gold Kundan Studs"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_2.jpg?v=1780742552" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Earrings</div>
+            <div class="pcard-name">Gold Kundan Cluster Studs</div>
+            <div class="pcard-stars">★★★★★ <span>(128)</span></div>
+            <div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">46% OFF</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637" alt="Crystal Pendant"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/DSC00853.jpg?v=1781088637" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-new">New</span>
+            <div class="pcard-cat">Necklaces</div>
+            <div class="pcard-name">Crystal Drop Pendant Necklace</div>
+            <div class="pcard-stars">★★★★ <span>(84)</span></div>
+            <div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Zodiac Pendant"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/DSC04132.jpg?v=1781081928" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-new">New</span>
+            <div class="pcard-cat">Zodiac</div>
+            <div class="pcard-name">Aries Zodiac Silver Pendant</div>
+            <div class="pcard-stars">★★★★★ <span>(56)</span></div>
+            <div class="pcard-price"><span class="p-now">₹449</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">44% OFF</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Jhumka"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_2.jpg?v=1781003688" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-sale">Sale</span>
+            <div class="pcard-cat">Ethnic</div>
+            <div class="pcard-name">Antique Gold Jhumka Earrings</div>
+            <div class="pcard-stars">★★★★★ <span>(203)</span></div>
+            <div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">30% OFF</span></div></div>
+            <div class="pcard-offer">🎁 Buy 1 Get 2 Free</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bracelet"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_2_f83eb5ae-9dbd-4ce4-9d25-0aeb54756e89.jpg?v=1781003305" alt="hover"/>
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Bracelets</div>
+            <div class="pcard-name">Crystal Beaded Stretch Bracelet</div>
+            <div class="pcard-stars">★★★★★ <span>(91)</span></div>
+            <div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">40% OFF</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" alt="Chandbali"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_2.jpg?v=1780924019" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span>
+            <div class="pcard-cat">Ethnic</div>
+            <div class="pcard-name">Bridal Kundan Chandbali Set</div>
+            <div class="pcard-stars">★★★★★ <span>(67)</span></div>
+            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Maang Tikka"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_2.jpg?v=1780923676" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-new">New</span>
+            <div class="pcard-cat">Maang Tikka</div>
+            <div class="pcard-name">Pearl &amp; Kundan Maang Tikka</div>
+            <div class="pcard-stars">★★★★★ <span>(44)</span></div>
+            <div class="pcard-price"><span class="p-now">₹499</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">38% OFF</span></div></div>
+          </div>
+        </a>
+
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('newRow',1)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="row-footer">
+      <div class="row-pager"><button onclick="scrollRow('newRow',-1)">‹</button><span>1/5</span><button onclick="scrollRow('newRow',1)">›</button></div>
+      <a href="/collections/earrings" class="row-view-all">View all</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- EARRINGS ROW -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head"><h2 class="sec-title">Earrings</h2></div>
+      
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('earRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="prod-row" id="earRow">
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_2.jpg?v=1780923056" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Gold Kundan Cluster Studs</div><div class="pcard-stars">★★★★★ <span>(128)</span></div><div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">46% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_2.jpg?v=1780922334" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span><div class="pcard-cat"></div><div class="pcard-name">Antique Gold Jhumka Earrings</div><div class="pcard-stars">★★★★★ <span>(203)</span></div><div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">30% OFF</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/ER-33370_1.jpg?v=1780921856" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/ER-33370_2.jpg?v=1780921856" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Bridal Kundan Chandbali Set</div><div class="pcard-stars">★★★★★ <span>(67)</span></div><div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4361-005_1.jpg?v=1780921227" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4361-005_2.jpg?v=1780921227" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-sale">Sale</span><div class="pcard-cat"></div><div class="pcard-name">Oxidised Silver Hoop Earrings</div><div class="pcard-stars">★★★★ <span>(89)</span></div><div class="pcard-price"><span class="p-now">₹249</span><div class="p-meta"><span class="p-was">₹449</span><span class="p-off">45% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('earRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+    <div class="row-footer">
+      <div class="row-pager"><button onclick="scrollRow('earRow',-1)">‹</button><span>1/5</span><button onclick="scrollRow('earRow',1)">›</button></div>
+      <a href="/collections/earrings" class="row-view-all">View all</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- NECKLACES ROW -->
+<section class="sec sec-cream">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head"><h2 class="sec-title">Necklaces</h2></div>
+      
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('neckRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="prod-row" id="neckRow">
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-18_1.jpg?v=1780920839" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-18_2.jpg?v=1780920839" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Crystal Drop Pendant Necklace</div><div class="pcard-stars">★★★★ <span>(84)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-23_1.jpg?v=1780920296" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-23_2.jpg?v=1780920295" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-best">Bestseller</span><div class="pcard-cat"></div><div class="pcard-name">Layered Gold Chain Set</div><div class="pcard-stars">★★★★★ <span>(187)</span></div><div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">31% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4361-004_1.jpg?v=1780919828" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4361-004_2.jpg?v=1780919828" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-sale">Sale</span><div class="pcard-cat"></div><div class="pcard-name">Pearl Layered Necklace Set</div><div class="pcard-stars">★★★★ <span>(61)</span></div><div class="pcard-price"><span class="p-now">₹749</span><div class="p-meta"><span class="p-was">₹1,199</span><span class="p-off">38% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-22_1.jpg?v=1780919574" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-22_2.jpg?v=1780919574" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Kundan Temple Chain</div><div class="pcard-stars">★★★★★ <span>(95)</span></div><div class="pcard-price"><span class="p-now">₹799</span><div class="p-meta"><span class="p-was">₹1,399</span><span class="p-off">43% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('neckRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+    <div class="row-footer">
+      <div class="row-pager"><button onclick="scrollRow('neckRow',-1)">‹</button><span>1/5</span><button onclick="scrollRow('neckRow',1)">›</button></div>
+      <a href="/collections/necklace" class="row-view-all">View all</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- BANGLES ROW -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head"><h2 class="sec-title">Bangles &amp; Bracelets</h2></div>
+      
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('bangRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="prod-row" id="bangRow">
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-21_1.jpg?v=1780919388" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-21_2.jpg?v=1780919388" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-best">Bestseller</span><div class="pcard-cat"></div><div class="pcard-name">Gold Bangle Set of 4</div><div class="pcard-stars">★★★★ <span>(154)</span></div><div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">40% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-15_1.jpg?v=1780918927" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-15_2.jpg?v=1780918927" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span><div class="pcard-cat"></div><div class="pcard-name">Crystal Beaded Stretch Bracelet</div><div class="pcard-stars">★★★★★ <span>(91)</span></div><div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">40% OFF</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-27_1.jpg?v=1780918665" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-27_2.jpg?v=1780918666" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Kundan Kada Bracelet</div><div class="pcard-stars">★★★★ <span>(48)</span></div><div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">43% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-25_1_2c669620-33ea-4569-ab1d-60f10fc51ba4.jpg?v=1780913927" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-25_2_5222214d-5c4d-4401-a17a-876f342f5179.jpg?v=1780913927" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-sale">Sale</span><div class="pcard-cat"></div><div class="pcard-name">Temple Design Bangle Set</div><div class="pcard-stars">★★★★★ <span>(112)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('bangRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+    <div class="row-footer">
+      <div class="row-pager"><button onclick="scrollRow('bangRow',-1)">‹</button><span>1/5</span><button onclick="scrollRow('bangRow',1)">›</button></div>
+      <a href="/collections/bracelets" class="row-view-all">View all</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- MAANG TIKKA ROW -->
+<section class="sec sec-cream">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head"><h2 class="sec-title">Maang Tikka</h2></div>
+      
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('tikkaRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="prod-row" id="tikkaRow">
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-25_1.jpg?v=1780913340" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-25_2.jpg?v=1780913339" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Pearl &amp; Kundan Maang Tikka</div><div class="pcard-stars">★★★★★ <span>(44)</span></div><div class="pcard-price"><span class="p-now">₹499</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">38% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-32_1.jpg?v=1780912975" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-32_2.jpg?v=1780912975" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-best">Bestseller</span><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Silver Four-Leaf Clover Pendant</div><div class="pcard-stars">★★★★★ <span>(118)</span></div><div class="pcard-price"><span class="p-now">₹389</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">44% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-33_1.jpg?v=1780912672" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-33_2.jpg?v=1780912672" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-sale">Sale</span><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Silver Angel Wings Heart Pendant</div><div class="pcard-stars">★★★★★ <span>(87)</span></div><div class="pcard-price"><span class="p-now">₹389</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">44% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-30_1.jpg?v=1780912288" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-30_2.jpg?v=1780912288" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Bag</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat">Maang Tikka</div><div class="pcard-name">Silver Infinity Heart Pendant</div><div class="pcard-stars">★★★★★ <span>(33)</span></div><div class="pcard-price"><span class="p-now">₹389</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">44% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('tikkaRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+    <div class="row-footer">
+      <div class="row-pager"><button onclick="scrollRow('tikkaRow',-1)">‹</button><span>1/5</span><button onclick="scrollRow('tikkaRow',1)">›</button></div>
+      <a href="/collections/maang-tikka" class="row-view-all">View all</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- BEST SELLERS ROW -->
+<section class="sec">
+  <div class="sec-inner">
+    <div class="row-head">
+      <div class="sec-head">
+        <h2 class="sec-title">Best Sellers</h2>
+      </div>
+      
+    </div>
+    <div class="prod-row-wrap">
+      <button class="row-arr row-prev" onclick="scrollRow('bestRow',-1)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="prod-row" id="bestRow">
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-34_1.jpg?v=1780911968" alt="Pearl Studs"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-34_2.jpg?v=1780911968" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-best">Bestseller</span>
+            <div class="pcard-cat">Earrings</div>
+            <div class="pcard-name">Pearl Drop Stud Earrings</div>
+            <div class="pcard-stars">★★★★★ <span>(312)</span></div>
+            <div class="pcard-price"><span class="p-now">₹349</span><div class="p-meta"><span class="p-was">₹599</span><span class="p-off">42% OFF</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-36_1.jpg?v=1780910326" alt="Gold Chain"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-36_2.jpg?v=1780910326" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-best">Bestseller</span>
+            <div class="pcard-cat">Necklaces</div>
+            <div class="pcard-name">Layered Gold Chain Set</div>
+            <div class="pcard-stars">★★★★★ <span>(187)</span></div>
+            <div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">31% OFF</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-14_1.jpg?v=1780910081" alt="Chandbali"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-14_2_d308d7e9-758f-4708-aeac-feecc2a5613f.jpg?v=1780910081" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-best">Bestseller</span>
+            <div class="pcard-cat">Ethnic</div>
+            <div class="pcard-name">Chandbali Kundan Earrings</div>
+            <div class="pcard-stars">★★★★★ <span>(241)</span></div>
+            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-31_1.jpg?v=1780908705" alt="Bangle Set"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-31_2.jpg?v=1780908706" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-sale">Sale</span>
+            <div class="pcard-cat">Bangles</div>
+            <div class="pcard-name">Gold Bangle Set of 4</div>
+            <div class="pcard-stars">★★★★ <span>(154)</span></div>
+            <div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">40% OFF</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-29_1.jpg?v=1780908230" alt="Gift Box"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-29_2.jpg?v=1780908230" alt="hover"/>
+            
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <span class="pcard-badge b-best">Bestseller</span>
+            <div class="pcard-cat">Gift Set</div>
+            <div class="pcard-name">Jewellery Gift Box — 3 Piece</div>
+            <div class="pcard-stars">★★★★★ <span>(98)</span></div>
+            <div class="pcard-price"><span class="p-now">₹1,199</span><div class="p-meta"><span class="p-was">₹1,799</span><span class="p-off">33% OFF</span></div></div>
+            <div class="pcard-offer">🎁 Perfect for Gifting</div>
+          </div>
+        </a>
+
+        <a class="pcard" href="/collections/all">
+          <div class="pcard-img">
+            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/Gemini_Generated_Image_u2vq1mu2vq1mu2vq.png?v=1780907764" alt="Hoops"/>
+            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-35_4.jpg?v=1780907496" alt="hover"/>
+            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+            <div class="pcard-atb">Add to Bag</div>
+          </div>
+          <div class="pcard-info">
+            <div class="pcard-cat">Earrings</div>
+            <div class="pcard-name">Oxidised Silver Tribal Hoops</div>
+            <div class="pcard-stars">★★★★★ <span>(175)</span></div>
+            <div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">-43%</span></div></div>
+            <div class="pcard-free">✓ Free delivery</div>
+          </div>
+        </a>
+
+      </div>
+      <button class="row-arr row-next" onclick="scrollRow('bestRow',1)">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="row-footer">
+      <div class="row-pager"><button onclick="scrollRow('bestRow',-1)">‹</button><span>1/5</span><button onclick="scrollRow('bestRow',1)">›</button></div>
+      <a href="/collections/earrings" class="row-view-all">View all</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- TRUST / USP STRIP -->
+<section class="tz-usp"><div class="tz-usp-grid"><div class="tz-usp-item"><div class="tz-usp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="tz-usp-lbl">Skin-safe</div></div><div class="tz-usp-item"><div class="tz-usp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/><path d="M19 14l.9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14z"/></svg></div><div class="tz-usp-lbl">Anti-tarnish</div></div><div class="tz-usp-item"><div class="tz-usp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 9v6M18 9v6"/></svg></div><div class="tz-usp-lbl">Cash on Delivery</div></div><div class="tz-usp-item"><div class="tz-usp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/></svg></div><div class="tz-usp-lbl">Easy Returns</div></div><div class="tz-usp-item"><div class="tz-usp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="9" r="6"/><path d="m9 14-2 7 5-3 5 3-2-7"/></svg></div><div class="tz-usp-lbl">Handcrafted since 2003</div></div></div></section>
+
+
+<!-- SHOP BY ZODIAC PICKER -->
+<section class="tz-zodiac-pick">
+  <div class="tz-zp-inner">
+    <span class="tz-zp-eyebrow">Celestial Collection</span>
+    <h2 class="tz-zp-title">Shop by <em>Zodiac</em></h2>
+    <p class="tz-zp-sub">Find a pendant for your star sign &mdash; the perfect personalised gift.</p>
+    <div class="tz-zp-grid">
+      {% assign zodiac_collection = collections['zodiac-pendants'] %}
+      {% for product in zodiac_collection.products limit:12 %}
+        <a href="{{ product.url }}" class="tz-zp-card">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | img_url: '240x240' }}" alt="{{ product.title }}" class="tz-zp-img"/>
+          {% endif %}
+          <span class="tz-zp-pname">{{ product.title }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- BRAND STATEMENT BAND -->
+<section class="tz-band">
+  <div class="tz-band-eyebrow">Tribal Zone</div>
+  <h2 class="tz-band-title">Expressive Accessories</h2>
+  <p class="tz-band-sub">Handcrafted in India since 2003 &mdash; jewellery that celebrates your story, your style, your self.</p>
+  <div class="tz-band-rule"></div>
+</section>
+
 
 <!-- TESTIMONIALS -->
-<div class="testi-sec"><div style="max-width:1200px;margin:0 auto;"><div style="text-align:center;margin-bottom:40px;"><p style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Loved by Customers</p><h2 style="font-family:var(--serif);font-size:clamp(28px,4vw,44px);font-weight:300;color:var(--dark);">What People Say</h2></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;"><div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The quality is amazing and delivery was super fast. Highly recommend!"</p><p style="font-size:12px;font-weight:600;color:var(--dark);">— Priya S.</p></div><div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Perfect gift for my sister. She loves it and wears it everyday!"</p><p style="font-size:12px;font-weight:600;color:var(--dark);">— Aisha K.</p></div><div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Handcrafted excellence. The attention to detail is incredible!"</p><p style="font-size:12px;font-weight:600;color:var(--dark);">— Neha M.</p></div></div></div></div>
+<section class="testi-sec">
+  <div class="sec-head">
+    <div class="sec-tag">Customer Love</div>
+    <h2 class="sec-title">What Our <em>Customers</em> Say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Absolutely stunning earrings! The quality is far better than I expected at this price. Got so many compliments at my cousin's wedding."</p>
+      <div class="testi-author">
+        <div class="testi-av">P</div>
+        <div>
+          <div class="testi-name">Priya Sharma</div>
+          <div class="testi-loc">Mumbai, Maharashtra</div>
+          <div class="testi-vrf">✓ Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The chandbali set is exactly what I was looking for. Delivered in 2 days and beautifully packaged. Will definitely order again!"</p>
+      <div class="testi-author">
+        <div class="testi-av">A</div>
+        <div>
+          <div class="testi-name">Ananya Reddy</div>
+          <div class="testi-loc">Hyderabad, Telangana</div>
+          <div class="testi-vrf">✓ Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Ordered the zodiac pendant for my sister's birthday. She absolutely loved it. The packaging was gift-ready — no extra wrapping needed!"</p>
+      <div class="testi-author">
+        <div class="testi-av">S</div>
+        <div>
+          <div class="testi-name">Sneha Kulkarni</div>
+          <div class="testi-loc">Pune, Maharashtra</div>
+          <div class="testi-vrf">✓ Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- INSTAGRAM -->
-<div class="tz-ig"><div style="text-align:center;margin-bottom:30px;"><p style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);">Follow Us</p><h2 style="font-family:var(--serif);font-size:clamp(28px,4vw,44px);font-weight:300;color:var(--dark);margin-bottom:10px;">@tribalzone.in</h2></div><div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;max-width:1100px;margin:0 auto;"><a href="https://instagram.com/tribalzone.in" target="_blank" rel="noopener" style="aspect-ratio:1;background:var(--border);border-radius:8px;overflow:hidden;"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Instagram" style="width:100%;height:100%;object-fit:cover;"/></a><a href="https://instagram.com/tribalzone.in" target="_blank" rel="noopener" style="aspect-ratio:1;background:var(--border);border-radius:8px;overflow:hidden;"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Instagram" style="width:100%;height:100%;object-fit:cover;"/></a><a href="https://instagram.com/tribalzone.in" target="_blank" rel="noopener" style="aspect-ratio:1;background:var(--border);border-radius:8px;overflow:hidden;"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Instagram" style="width:100%;height:100%;object-fit:cover;"/></a><a href="https://instagram.com/tribalzone.in" target="_blank" rel="noopener" style="aspect-ratio:1;background:var(--border);border-radius:8px;overflow:hidden;"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" alt="Instagram" style="width:100%;height:100%;object-fit:cover;"/></a><a href="https://instagram.com/tribalzone.in" target="_blank" rel="noopener" style="aspect-ratio:1;background:var(--border);border-radius:8px;overflow:hidden;"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Instagram" style="width:100%;height:100%;object-fit:cover;"/></a><a href="https://instagram.com/tribalzone.in" target="_blank" rel="noopener" style="aspect-ratio:1;background:var(--border);border-radius:8px;overflow:hidden;"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Instagram" style="width:100%;height:100%;object-fit:cover;"/></a></div></div>
+
+<!-- INSTAGRAM GALLERY -->
+<section class="tz-ig">
+  <span class="tz-ig-eyebrow">Community</span>
+  <h2 class="tz-ig-title">As Seen on You</h2>
+  <a class="tz-ig-handle" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener">@tribalzone.in</a>
+  <div class="tz-ig-grid"><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Tribal Zone on Instagram" loading="lazy"/></a></div>
+</section>
+
 
 <!-- NEWSLETTER -->
-<div class="nl-sec"><div style="max-width:600px;margin:0 auto;text-align:center;"><h2 class="nl-sec h2" style="font-family:var(--serif);color:#fff;font-weight:300;">Join Our Newsletter</h2><p class="nl-sec p" style="color:rgba(255,255,255,.7);">Get 10% off your first order + exclusive updates on new collections.</p><form method="post" action="/contact#contact-form" style="display:flex;gap:0;margin-top:20px;"><input type="email" name="contact[email]" placeholder="Enter your email" required style="flex:1;padding:15px;background:rgba(255,255,255,.9);border:none;font-size:14px;border-radius:0;"/><button type="submit" class="nl-btn">Subscribe</button></form></div></div>
+<section class="nl-sec">
+  <div class="sec-tag" style="color:var(--gold-lt)">Stay in the Loop</div>
+  <h2>Get <em>Early Access</em> to New Drops</h2>
+  <p>New arrivals, exclusive offers &amp; styling tips — straight to your inbox.</p>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="Enter your email address"/>
+    <button class="nl-btn">Subscribe</button>
+  </div>
+</section>
+
 
 {% schema %}
 {"name":"TribalZone Homepage","class":"index-section","settings":[],"presets":[{"name":"TribalZone Homepage"}]}
