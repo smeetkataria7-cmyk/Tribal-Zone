@@ -276,7 +276,7 @@
     .perk-text span { font-size: 11px; color: var(--muted); }
 
     /* ── SECTIONS ── */
-    .sec { padding: 8px 32px; }
+    .sec { padding: 8px 32px; margin-top: -2px; }
     .sec-cream { background: var(--cream); }
     .sec-inner { max-width: 1400px; margin: 0 auto; }
     .sec-head { text-align: left; margin-bottom: 4px; }
@@ -416,7 +416,7 @@
     .z-dates { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
 
     /* ── BRAND STORY ── */
-    .brand-sec { background: #111; color: rgba(255,255,255,.72); padding: 8px 32px; }
+    .brand-sec { background: #111; color: rgba(255,255,255,.72); padding: 8px 32px; margin-top: -2px; }
     .brand-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .brand-text h2 { font-family: var(--serif); font-size: clamp(34px, 4vw, 58px); font-weight: 300; color: #fff; margin-bottom: 22px; line-height: 1.1; }
     .brand-text h2 em { color: var(--gold-lt); font-style: italic; }
@@ -428,7 +428,7 @@
     .brand-img img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ── TESTIMONIALS ── */
-    .testi-sec { padding: 8px 32px; }
+    .testi-sec { padding: 8px 32px; margin-top: -2px; }
     .testi-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .testi-card { background: #fff; border-radius: var(--radius); padding: 28px; border: 1px solid var(--border); transition: box-shadow .22s; }
     .testi-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.08); }
@@ -441,7 +441,7 @@
     .testi-vrf { font-size: 11px; color: var(--green); margin-top: 2px; }
 
     /* ── NEWSLETTER ── */
-    .nl-sec { background: linear-gradient(135deg, var(--dark), #2a1030); padding: 8px 32px; text-align: center; color: #fff; }
+    .nl-sec { background: linear-gradient(135deg, var(--dark), #2a1030); padding: 8px 32px; text-align: center; color: #fff; margin-top: -2px; }
     .nl-sec h2 { font-family: var(--serif); font-size: clamp(30px, 4vw, 52px); font-weight: 300; margin-bottom: 10px; }
     .nl-sec h2 em { color: var(--gold-lt); font-style: italic; }
     .nl-sec p { font-size: 14px; opacity: .6; margin-bottom: 30px; }
@@ -593,7 +593,7 @@
 
 
 /* ── SHOP BY ZODIAC PICKER ── */
-.tz-zodiac-pick { background:#fff; padding:8px 24px; }
+.tz-zodiac-pick { background:#fff; padding:8px 24px; margin-top: -2px; }
 .tz-zp-inner { max-width:1100px; margin:0 auto; text-align:center; }
 .tz-zp-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
 .tz-zp-title { font-family:var(--serif); font-size:clamp(28px,4vw,44px); font-weight:300; color:var(--dark); margin-top:6px; }
@@ -609,7 +609,7 @@
 
 
 /* ── SHOP BY OCCASION ── */
-.tz-occ { background:#fff; padding:8px 24px; }
+.tz-occ { background:#fff; padding:8px 24px; margin-top: -2px; }
 .tz-occ-inner { max-width:1400px; margin:0 auto; }
 .tz-occ-head { text-align:center; margin-bottom:30px; }
 .tz-occ-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
@@ -626,7 +626,7 @@
 
 
 /* ── TRUST / USP STRIP ── */
-.tz-usp { background:var(--cream); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:8px 24px; }
+.tz-usp { background:var(--cream); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:8px 24px; margin-top: -2px; }
 .tz-usp-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
 .tz-usp-item { display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; }
 .tz-usp-ic { width:42px; height:42px; border-radius:50%; background:var(--gold-bg); display:flex; align-items:center; justify-content:center; color:var(--gold); }
@@ -636,7 +636,7 @@
 
 
 /* ── BRAND STATEMENT BAND ── */
-.tz-band { background:linear-gradient(120deg,#c01065 0%,#f2157b 55%,#f5488e 100%); color:#fff; text-align:center; padding:8px 24px; position:relative; overflow:hidden; }
+.tz-band { background:linear-gradient(120deg,#c01065 0%,#f2157b 55%,#f5488e 100%); color:#fff; text-align:center; padding:8px 24px; position:relative; overflow:hidden; margin-top: -2px; }
 .tz-band-eyebrow { font-size:11px; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:#fff; opacity:1; }
 .tz-band-title { font-family:var(--serif); font-size:clamp(34px,6vw,68px); font-weight:300; line-height:1.05; margin:14px 0 10px; color:#fff; }
 .tz-band-sub { font-size:15px; letter-spacing:.04em; color:#fff; opacity:1; max-width:560px; margin:0 auto; line-height:1.7; }
@@ -644,7 +644,7 @@
 
 
 /* ── INSTAGRAM GALLERY ── */
-.tz-ig { background:#fff; padding:8px 24px; text-align:center; }
+.tz-ig { background:#fff; padding:8px 24px; text-align:center; margin-top: -2px; }
 .tz-ig-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
 .tz-ig-title { font-family:var(--serif); font-size:clamp(26px,4vw,42px); font-weight:300; color:var(--dark); margin:6px 0 4px; }
 .tz-ig-handle { font-size:14px; color:var(--gold); font-weight:600; text-decoration:none; }
