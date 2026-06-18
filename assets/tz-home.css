@@ -276,7 +276,7 @@
     .perk-text span { font-size: 11px; color: var(--muted); }
 
     /* ── SECTIONS ── */
-    .sec { padding: 64px 32px; }
+    .sec { padding: 32px 32px; }
     .sec-cream { background: var(--cream); }
     .sec-inner { max-width: 1400px; margin: 0 auto; }
     .sec-head { text-align: left; margin-bottom: 40px; }
