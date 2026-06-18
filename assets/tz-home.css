@@ -55,10 +55,10 @@
     }
     .hdr-row {
       max-width: 1400px; margin: 0 auto; padding: 0 32px;
-      height: 80px; display: flex; align-items: center; gap: 0;
+      height: 120px; display: flex; align-items: center; gap: 0;
     }
     .hdr-logo { flex-shrink: 0; display: flex; align-items: center; margin-right: 32px; }
-    .hdr-logo img { height: 60px; width: auto; display: block; }
+    .hdr-logo img { height: 80px; width: auto; display: block; }
     .hdr-search { display: none; }
     .hdr-right { display: flex; align-items: center; gap: 2px; flex-shrink: 0; margin-left: auto; }
     .hdr-icon {
@@ -88,9 +88,9 @@
     .nav-inner { display: flex; align-items: center; height: 100%; }
     .nav-item { position: relative; }
     .nav-lnk {
-      display: block; padding: 0 16px; font-size: 15px; font-weight: 600;
+      display: block; padding: 0 16px; font-size: 16px; font-weight: 600;
       color: var(--mid); transition: color .2s;
-      white-space: nowrap; line-height: 80px;
+      white-space: nowrap; line-height: 120px;
     }
     .nav-lnk:hover { color: var(--dark); }
     .nav-lnk.active { color: var(--dark); border-bottom: 2px solid var(--gold); }
@@ -217,7 +217,7 @@
     .cart-empty a:hover { background: var(--gold); }
 
     /* ── HERO ── */
-    .hero { position: relative; overflow: hidden; margin-top: -16px; }
+    .hero { position: relative; overflow: hidden; margin-top: 0; }
     .hero-track { display: flex; transition: transform .7s cubic-bezier(.77,0,.175,1); }
     .hero-slide { min-width: 100%; height: 600px; position: relative; display: flex; align-items: center; justify-content: flex-start; }
     .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
