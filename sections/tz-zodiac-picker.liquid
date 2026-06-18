@@ -4,7 +4,17 @@
     <span class="tz-zp-eyebrow">Celestial Collection</span>
     <h2 class="tz-zp-title">Shop by <em>Zodiac</em></h2>
     <p class="tz-zp-sub">Find a pendant for your star sign &mdash; the perfect personalised gift.</p>
-    <div class="tz-zp-grid"><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♈</span><span class="tz-zp-name">Aries</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♉</span><span class="tz-zp-name">Taurus</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♊</span><span class="tz-zp-name">Gemini</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♋</span><span class="tz-zp-name">Cancer</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♌</span><span class="tz-zp-name">Leo</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♍</span><span class="tz-zp-name">Virgo</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♎</span><span class="tz-zp-name">Libra</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♏</span><span class="tz-zp-name">Scorpio</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♐</span><span class="tz-zp-name">Sagittarius</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♑</span><span class="tz-zp-name">Capricorn</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♒</span><span class="tz-zp-name">Aquarius</span></a><a class="tz-zp" href="/collections/zodiac-pendants"><span class="tz-zp-sym">♓</span><span class="tz-zp-name">Pisces</span></a></div>
+    <div class="tz-zp-grid">
+      {% assign zodiac_collection = collections['zodiac-pendants'] %}
+      {% for product in zodiac_collection.products limit:12 %}
+        <a href="{{ product.url }}" class="tz-zp-card">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | img_url: '240x240' }}" alt="{{ product.title }}" class="tz-zp-img"/>
+          {% endif %}
+          <span class="tz-zp-pname">{{ product.title }}</span>
+        </a>
+      {% endfor %}
+    </div>
   </div>
 </section>
 

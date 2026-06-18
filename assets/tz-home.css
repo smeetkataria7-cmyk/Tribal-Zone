@@ -17,7 +17,7 @@
       --radius:  12px;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); color: var(--dark); background: #fff; font-size: 14px; line-height: 1.6; }
+    body { font-family: var(--sans); color: var(--dark); background: #ffffff; font-size: 14px; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     img { display: block; max-width: 100%; }
     button { font-family: var(--sans); cursor: pointer; }
@@ -416,7 +416,7 @@
     .z-dates { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
 
     /* ── BRAND STORY ── */
-    .brand-sec { background: #111; color: rgba(255,255,255,.72); padding: 84px 32px; }
+    .brand-sec { background: #111; color: rgba(255,255,255,.72); padding: 8px 32px; }
     .brand-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .brand-text h2 { font-family: var(--serif); font-size: clamp(34px, 4vw, 58px); font-weight: 300; color: #fff; margin-bottom: 22px; line-height: 1.1; }
     .brand-text h2 em { color: var(--gold-lt); font-style: italic; }
@@ -428,7 +428,7 @@
     .brand-img img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ── TESTIMONIALS ── */
-    .testi-sec { padding: 64px 32px; }
+    .testi-sec { padding: 8px 32px; }
     .testi-grid { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .testi-card { background: #fff; border-radius: var(--radius); padding: 28px; border: 1px solid var(--border); transition: box-shadow .22s; }
     .testi-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.08); }
@@ -441,7 +441,7 @@
     .testi-vrf { font-size: 11px; color: var(--green); margin-top: 2px; }
 
     /* ── NEWSLETTER ── */
-    .nl-sec { background: linear-gradient(135deg, var(--dark), #2a1030); padding: 80px 32px; text-align: center; color: #fff; }
+    .nl-sec { background: linear-gradient(135deg, var(--dark), #2a1030); padding: 8px 32px; text-align: center; color: #fff; }
     .nl-sec h2 { font-family: var(--serif); font-size: clamp(30px, 4vw, 52px); font-weight: 300; margin-bottom: 10px; }
     .nl-sec h2 em { color: var(--gold-lt); font-style: italic; }
     .nl-sec p { font-size: 14px; opacity: .6; margin-bottom: 30px; }
@@ -593,23 +593,23 @@
 
 
 /* ── SHOP BY ZODIAC PICKER ── */
-.tz-zodiac-pick { background:#fff; padding:60px 24px 12px; }
+.tz-zodiac-pick { background:#fff; padding:8px 24px; }
 .tz-zp-inner { max-width:1100px; margin:0 auto; text-align:center; }
 .tz-zp-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
 .tz-zp-title { font-family:var(--serif); font-size:clamp(28px,4vw,44px); font-weight:300; color:var(--dark); margin-top:6px; }
 .tz-zp-title em { color:var(--gold-lt); font-style:italic; }
 .tz-zp-sub { font-size:13.5px; color:var(--mid); margin-top:8px; }
-.tz-zp-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-top:30px; }
-.tz-zp { display:flex; flex-direction:column; align-items:center; gap:8px; padding:18px 8px; border:1.5px solid var(--border); border-radius:14px; text-decoration:none; color:var(--dark); transition:all .2s; }
-.tz-zp:hover { border-color:var(--gold); background:var(--gold-bg); transform:translateY(-3px); box-shadow:0 8px 22px rgba(242,21,123,.14); }
-.tz-zp-sym { font-size:26px; color:var(--gold); line-height:1; }
-.tz-zp-name { font-size:11.5px; font-weight:600; letter-spacing:.03em; }
-@media (max-width:760px){ .tz-zp-grid{ grid-template-columns:repeat(4,1fr);} }
-@media (max-width:430px){ .tz-zp-grid{ grid-template-columns:repeat(3,1fr);} }
+.tz-zp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:20px; }
+.tz-zp-card { display:flex; flex-direction:column; align-items:center; gap:10px; text-decoration:none; color:var(--dark); transition:all .2s; }
+.tz-zp-img { width:100%; aspect-ratio:1; object-fit:cover; border-radius:8px; border:1px solid var(--border); transition:all .2s; }
+.tz-zp-card:hover .tz-zp-img { border-color:var(--gold); box-shadow:0 6px 18px rgba(242,21,123,.16); transform:translateY(-2px); }
+.tz-zp-pname { font-size:13px; font-weight:500; text-align:center; line-height:1.3; }
+@media (max-width:900px){ .tz-zp-grid{ grid-template-columns:repeat(3,1fr);} }
+@media (max-width:600px){ .tz-zp-grid{ grid-template-columns:repeat(2,1fr); gap:12px;} }
 
 
 /* ── SHOP BY OCCASION ── */
-.tz-occ { background:#fff; padding:60px 24px; }
+.tz-occ { background:#fff; padding:8px 24px; }
 .tz-occ-inner { max-width:1400px; margin:0 auto; }
 .tz-occ-head { text-align:center; margin-bottom:30px; }
 .tz-occ-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
@@ -626,7 +626,7 @@
 
 
 /* ── TRUST / USP STRIP ── */
-.tz-usp { background:var(--cream); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:34px 24px; }
+.tz-usp { background:var(--cream); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:8px 24px; }
 .tz-usp-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(5,1fr); gap:18px; }
 .tz-usp-item { display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; }
 .tz-usp-ic { width:42px; height:42px; border-radius:50%; background:var(--gold-bg); display:flex; align-items:center; justify-content:center; color:var(--gold); }
@@ -636,7 +636,7 @@
 
 
 /* ── BRAND STATEMENT BAND ── */
-.tz-band { background:linear-gradient(120deg,#c01065 0%,#f2157b 55%,#f5488e 100%); color:#fff; text-align:center; padding:72px 24px; position:relative; overflow:hidden; }
+.tz-band { background:linear-gradient(120deg,#c01065 0%,#f2157b 55%,#f5488e 100%); color:#fff; text-align:center; padding:8px 24px; position:relative; overflow:hidden; }
 .tz-band-eyebrow { font-size:11px; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:#fff; opacity:1; }
 .tz-band-title { font-family:var(--serif); font-size:clamp(34px,6vw,68px); font-weight:300; line-height:1.05; margin:14px 0 10px; color:#fff; }
 .tz-band-sub { font-size:15px; letter-spacing:.04em; color:#fff; opacity:1; max-width:560px; margin:0 auto; line-height:1.7; }
@@ -644,7 +644,7 @@
 
 
 /* ── INSTAGRAM GALLERY ── */
-.tz-ig { background:#fff; padding:64px 24px; text-align:center; }
+.tz-ig { background:#fff; padding:8px 24px; text-align:center; }
 .tz-ig-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
 .tz-ig-title { font-family:var(--serif); font-size:clamp(26px,4vw,42px); font-weight:300; color:var(--dark); margin:6px 0 4px; }
 .tz-ig-handle { font-size:14px; color:var(--gold); font-weight:600; text-decoration:none; }
