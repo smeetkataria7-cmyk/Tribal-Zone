@@ -277,6 +277,7 @@
 
     /* ── SECTIONS ── */
     .sec { padding: 16px 32px; }
+    .sec:first-of-type { margin-top: 12px; }
     .sec-cream { background: var(--cream); }
     .sec-inner { max-width: 1400px; margin: 0 auto; }
     .sec-head { text-align: left; margin-bottom: 4px; }
