@@ -619,14 +619,14 @@
 .tz-occ-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); }
 .tz-occ-title { font-family:var(--serif); font-size:clamp(28px,4vw,44px); font-weight:300; color:var(--dark); margin-top:6px; }
 .tz-occ-title em { color:var(--gold-lt); font-style:italic; }
-.tz-occ-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
-.tz-occ-card { position:relative; aspect-ratio:3/4; border-radius:14px; overflow:hidden; display:flex; align-items:flex-end; text-decoration:none; }
+.tz-occ-grid { display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; padding-bottom:8px; scrollbar-width:none; }
+.tz-occ-grid::-webkit-scrollbar { display:none; }
+.tz-occ-card { flex:0 0 240px; scroll-snap-align:start; position:relative; aspect-ratio:3/4; border-radius:14px; overflow:hidden; display:flex; align-items:flex-end; text-decoration:none; }
 .tz-occ-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .45s; }
 .tz-occ-card:hover img { transform:scale(1.07); }
 .tz-occ-card::after { content:''; position:absolute; inset:0; background:linear-gradient(0deg,rgba(18,1,1,.74),rgba(18,1,1,.06) 60%,transparent); }
 .tz-occ-label { position:relative; z-index:2; color:#fff; width:100%; text-align:center; padding:18px 8px; font-family:var(--serif); font-size:20px; font-weight:500; }
-@media(max-width:900px){ .tz-occ-grid{ grid-template-columns:repeat(3,1fr);} }
-@media(max-width:560px){ .tz-occ-grid{ grid-template-columns:repeat(2,1fr);} }
+@media(max-width:560px){ .tz-occ-card{ flex:0 0 180px; } }
 
 
 /* ── TRUST / USP STRIP ── */
