@@ -39,8 +39,9 @@
 </section>
 
 
-<!-- VALUES MARQUEE -->
-<div class="tz-marquee"><div class="tz-marquee-track"><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> 2000+ styles to choose from</span><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> 2000+ styles to choose from</span></div></div>
+<!-- VALUES MARQUEE (editable text) -->
+{%- capture mq -%}{% if section.settings.marquee_1 != blank %}<span class="tz-mq-item"><span class="star">&#10022;</span> {{ section.settings.marquee_1 }}</span>{% endif %}{% if section.settings.marquee_2 != blank %}<span class="tz-mq-item"><span class="star">&#10022;</span> {{ section.settings.marquee_2 }}</span>{% endif %}{% if section.settings.marquee_3 != blank %}<span class="tz-mq-item"><span class="star">&#10022;</span> {{ section.settings.marquee_3 }}</span>{% endif %}{% if section.settings.marquee_4 != blank %}<span class="tz-mq-item"><span class="star">&#10022;</span> {{ section.settings.marquee_4 }}</span>{% endif %}{% if section.settings.marquee_5 != blank %}<span class="tz-mq-item"><span class="star">&#10022;</span> {{ section.settings.marquee_5 }}</span>{% endif %}{% if section.settings.marquee_6 != blank %}<span class="tz-mq-item"><span class="star">&#10022;</span> {{ section.settings.marquee_6 }}</span>{% endif %}{%- endcapture -%}
+<div class="tz-marquee"><div class="tz-marquee-track">{{ mq }}{{ mq }}</div></div>
 
 
 <!-- CATEGORY TILES (editable via blocks) -->
@@ -538,7 +539,15 @@
   "name": "TribalZone Homepage",
   "class": "index-section",
   "max_blocks": 50,
-  "settings": [],
+  "settings": [
+    { "type": "header", "content": "Pink scrolling strip (marquee)" },
+    { "type": "text", "id": "marquee_1", "label": "Marquee text 1", "default": "Handcrafted since 2003" },
+    { "type": "text", "id": "marquee_2", "label": "Marquee text 2", "default": "Skin-safe & Anti-tarnish" },
+    { "type": "text", "id": "marquee_3", "label": "Marquee text 3", "default": "Free shipping over ₹999" },
+    { "type": "text", "id": "marquee_4", "label": "Marquee text 4", "default": "Cash on Delivery available" },
+    { "type": "text", "id": "marquee_5", "label": "Marquee text 5", "default": "2000+ styles to choose from" },
+    { "type": "text", "id": "marquee_6", "label": "Marquee text 6 (optional)", "default": "" }
+  ],
   "blocks": [
     {
       "type": "slide",

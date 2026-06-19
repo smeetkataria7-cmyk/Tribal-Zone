@@ -164,9 +164,9 @@
 <!-- ANNOUNCE BAR -->
 <div class="announce">
   <div class="announce-track">
-    <div class="announce-msg">Free shipping on <b>&#8377;999+</b></div>
-    <div class="announce-msg">Code <b>TRIBAL10</b> for 10% off</div>
-    <div class="announce-msg">Handcrafted in India since <b>2003</b></div>
+    {% if section.settings.announce_1 != blank %}<div class="announce-msg">{{ section.settings.announce_1 }}</div>{% endif %}
+    {% if section.settings.announce_2 != blank %}<div class="announce-msg">{{ section.settings.announce_2 }}</div>{% endif %}
+    {% if section.settings.announce_3 != blank %}<div class="announce-msg">{{ section.settings.announce_3 }}</div>{% endif %}
   </div>
 </div>
 
@@ -236,7 +236,11 @@
   "name": "Header",
   "settings": [
     { "type": "image_picker", "id": "logo", "label": "Logo (optional, overrides default)" },
-    { "type": "link_list", "id": "main_linklist", "label": "Menu (not used by fixed nav)" }
+    { "type": "link_list", "id": "main_linklist", "label": "Menu (not used by fixed nav)" },
+    { "type": "header", "content": "Announcement bar (rotating messages)" },
+    { "type": "text", "id": "announce_1", "label": "Message 1", "default": "Free shipping on ₹999+" },
+    { "type": "text", "id": "announce_2", "label": "Message 2", "default": "Code TRIBAL10 for 10% off" },
+    { "type": "text", "id": "announce_3", "label": "Message 3", "default": "Handcrafted in India since 2003" }
   ]
 }
 {% endschema %}
