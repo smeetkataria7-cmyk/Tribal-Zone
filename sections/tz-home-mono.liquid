@@ -1,60 +1,40 @@
 <!-- MONOLITHIC HOMEPAGE - All sections combined, populated product rows -->
 
-<!-- HERO CAROUSEL -->
+<!-- HERO CAROUSEL (editable slides via blocks) -->
+{%- assign slide_count = 0 -%}
+{%- for b in section.blocks -%}{%- if b.type == 'slide' -%}{%- assign slide_count = slide_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
 <section class="hero">
   <div class="hero-track" id="heroTrack">
-
-    <div class="hero-slide">
-      <div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553')"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div class="hero-eyebrow">New Arrivals — 2024</div>
-        <h1 class="hero-h1">Elevate Your<br/><em>Everyday</em><br/>with Jewellery</h1>
-        <p class="hero-desc">Handcrafted fashion accessories blending Indian tradition with modern elegance — since 2003.</p>
-        <div class="hero-btns">
-          <a href="/collections/earrings" class="btn-fill">Shop New Arrivals →</a>
-          <a href="/collections/earrings" class="btn-outline-w">Explore All</a>
+    {%- if slide_count > 0 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'slide' -%}
+      <div class="hero-slide" {{ block.shopify_attributes }}>
+        <div class="hero-bg" style="background-image:url('{% if block.settings.image %}{{ block.settings.image | image_url: width: 2000 }}{% else %}{{ block.settings.image_url }}{% endif %}')"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          {%- if block.settings.eyebrow != blank -%}<div class="hero-eyebrow">{{ block.settings.eyebrow }}</div>{%- endif -%}
+          <h1 class="hero-h1">{{ block.settings.heading_1 }}{% if block.settings.heading_em != blank %}<br/><em>{{ block.settings.heading_em }}</em>{% endif %}{% if block.settings.heading_2 != blank %}<br/>{{ block.settings.heading_2 }}{% endif %}</h1>
+          {%- if block.settings.desc != blank -%}<p class="hero-desc">{{ block.settings.desc }}</p>{%- endif -%}
+          <div class="hero-btns">
+            {%- if block.settings.btn1_label != blank -%}<a href="{{ block.settings.btn1_link }}" class="btn-fill">{{ block.settings.btn1_label }}</a>{%- endif -%}
+            {%- if block.settings.btn2_label != blank -%}<a href="{{ block.settings.btn2_link }}" class="btn-outline-w">{{ block.settings.btn2_label }}</a>{%- endif -%}
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="hero-slide">
-      <div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637')"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div class="hero-eyebrow">Limited Time Offer</div>
-        <h1 class="hero-h1">Up to<br/><em>50% Off</em><br/>Sale is Live</h1>
-        <p class="hero-desc">Shop our biggest sale of the season. Stunning earrings, necklaces &amp; more at unbeatable prices.</p>
-        <div class="hero-btns">
-          <a href="/collections/sale" class="btn-fill">Shop the Sale →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-slide">
-      <div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928')"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div class="hero-eyebrow">Celestial Collection</div>
-        <h1 class="hero-h1">Wear Your<br/><em>Zodiac</em><br/>Story</h1>
-        <p class="hero-desc">Meaningful pendants for all 12 star signs. The perfect personalised gift for someone special.</p>
-        <div class="hero-btns">
-          <a href="/collections/zodiac-pendants" class="btn-fill">Shop Zodiac →</a>
-        </div>
-      </div>
-    </div>
-
+      {%- endif -%}{%- endfor -%}
+    {%- else -%}
+      <div class="hero-slide"><div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553')"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-eyebrow">New Arrivals — 2024</div><h1 class="hero-h1">Elevate Your<br/><em>Everyday</em><br/>with Jewellery</h1><p class="hero-desc">Handcrafted fashion accessories blending Indian tradition with modern elegance — since 2003.</p><div class="hero-btns"><a href="/collections/earrings" class="btn-fill">Shop New Arrivals →</a><a href="/collections/earrings" class="btn-outline-w">Explore All</a></div></div></div>
+      <div class="hero-slide"><div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637')"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-eyebrow">Limited Time Offer</div><h1 class="hero-h1">Up to<br/><em>50% Off</em><br/>Sale is Live</h1><p class="hero-desc">Shop our biggest sale of the season. Stunning earrings, necklaces &amp; more at unbeatable prices.</p><div class="hero-btns"><a href="/collections/sale" class="btn-fill">Shop the Sale →</a></div></div></div>
+      <div class="hero-slide"><div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928')"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-eyebrow">Celestial Collection</div><h1 class="hero-h1">Wear Your<br/><em>Zodiac</em><br/>Story</h1><p class="hero-desc">Meaningful pendants for all 12 star signs. The perfect personalised gift for someone special.</p><div class="hero-btns"><a href="/collections/zodiac-pendants" class="btn-fill">Shop Zodiac →</a></div></div></div>
+    {%- endif -%}
   </div>
-  <button class="hero-arr hero-prev" onclick="heroMove(-1)">
-    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
-  </button>
-  <button class="hero-arr hero-next" onclick="heroMove(1)">
-    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
-  </button>
+  <button class="hero-arr hero-prev" onclick="heroMove(-1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+  <button class="hero-arr hero-next" onclick="heroMove(1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
   <div class="hero-dots" id="heroDots">
-    <div class="hero-dot on" onclick="heroGo(0)"></div>
-    <div class="hero-dot" onclick="heroGo(1)"></div>
-    <div class="hero-dot" onclick="heroGo(2)"></div>
+    {%- if slide_count > 0 -%}
+      {%- assign si = 0 -%}{%- for block in section.blocks -%}{%- if block.type == 'slide' -%}<div class="hero-dot {% if si == 0 %}on{% endif %}" onclick="heroGo({{ si }})"></div>{%- assign si = si | plus: 1 -%}{%- endif -%}{%- endfor -%}
+    {%- else -%}
+      <div class="hero-dot on" onclick="heroGo(0)"></div><div class="hero-dot" onclick="heroGo(1)"></div><div class="hero-dot" onclick="heroGo(2)"></div>
+    {%- endif -%}
   </div>
 </section>
 
@@ -63,24 +43,40 @@
 <div class="tz-marquee"><div class="tz-marquee-track"><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> 2000+ styles to choose from</span><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> 2000+ styles to choose from</span></div></div>
 
 
-<!-- CATEGORY TILES -->
+<!-- CATEGORY TILES (editable via blocks) -->
+{%- assign cat_count = 0 -%}
+{%- for b in section.blocks -%}{%- if b.type == 'category' -%}{%- assign cat_count = cat_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
 <div class="cat-tiles-wrap">
   <div class="cat-tiles">
-    <a href="/collections/earrings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Earrings"/></div><div class="cat-tile-label">Earrings</div></a>
-    <a href="/collections/necklace" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Necklaces"/></div><div class="cat-tile-label">Necklaces</div></a>
-    <a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bangles"/></div><div class="cat-tile-label">Bangles</div></a>
-    <a href="/collections/rings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Rings"/></div><div class="cat-tile-label">Rings</div></a>
-    <a href="/collections/zodiac-pendants" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac"/></div><div class="cat-tile-label">Zodiac</div></a>
-    <a href="/collections/festive-hampers" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Combo"/></div><div class="cat-tile-label">Combo</div></a>
-    <a href="/collections/sale" class="cat-tile"><div class="cat-tile-img" style="border-color:var(--red)"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Sale"/></div><div class="cat-tile-label" style="color:var(--red)">Sale 🔥</div></a>
+    {%- if cat_count > 0 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'category' -%}
+      <a href="{{ block.settings.link }}" class="cat-tile" {{ block.shopify_attributes }}><div class="cat-tile-img"{% if block.settings.is_sale %} style="border-color:var(--red)"{% endif %}><img src="{% if block.settings.image %}{{ block.settings.image | image_url: width: 300 }}{% else %}{{ block.settings.image_url }}{% endif %}" alt="{{ block.settings.label }}"/></div><div class="cat-tile-label"{% if block.settings.is_sale %} style="color:var(--red)"{% endif %}>{{ block.settings.label }}</div></a>
+      {%- endif -%}{%- endfor -%}
+    {%- else -%}
+      <a href="/collections/earrings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Earrings"/></div><div class="cat-tile-label">Earrings</div></a>
+      <a href="/collections/necklace" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Necklaces"/></div><div class="cat-tile-label">Necklaces</div></a>
+      <a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bangles"/></div><div class="cat-tile-label">Bangles</div></a>
+      <a href="/collections/rings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Rings"/></div><div class="cat-tile-label">Rings</div></a>
+      <a href="/collections/zodiac-pendants" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac"/></div><div class="cat-tile-label">Zodiac</div></a>
+      <a href="/collections/festive-hampers" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Combo"/></div><div class="cat-tile-label">Combo</div></a>
+      <a href="/collections/sale" class="cat-tile"><div class="cat-tile-img" style="border-color:var(--red)"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Sale"/></div><div class="cat-tile-label" style="color:var(--red)">Sale 🔥</div></a>
+    {%- endif -%}
   </div>
 </div>
 
 
-<!-- SHOP BY OCCASION -->
+<!-- SHOP BY OCCASION (editable via blocks) -->
+{%- assign occ_count = 0 -%}
+{%- for b in section.blocks -%}{%- if b.type == 'occasion' -%}{%- assign occ_count = occ_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
 <section class="tz-occ"><div class="tz-occ-inner">
   <div class="tz-occ-head"><span class="tz-occ-eyebrow">Curated For You</span><h2 class="tz-occ-title">Shop by <em>Occasion</em></h2></div>
-  <div class="tz-occ-grid"><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Wedding" loading="lazy"/><div class="tz-occ-label">Wedding</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Festive" loading="lazy"/><div class="tz-occ-label">Festive</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Office" loading="lazy"/><div class="tz-occ-label">Office</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Everyday" loading="lazy"/><div class="tz-occ-label">Everyday</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Gifting" loading="lazy"/><div class="tz-occ-label">Gifting</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="College" loading="lazy"/><div class="tz-occ-label">College</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637" alt="Street" loading="lazy"/><div class="tz-occ-label">Street</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553" alt="Party" loading="lazy"/><div class="tz-occ-label">Party</div></a></div>
+  <div class="tz-occ-grid">
+    {%- if occ_count > 0 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'occasion' -%}<a class="tz-occ-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}><img src="{% if block.settings.image %}{{ block.settings.image | image_url: width: 600 }}{% else %}{{ block.settings.image_url }}{% endif %}" alt="{{ block.settings.label }}" loading="lazy"/><div class="tz-occ-label">{{ block.settings.label }}</div></a>{%- endif -%}{%- endfor -%}
+    {%- else -%}
+      <a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Wedding" loading="lazy"/><div class="tz-occ-label">Wedding</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Festive" loading="lazy"/><div class="tz-occ-label">Festive</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Office" loading="lazy"/><div class="tz-occ-label">Office</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Everyday" loading="lazy"/><div class="tz-occ-label">Everyday</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Gifting" loading="lazy"/><div class="tz-occ-label">Gifting</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="College" loading="lazy"/><div class="tz-occ-label">College</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637" alt="Street" loading="lazy"/><div class="tz-occ-label">Street</div></a><a class="tz-occ-card" href="/collections/all"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553" alt="Party" loading="lazy"/><div class="tz-occ-label">Party</div></a>
+    {%- endif -%}
+  </div>
 </div></section>
 
 
@@ -514,7 +510,14 @@
   <span class="tz-ig-eyebrow">Community</span>
   <h2 class="tz-ig-title">As Seen on You</h2>
   <a class="tz-ig-handle" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener">@tribalzone.in</a>
-  <div class="tz-ig-grid"><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Tribal Zone on Instagram" loading="lazy"/></a></div>
+  {%- assign ig_count = 0 -%}{%- for b in section.blocks -%}{%- if b.type == 'insta' -%}{%- assign ig_count = ig_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  <div class="tz-ig-grid">
+    {%- if ig_count > 0 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'insta' -%}<a class="tz-ig-cell" href="{{ block.settings.link | default: 'https://www.instagram.com/tribalzone.in/' }}" target="_blank" rel="noopener" {{ block.shopify_attributes }}><img src="{% if block.settings.image %}{{ block.settings.image | image_url: width: 400 }}{% else %}{{ block.settings.image_url }}{% endif %}" alt="Tribal Zone on Instagram" loading="lazy"/></a>{%- endif -%}{%- endfor -%}
+    {%- else -%}
+      <a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Tribal Zone on Instagram" loading="lazy"/></a><a class="tz-ig-cell" href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Tribal Zone on Instagram" loading="lazy"/></a>
+    {%- endif -%}
+  </div>
 </section>
 
 
@@ -531,5 +534,60 @@
 
 
 {% schema %}
-{"name":"TribalZone Homepage","class":"index-section","settings":[],"presets":[{"name":"TribalZone Homepage"}]}
+{
+  "name": "TribalZone Homepage",
+  "class": "index-section",
+  "max_blocks": 50,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Hero slide (banner)",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Background image (upload here to change)" },
+        { "type": "text", "id": "image_url", "label": "…or image URL (fallback)" },
+        { "type": "text", "id": "eyebrow", "label": "Small label (top)" },
+        { "type": "text", "id": "heading_1", "label": "Heading line 1" },
+        { "type": "text", "id": "heading_em", "label": "Heading line 2 (italic pink)" },
+        { "type": "text", "id": "heading_2", "label": "Heading line 3" },
+        { "type": "textarea", "id": "desc", "label": "Description" },
+        { "type": "text", "id": "btn1_label", "label": "Button 1 text" },
+        { "type": "url", "id": "btn1_link", "label": "Button 1 link" },
+        { "type": "text", "id": "btn2_label", "label": "Button 2 text" },
+        { "type": "url", "id": "btn2_link", "label": "Button 2 link" }
+      ]
+    },
+    {
+      "type": "category",
+      "name": "Category circle",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image (upload here to change)" },
+        { "type": "text", "id": "image_url", "label": "…or image URL (fallback)" },
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "is_sale", "label": "Sale style (red)", "default": false }
+      ]
+    },
+    {
+      "type": "occasion",
+      "name": "Occasion card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image (upload here to change)" },
+        { "type": "text", "id": "image_url", "label": "…or image URL (fallback)" },
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    },
+    {
+      "type": "insta",
+      "name": "Instagram photo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image (upload here to change)" },
+        { "type": "text", "id": "image_url", "label": "…or image URL (fallback)" },
+        { "type": "url", "id": "link", "label": "Link (Instagram post)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "TribalZone Homepage" }]
+}
 {% endschema %}
