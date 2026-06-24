@@ -180,14 +180,13 @@
 
     <nav class="nav">
       <div class="nav-inner">
-        <div class="nav-item"><a href="/" class="nav-lnk{% if template.name == 'index' %} active{% endif %}">Home</a></div>
-        <div class="nav-item"><a href="/collections/earrings" class="nav-lnk">Earrings</a></div>
-        <div class="nav-item"><a href="/collections/necklace" class="nav-lnk">Necklaces</a></div>
-        <div class="nav-item"><a href="/collections/bracelets" class="nav-lnk">Bangles &amp; Bracelets</a></div>
-        <div class="nav-item"><a href="/collections/rings" class="nav-lnk">Rings</a></div>
-        <div class="nav-item"><a href="/collections/zodiac-pendants" class="nav-lnk">Zodiac</a></div>
-        <div class="nav-item"><a href="/collections/festive-hampers" class="nav-lnk">Combo</a></div>
-        <div class="nav-item"><a href="/collections/sale" class="nav-lnk sale">Sale</a></div>
+        <div class="nav-item"><a href="/collections/all" class="nav-lnk">Shop by Category</a></div>
+        <div class="nav-item"><a href="/collections" class="nav-lnk">Shop by Collection</a></div>
+        <div class="nav-item"><a href="/collections/new-arrivals" class="nav-lnk">New Arrival</a></div>
+        <div class="nav-item"><a href="/collections/best-sellers" class="nav-lnk">Trending Hot Sellers</a></div>
+        <div class="nav-item"><a href="/collections/sale" class="nav-lnk sale">Sale @149/-</a></div>
+        <div class="nav-item"><a href="/collections/few-left" class="nav-lnk">Few Left</a></div>
+        <div class="nav-item"><a href="/collections/fusion-collection" class="nav-lnk">Fusion Collection</a></div>
       </div>
     </nav>
 
@@ -214,14 +213,13 @@
     <button class="mob-close" onclick="closeMob()" aria-label="Close">&times;</button>
   </div>
   <nav class="mob-nav">
-    <a href="/">Home</a>
-    <a href="/collections/earrings">Earrings</a>
-    <a href="/collections/necklace">Necklaces</a>
-    <a href="/collections/bracelets">Bangles &amp; Bracelets</a>
-    <a href="/collections/rings">Rings</a>
-    <a href="/collections/zodiac-pendants">Zodiac</a>
-    <a href="/collections/festive-hampers">Combo</a>
-    <a href="/collections/sale" class="sale-m">Sale</a>
+    <a href="/collections/all">Shop by Category</a>
+    <a href="/collections">Shop by Collection</a>
+    <a href="/collections/new-arrivals">New Arrival</a>
+    <a href="/collections/best-sellers">Trending Hot Sellers</a>
+    <a href="/collections/sale" class="sale-m">Sale @149/-</a>
+    <a href="/collections/few-left">Few Left</a>
+    <a href="/collections/fusion-collection">Fusion Collection</a>
   </nav>
 </div>
 
@@ -238,9 +236,9 @@
     { "type": "image_picker", "id": "logo", "label": "Logo (optional, overrides default)" },
     { "type": "link_list", "id": "main_linklist", "label": "Menu (not used by fixed nav)" },
     { "type": "header", "content": "Announcement bar (rotating messages)" },
-    { "type": "text", "id": "announce_1", "label": "Message 1", "default": "Free shipping on Rs 999+" },
-    { "type": "text", "id": "announce_2", "label": "Message 2", "default": "Code TRIBAL10 for 10% off" },
-    { "type": "text", "id": "announce_3", "label": "Message 3", "default": "Handcrafted in India since 2003" }
+    { "type": "text", "id": "announce_1", "label": "Message 1", "default": "FREE SHIPPING ON ORDER ABOVE 499" },
+    { "type": "text", "id": "announce_2", "label": "Message 2", "default": "FREE BAG CHARM ON ORDER ABOVE 499" },
+    { "type": "text", "id": "announce_3", "label": "Message 3", "default": "FREE WALLET ON ORDER 999" }
   ]
 }
 {% endschema %}
