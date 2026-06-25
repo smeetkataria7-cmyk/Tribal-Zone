@@ -117,6 +117,24 @@
       color: var(--mid); transition: all .15s;
     }
     .nav-drop a:hover { color: var(--gold); background: var(--gold-bg); padding-left: 26px; }
+    .nav-lnk-arrow { font-size: 9px; margin-left: 4px; opacity: .6; vertical-align: middle; }
+
+    /* ── MOBILE ACCORDION ── */
+    .mob-acc-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px; font-size: 14px; color: var(--dark);
+      border-bottom: 1px solid var(--border); cursor: pointer;
+      transition: color .15s;
+    }
+    .mob-acc-head:hover { color: var(--gold); }
+    .mob-acc-arrow { font-size: 11px; transition: transform .25s; }
+    .mob-acc-body { display: none; background: #fafafa; }
+    .mob-acc-body.open { display: block; }
+    .mob-acc-body a {
+      display: block; padding: 11px 24px 11px 36px; font-size: 13px;
+      color: var(--mid); border-bottom: 1px solid var(--border); transition: color .15s;
+    }
+    .mob-acc-body a:hover { color: var(--gold); }
 
     /* ── MOBILE NAV DRAWER ── */
     .mob-overlay {
@@ -180,8 +198,34 @@
 
     <nav class="nav">
       <div class="nav-inner">
-        <div class="nav-item"><a href="/collections/all" class="nav-lnk">Shop by Category</a></div>
-        <div class="nav-item"><a href="/collections" class="nav-lnk">Shop by Collection</a></div>
+        <div class="nav-item">
+          <a href="/collections/all" class="nav-lnk">Shop by Category <span class="nav-lnk-arrow">▾</span></a>
+          <div class="nav-drop">
+            <a href="/collections/earrings">Earrings</a>
+            <a href="/collections/necklaces">Necklace</a>
+            <a href="/collections/bracelets">Bracelet</a>
+            <a href="/collections/rings">Rings</a>
+            <a href="/collections/combo">Combo</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="/collections" class="nav-lnk">Shop by Collection <span class="nav-lnk-arrow">▾</span></a>
+          <div class="nav-drop">
+            <a href="/collections/western">Western</a>
+            <a href="/collections/indian">Indian</a>
+            <a href="/collections/fusion-collection">Fusion</a>
+            <a href="/collections/party">Party</a>
+            <a href="/collections/festive">Festive</a>
+            <a href="/collections/street-smart">Street Smart</a>
+            <a href="/collections/kitty-party">Kitty Party</a>
+            <a href="/collections/statement">Statement</a>
+            <a href="/collections/new-arrivals">New Arrival</a>
+            <a href="/collections/best-sellers">Best Sellers</a>
+            <a href="/collections/sale">Sale</a>
+            <a href="/collections/149">149</a>
+            <a href="/collections/199">199</a>
+          </div>
+        </div>
         <div class="nav-item"><a href="/collections/new-arrivals" class="nav-lnk">New Arrival</a></div>
         <div class="nav-item"><a href="/collections/best-sellers" class="nav-lnk">Trending Hot Sellers</a></div>
         <div class="nav-item"><a href="/collections/sale" class="nav-lnk sale">Sale @149/-</a></div>
@@ -213,8 +257,36 @@
     <button class="mob-close" onclick="closeMob()" aria-label="Close">&times;</button>
   </div>
   <nav class="mob-nav">
-    <a href="/collections/all">Shop by Category</a>
-    <a href="/collections">Shop by Collection</a>
+    <div class="mob-acc-head" onclick="tzMobAcc(this)">
+      Shop by Category <span class="mob-acc-arrow">▾</span>
+    </div>
+    <div class="mob-acc-body">
+      <a href="/collections/earrings">Earrings</a>
+      <a href="/collections/necklaces">Necklace</a>
+      <a href="/collections/bracelets">Bracelet</a>
+      <a href="/collections/rings">Rings</a>
+      <a href="/collections/combo">Combo</a>
+      <a href="/collections/all">View All Categories</a>
+    </div>
+    <div class="mob-acc-head" onclick="tzMobAcc(this)">
+      Shop by Collection <span class="mob-acc-arrow">▾</span>
+    </div>
+    <div class="mob-acc-body">
+      <a href="/collections/western">Western</a>
+      <a href="/collections/indian">Indian</a>
+      <a href="/collections/fusion-collection">Fusion</a>
+      <a href="/collections/party">Party</a>
+      <a href="/collections/festive">Festive</a>
+      <a href="/collections/street-smart">Street Smart</a>
+      <a href="/collections/kitty-party">Kitty Party</a>
+      <a href="/collections/statement">Statement</a>
+      <a href="/collections/new-arrivals">New Arrival</a>
+      <a href="/collections/best-sellers">Best Sellers</a>
+      <a href="/collections/sale">Sale</a>
+      <a href="/collections/149">149</a>
+      <a href="/collections/199">199</a>
+      <a href="/collections">View All Collections</a>
+    </div>
     <a href="/collections/new-arrivals">New Arrival</a>
     <a href="/collections/best-sellers">Trending Hot Sellers</a>
     <a href="/collections/sale" class="sale-m">Sale @149/-</a>
@@ -226,6 +298,12 @@
 <script>
   function openMob(){ document.getElementById('mobOverlay').classList.add('on'); document.getElementById('mobDrawer').classList.add('on'); }
   function closeMob(){ document.getElementById('mobOverlay').classList.remove('on'); document.getElementById('mobDrawer').classList.remove('on'); }
+  function tzMobAcc(head) {
+    var body = head.nextElementSibling;
+    var arrow = head.querySelector('.mob-acc-arrow');
+    var isOpen = body.classList.toggle('open');
+    if (arrow) arrow.style.transform = isOpen ? 'rotate(180deg)' : '';
+  }
 </script>
 
 
