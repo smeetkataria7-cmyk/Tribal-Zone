@@ -206,9 +206,6 @@
             {%- endcapture -%}
             <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
             <div class="cart__submit-controls">
-              <input type="submit" name="update"
-                class="btn btn--secondary small--hide cart__submit-control"
-                value="{{ 'cart.general.update' | t }}">
               <input type="submit" name="checkout"
                 class="btn btn--small-wide cart__submit cart__submit-control"
                 value="{{ 'cart.general.checkout' | t }}">
@@ -221,6 +218,35 @@
         </div>
       </div>
     </form>
+
+    {%- assign rec_col = collections.frontpage -%}
+    {%- if rec_col.products.size == 0 -%}{%- assign rec_col = collections.all -%}{%- endif -%}
+    {% if rec_col.products.size > 0 %}
+      <style>
+        .cart-recs { max-width:1340px; margin:48px auto 0; padding:0 24px; }
+        .cart-recs h2 { font-family:'Cormorant Garamond',Georgia,serif; font-size:28px; font-weight:300; text-align:center; margin-bottom:22px; color:#120101; }
+        .cart-recs-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+        .cart-recs-card { text-decoration:none; color:#120101; display:block; }
+        .cart-recs-card .img { aspect-ratio:4/5; overflow:hidden; border-radius:8px; background:#f7f7f7; }
+        .cart-recs-card img { width:100%; height:100%; object-fit:cover; transition:transform .4s; }
+        .cart-recs-card:hover img { transform:scale(1.05); }
+        .cart-recs-name { font-size:13px; margin-top:8px; font-weight:500; line-height:1.4; }
+        .cart-recs-price { font-size:14px; font-weight:700; color:#7a1f3d; margin-top:2px; }
+        @media(max-width:700px){ .cart-recs-grid{ grid-template-columns:repeat(2,1fr); } }
+      </style>
+      <section class="cart-recs">
+        <h2>You might also like</h2>
+        <div class="cart-recs-grid">
+          {% for product in rec_col.products limit: 4 %}
+            <a href="{{ product.url }}" class="cart-recs-card">
+              <div class="img"><img src="{{ product.featured_image | img_url: '400x' }}" alt="{{ product.title | escape }}" loading="lazy"/></div>
+              <div class="cart-recs-name">{{ product.title | truncate: 42 }}</div>
+              <div class="cart-recs-price">{{ product.price | money }}</div>
+            </a>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
   {% else %}
     <div class="empty-page-content text-center">
       <h1>{{ 'cart.general.title' | t }}</h1>

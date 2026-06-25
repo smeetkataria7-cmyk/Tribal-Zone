@@ -30,6 +30,28 @@
   </div>
 {% endif %}
 
+{% comment %} ── Category (product type) ── {% endcomment %}
+{% assign cat_types = collection.products | map: 'type' | uniq | sort %}
+{% assign type_count = 0 %}
+{% for t in cat_types %}{% if t != blank %}{% assign type_count = type_count | plus: 1 %}{% endif %}{% endfor %}
+{% if type_count > 0 %}
+  <div class="tz-fg open">
+    <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
+      <span>Category</span>
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+    <div class="tz-fg-body">
+      {% for t in cat_types %}{% if t != blank %}
+        <label class="tz-opt">
+          <input type="checkbox" class="tzf" data-kind="type" data-val="{{ t | downcase }}" data-label="{{ t | escape }}" onchange="tzOnChange(this)">
+          <span class="tz-box"></span>
+          <span class="tz-opt-lbl">{{ t }}</span>
+        </label>
+      {% endif %}{% endfor %}
+    </div>
+  </div>
+{% endif %}
+
 {% comment %} ── Price ── {% endcomment %}
 <div class="tz-fg open">
   <div class="tz-fg-head" onclick="this.closest('.tz-fg').classList.toggle('open')">
@@ -76,10 +98,11 @@ if (typeof window.tzFilterInit === 'undefined') {
 
   window.tzApplyFilters = function() {
     // Collect checked filters (Set-dedup across the two rendered copies)
-    var tags = new Set(), avails = new Set(), ranges = [], rangeKeys = new Set();
+    var tags = new Set(), types = new Set(), avails = new Set(), ranges = [], rangeKeys = new Set();
     document.querySelectorAll('.tzf:checked').forEach(function(i){
       var k = i.dataset.kind;
       if (k === 'tag') tags.add(i.dataset.val);
+      else if (k === 'type') types.add(i.dataset.val);
       else if (k === 'avail') avails.add(i.dataset.val);
       else if (k === 'price') {
         var key = i.dataset.min + '-' + i.dataset.max;
@@ -90,17 +113,19 @@ if (typeof window.tzFilterInit === 'undefined') {
     var shown = 0;
     document.querySelectorAll('#Collection .pcard').forEach(function(card){
       var cardTags = (card.dataset.tags || '').split('||');
+      var cardType = (card.dataset.type || '');
       var rupees = (parseInt(card.dataset.price, 10) || 0) / 100;
       var available = card.dataset.available === 'true';
       var onsale = card.dataset.onsale === 'true';
 
       var tagOk = tags.size === 0 || Array.from(tags).some(function(t){ return cardTags.indexOf(t) !== -1; });
+      var typeOk = types.size === 0 || types.has(cardType);
       var priceOk = ranges.length === 0 || ranges.some(function(r){ return rupees >= r[0] && rupees <= r[1]; });
       var availOk = avails.size === 0 || Array.from(avails).some(function(a){
         return (a === 'instock' && available) || (a === 'onsale' && onsale);
       });
 
-      var show = tagOk && priceOk && availOk;
+      var show = tagOk && typeOk && priceOk && availOk;
       card.style.display = show ? '' : 'none';
       if (show) shown++;
     });
