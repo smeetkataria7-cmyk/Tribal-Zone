@@ -663,7 +663,7 @@
 
 
 /* ── MEMBER LOYALTY PROGRAM ── */
-.tz-loyalty { background:linear-gradient(120deg,#c01065 0%,#f2157b 55%,#f5488e 100%); color:#fff; padding:56px 24px; }
+.tz-loyalty { background:linear-gradient(120deg,#7a5c0a 0%,#c9a227 55%,#e8c850 100%); color:#fff; padding:56px 24px; }
 .tz-loy-inner { max-width:1000px; margin:0 auto; text-align:center; }
 .tz-loy-eyebrow { font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:#fff; opacity:.9; }
 .tz-loy-title { font-family:var(--serif); font-size:clamp(30px,4vw,50px); font-weight:300; color:#fff; margin-top:8px; }
