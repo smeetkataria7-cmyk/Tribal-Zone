@@ -335,12 +335,12 @@
       display: inline-block; margin-bottom: 8px;
       font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
       padding: 4px 12px 4px 8px; border-radius: 0;
-      background: linear-gradient(100deg, #d11473 0%, #f2157b 50%, #f5488e 100%);
+      background: linear-gradient(100deg, #7a5c0a 0%, #c9a227 50%, #e8c850 100%);
       color: #ffffff;
       clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 50%, 100% 100%, 0 100%);
       position: static;
     }
-    .b-sale, .b-new, .b-best, .b-bogo { background: linear-gradient(100deg, #d11473 0%, #f2157b 50%, #f5488e 100%); color: #ffffff; }
+    .b-sale, .b-new, .b-best, .b-bogo { background: linear-gradient(100deg, #7a5c0a 0%, #c9a227 50%, #e8c850 100%); color: #ffffff; }
     .pcard-wish {
       position: absolute; top: 10px; right: 10px;
       background: rgba(255,255,255,.9); border: none; width: 32px; height: 32px;
