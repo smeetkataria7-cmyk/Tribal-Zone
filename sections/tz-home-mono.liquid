@@ -5,23 +5,22 @@
 {%- for b in section.blocks -%}{%- if b.type == 'slide' -%}{%- assign slide_count = slide_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
 <section class="hero">
   <div class="hero-track" id="heroTrack">
-    {%- if slide_count > 0 -%}
-      {%- for block in section.blocks -%}{%- if block.type == 'slide' -%}
-      <div class="hero-slide" {{ block.shopify_attributes }}>
-        {%- assign _img = '' -%}{%- if block.settings.image -%}{%- assign _img = block.settings.image | image_url: width: 2000 -%}{%- elsif block.settings.image_url contains 'http' -%}{%- assign _img = block.settings.image_url -%}{%- elsif block.settings.image_url != blank -%}{%- assign _img = block.settings.image_url | asset_url -%}{%- endif -%}
-        <div class="hero-bg" style="background-image:url('{{ _img }}')"></div>
+    {%- comment -%}Hardcoded asset banners — images bundled in theme assets{%- endcomment -%}
+    {%- assign _slides = 'banner-slide-1.png|/collections/new-arrivals|Shop New Arrivals →|/collections/all|Explore All,,banner-slide-2.png|/collections/sale|Shop the Sale →||,,banner-slide-3.png|/collections/best-sellers|Shop Now →||,,banner-slide-4.png|/collections/all|Shop All →||,,banner-slide-5.png|/collections/all|Explore 1500+ Styles →||,,banner-slide-6.png|/collections/bracelets|Shop Bracelets →||,,banner-slide-7.png|/collections/zodiac-pendants|Shop Zodiac →||' | split: ',,' -%}
+    {%- for _s in _slides -%}
+      {%- assign _sp = _s | split: '|' -%}
+      <div class="hero-slide">
+        <div class="hero-bg" style="background-image:url('{{ _sp[0] | asset_url }}')"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-          {%- if block.settings.eyebrow != blank -%}<div class="hero-eyebrow">{{ block.settings.eyebrow }}</div>{%- endif -%}
-          <h1 class="hero-h1">{{ block.settings.heading_1 }}{% if block.settings.heading_em != blank %}<br/><em>{{ block.settings.heading_em }}</em>{% endif %}{% if block.settings.heading_2 != blank %}<br/>{{ block.settings.heading_2 }}{% endif %}</h1>
-          {%- if block.settings.desc != blank -%}<p class="hero-desc">{{ block.settings.desc }}</p>{%- endif -%}
           <div class="hero-btns">
-            {%- if block.settings.btn1_label != blank -%}<a href="{{ block.settings.btn1_link }}" class="btn-fill">{{ block.settings.btn1_label }}</a>{%- endif -%}
-            {%- if block.settings.btn2_label != blank -%}<a href="{{ block.settings.btn2_link }}" class="btn-outline-w">{{ block.settings.btn2_label }}</a>{%- endif -%}
+            {%- if _sp[2] != blank -%}<a href="{{ _sp[1] }}" class="btn-fill">{{ _sp[2] }}</a>{%- endif -%}
+            {%- if _sp[4] != blank -%}<a href="{{ _sp[3] }}" class="btn-outline-w">{{ _sp[4] }}</a>{%- endif -%}
           </div>
         </div>
       </div>
-      {%- endif -%}{%- endfor -%}
+    {%- endfor -%}
+    {%- if false -%}{%- comment -%}kept for Theme Editor block compatibility{%- endcomment -%}
     {%- else -%}
       <div class="hero-slide"><div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553')"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-eyebrow">New Arrivals — 2024</div><h1 class="hero-h1">Elevate Your<br/><em>Everyday</em><br/>with Jewellery</h1><p class="hero-desc">Handcrafted fashion accessories blending Indian tradition with modern elegance — since 2003.</p><div class="hero-btns"><a href="/collections/earrings" class="btn-fill">Shop New Arrivals →</a><a href="/collections/earrings" class="btn-outline-w">Explore All</a></div></div></div>
       <div class="hero-slide"><div class="hero-bg" style="background-image:url('https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637')"></div><div class="hero-overlay"></div><div class="hero-content"><div class="hero-eyebrow">Limited Time Offer</div><h1 class="hero-h1">Up to<br/><em>50% Off</em><br/>Sale is Live</h1><p class="hero-desc">Shop our biggest sale of the season. Stunning earrings, necklaces &amp; more at unbeatable prices.</p><div class="hero-btns"><a href="/collections/sale" class="btn-fill">Shop the Sale →</a></div></div></div>
@@ -31,11 +30,7 @@
   <button class="hero-arr hero-prev" onclick="heroMove(-1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
   <button class="hero-arr hero-next" onclick="heroMove(1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
   <div class="hero-dots" id="heroDots">
-    {%- if slide_count > 0 -%}
-      {%- assign si = 0 -%}{%- for block in section.blocks -%}{%- if block.type == 'slide' -%}<div class="hero-dot {% if si == 0 %}on{% endif %}" onclick="heroGo({{ si }})"></div>{%- assign si = si | plus: 1 -%}{%- endif -%}{%- endfor -%}
-    {%- else -%}
-      <div class="hero-dot on" onclick="heroGo(0)"></div><div class="hero-dot" onclick="heroGo(1)"></div><div class="hero-dot" onclick="heroGo(2)"></div>
-    {%- endif -%}
+    <div class="hero-dot on" onclick="heroGo(0)"></div><div class="hero-dot" onclick="heroGo(1)"></div><div class="hero-dot" onclick="heroGo(2)"></div><div class="hero-dot" onclick="heroGo(3)"></div><div class="hero-dot" onclick="heroGo(4)"></div><div class="hero-dot" onclick="heroGo(5)"></div><div class="hero-dot" onclick="heroGo(6)"></div>
   </div>
 </section>
 
