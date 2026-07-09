@@ -10,7 +10,7 @@
     {%- for _s in _slides -%}
       {%- assign _sp = _s | split: '|' -%}
       <div class="hero-slide">
-        <div class="hero-bg" style="background-image:url('{{ _sp[0] | asset_url }}')"></div>
+        <img class="hero-img" src="{{ _sp[0] | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <div class="hero-btns">

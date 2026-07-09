@@ -221,11 +221,12 @@
     /* ── HERO ── */
     .hero { position: relative; overflow: hidden; margin-top: 0; }
     .hero-track { display: flex; transition: transform .7s cubic-bezier(.77,0,.175,1); }
-    .hero-slide { min-width: 100%; height: 600px; position: relative; display: flex; align-items: center; justify-content: flex-start; }
+    .hero-slide { min-width: 100%; position: relative; display: flex; align-items: center; justify-content: flex-start; }
     .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.48) 55%, rgba(0,0,0,.2) 100%); }
+    .hero-slide > img.hero-img { width: 100%; height: auto; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.05) 100%); pointer-events: none; }
     .hero-content {
-      position: relative; z-index: 2; max-width: 1400px; margin: 0; padding: 0 72px; color: #fff;
+      position: absolute; inset: 0; z-index: 2; max-width: 100%; display: flex; align-items: flex-end; padding: 0 72px 48px; color: #fff;
     }
     .hero-eyebrow {
       display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
@@ -487,7 +488,7 @@
       .brand-inner { grid-template-columns: 1fr; gap: 40px; }
       .testi-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .hero-slide { height: 440px; }
+      .hero-slide { height: auto; }
       .hero-content { padding: 0 32px; }
       .perks-inner { flex-wrap: wrap; }
       .perk { width: 50%; border-bottom: 1px solid rgba(255,255,255,.07); }
@@ -523,7 +524,7 @@
       .cat-tile-label { font-size: 10px; font-weight: 600; }
 
       /* ── HERO ── */
-      .hero-slide { height: 60vh; min-height: 320px; }
+      .hero-slide { height: auto; }
       .hero-content { padding: 0 20px; }
       .hero-h1 { font-size: 32px; margin-bottom: 14px; }
       .hero-eyebrow { font-size: 10px; margin-bottom: 12px; }
