@@ -551,8 +551,7 @@
               "btn1_label": "Shop New Arrivals →",
               "btn1_link": "/collections/new-arrivals",
               "btn2_label": "Explore All",
-              "btn2_link": "/collections/all",
-              "image": ""
+              "btn2_link": "/collections/all"
             }
           },
           "slide-2": {
@@ -567,8 +566,7 @@
               "btn1_label": "Shop the Sale →",
               "btn1_link": "/collections/sale",
               "btn2_label": "",
-              "btn2_link": "",
-              "image": ""
+              "btn2_link": ""
             }
           },
           "slide-3": {
@@ -583,8 +581,7 @@
               "btn1_label": "Shop Now →",
               "btn1_link": "/collections/best-sellers",
               "btn2_label": "",
-              "btn2_link": "",
-              "image": ""
+              "btn2_link": ""
             }
           },
           "cat-1": {
@@ -768,8 +765,7 @@
               "btn1_link": "/collections/all",
               "btn2_label": "",
               "btn2_link": "",
-              "image_url": "banner-slide-4.png",
-              "image": ""
+              "image_url": "banner-slide-4.png"
             }
           },
           "slide-5": {
@@ -784,8 +780,7 @@
               "btn1_link": "/collections/all",
               "btn2_label": "",
               "btn2_link": "",
-              "image_url": "banner-slide-5.png",
-              "image": ""
+              "image_url": "banner-slide-5.png"
             }
           },
           "slide-6": {
@@ -800,8 +795,7 @@
               "btn1_link": "/collections/bracelets",
               "btn2_label": "",
               "btn2_link": "",
-              "image_url": "banner-slide-6.png",
-              "image": ""
+              "image_url": "banner-slide-6.png"
             }
           },
           "slide-7": {
@@ -816,8 +810,7 @@
               "btn1_link": "/collections/zodiac-pendants",
               "btn2_label": "",
               "btn2_link": "",
-              "image_url": "banner-slide-7.png",
-              "image": ""
+              "image_url": "banner-slide-7.png"
             }
           }
         },
