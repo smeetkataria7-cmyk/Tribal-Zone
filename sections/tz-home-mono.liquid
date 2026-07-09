@@ -8,7 +8,8 @@
     {%- if slide_count > 0 -%}
       {%- for block in section.blocks -%}{%- if block.type == 'slide' -%}
       <div class="hero-slide" {{ block.shopify_attributes }}>
-        <div class="hero-bg" style="background-image:url('{% if block.settings.image %}{{ block.settings.image | image_url: width: 2000 }}{% else %}{{ block.settings.image_url }}{% endif %}')"></div>
+        {%- assign _img = '' -%}{%- if block.settings.image -%}{%- assign _img = block.settings.image | image_url: width: 2000 -%}{%- elsif block.settings.image_url contains 'http' -%}{%- assign _img = block.settings.image_url -%}{%- elsif block.settings.image_url != blank -%}{%- assign _img = block.settings.image_url | asset_url -%}{%- endif -%}
+        <div class="hero-bg" style="background-image:url('{{ _img }}')"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
           {%- if block.settings.eyebrow != blank -%}<div class="hero-eyebrow">{{ block.settings.eyebrow }}</div>{%- endif -%}

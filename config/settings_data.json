@@ -542,7 +542,7 @@
           "slide-1": {
             "type": "slide",
             "settings": {
-              "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553",
+              "image_url": "banner-slide-1.png",
               "eyebrow": "",
               "heading_1": "",
               "heading_em": "",
@@ -551,13 +551,14 @@
               "btn1_label": "Shop New Arrivals →",
               "btn1_link": "/collections/new-arrivals",
               "btn2_label": "Explore All",
-              "btn2_link": "/collections/all"
+              "btn2_link": "/collections/all",
+              "image": ""
             }
           },
           "slide-2": {
             "type": "slide",
             "settings": {
-              "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637",
+              "image_url": "banner-slide-2.png",
               "eyebrow": "",
               "heading_1": "",
               "heading_em": "",
@@ -566,13 +567,14 @@
               "btn1_label": "Shop the Sale →",
               "btn1_link": "/collections/sale",
               "btn2_label": "",
-              "btn2_link": ""
+              "btn2_link": "",
+              "image": ""
             }
           },
           "slide-3": {
             "type": "slide",
             "settings": {
-              "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928",
+              "image_url": "banner-slide-3.png",
               "eyebrow": "",
               "heading_1": "",
               "heading_em": "",
@@ -581,7 +583,8 @@
               "btn1_label": "Shop Now →",
               "btn1_link": "/collections/best-sellers",
               "btn2_label": "",
-              "btn2_link": ""
+              "btn2_link": "",
+              "image": ""
             }
           },
           "cat-1": {
@@ -765,7 +768,8 @@
               "btn1_link": "/collections/all",
               "btn2_label": "",
               "btn2_link": "",
-              "image_url": ""
+              "image_url": "banner-slide-4.png",
+              "image": ""
             }
           },
           "slide-5": {
@@ -780,7 +784,8 @@
               "btn1_link": "/collections/all",
               "btn2_label": "",
               "btn2_link": "",
-              "image_url": ""
+              "image_url": "banner-slide-5.png",
+              "image": ""
             }
           },
           "slide-6": {
@@ -795,7 +800,8 @@
               "btn1_link": "/collections/bracelets",
               "btn2_label": "",
               "btn2_link": "",
-              "image_url": ""
+              "image_url": "banner-slide-6.png",
+              "image": ""
             }
           },
           "slide-7": {
@@ -810,7 +816,8 @@
               "btn1_link": "/collections/zodiac-pendants",
               "btn2_label": "",
               "btn2_link": "",
-              "image_url": ""
+              "image_url": "banner-slide-7.png",
+              "image": ""
             }
           }
         },
