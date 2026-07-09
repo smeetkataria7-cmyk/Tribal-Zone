@@ -543,26 +543,26 @@
             "type": "slide",
             "settings": {
               "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-5_1.jpg?v=1780742553",
-              "eyebrow": "New Arrivals — 2024",
-              "heading_1": "Elevate Your",
-              "heading_em": "Everyday",
-              "heading_2": "with Jewellery",
-              "desc": "Handcrafted fashion accessories blending Indian tradition with modern elegance — since 2003.",
+              "eyebrow": "",
+              "heading_1": "",
+              "heading_em": "",
+              "heading_2": "",
+              "desc": "",
               "btn1_label": "Shop New Arrivals →",
-              "btn1_link": "/collections/earrings",
+              "btn1_link": "/collections/new-arrivals",
               "btn2_label": "Explore All",
-              "btn2_link": "/collections/earrings"
+              "btn2_link": "/collections/all"
             }
           },
           "slide-2": {
             "type": "slide",
             "settings": {
               "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637",
-              "eyebrow": "Limited Time Offer",
-              "heading_1": "Up to",
-              "heading_em": "50% Off",
-              "heading_2": "Sale is Live",
-              "desc": "Shop our biggest sale of the season. Stunning earrings, necklaces & more at unbeatable prices.",
+              "eyebrow": "",
+              "heading_1": "",
+              "heading_em": "",
+              "heading_2": "",
+              "desc": "",
               "btn1_label": "Shop the Sale →",
               "btn1_link": "/collections/sale",
               "btn2_label": "",
@@ -573,13 +573,13 @@
             "type": "slide",
             "settings": {
               "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928",
-              "eyebrow": "Celestial Collection",
-              "heading_1": "Wear Your",
-              "heading_em": "Zodiac",
-              "heading_2": "Story",
-              "desc": "Meaningful pendants for all 12 star signs. The perfect personalised gift for someone special.",
-              "btn1_label": "Shop Zodiac →",
-              "btn1_link": "/collections/zodiac-pendants",
+              "eyebrow": "",
+              "heading_1": "",
+              "heading_em": "",
+              "heading_2": "",
+              "desc": "",
+              "btn1_label": "Shop Now →",
+              "btn1_link": "/collections/best-sellers",
               "btn2_label": "",
               "btn2_link": ""
             }
@@ -752,12 +752,76 @@
               "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056",
               "link": "https://www.instagram.com/tribalzone.in/"
             }
+          },
+          "slide-4": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "",
+              "heading_1": "",
+              "heading_em": "",
+              "heading_2": "",
+              "desc": "",
+              "btn1_label": "Shop All →",
+              "btn1_link": "/collections/all",
+              "btn2_label": "",
+              "btn2_link": "",
+              "image_url": ""
+            }
+          },
+          "slide-5": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "",
+              "heading_1": "",
+              "heading_em": "",
+              "heading_2": "",
+              "desc": "",
+              "btn1_label": "Explore 1500+ Styles →",
+              "btn1_link": "/collections/all",
+              "btn2_label": "",
+              "btn2_link": "",
+              "image_url": ""
+            }
+          },
+          "slide-6": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "",
+              "heading_1": "",
+              "heading_em": "",
+              "heading_2": "",
+              "desc": "",
+              "btn1_label": "Shop Bracelets →",
+              "btn1_link": "/collections/bracelets",
+              "btn2_label": "",
+              "btn2_link": "",
+              "image_url": ""
+            }
+          },
+          "slide-7": {
+            "type": "slide",
+            "settings": {
+              "eyebrow": "",
+              "heading_1": "",
+              "heading_em": "",
+              "heading_2": "",
+              "desc": "",
+              "btn1_label": "Shop Zodiac →",
+              "btn1_link": "/collections/zodiac-pendants",
+              "btn2_label": "",
+              "btn2_link": "",
+              "image_url": ""
+            }
           }
         },
         "block_order": [
           "slide-1",
           "slide-2",
           "slide-3",
+          "slide-4",
+          "slide-5",
+          "slide-6",
+          "slide-7",
           "cat-1",
           "cat-2",
           "cat-3",
