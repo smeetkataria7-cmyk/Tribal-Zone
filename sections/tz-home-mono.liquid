@@ -80,13 +80,33 @@
       <div class="sec-head">
         <h2 class="sec-title">New Arrivals</h2>
       </div>
-      
     </div>
     <div class="prod-row-wrap">
       <button class="row-arr row-prev" onclick="scrollRow('newRow',-1)">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
       </button>
       <div class="prod-row" id="newRow">
+        {%- assign new_coll = collections['new-arrivals'] -%}
+        {%- for product in new_coll.products limit: 10 -%}
+          <a class="pcard" href="{{ product.url }}">
+            <div class="pcard-img">
+              <img class="i1" src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>
+              {%- if product.images[1] -%}<img class="i2" src="{{ product.images[1] | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>{%- endif -%}
+              <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+              <div class="pcard-atb">Add to Cart</div>
+            </div>
+            <div class="pcard-info">
+              {%- if product.compare_at_price > product.price -%}<span class="pcard-badge b-sale">Sale</span>{%- endif -%}
+              <div class="pcard-name">{{ product.title }}</div>
+              <div class="pcard-price">
+                <span class="p-now">₹{{ product.price | money_without_currency }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <div class="p-meta"><span class="p-was">₹{{ product.compare_at_price | money_without_currency }}</span><span class="p-off">{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% OFF</span></div>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
 
         <a class="pcard" href="/collections/all">
           <div class="pcard-img">
@@ -96,111 +116,13 @@
             <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
             <div class="pcard-atb">Add to Cart</div>
           </div>
-          <div class="pcard-info">
-            <div class="pcard-cat">Earrings</div>
-            <div class="pcard-name">Gold Kundan Cluster Studs</div>
-            <div class="pcard-stars">★★★★★ <span>(128)</span></div>
-            <div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">46% OFF</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_e0be92f9-4e21-488f-9628-99cdf0fd33d8.jpg?v=1781088637" alt="Crystal Pendant"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/DSC00853.jpg?v=1781088637" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-new">New</span>
-            <div class="pcard-cat">Necklaces</div>
-            <div class="pcard-name">Crystal Drop Pendant Necklace</div>
-            <div class="pcard-stars">★★★★ <span>(84)</span></div>
-            <div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Zodiac Pendant"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/DSC04132.jpg?v=1781081928" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-new">New</span>
-            <div class="pcard-cat">Zodiac</div>
-            <div class="pcard-name">Aries Zodiac Silver Pendant</div>
-            <div class="pcard-stars">★★★★★ <span>(56)</span></div>
-            <div class="pcard-price"><span class="p-now">₹449</span><div class="p-meta"><span class="p-was">₹799</span><span class="p-off">44% OFF</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Jhumka"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_2.jpg?v=1781003688" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-sale">Sale</span>
-            <div class="pcard-cat">Ethnic</div>
-            <div class="pcard-name">Antique Gold Jhumka Earrings</div>
-            <div class="pcard-stars">★★★★★ <span>(203)</span></div>
-            <div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">30% OFF</span></div></div>
-            <div class="pcard-offer">🎁 Buy 1 Get 2 Free</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bracelet"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_2_f83eb5ae-9dbd-4ce4-9d25-0aeb54756e89.jpg?v=1781003305" alt="hover"/>
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <div class="pcard-cat">Bracelets</div>
-            <div class="pcard-name">Crystal Beaded Stretch Bracelet</div>
-            <div class="pcard-stars">★★★★★ <span>(91)</span></div>
-            <div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">40% OFF</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_1.jpg?v=1780924019" alt="Chandbali"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-20_2.jpg?v=1780924019" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span>
-            <div class="pcard-cat">Ethnic</div>
-            <div class="pcard-name">Bridal Kundan Chandbali Set</div>
-            <div class="pcard-stars">★★★★★ <span>(67)</span></div>
-            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div>
-          </div>
-        </a>
-
-
       </div>
       <button class="row-arr row-next" onclick="scrollRow('newRow',1)">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
       </button>
     </div>
     <div class="row-footer">
-      <div class="row-pager"><button onclick="scrollRow('newRow',-1)">‹</button><span>1/5</span><button onclick="scrollRow('newRow',1)">›</button></div>
-      <a href="/collections/earrings" class="row-view-all">View all</a>
+      <a href="/collections/new-arrivals" class="row-view-all">View all</a>
     </div>
   </div>
 </section>
@@ -216,10 +138,26 @@
     <div class="prod-row-wrap">
       <button class="row-arr row-prev" onclick="scrollRow('earRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
       <div class="prod-row" id="earRow">
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_2.jpg?v=1780923056" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Gold Kundan Cluster Studs</div><div class="pcard-stars">★★★★★ <span>(128)</span></div><div class="pcard-price"><span class="p-now">₹379</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">46% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_2.jpg?v=1780922334" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span><div class="pcard-cat"></div><div class="pcard-name">Antique Gold Jhumka Earrings</div><div class="pcard-stars">★★★★★ <span>(203)</span></div><div class="pcard-price"><span class="p-now">₹699</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">30% OFF</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/ER-33370_1.jpg?v=1780921856" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/ER-33370_2.jpg?v=1780921856" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Bridal Kundan Chandbali Set</div><div class="pcard-stars">★★★★★ <span>(67)</span></div><div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4361-005_1.jpg?v=1780921227" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4361-005_2.jpg?v=1780921227" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-sale">Sale</span><div class="pcard-cat"></div><div class="pcard-name">Oxidised Silver Hoop Earrings</div><div class="pcard-stars">★★★★ <span>(89)</span></div><div class="pcard-price"><span class="p-now">₹249</span><div class="p-meta"><span class="p-was">₹449</span><span class="p-off">45% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        {%- for product in collections['earrings'].products limit: 10 -%}
+          <a class="pcard" href="{{ product.url }}">
+            <div class="pcard-img">
+              <img class="i1" src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>
+              {%- if product.images[1] -%}<img class="i2" src="{{ product.images[1] | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>{%- endif -%}
+              <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+              <div class="pcard-atb">Add to Cart</div>
+            </div>
+            <div class="pcard-info">
+              {%- if product.compare_at_price > product.price -%}<span class="pcard-badge b-sale">Sale</span>{%- endif -%}
+              <div class="pcard-name">{{ product.title }}</div>
+              <div class="pcard-price">
+                <span class="p-now">₹{{ product.price | money_without_currency }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <div class="p-meta"><span class="p-was">₹{{ product.compare_at_price | money_without_currency }}</span><span class="p-off">{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% OFF</span></div>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
       </div>
       <button class="row-arr row-next" onclick="scrollRow('earRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
@@ -241,10 +179,26 @@
     <div class="prod-row-wrap">
       <button class="row-arr row-prev" onclick="scrollRow('neckRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
       <div class="prod-row" id="neckRow">
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-18_1.jpg?v=1780920839" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-18_2.jpg?v=1780920839" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Crystal Drop Pendant Necklace</div><div class="pcard-stars">★★★★ <span>(84)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-23_1.jpg?v=1780920296" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-23_2.jpg?v=1780920295" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-best">Bestseller</span><div class="pcard-cat"></div><div class="pcard-name">Layered Gold Chain Set</div><div class="pcard-stars">★★★★★ <span>(187)</span></div><div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">31% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4361-004_1.jpg?v=1780919828" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4361-004_2.jpg?v=1780919828" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-sale">Sale</span><div class="pcard-cat"></div><div class="pcard-name">Pearl Layered Necklace Set</div><div class="pcard-stars">★★★★ <span>(61)</span></div><div class="pcard-price"><span class="p-now">₹749</span><div class="p-meta"><span class="p-was">₹1,199</span><span class="p-off">38% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-22_1.jpg?v=1780919574" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-22_2.jpg?v=1780919574" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Kundan Temple Chain</div><div class="pcard-stars">★★★★★ <span>(95)</span></div><div class="pcard-price"><span class="p-now">₹799</span><div class="p-meta"><span class="p-was">₹1,399</span><span class="p-off">43% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        {%- for product in collections['necklaces'].products limit: 10 -%}
+          <a class="pcard" href="{{ product.url }}">
+            <div class="pcard-img">
+              <img class="i1" src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>
+              {%- if product.images[1] -%}<img class="i2" src="{{ product.images[1] | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>{%- endif -%}
+              <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+              <div class="pcard-atb">Add to Cart</div>
+            </div>
+            <div class="pcard-info">
+              {%- if product.compare_at_price > product.price -%}<span class="pcard-badge b-sale">Sale</span>{%- endif -%}
+              <div class="pcard-name">{{ product.title }}</div>
+              <div class="pcard-price">
+                <span class="p-now">₹{{ product.price | money_without_currency }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <div class="p-meta"><span class="p-was">₹{{ product.compare_at_price | money_without_currency }}</span><span class="p-off">{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% OFF</span></div>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
       </div>
       <button class="row-arr row-next" onclick="scrollRow('neckRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
@@ -266,10 +220,26 @@
     <div class="prod-row-wrap">
       <button class="row-arr row-prev" onclick="scrollRow('bangRow',-1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
       <div class="prod-row" id="bangRow">
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-21_1.jpg?v=1780919388" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-21_2.jpg?v=1780919388" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-best">Bestseller</span><div class="pcard-cat"></div><div class="pcard-name">Gold Bangle Set of 4</div><div class="pcard-stars">★★★★ <span>(154)</span></div><div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">40% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-15_1.jpg?v=1780918927" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-15_2.jpg?v=1780918927" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-bogo">Buy 1 Get 2 Free</span><div class="pcard-cat"></div><div class="pcard-name">Crystal Beaded Stretch Bracelet</div><div class="pcard-stars">★★★★★ <span>(91)</span></div><div class="pcard-price"><span class="p-now">₹299</span><div class="p-meta"><span class="p-was">₹499</span><span class="p-off">40% OFF</span></div></div><div class="pcard-offer">🎁 Buy 1 Get 2 Free</div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-27_1.jpg?v=1780918665" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-27_2.jpg?v=1780918666" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-new">New</span><div class="pcard-cat"></div><div class="pcard-name">Kundan Kada Bracelet</div><div class="pcard-stars">★★★★ <span>(48)</span></div><div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">43% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
-        <a class="pcard" href="/collections/all"><div class="pcard-img"><img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-25_1_2c669620-33ea-4569-ab1d-60f10fc51ba4.jpg?v=1780913927" alt=""/><img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-25_2_5222214d-5c4d-4401-a17a-876f342f5179.jpg?v=1780913927" alt=""/><button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button><div class="pcard-atb">Add to Cart</div></div><div class="pcard-info"><span class="pcard-badge b-sale">Sale</span><div class="pcard-cat"></div><div class="pcard-name">Temple Design Bangle Set</div><div class="pcard-stars">★★★★★ <span>(112)</span></div><div class="pcard-price"><span class="p-now">₹549</span><div class="p-meta"><span class="p-was">₹899</span><span class="p-off">39% OFF</span></div></div><div class="pcard-free">✓ Free delivery</div></div></a>
+        {%- for product in collections['bracelets'].products limit: 10 -%}
+          <a class="pcard" href="{{ product.url }}">
+            <div class="pcard-img">
+              <img class="i1" src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>
+              {%- if product.images[1] -%}<img class="i2" src="{{ product.images[1] | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>{%- endif -%}
+              <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+              <div class="pcard-atb">Add to Cart</div>
+            </div>
+            <div class="pcard-info">
+              {%- if product.compare_at_price > product.price -%}<span class="pcard-badge b-sale">Sale</span>{%- endif -%}
+              <div class="pcard-name">{{ product.title }}</div>
+              <div class="pcard-price">
+                <span class="p-now">₹{{ product.price | money_without_currency }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <div class="p-meta"><span class="p-was">₹{{ product.compare_at_price | money_without_currency }}</span><span class="p-off">{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% OFF</span></div>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
       </div>
       <button class="row-arr row-next" onclick="scrollRow('bangRow',1)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
     </div>
@@ -297,113 +267,26 @@
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
       </button>
       <div class="prod-row" id="bestRow">
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-34_1.jpg?v=1780911968" alt="Pearl Studs"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-34_2.jpg?v=1780911968" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-best">Bestseller</span>
-            <div class="pcard-cat">Earrings</div>
-            <div class="pcard-name">Pearl Drop Stud Earrings</div>
-            <div class="pcard-stars">★★★★★ <span>(312)</span></div>
-            <div class="pcard-price"><span class="p-now">₹349</span><div class="p-meta"><span class="p-was">₹599</span><span class="p-off">42% OFF</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-36_1.jpg?v=1780910326" alt="Gold Chain"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-36_2.jpg?v=1780910326" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-best">Bestseller</span>
-            <div class="pcard-cat">Necklaces</div>
-            <div class="pcard-name">Layered Gold Chain Set</div>
-            <div class="pcard-stars">★★★★★ <span>(187)</span></div>
-            <div class="pcard-price"><span class="p-now">₹899</span><div class="p-meta"><span class="p-was">₹1,299</span><span class="p-off">31% OFF</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-14_1.jpg?v=1780910081" alt="Chandbali"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4357-14_2_d308d7e9-758f-4708-aeac-feecc2a5613f.jpg?v=1780910081" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-best">Bestseller</span>
-            <div class="pcard-cat">Ethnic</div>
-            <div class="pcard-name">Chandbali Kundan Earrings</div>
-            <div class="pcard-stars">★★★★★ <span>(241)</span></div>
-            <div class="pcard-price"><span class="p-now">₹849</span><div class="p-meta"><span class="p-was">₹1,499</span><span class="p-off">43% OFF</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-31_1.jpg?v=1780908705" alt="Bangle Set"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-31_2.jpg?v=1780908706" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-sale">Sale</span>
-            <div class="pcard-cat">Bangles</div>
-            <div class="pcard-name">Gold Bangle Set of 4</div>
-            <div class="pcard-stars">★★★★ <span>(154)</span></div>
-            <div class="pcard-price"><span class="p-now">₹599</span><div class="p-meta"><span class="p-was">₹999</span><span class="p-off">40% OFF</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-29_1.jpg?v=1780908230" alt="Gift Box"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-29_2.jpg?v=1780908230" alt="hover"/>
-            
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <span class="pcard-badge b-best">Bestseller</span>
-            <div class="pcard-cat">Gift Set</div>
-            <div class="pcard-name">Jewellery Gift Box — 3 Piece</div>
-            <div class="pcard-stars">★★★★★ <span>(98)</span></div>
-            <div class="pcard-price"><span class="p-now">₹1,199</span><div class="p-meta"><span class="p-was">₹1,799</span><span class="p-off">33% OFF</span></div></div>
-            <div class="pcard-offer">🎁 Perfect for Gifting</div>
-          </div>
-        </a>
-
-        <a class="pcard" href="/collections/all">
-          <div class="pcard-img">
-            <img class="i1" src="https://cdn.shopify.com/s/files/1/0301/2793/files/Gemini_Generated_Image_u2vq1mu2vq1mu2vq.png?v=1780907764" alt="Hoops"/>
-            <img class="i2" src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-35_4.jpg?v=1780907496" alt="hover"/>
-            <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
-            <div class="pcard-atb">Add to Cart</div>
-          </div>
-          <div class="pcard-info">
-            <div class="pcard-cat">Earrings</div>
-            <div class="pcard-name">Oxidised Silver Tribal Hoops</div>
-            <div class="pcard-stars">★★★★★ <span>(175)</span></div>
-            <div class="pcard-price"><span class="p-now">₹399</span><div class="p-meta"><span class="p-was">₹699</span><span class="p-off">-43%</span></div></div>
-            <div class="pcard-free">✓ Free delivery</div>
-          </div>
-        </a>
-
+        {%- for product in collections['best-sellers'].products limit: 10 -%}
+          <a class="pcard" href="{{ product.url }}">
+            <div class="pcard-img">
+              <img class="i1" src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>
+              {%- if product.images[1] -%}<img class="i2" src="{{ product.images[1] | image_url: width: 400 }}" alt="{{ product.title }}" loading="lazy"/>{%- endif -%}
+              <button class="pcard-wish" onclick="event.preventDefault();toggleWish(this)">♡</button>
+              <div class="pcard-atb">Add to Cart</div>
+            </div>
+            <div class="pcard-info">
+              {%- if product.compare_at_price > product.price -%}<span class="pcard-badge b-sale">Sale</span>{%- endif -%}
+              <div class="pcard-name">{{ product.title }}</div>
+              <div class="pcard-price">
+                <span class="p-now">₹{{ product.price | money_without_currency }}</span>
+                {%- if product.compare_at_price > product.price -%}
+                  <div class="p-meta"><span class="p-was">₹{{ product.compare_at_price | money_without_currency }}</span><span class="p-off">{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% OFF</span></div>
+                {%- endif -%}
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
       </div>
       <button class="row-arr row-next" onclick="scrollRow('bestRow',1)">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
@@ -411,7 +294,7 @@
     </div>
     <div class="row-footer">
       <div class="row-pager"><button onclick="scrollRow('bestRow',-1)">‹</button><span>1/5</span><button onclick="scrollRow('bestRow',1)">›</button></div>
-      <a href="/collections/earrings" class="row-view-all">View all</a>
+      <a href="/collections/best-sellers" class="row-view-all">View all</a>
     </div>
   </div>
 </section>
