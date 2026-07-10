@@ -524,17 +524,19 @@
       .cat-tile-label { font-size: 10px; font-weight: 600; }
 
       /* ── HERO ── */
-      .hero-slide { height: auto; }
-      .hero-content { padding: 0 20px; }
-      .hero-h1 { font-size: 32px; margin-bottom: 14px; }
-      .hero-eyebrow { font-size: 10px; margin-bottom: 12px; }
-      .hero-desc { font-size: 13px; margin-bottom: 24px; line-height: 1.7; }
-      .btn-fill { padding: 12px 28px; font-size: 11px; }
-      .btn-outline-w { padding: 12px 28px; font-size: 11px; }
-      .hero-arr { width: 24px; height: 24px; }
-      .hero-prev { left: 12px; }
-      .hero-next { right: 12px; }
-      .hero-dots { bottom: 16px; gap: 6px; }
+      .hero { overflow: hidden; }
+      .hero-slide { height: 56vw; min-height: 240px; max-height: 420px; }
+      .hero-slide > img.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+      .hero-content { padding: 0 16px 20px; align-items: flex-end; }
+      .hero-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+      .btn-fill { padding: 10px 20px; font-size: 10px; letter-spacing: 0.08em; }
+      .btn-outline-w { padding: 10px 20px; font-size: 10px; letter-spacing: 0.08em; }
+      .hero-arr { width: 28px; height: 28px; }
+      .hero-prev { left: 8px; }
+      .hero-next { right: 8px; }
+      .hero-dots { bottom: 10px; gap: 5px; }
+      .hero-dot { width: 6px; height: 6px; }
+      .hero-dot.on { width: 18px; }
 
       /* ── PERKS — hide on mobile like Lili Origin ── */
       .perks { display: none; }
