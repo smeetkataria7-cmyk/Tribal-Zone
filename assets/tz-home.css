@@ -19,7 +19,8 @@
     html { scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; }
     html::-webkit-scrollbar { display: none; }
     body { font-family: var(--sans); color: var(--dark); background: #fff; font-size: 14px; line-height: 1.6; outline: none; }
-    div:focus, section:focus, main:focus, #MainContent:focus { outline: none; }
+    *:focus { outline: none !important; box-shadow: none !important; }
+    #PageContainer, .page-container { border: none !important; outline: none !important; }
     /* Kill base-theme .main-content top padding that creates the header↔hero gap (homepage only) */
     .main-content { padding-top: 0 !important; margin-top: 0 !important; }
     a { text-decoration: none; color: inherit; }
