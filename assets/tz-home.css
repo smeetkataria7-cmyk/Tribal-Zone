@@ -522,7 +522,7 @@
       .cart-toggle:hover svg { stroke: var(--gold); }
 
       /* ── CATEGORY TILES — Lili Origin: bigger circles, dark border ── */
-      .cat-tiles-wrap { padding: 20px 14px; }
+      .cat-tiles-wrap { padding: 20px 14px 0; }
       .cat-tiles { gap: 20px; justify-content: flex-start; }
       .cat-tile-img { width: 90px; height: 90px; border-width: 3px; border-color: var(--dark); }
       .cat-tile-label { font-size: 10px; font-weight: 600; }
