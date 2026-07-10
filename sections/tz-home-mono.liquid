@@ -33,16 +33,27 @@
 <div class="tz-marquee"><div class="tz-marquee-track"><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> 2000+ styles to choose from</span><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> 2000+ styles to choose from</span></div></div>
 
 
-<!-- CATEGORY TILES (hardcoded to bypass live settings) -->
+<!-- CATEGORY TILES (individual editable blocks) -->
+{%- assign cat_count = 0 -%}
+{%- for b in section.blocks -%}{%- if b.type == 'category' -%}{%- assign cat_count = cat_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
 <div class="cat-tiles-wrap">
   <div class="cat-tiles">
-    <a href="/collections/earrings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Earrings" loading="lazy"/></div><div class="cat-tile-label">Earring</div></a>
-    <a href="/collections/necklaces" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Necklace" loading="lazy"/></div><div class="cat-tile-label">Necklace</div></a>
-    <a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bracelet" loading="lazy"/></div><div class="cat-tile-label">Bracelet</div></a>
-    <a href="/collections/rings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Rings" loading="lazy"/></div><div class="cat-tile-label">Rings</div></a>
-    <a href="/collections/zodiac-pendants" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac Pendants" loading="lazy"/></div><div class="cat-tile-label">Zodiac Pendants</div></a>
-    <a href="/collections/combo" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Combo Earrings" loading="lazy"/></div><div class="cat-tile-label">Combo Earrings</div></a>
-    <a href="/collections/indo-western" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Indo Western" loading="lazy"/></div><div class="cat-tile-label">Indo Western</div></a>
+    {%- if cat_count > 0 -%}
+      {%- for block in section.blocks -%}{%- if block.type == 'category' -%}
+      <a href="{{ block.settings.link }}" class="cat-tile" {{ block.shopify_attributes }}>
+        <div class="cat-tile-img"><img src="{{ block.settings.image_url }}" alt="{{ block.settings.label }}" loading="lazy"/></div>
+        <div class="cat-tile-label">{{ block.settings.label }}</div>
+      </a>
+      {%- endif -%}{%- endfor -%}
+    {%- else -%}
+      <a href="/collections/earrings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Earring" loading="lazy"/></div><div class="cat-tile-label">Earring</div></a>
+      <a href="/collections/necklaces" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Necklace" loading="lazy"/></div><div class="cat-tile-label">Necklace</div></a>
+      <a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bracelet" loading="lazy"/></div><div class="cat-tile-label">Bracelet</div></a>
+      <a href="/collections/rings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Rings" loading="lazy"/></div><div class="cat-tile-label">Rings</div></a>
+      <a href="/collections/zodiac-pendants" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/products/Y1A93311.jpg" alt="Zodiac Pendants" loading="lazy"/></div><div class="cat-tile-label">Zodiac Pendants</div></a>
+      <a href="/collections/combo" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Combo Earrings" loading="lazy"/></div><div class="cat-tile-label">Combo Earrings</div></a>
+      <a href="/collections/indo-western" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Indo Western" loading="lazy"/></div><div class="cat-tile-label">Indo Western</div></a>
+    {%- endif -%}
   </div>
 </div>
 
