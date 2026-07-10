@@ -567,7 +567,7 @@
     },
     {
       "type": "category",
-      "name": "Category circle",
+      "name": "{{ block.settings.label | default: 'Category circle' }}",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image (upload here to change)" },
         { "type": "text", "id": "image_url", "label": "...or image URL (fallback)" },
