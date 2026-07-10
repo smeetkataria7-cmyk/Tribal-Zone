@@ -298,7 +298,7 @@
     .view-all:hover { gap: 9px; }
 
     /* ── CATEGORY TILES ── */
-    .cat-tiles-wrap { background: #fff; padding: 16px 32px 0; overflow-x: visible; overflow-y: hidden; max-height: 180px; }
+    .cat-tiles-wrap { background: #fff; padding: 16px 32px 0; }
     .cat-tiles { display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none; max-width: 1400px; margin: 0 auto; justify-content: center; outline: none; -webkit-tap-highlight-color: transparent; }
     .cat-tiles::-webkit-scrollbar { display: none; }
     .cat-tiles:focus { outline: none; }
