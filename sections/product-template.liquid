@@ -1,6 +1,65 @@
 <style>
-  .product-form__cart-submit { background: #f2157b !important; color: #fff !important; border-color: #f2157b !important; text-transform: uppercase; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; }
+  /* ===== TRIBAL ZONE — Brand product page ===== */
+  .product-single__meta { font-family: var(--sans,'Poppins',sans-serif); }
+  .product-single__title { font-family: var(--serif,'Cormorant Garamond',serif); font-weight: 400; font-size: clamp(26px,3.4vw,40px); line-height: 1.15; color: var(--dark,#120101); margin: 0 0 10px; }
+
+  /* Rating row */
+  .tzp-rating { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 13.5px; }
+  .tzp-stars { color: #f5a623; letter-spacing: 1px; font-size: 15px; }
+  .tzp-rating b { color: var(--dark,#120101); font-weight: 600; }
+  .tzp-rating a { color: var(--muted,#888); text-decoration: underline; }
+
+  /* Price */
+  .product__price { margin: 0 0 14px; }
+  .tzp-price-row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .tzp-now { font-size: 26px; font-weight: 700; color: var(--gold,#f2157b); }
+  .tzp-was { font-size: 16px; color: var(--muted,#999); text-decoration: line-through; }
+  .tzp-off { font-size: 12px; font-weight: 700; color: #fff; background: var(--gold,#f2157b); padding: 3px 9px; border-radius: 6px; letter-spacing: .03em; }
+
+  /* Trust badges */
+  .tzp-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+  .tzp-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: var(--dark,#120101); background: #fff0f8; border: 1px solid #ffd6ec; padding: 6px 12px; border-radius: 50px; }
+  .tzp-badge svg { width: 14px; height: 14px; }
+
+  /* Shipping / incentive bar */
+  .tzp-ship { display: flex; align-items: center; gap: 10px; background: #f7f7f5; border: 1px dashed #d9d4cd; border-radius: 12px; padding: 12px 16px; margin: 0 0 18px; font-size: 13px; color: var(--mid,#3a3a3a); }
+  .tzp-ship svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--gold,#f2157b); }
+  .tzp-ship b { color: var(--dark,#120101); }
+
+  /* Quantity stepper */
+  .product-form__item--quantity label { display:block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--mid,#3a3a3a); margin-bottom: 7px; }
+  .tzp-qty { display: inline-flex; align-items: center; border: 1px solid var(--border,#e8e8e8); border-radius: 50px; overflow: hidden; }
+  .tzp-qty button { width: 40px; height: 44px; background: #fff; border: none; font-size: 20px; color: var(--dark,#120101); cursor: pointer; line-height: 1; }
+  .tzp-qty button:hover { background: #fff0f8; color: var(--gold,#f2157b); }
+  .tzp-qty input { width: 48px; height: 44px; text-align: center; border: none; font-size: 15px; font-weight: 600; -moz-appearance: textfield; }
+  .tzp-qty input::-webkit-outer-spin-button, .tzp-qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  /* CTA */
+  .product-form__cart-submit { background: var(--gold,#f2157b) !important; color: #fff !important; border-color: var(--gold,#f2157b) !important; text-transform: uppercase; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; border-radius: 50px !important; padding: 16px 24px !important; }
   .product-form__cart-submit:hover { background: #f5488e !important; border-color: #f5488e !important; }
+  .shopify-payment-button__button { border-radius: 50px !important; }
+
+  /* Payment icons */
+  .tzp-pay { margin: 16px 0 6px; }
+  .tzp-pay-lbl { font-size: 11px; color: var(--muted,#888); letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px; }
+  .tzp-pay-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .tzp-pay-row span { font-size: 11px; font-weight: 700; color: #444; background: #fff; border: 1px solid var(--border,#e8e8e8); border-radius: 6px; padding: 5px 10px; }
+
+  /* USP strip */
+  .tzp-usp { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 26px 0 0; padding: 20px 0 0; border-top: 1px solid var(--border,#e8e8e8); }
+  .tzp-usp-item { text-align: center; font-size: 11.5px; color: var(--mid,#3a3a3a); font-weight: 500; }
+  .tzp-usp-item svg { width: 22px; height: 22px; color: var(--gold,#f2157b); margin-bottom: 6px; }
+
+  /* You may also like */
+  .tzp-related { max-width: 1200px; margin: 56px auto 0; padding: 0 20px; }
+  .tzp-related-h { font-family: var(--serif,serif); font-size: clamp(24px,3vw,34px); font-weight: 400; text-align: center; color: var(--dark,#120101); margin: 0 0 24px; }
+  .tzp-rel-row { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; padding-bottom: 8px; scroll-snap-type: x mandatory; }
+  .tzp-rel-row::-webkit-scrollbar { display: none; }
+  .tzp-rel-card { flex: 0 0 auto; width: 200px; scroll-snap-align: start; text-decoration: none; color: var(--dark,#120101); }
+  .tzp-rel-card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; border: 1px solid var(--border,#e8e8e8); }
+  .tzp-rel-name { font-size: 13px; margin: 8px 0 3px; line-height: 1.3; }
+  .tzp-rel-price { font-size: 13.5px; font-weight: 700; color: var(--gold,#f2157b); }
+  @media (max-width: 600px) { .tzp-usp { grid-template-columns: repeat(2,1fr); gap: 18px; } .tzp-rel-card { width: 150px; } }
 </style>
 
 <div class="product-template__container page-width"
@@ -119,8 +178,33 @@
 
         <h1 class="product-single__title">{{ product.title }}</h1>
 
+          {%- comment -%} Static rating — replace with a reviews app (e.g. Judge.me/Loox) when installed {%- endcomment -%}
+          <div class="tzp-rating">
+            <span class="tzp-stars">★★★★★</span>
+            <b>4.8</b>
+            <a href="#tzp-reviews">Verified Reviews</a>
+          </div>
+
           <div class="product__price">
-            {% include 'product-price', variant: current_variant %}
+            {%- if compare_at_price > price -%}
+              <div class="tzp-price-row">
+                <span class="tzp-now">₹{{ price | money_without_currency }}</span>
+                <span class="tzp-was">₹{{ compare_at_price | money_without_currency }}</span>
+                <span class="tzp-off">{{ compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round }}% OFF</span>
+              </div>
+            {%- else -%}
+              <div class="tzp-price-row"><span class="tzp-now">₹{{ price | money_without_currency }}</span></div>
+            {%- endif -%}
+          </div>
+
+          <div class="tzp-badges">
+            <span class="tzp-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/><path d="m9 12 2 2 4-4"/></svg> Skin-safe &amp; Anti-tarnish</span>
+            <span class="tzp-badge">🇮🇳 Proudly Made in India — Handcrafted</span>
+          </div>
+
+          <div class="tzp-ship">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="6" width="15" height="11" rx="2"/><path d="M16 9h4l3 3v5h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+            <div><b>Free delivery</b> on orders over ₹999 · Cash on Delivery available</div>
           </div>
 
           {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
@@ -166,12 +250,14 @@
               {% endfor %}
             </select>
 
-            {% if section.settings.show_quantity_selector %}
-              <div class="product-form__item product-form__item--quantity">
-                <label for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+            <div class="product-form__item product-form__item--quantity">
+              <label for="Quantity-{{ section.id }}">Quantity</label>
+              <div class="tzp-qty">
+                <button type="button" aria-label="Decrease" onclick="var i=this.parentNode.querySelector('input');i.value=Math.max(1,(parseInt(i.value)||1)-1);i.dispatchEvent(new Event('change',{bubbles:true}));">−</button>
                 <input type="number" id="Quantity-{{ section.id }}" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*" data-quantity-input>
+                <button type="button" aria-label="Increase" onclick="var i=this.parentNode.querySelector('input');i.value=(parseInt(i.value)||1)+1;i.dispatchEvent(new Event('change',{bubbles:true}));">+</button>
               </div>
-            {% endif %}
+            </div>
 
             <div class="product-form__error-message-wrapper product-form__error-message-wrapper--hidden" data-error-message-wrapper role="alert">
               {% include 'icon-error' %} <span class="product-form__error-message" data-error-message>{{ 'products.product.quantity_minimum_message' | t }}</span>
@@ -191,7 +277,19 @@
                 {{ form | payment_button }}
               {% endif %}
             </div>
+
+            <div class="tzp-pay">
+              <div class="tzp-pay-lbl">🔒 Secure checkout — pay your way</div>
+              <div class="tzp-pay-row"><span>UPI</span><span>GPay</span><span>PhonePe</span><span>Paytm</span><span>RuPay</span><span>Visa</span><span>Mastercard</span><span>COD</span></div>
+            </div>
           {% endform %}
+
+          <div class="tzp-usp">
+            <div class="tzp-usp-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/><path d="m9 12 2 2 4-4"/></svg><div>Skin-safe</div></div>
+            <div class="tzp-usp-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8L12 3z"/></svg><div>Anti-tarnish</div></div>
+            <div class="tzp-usp-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/></svg><div>Easy Returns</div></div>
+            <div class="tzp-usp-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="9" r="6"/><path d="m9 14-2 7 5-3 5 3-2-7"/></svg><div>Handcrafted since 2003</div></div>
+          </div>
         </div>
 
         {%- comment -%}
@@ -212,6 +310,28 @@
     </div>
   </div>
 </div>
+
+{%- assign rel_coll = product.collections.first -%}
+{%- if rel_coll and rel_coll.products.size > 1 -%}
+  <section class="tzp-related">
+    <h2 class="tzp-related-h">You May Also Like</h2>
+    <div class="tzp-rel-row">
+      {%- assign shown = 0 -%}
+      {%- for p in rel_coll.products -%}
+        {%- unless p.id == product.id -%}
+          {%- if shown < 12 -%}
+            <a class="tzp-rel-card" href="{{ p.url }}">
+              <img src="{{ p.featured_image | img_url: '300x300' }}" alt="{{ p.title | escape }}" loading="lazy"/>
+              <div class="tzp-rel-name">{{ p.title }}</div>
+              <div class="tzp-rel-price">₹{{ p.price | money_without_currency }}</div>
+            </a>
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
 
 {% if collection %}
   <div class="text-center return-link-wrapper page-width">
