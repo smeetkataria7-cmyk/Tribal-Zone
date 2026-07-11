@@ -16,6 +16,7 @@
   @media(max-width:700px){ .tz-loy-steps{ grid-template-columns:1fr; gap:14px; } .tz-loyalty{ padding:40px 16px; } }
 </style>
 
+{%- if section.settings.show_section -%}
 <section class="tz-loyalty">
   <div class="tz-loy-inner">
     <span class="tz-loy-eyebrow">{{ section.settings.eyebrow }}</span>
@@ -29,12 +30,14 @@
     <a href="{{ section.settings.button_link }}" class="tz-loy-btn" id="tzLoyaltyBtn" onclick="if(window.SmileUI&&window.SmileUI.openPanel){window.SmileUI.openPanel();return false;}">{{ section.settings.button_label }}</a>
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "Loyalty Program",
   "class": "index-section",
   "settings": [
+    { "type": "checkbox", "id": "show_section", "label": "Show loyalty section", "info": "Turn this ON when you're ready to launch the rewards program. Off = hidden.", "default": false },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Tribal Zone Rewards" },
     { "type": "text", "id": "title_1", "label": "Title (first part)", "default": "Earn Points." },
     { "type": "text", "id": "title_em", "label": "Title (italic part)", "default": "Get Rewarded." },
