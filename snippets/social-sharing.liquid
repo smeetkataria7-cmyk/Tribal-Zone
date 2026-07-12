@@ -11,15 +11,13 @@
     </li>
   {% endif %}
 
-  {% if settings.share_twitter %}
-    <li>
-      <a target="_blank" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}" class="btn btn--small btn--share share-twitter">
-        {% include 'icon-twitter' %}
-        <span class="share-title" aria-hidden="true">{{ 'general.social.share_on_twitter' | t }}</span>
-        <span class="visually-hidden">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
-      </a>
-    </li>
-  {% endif %}
+  <li>
+    <a target="_blank" rel="noopener" href="https://www.instagram.com/tribalzone.in/" class="btn btn--small btn--share share-instagram">
+      <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" style="vertical-align:middle"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      <span class="share-title" aria-hidden="true">Instagram</span>
+      <span class="visually-hidden">Follow us on Instagram</span>
+    </a>
+  </li>
 
   {% if settings.share_pinterest %}
     <li>
