@@ -6,7 +6,7 @@
 <section class="hero">
   <div class="hero-track" id="heroTrack">
     {%- comment -%}Hardcoded asset banners — images bundled in theme assets{%- endcomment -%}
-    {%- assign _slides = 'banner-slide-1.png|/collections/frontpage|Shop New Arrivals →|/collections/all|Explore All,,banner-slide-2.png|/collections/sale|Shop the Sale →||,,banner-slide-3.png|/collections/best-seller|Shop Now →||,,banner-slide-4.png|/collections/all|Shop All →||,,banner-slide-5.png|/collections/all|Explore 1500+ Styles →||,,banner-slide-6.png|/collections/bracelets|Shop Bracelets →||,,banner-slide-7.png|/collections/zodiac-pendants|Shop Zodiac →||' | split: ',,' -%}
+    {%- assign _slides = 'banner-slide-1.png|/collections/frontpage|Shop New Arrivals →|/collections/all|Explore All|banner-mobile-1.png,,banner-slide-2.png|/collections/sale|Shop the Sale →|||banner-mobile-2.png,,banner-slide-3.png|/collections/best-seller|Shop Now →|||banner-mobile-3.png,,banner-slide-4.png|/collections/all|Shop All →|||banner-mobile-4.png,,banner-slide-5.png|/collections/all|Explore 1500+ Styles →|||banner-mobile-5.png,,banner-slide-6.png|/collections/bracelets|Shop Bracelets →|||banner-mobile-6.png,,banner-slide-7.png|/collections/zodiac-pendants|Shop Zodiac →|||banner-mobile-7.png' | split: ',,' -%}
     {%- for _s in _slides -%}
       {%- assign _sp = _s | split: '|' -%}
       {%- assign _mob = _sp[5] | default: _sp[0] -%}
