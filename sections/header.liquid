@@ -3,6 +3,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
+    /* Kill blue focus outline/border on the page container & main content (showed as L/R edges on tall pages) — global, all pages */
+    #MainContent, .main-content, #PageContainer, .page-container,
+    #MainContent:focus, .main-content:focus, .js-focus-hidden:focus,
+    #PageContainer:focus, .page-container:focus {
+      outline: none !important; border: none !important; box-shadow: none !important;
+    }
     /* Cart & general buttons → brand pink (loads on every page, incl. cart) */
     .btn, .cart__submit, input[type="submit"].btn, .cart__submit-control {
       background: #f2157b !important; border-color: #f2157b !important; color: #fff !important;

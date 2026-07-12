@@ -385,6 +385,24 @@
 
 
 <!-- NEWSLETTER -->
+{%- if section.settings.show_loyalty -%}
+<!-- MEMBER LOYALTY PROGRAM (toggle in section settings) -->
+<section class="tz-loyalty">
+  <div class="tz-loy-inner">
+    <span class="tz-loy-eyebrow">Tribal Zone Rewards</span>
+    <h2 class="tz-loy-title">Earn Points. <em>Get Rewarded.</em></h2>
+    <p class="tz-loy-sub">Join free and collect points on every order &mdash; then redeem them for discounts on your favourite pieces.</p>
+    <div class="tz-loy-steps">
+      <div class="tz-loy-step"><div class="tz-loy-num">1</div><div class="tz-loy-h">Sign Up Free</div><div class="tz-loy-p">Create an account in seconds and start earning right away.</div></div>
+      <div class="tz-loy-step"><div class="tz-loy-num">2</div><div class="tz-loy-h">Shop &amp; Earn</div><div class="tz-loy-p">Collect points every time you place an order.</div></div>
+      <div class="tz-loy-step"><div class="tz-loy-num">3</div><div class="tz-loy-h">Redeem &amp; Save</div><div class="tz-loy-p">Turn your points into discounts at checkout.</div></div>
+    </div>
+    <a href="/account" class="tz-loy-btn" id="tzLoyaltyBtn" onclick="if(window.SmileUI&&window.SmileUI.openPanel){window.SmileUI.openPanel();return false;}">Join Rewards</a>
+  </div>
+</section>
+{%- endif -%}
+
+
 <section class="nl-sec">
   <div class="sec-tag" style="color:var(--gold-lt)">Stay in the Loop</div>
   <h2>Get <em>Early Access</em> to New Drops</h2>
@@ -401,7 +419,9 @@
   "name": "TribalZone Homepage",
   "class": "index-section",
   "max_blocks": 50,
-  "settings": [],
+  "settings": [
+    { "type": "checkbox", "id": "show_loyalty", "label": "Show loyalty / rewards section", "info": "Turn ON when you launch the rewards program. Off = hidden.", "default": false }
+  ],
   "blocks": [
     {
       "type": "slide",
