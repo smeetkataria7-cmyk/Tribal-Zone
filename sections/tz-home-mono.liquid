@@ -11,15 +11,10 @@
       {%- assign _sp = _s | split: '|' -%}
       {%- assign _mob = _sp[5] | default: _sp[0] -%}
       <div class="hero-slide">
-        <img class="hero-img hero-img-d" src="{{ _sp[0] | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
-        <img class="hero-img hero-img-m" src="{{ _mob | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <div class="hero-btns">
-            {%- if _sp[2] != blank -%}<a href="{{ _sp[1] }}" class="btn-fill">{{ _sp[2] }}</a>{%- endif -%}
-            {%- if _sp[4] != blank -%}<a href="{{ _sp[3] }}" class="btn-outline-w">{{ _sp[4] }}</a>{%- endif -%}
-          </div>
-        </div>
+        <a href="{{ _sp[1] }}" class="hero-link" aria-label="Shop Tribal Zone">
+          <img class="hero-img hero-img-d" src="{{ _sp[0] | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
+          <img class="hero-img hero-img-m" src="{{ _mob | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
+        </a>
       </div>
     {%- endfor -%}
   </div>
