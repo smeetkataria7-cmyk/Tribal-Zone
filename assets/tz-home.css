@@ -233,6 +233,7 @@
     .hero-slide { min-width: 100%; width: 100%; position: relative; }
     .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
     .hero-slide > img.hero-img { width: 100%; height: auto; display: block; }
+    .hero-slide > img.hero-img-d { aspect-ratio: 1920 / 740; object-fit: cover; } /* desktop banner ratio 1920x740 */
     .hero-slide > img.hero-img-m { display: none; } /* mobile 1:1 banner hidden on desktop */
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.05) 100%); pointer-events: none; }
     .hero-content {

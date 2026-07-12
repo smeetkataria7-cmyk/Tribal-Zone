@@ -190,7 +190,7 @@
             "type": "category",
             "settings": {
               "label": "Rings",
-              "link": "/collections/rings",
+              "link": "/collections/elegant-rings",
               "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676"
             }
           },
@@ -616,7 +616,7 @@
             "settings": {
               "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676",
               "label": "Rings",
-              "link": "/collections/rings",
+              "link": "/collections/elegant-rings",
               "is_sale": false
             }
           },
