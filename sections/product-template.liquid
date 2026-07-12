@@ -53,7 +53,8 @@
   /* You may also like */
   .tzp-related { max-width: 1200px; margin: 56px auto 0; padding: 0 20px; }
   .tzp-related-h { font-family: var(--serif,serif); font-size: clamp(24px,3vw,34px); font-weight: 400; text-align: center; color: var(--dark,#120101); margin: 0 0 24px; }
-  .tzp-rel-row { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; padding-bottom: 8px; scroll-snap-type: x mandatory; }
+  .tzp-rel-row { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; padding-bottom: 8px; scroll-snap-type: x mandatory; outline: none !important; border: none !important; }
+  .tzp-rel-row:focus, .tzp-rel-row:focus-visible, .tzp-rel-row:focus-within { outline: none !important; box-shadow: none !important; border: none !important; }
   .tzp-rel-row::-webkit-scrollbar { display: none; }
   .tzp-rel-card { flex: 0 0 auto; width: 280px; scroll-snap-align: start; text-decoration: none; color: var(--dark,#120101); }
   .tzp-rel-card img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px; border: 1px solid var(--border,#e8e8e8); }

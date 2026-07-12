@@ -19,8 +19,14 @@
     html { scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; overflow-x: hidden; }
     html::-webkit-scrollbar { display: none; }
     body { font-family: var(--sans); color: var(--dark); background: #fff; font-size: 14px; line-height: 1.6; outline: none; overflow-x: hidden; }
-    *:focus { outline: none !important; box-shadow: none !important; }
+    *:focus, *:focus-visible, *:focus-within { outline: none !important; box-shadow: none !important; }
     #PageContainer, .page-container { border: none !important; outline: none !important; }
+    /* Kill focus outline/border on every horizontal scroller (was showing as L/R edges) */
+    .prod-row, .cat-tiles, .tz-zp-grid, .tz-occ-grid,
+    .prod-row:focus, .cat-tiles:focus, .tz-zp-grid:focus, .tz-occ-grid:focus,
+    .prod-row:focus-visible, .cat-tiles:focus-visible, .tz-zp-grid:focus-visible, .tz-occ-grid:focus-visible {
+      outline: none !important; border: none !important; box-shadow: none !important;
+    }
     /* Kill base-theme .main-content top padding that creates the header↔hero gap (homepage only) */
     .main-content { padding-top: 0 !important; margin-top: 0 !important; }
     a { text-decoration: none; color: inherit; }
