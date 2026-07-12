@@ -549,7 +549,7 @@
               "heading_2": "",
               "desc": "",
               "btn1_label": "Shop New Arrivals →",
-              "btn1_link": "/collections/new-arrivals",
+              "btn1_link": "/collections/frontpage",
               "btn2_label": "Explore All",
               "btn2_link": "/collections/all"
             }
@@ -598,7 +598,7 @@
             "settings": {
               "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688",
               "label": "Necklace",
-              "link": "/collections/necklaces",
+              "link": "/collections/necklace",
               "is_sale": false
             }
           },
