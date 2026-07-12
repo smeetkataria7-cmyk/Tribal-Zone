@@ -9,8 +9,10 @@
     {%- assign _slides = 'banner-slide-1.png|/collections/frontpage|Shop New Arrivals →|/collections/all|Explore All,,banner-slide-2.png|/collections/sale|Shop the Sale →||,,banner-slide-3.png|/collections/best-seller|Shop Now →||,,banner-slide-4.png|/collections/all|Shop All →||,,banner-slide-5.png|/collections/all|Explore 1500+ Styles →||,,banner-slide-6.png|/collections/bracelets|Shop Bracelets →||,,banner-slide-7.png|/collections/zodiac-pendants|Shop Zodiac →||' | split: ',,' -%}
     {%- for _s in _slides -%}
       {%- assign _sp = _s | split: '|' -%}
+      {%- assign _mob = _sp[5] | default: _sp[0] -%}
       <div class="hero-slide">
-        <img class="hero-img" src="{{ _sp[0] | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
+        <img class="hero-img hero-img-d" src="{{ _sp[0] | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
+        <img class="hero-img hero-img-m" src="{{ _mob | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <div class="hero-btns">

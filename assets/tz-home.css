@@ -227,6 +227,7 @@
     .hero-slide { min-width: 100%; width: 100%; position: relative; }
     .hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
     .hero-slide > img.hero-img { width: 100%; height: auto; display: block; }
+    .hero-slide > img.hero-img-m { display: none; } /* mobile 1:1 banner hidden on desktop */
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.05) 100%); pointer-events: none; }
     .hero-content {
       position: absolute; inset: 0; z-index: 2; max-width: 100%; display: flex; align-items: flex-end; padding: 0 72px 48px; color: #fff;
@@ -534,7 +535,8 @@
       .hero { overflow: hidden; display: block !important; width: 100%; height: auto !important; min-height: unset !important; }
       .hero-track { display: flex; align-items: flex-start; width: 100%; }
       .hero-slide { min-width: 100%; width: 100%; height: auto; }
-      .hero-slide > img.hero-img { width: 100%; height: auto; display: block; }
+      .hero-slide > img.hero-img-d { display: none; } /* hide wide desktop banner on mobile */
+      .hero-slide > img.hero-img-m { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; height: auto; }
       .hero-content { padding: 0 16px 20px; align-items: flex-end; }
       .hero-btns { display: flex; flex-wrap: wrap; gap: 8px; }
       .btn-fill { padding: 10px 20px; font-size: 10px; letter-spacing: 0.08em; }
