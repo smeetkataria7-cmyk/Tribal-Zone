@@ -37,8 +37,10 @@
   <div class="cat-tiles">
     {%- if cat_count > 0 -%}
       {%- for block in section.blocks -%}{%- if block.type == 'category' -%}
+      {%- assign _catimg = block.settings.image_url -%}
+      {%- unless _catimg contains 'http' or _catimg contains '//' -%}{%- assign _catimg = _catimg | asset_url -%}{%- endunless -%}
       <a href="{{ block.settings.link }}" class="cat-tile" {{ block.shopify_attributes }}>
-        <div class="cat-tile-img"><img src="{{ block.settings.image_url }}" alt="{{ block.settings.label }}" loading="lazy"/></div>
+        <div class="cat-tile-img"><img src="{{ _catimg }}" alt="{{ block.settings.label }}" loading="lazy"/></div>
         <div class="cat-tile-label">{{ block.settings.label }}</div>
       </a>
       {%- endif -%}{%- endfor -%}

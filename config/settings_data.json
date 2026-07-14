@@ -596,7 +596,7 @@
           "cat-2": {
             "type": "category",
             "settings": {
-              "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688",
+              "image_url": "circle-necklace.jpg",
               "label": "Necklace",
               "link": "/collections/necklace",
               "is_sale": false
@@ -605,7 +605,7 @@
           "cat-3": {
             "type": "category",
             "settings": {
-              "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306",
+              "image_url": "circle-bracelet.jpg",
               "label": "Bracelet",
               "link": "/collections/bracelets",
               "is_sale": false
@@ -614,7 +614,7 @@
           "cat-4": {
             "type": "category",
             "settings": {
-              "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676",
+              "image_url": "circle-rings.jpg",
               "label": "Rings",
               "link": "/collections/elegant-rings",
               "is_sale": false
@@ -641,7 +641,7 @@
           "cat-7": {
             "type": "category",
             "settings": {
-              "image_url": "https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334",
+              "image_url": "circle-indo.jpg",
               "label": "Indo Western",
               "link": "/collections/indo-western",
               "is_sale": false
