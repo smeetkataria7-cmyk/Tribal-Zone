@@ -35,24 +35,14 @@
 {%- for b in section.blocks -%}{%- if b.type == 'category' -%}{%- assign cat_count = cat_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
 <div class="cat-tiles-wrap">
   <div class="cat-tiles">
-    {%- if cat_count > 0 -%}
-      {%- for block in section.blocks -%}{%- if block.type == 'category' -%}
-      {%- assign _catimg = block.settings.image_url -%}
-      {%- unless _catimg contains 'http' or _catimg contains '//' -%}{%- assign _catimg = _catimg | asset_url -%}{%- endunless -%}
-      <a href="{{ block.settings.link }}" class="cat-tile" {{ block.shopify_attributes }}>
-        <div class="cat-tile-img"><img src="{{ _catimg }}" alt="{{ block.settings.label }}" loading="lazy"/></div>
-        <div class="cat-tile-label">{{ block.settings.label }}</div>
-      </a>
-      {%- endif -%}{%- endfor -%}
-    {%- else -%}
+      {%- comment -%} HARDCODED — ignores customizer/block overrides to prevent image mix-ups {%- endcomment -%}
       <a href="/collections/earrings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Earring" loading="lazy"/></div><div class="cat-tile-label">Earring</div></a>
-      <a href="/collections/necklace" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-12_1.jpg?v=1781003688" alt="Necklace" loading="lazy"/></div><div class="cat-tile-label">Necklace</div></a>
-      <a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZHC4351-1_1_fce770d0-a2ae-4647-97f6-cf0bfc1d4d0e.jpg?v=1781003306" alt="Bracelet" loading="lazy"/></div><div class="cat-tile-label">Bracelet</div></a>
-      <a href="/collections/elegant-rings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-15_1.jpg?v=1780923676" alt="Rings" loading="lazy"/></div><div class="cat-tile-label">Rings</div></a>
+      <a href="/collections/necklace" class="cat-tile"><div class="cat-tile-img"><img src="{{ 'circle-necklace.jpg' | asset_url }}" alt="Necklace" loading="lazy"/></div><div class="cat-tile-label">Necklace</div></a>
+      <a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="{{ 'circle-bracelet.jpg' | asset_url }}" alt="Bracelet" loading="lazy"/></div><div class="cat-tile-label">Bracelet</div></a>
+      <a href="/collections/elegant-rings" class="cat-tile"><div class="cat-tile-img"><img src="{{ 'circle-rings.jpg' | asset_url }}" alt="Rings" loading="lazy"/></div><div class="cat-tile-label">Rings</div></a>
       <a href="/collections/zodiac-pendants" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/zodiac_343.jpg" alt="Zodiac Pendants" loading="lazy"/></div><div class="cat-tile-label">Zodiac Pendants</div></a>
       <a href="/collections/sets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Combo Earrings" loading="lazy"/></div><div class="cat-tile-label">Combo Earrings</div></a>
-      <a href="/collections/indo-western" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-21_1.jpg?v=1780922334" alt="Indo Western" loading="lazy"/></div><div class="cat-tile-label">Indo Western</div></a>
-    {%- endif -%}
+      <a href="/collections/indo-western" class="cat-tile"><div class="cat-tile-img"><img src="{{ 'circle-indo.jpg' | asset_url }}" alt="Indo Western" loading="lazy"/></div><div class="cat-tile-label">Indo Western</div></a>
   </div>
 </div>
 
