@@ -1,58 +1,161 @@
-<div class="page-width">
-  <div class="grid">
-    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-      <div class="section-header text-center">
-        <h1>{{ page.title }}</h1>
+<style>
+  :root {
+    --tz-gold: #f2157b; --tz-gold-lt: #f5488e; --tz-dark: #120101;
+    --tz-mid: #3a3a3a; --tz-muted: #888; --tz-border: #e8e8e8;
+    --tz-cream: #fdf9f4;
+  }
+  .tzc-wrap { font-family: 'Poppins', system-ui, sans-serif; color: var(--tz-dark); }
+  .tzc-hero { background: var(--tz-cream); padding: 70px 24px 60px; text-align: center; border-bottom: 1px solid var(--tz-border); }
+  .tzc-eyebrow { font-size: 12px; letter-spacing: 0.28em; color: var(--tz-gold); text-transform: uppercase; font-weight: 600; margin-bottom: 14px; }
+  .tzc-h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(38px, 5vw, 60px); font-weight: 400; margin: 0 0 12px; line-height: 1.1; }
+  .tzc-h1 em { color: var(--tz-gold); font-style: italic; }
+  .tzc-lede { font-size: 15px; color: var(--tz-mid); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+  .tzc-body { max-width: 1200px; margin: 0 auto; padding: 70px 24px; display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; }
+  .tzc-info h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 400; margin: 0 0 8px; }
+  .tzc-info-sub { font-size: 14px; color: var(--tz-muted); margin-bottom: 28px; line-height: 1.7; }
+  .tzc-info-block { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--tz-border); }
+  .tzc-info-block:last-child { border-bottom: none; }
+  .tzc-info-icon { flex-shrink: 0; width: 42px; height: 42px; background: #fff0f8; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--tz-gold); }
+  .tzc-info-icon svg { width: 20px; height: 20px; }
+  .tzc-info-label { font-size: 11px; letter-spacing: 0.1em; color: var(--tz-muted); text-transform: uppercase; font-weight: 600; margin-bottom: 3px; }
+  .tzc-info-val { font-size: 14.5px; color: var(--tz-dark); line-height: 1.55; }
+  .tzc-info-val a { color: var(--tz-dark); text-decoration: none; border-bottom: 1px solid var(--tz-border); transition: color .2s, border-color .2s; }
+  .tzc-info-val a:hover { color: var(--tz-gold); border-color: var(--tz-gold); }
+  .tzc-info-note { font-size: 12.5px; color: var(--tz-muted); margin-top: 4px; font-style: italic; }
+
+  .tzc-socials { display: flex; gap: 12px; margin-top: 8px; }
+  .tzc-soc-btn { width: 42px; height: 42px; border: 1.5px solid var(--tz-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--tz-gold); transition: all .2s; }
+  .tzc-soc-btn:hover { background: var(--tz-gold); color: #fff; transform: translateY(-2px); }
+  .tzc-soc-btn svg { width: 18px; height: 18px; }
+
+  .tzc-form-card { background: #fff; border: 1px solid var(--tz-border); border-radius: 16px; padding: 40px; box-shadow: 0 8px 40px rgba(0,0,0,.04); }
+  .tzc-form-h { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 400; margin: 0 0 8px; }
+  .tzc-form-sub { font-size: 13.5px; color: var(--tz-muted); margin-bottom: 26px; }
+  .tzc-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .tzc-field { display: flex; flex-direction: column; }
+  .tzc-field label { font-size: 11.5px; letter-spacing: 0.08em; color: var(--tz-mid); text-transform: uppercase; font-weight: 600; margin-bottom: 7px; }
+  .tzc-field label .req { color: var(--tz-gold); }
+  .tzc-field input, .tzc-field textarea { font-family: inherit; font-size: 14.5px; padding: 12px 14px; border: 1px solid var(--tz-border); border-radius: 8px; background: #fafafa; color: var(--tz-dark); transition: border-color .2s, background .2s; }
+  .tzc-field input:focus, .tzc-field textarea:focus { outline: none; border-color: var(--tz-gold); background: #fff; }
+  .tzc-field textarea { resize: vertical; min-height: 130px; }
+  .tzc-submit { background: var(--tz-gold); color: #fff; border: none; padding: 15px 36px; border-radius: 50px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-size: 12.5px; cursor: pointer; margin-top: 8px; transition: background .2s, transform .2s; }
+  .tzc-submit:hover { background: var(--tz-gold-lt); transform: translateY(-1px); }
+
+  .tzc-success { background: #e8f7ee; border: 1px solid #a8dfba; color: #1a6e3c; padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; }
+  .tzc-error { background: #fce9ec; border: 1px solid #f4b4bd; color: #a41b2d; padding: 14px 18px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; }
+
+  .tzc-band { background: var(--tz-dark); color: #fff; padding: 44px 24px; text-align: center; }
+  .tzc-band-h { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(24px, 3vw, 32px); font-weight: 400; margin: 0 0 8px; }
+  .tzc-band-p { font-size: 14px; color: rgba(255,255,255,.7); max-width: 500px; margin: 0 auto 20px; }
+  .tzc-band-btn { display: inline-block; background: var(--tz-gold); color: #fff; padding: 12px 28px; border-radius: 50px; text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; transition: background .2s; }
+  .tzc-band-btn:hover { background: var(--tz-gold-lt); }
+
+  @media (max-width: 800px) {
+    .tzc-body { grid-template-columns: 1fr; gap: 40px; padding: 44px 20px; }
+    .tzc-form-card { padding: 26px 20px; }
+    .tzc-form-row { grid-template-columns: 1fr; gap: 14px; }
+    .tzc-hero { padding: 50px 20px 40px; }
+  }
+</style>
+
+<div class="tzc-wrap">
+
+  <section class="tzc-hero">
+    <div class="tzc-eyebrow">Get in Touch</div>
+    <h1 class="tzc-h1">Contact <em>Us</em></h1>
+    <p class="tzc-lede">Questions about an order, a styling suggestion, or just want to say hello? We'd love to hear from you — our team responds within 24–48 working hours.</p>
+  </section>
+
+  <div class="tzc-body">
+
+    <div class="tzc-info">
+      <h2>Reach out to us</h2>
+      <p class="tzc-info-sub">Multiple ways to connect — pick whichever's easiest for you.</p>
+
+      <div class="tzc-info-block">
+        <div class="tzc-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div>
+          <div class="tzc-info-label">Email</div>
+          <div class="tzc-info-val"><a href="mailto:hello@tribalzone.in">hello@tribalzone.in</a></div>
+          <div class="tzc-info-note">Response within 24–48 hours</div>
+        </div>
       </div>
 
-      {% if page.content.size > 0 %}
-        <div class="rte">
-          {{ page.content }}
+      <div class="tzc-info-block">
+        <div class="tzc-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div>
+          <div class="tzc-info-label">Phone / WhatsApp</div>
+          <div class="tzc-info-val"><a href="tel:+919833333333">+91 98333 33333</a></div>
+          <div class="tzc-info-note">Mon–Sat, 10 AM – 7 PM</div>
         </div>
-      {% endif %}
+      </div>
 
-      <div class="contact-form form-vertical">
-        {%- assign formId = 'ContactForm' -%}
-        {% form 'contact', id: formId %}
-          {% include 'form-status', form_id: formId %}
+      <div class="tzc-info-block">
+        <div class="tzc-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="tzc-info-label">Studio Address</div>
+          <div class="tzc-info-val">Tribal Zone<br/>Mumbai, Maharashtra, India</div>
+        </div>
+      </div>
 
-          <div class="grid grid--half-gutters">
-            <div class="grid__item medium-up--one-half">
-              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
-              <input type="text" id="{{ formId }}-name" name="contact[name]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
-            </div>
-            <div class="grid__item medium-up--one-half">
-              <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
-              <input
-                type="email"
-                id="{{ formId }}-email"
-                name="contact[email]"
-                autocorrect="off"
-                autocapitalize="off"
-                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                aria-required="true"
-                {%- if form.errors contains 'email' -%}
-                  class="input--error"
-                  aria-invalid="true"
-                  aria-describedby="{{ formId }}-email-error"
-                {%- endif -%}
-                >
-              {%- if form.errors contains 'email' -%}
-                <span id="{{ formId}}-email-error" class="input-error-message">{% include 'icon-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-              {%- endif -%}
-            </div>
+      <div class="tzc-info-block">
+        <div class="tzc-info-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
+        <div>
+          <div class="tzc-info-label">Follow &amp; DM</div>
+          <div class="tzc-info-val">Share reviews &amp; styling questions on Instagram</div>
+          <div class="tzc-socials">
+            <a href="https://www.instagram.com/tribalzone.in/" target="_blank" rel="noopener" class="tzc-soc-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.facebook.com/tribalzone.in" target="_blank" rel="noopener" class="tzc-soc-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.66 0-3 1.34-3 3v2H9v3h2v6h3v-6h2.5l.5-3H14V9.5c0-.28.22-.5.5-.5z"/></svg></a>
           </div>
-
-          <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
-          <input type="tel" id="{{ formId }}-phone" name="contact[phone]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
-
-          <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
-          <textarea rows="10" id="{{ formId }}-message" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
-
-          <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
-
-        {% endform %}
+        </div>
       </div>
     </div>
+
+    <div class="tzc-form-card">
+      <h2 class="tzc-form-h">Send us a message</h2>
+      <p class="tzc-form-sub">Fill out the form and we'll get back to you shortly.</p>
+
+      {%- assign formId = 'ContactForm' -%}
+      {% form 'contact', id: formId %}
+        {%- if form.posted_successfully? -%}
+          <div class="tzc-success">✓ Thanks! Your message has been sent. We'll get back to you within 24–48 hours.</div>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <div class="tzc-error">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+
+        <div class="tzc-form-row">
+          <div class="tzc-field">
+            <label for="{{ formId }}-name">Your Name</label>
+            <input type="text" id="{{ formId }}-name" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Full name">
+          </div>
+          <div class="tzc-field">
+            <label for="{{ formId }}-email">Email <span class="req">*</span></label>
+            <input type="email" id="{{ formId }}-email" name="contact[email]" required value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <div class="tzc-field" style="margin-bottom: 16px;">
+          <label for="{{ formId }}-phone">Phone / WhatsApp</label>
+          <input type="tel" id="{{ formId }}-phone" name="contact[phone]" pattern="[0-9\-\+\s]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="+91 …">
+        </div>
+
+        <div class="tzc-field" style="margin-bottom: 16px;">
+          <label for="{{ formId }}-message">Message <span class="req">*</span></label>
+          <textarea id="{{ formId }}-message" name="contact[body]" required placeholder="How can we help?">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        </div>
+
+        <button type="submit" class="tzc-submit">Send Message →</button>
+      {% endform %}
+    </div>
+
   </div>
+
+  <section class="tzc-band">
+    <h3 class="tzc-band-h">Need something urgent?</h3>
+    <p class="tzc-band-p">For faster help with existing orders, WhatsApp us directly — we usually reply within a few hours during business time.</p>
+    <a href="https://wa.me/919833333333" target="_blank" rel="noopener" class="tzc-band-btn">Chat on WhatsApp</a>
+  </section>
+
 </div>
