@@ -202,47 +202,32 @@
     </button>
     <a href="/" class="hdr-logo"><img src="{{ 'logo_2.png' | asset_url }}" alt="Tribal Zone"/></a>
 
+    {%- assign _menu = linklists[section.settings.main_linklist] -%}
     <nav class="nav">
       <div class="nav-inner">
-        <div class="nav-item">
-          <a href="/collections/all" class="nav-lnk">Shop by Category <span class="nav-lnk-arrow">▾</span></a>
-          <div class="nav-drop">
-            <a href="/collections/earrings">Earrings</a>
-            <a href="/collections/necklace">Necklace</a>
-            <a href="/collections/bracelets">Bracelet</a>
-            <a href="/collections/elegant-rings">Rings</a>
-            <a href="/collections/sets">Combo</a>
-          </div>
-        </div>
-        <div class="nav-item">
-          <a href="/collections" class="nav-lnk">Shop by Collection <span class="nav-lnk-arrow">▾</span></a>
-          <div class="nav-drop">
-            <a href="/collections/western">Western</a>
-            <a href="/collections/indian">Indian</a>
-            <a href="/collections/fusion">Fusion</a>
-            <a href="/collections/party">Party</a>
-            <a href="/collections/festive">Festive</a>
-            <a href="/collections/street-smart-1">Street Smart</a>
-            <a href="/collections/kitty-party">Kitty Party</a>
-            <a href="/collections/statement">Statement</a>
-            <a href="/collections/zodiac-pendants">Zodiac Signs</a>
-            <a href="/collections/frontpage">New Arrival</a>
-            <a href="/collections/best-seller">Best Sellers</a>
-            <a href="/collections/sale">Sale</a>
-            <a href="/collections/149">149</a>
-            <a href="/collections/199">199</a>
-          </div>
-        </div>
-        <div class="nav-item"><a href="/collections/frontpage" class="nav-lnk">New Arrival</a></div>
-        <div class="nav-item"><a href="/collections/best-seller" class="nav-lnk">Trending Hot Sellers</a></div>
-        <div class="nav-item">
-          <a href="/collections/sale" class="nav-lnk sale">Sale <span class="nav-lnk-arrow">▾</span></a>
-          <div class="nav-drop">
-            <a href="/collections/129">Everything at ₹129</a>
-            <a href="/collections/149">Everything at ₹149</a>
-            <a href="/collections/199">Everything at ₹199</a>
-          </div>
-        </div>
+        {%- if _menu.links.size > 0 -%}
+          {%- for link in _menu.links -%}
+            {%- assign _lc = link.title | downcase -%}
+            {%- assign _sale_cls = '' -%}{%- if _lc contains 'sale' -%}{%- assign _sale_cls = ' sale' -%}{%- endif -%}
+            <div class="nav-item">
+              {%- if link.links.size > 0 -%}
+                <a href="{{ link.url }}" class="nav-lnk{{ _sale_cls }}">{{ link.title }} <span class="nav-lnk-arrow">▾</span></a>
+                <div class="nav-drop">
+                  {%- for sub in link.links -%}
+                    <a href="{{ sub.url }}">{{ sub.title }}</a>
+                  {%- endfor -%}
+                </div>
+              {%- else -%}
+                <a href="{{ link.url }}" class="nav-lnk{{ _sale_cls }}">{{ link.title }}</a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- comment -%} Fallback if no menu is configured in Shopify Admin {%- endcomment -%}
+          <div class="nav-item"><a href="/collections/all" class="nav-lnk">Shop All</a></div>
+          <div class="nav-item"><a href="/collections/frontpage" class="nav-lnk">New Arrivals</a></div>
+          <div class="nav-item"><a href="/collections/sale" class="nav-lnk sale">Sale</a></div>
+        {%- endif -%}
       </div>
     </nav>
 
@@ -269,47 +254,28 @@
     <button class="mob-close" onclick="closeMob()" aria-label="Close">&times;</button>
   </div>
   <nav class="mob-nav">
-    <div class="mob-acc-head" onclick="tzMobAcc(this)">
-      Shop by Category <span class="mob-acc-arrow">▾</span>
-    </div>
-    <div class="mob-acc-body">
-      <a href="/collections/earrings">Earrings</a>
-      <a href="/collections/necklace">Necklace</a>
-      <a href="/collections/bracelets">Bracelet</a>
-      <a href="/collections/elegant-rings">Rings</a>
-      <a href="/collections/sets">Combo</a>
-      <a href="/collections/all">View All Categories</a>
-    </div>
-    <div class="mob-acc-head" onclick="tzMobAcc(this)">
-      Shop by Collection <span class="mob-acc-arrow">▾</span>
-    </div>
-    <div class="mob-acc-body">
-      <a href="/collections/western">Western</a>
-      <a href="/collections/indian">Indian</a>
-      <a href="/collections/fusion">Fusion</a>
-      <a href="/collections/party">Party</a>
-      <a href="/collections/festive">Festive</a>
-      <a href="/collections/street-smart-1">Street Smart</a>
-      <a href="/collections/kitty-party">Kitty Party</a>
-      <a href="/collections/statement">Statement</a>
-      <a href="/collections/zodiac-pendants">Zodiac Signs</a>
-      <a href="/collections/frontpage">New Arrival</a>
-      <a href="/collections/best-seller">Best Sellers</a>
-      <a href="/collections/sale">Sale</a>
-      <a href="/collections/149">149</a>
-      <a href="/collections/199">199</a>
-      <a href="/collections">View All Collections</a>
-    </div>
-    <a href="/collections/frontpage">New Arrival</a>
-    <a href="/collections/best-seller">Trending Hot Sellers</a>
-    <div class="mob-acc-head sale-m" onclick="tzMobAcc(this)">
-      Sale <span class="mob-acc-arrow">▾</span>
-    </div>
-    <div class="mob-acc-body">
-      <a href="/collections/129">Everything at ₹129</a>
-      <a href="/collections/149">Everything at ₹149</a>
-      <a href="/collections/199">Everything at ₹199</a>
-    </div>
+    {%- if _menu.links.size > 0 -%}
+      {%- for link in _menu.links -%}
+        {%- assign _mlc = link.title | downcase -%}
+        {%- assign _msale = '' -%}{%- if _mlc contains 'sale' -%}{%- assign _msale = ' sale-m' -%}{%- endif -%}
+        {%- if link.links.size > 0 -%}
+          <div class="mob-acc-head{{ _msale }}" onclick="tzMobAcc(this)">
+            {{ link.title }} <span class="mob-acc-arrow">▾</span>
+          </div>
+          <div class="mob-acc-body">
+            {%- for sub in link.links -%}
+              <a href="{{ sub.url }}">{{ sub.title }}</a>
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          <a href="{{ link.url }}"{% if _msale != '' %} class="sale-m"{% endif %}>{{ link.title }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      <a href="/collections/all">Shop All</a>
+      <a href="/collections/frontpage">New Arrivals</a>
+      <a href="/collections/sale" class="sale-m">Sale</a>
+    {%- endif -%}
   </nav>
 </div>
 
@@ -330,7 +296,7 @@
   "name": "Header",
   "settings": [
     { "type": "image_picker", "id": "logo", "label": "Logo (optional, overrides default)" },
-    { "type": "link_list", "id": "main_linklist", "label": "Menu (not used by fixed nav)" },
+    { "type": "link_list", "id": "main_linklist", "label": "Header menu", "info": "Edit in Content → Menus. Top-level items become nav links; children become dropdowns. If a link's title contains 'Sale', it turns pink." },
     { "type": "header", "content": "Announcement bar (rotating messages)" },
     { "type": "text", "id": "announce_1", "label": "Message 1", "default": "FREE SHIPPING ON ORDER ABOVE 499" },
     { "type": "text", "id": "announce_2", "label": "Message 2", "default": "FREE BAG CHARM ON ORDER ABOVE 499" },
