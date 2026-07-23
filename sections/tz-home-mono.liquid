@@ -1,74 +1,69 @@
 <!-- MONOLITHIC HOMEPAGE - All sections combined, populated product rows -->
 
-<!-- HERO CAROUSEL — editable slides via Theme Editor blocks -->
+<!-- HERO CAROUSEL — fully editable slides via Theme Editor blocks. Delete/reorder/add works. -->
 {%- assign slide_count = 0 -%}
 {%- for b in section.blocks -%}{%- if b.type == 'slide' -%}{%- assign slide_count = slide_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
-{%- comment -%} Fallback banners if user hasn't set up any slide blocks {%- endcomment -%}
-{%- assign _fallback = 'banner-slide-1.png|/collections/frontpage|banner-mobile-1.png,,banner-slide-2.png|/collections/sale|banner-mobile-2.png,,banner-slide-3.png|/collections/best-seller|banner-mobile-3.png,,banner-slide-4.png|/collections/all|banner-mobile-4.png,,banner-slide-5.png|/collections/all|banner-mobile-5.png,,banner-slide-6.png|/collections/bracelets|banner-mobile-6.png,,banner-slide-7.png|/collections/zodiac-pendants|banner-mobile-7.png' | split: ',,' -%}
-{%- if slide_count > 0 -%}{%- assign total_slides = slide_count -%}{%- else -%}{%- assign total_slides = _fallback.size -%}{%- endif -%}
+{%- if slide_count > 0 -%}
 <section class="hero">
   <div class="hero-track" id="heroTrack">
-    {%- if slide_count > 0 -%}
-      {%- for b in section.blocks -%}{%- if b.type == 'slide' -%}
-        {%- assign _link = b.settings.btn1_link | default: '/collections/all' -%}
-        {%- assign _desk_img = '' -%}
-        {%- if b.settings.image != blank -%}{%- assign _desk_img = b.settings.image | image_url: width: 2020 -%}
-        {%- elsif b.settings.image_url != blank -%}
-          {%- assign _iu = b.settings.image_url -%}
-          {%- if _iu contains 'http' or _iu contains '//' -%}{%- assign _desk_img = _iu -%}{%- else -%}{%- assign _desk_img = _iu | asset_url -%}{%- endif -%}
-        {%- endif -%}
-        {%- assign _mob_img = _desk_img -%}
-        {%- if b.settings.image_mobile != blank -%}{%- assign _mob_img = b.settings.image_mobile | image_url: width: 1200 -%}
-        {%- elsif b.settings.image_mobile_url != blank -%}
-          {%- assign _mu = b.settings.image_mobile_url -%}
-          {%- if _mu contains 'http' or _mu contains '//' -%}{%- assign _mob_img = _mu -%}{%- else -%}{%- assign _mob_img = _mu | asset_url -%}{%- endif -%}
-        {%- endif -%}
-        <div class="hero-slide" {{ b.shopify_attributes }}>
-          <a href="{{ _link }}" class="hero-link" aria-label="Shop Tribal Zone">
-            {%- if _desk_img != '' -%}<img class="hero-img hero-img-d" src="{{ _desk_img }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>{%- endif -%}
-            {%- if _mob_img != '' -%}<img class="hero-img hero-img-m" src="{{ _mob_img }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>{%- endif -%}
-          </a>
-        </div>
-      {%- endif -%}{%- endfor -%}
-    {%- else -%}
-      {%- for _s in _fallback -%}
-        {%- assign _sp = _s | split: '|' -%}
-        <div class="hero-slide">
-          <a href="{{ _sp[1] }}" class="hero-link" aria-label="Shop Tribal Zone">
-            <img class="hero-img hero-img-d" src="{{ _sp[0] | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
-            <img class="hero-img hero-img-m" src="{{ _sp[2] | asset_url }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>
-          </a>
-        </div>
-      {%- endfor -%}
-    {%- endif -%}
+    {%- for b in section.blocks -%}{%- if b.type == 'slide' -%}
+      {%- assign _link = b.settings.btn1_link | default: '/collections/all' -%}
+      {%- assign _desk_img = '' -%}
+      {%- if b.settings.image != blank -%}{%- assign _desk_img = b.settings.image | image_url: width: 2020 -%}
+      {%- elsif b.settings.image_url != blank -%}
+        {%- assign _iu = b.settings.image_url -%}
+        {%- if _iu contains 'http' or _iu contains '//' -%}{%- assign _desk_img = _iu -%}{%- else -%}{%- assign _desk_img = _iu | asset_url -%}{%- endif -%}
+      {%- endif -%}
+      {%- assign _mob_img = _desk_img -%}
+      {%- if b.settings.image_mobile != blank -%}{%- assign _mob_img = b.settings.image_mobile | image_url: width: 1200 -%}
+      {%- elsif b.settings.image_mobile_url != blank -%}
+        {%- assign _mu = b.settings.image_mobile_url -%}
+        {%- if _mu contains 'http' or _mu contains '//' -%}{%- assign _mob_img = _mu -%}{%- else -%}{%- assign _mob_img = _mu | asset_url -%}{%- endif -%}
+      {%- endif -%}
+      <div class="hero-slide" {{ b.shopify_attributes }}>
+        <a href="{{ _link }}" class="hero-link" aria-label="Shop Tribal Zone">
+          {%- if _desk_img != '' -%}<img class="hero-img hero-img-d" src="{{ _desk_img }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>{%- endif -%}
+          {%- if _mob_img != '' -%}<img class="hero-img hero-img-m" src="{{ _mob_img }}" alt="Tribal Zone Banner" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"/>{%- endif -%}
+        </a>
+      </div>
+    {%- endif -%}{%- endfor -%}
   </div>
-  <button class="hero-arr hero-prev" onclick="heroMove(-1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
-  <button class="hero-arr hero-next" onclick="heroMove(1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
-  <div class="hero-dots" id="heroDots">
-    {%- for i in (1..total_slides) -%}<div class="hero-dot{% if forloop.first %} on{% endif %}" onclick="heroGo({{ forloop.index0 }})"></div>{%- endfor -%}
-  </div>
+  {%- if slide_count > 1 -%}
+    <button class="hero-arr hero-prev" onclick="heroMove(-1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+    <button class="hero-arr hero-next" onclick="heroMove(1)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+    <div class="hero-dots" id="heroDots">
+      {%- for i in (1..slide_count) -%}<div class="hero-dot{% if forloop.first %} on{% endif %}" onclick="heroGo({{ forloop.index0 }})"></div>{%- endfor -%}
+    </div>
+  {%- endif -%}
 </section>
+{%- endif -%}
 
 
 <!-- VALUES MARQUEE -->
 <div class="tz-marquee"><div class="tz-marquee-track"><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> 2000+ styles to choose from</span><span class="tz-mq-item"><span class="star">&#10022;</span> Handcrafted since 2003</span><span class="tz-mq-item"><span class="star">&#10022;</span> Skin-safe &amp; Anti-tarnish</span><span class="tz-mq-item"><span class="star">&#10022;</span> Free shipping over &#8377;999</span><span class="tz-mq-item"><span class="star">&#10022;</span> Cash on Delivery available</span><span class="tz-mq-item"><span class="star">&#10022;</span> 2000+ styles to choose from</span></div></div>
 
 
-<!-- CATEGORY TILES (individual editable blocks) -->
+<!-- CATEGORY TILES — fully editable via Theme Editor blocks -->
 {%- assign cat_count = 0 -%}
 {%- for b in section.blocks -%}{%- if b.type == 'category' -%}{%- assign cat_count = cat_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+{%- if cat_count > 0 -%}
 <div class="cat-tiles-wrap">
   <div class="cat-tiles">
-      {%- comment -%} HARDCODED — ignores customizer/block overrides to prevent image mix-ups {%- endcomment -%}
-      <a href="/collections/earrings" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/Creative_46df76f1-5aa8-44cb-9404-46bdeed4d4a1.jpg?v=1781081928" alt="Earring" loading="lazy"/></div><div class="cat-tile-label">Earring</div></a>
-      <a href="/collections/necklace" class="cat-tile"><div class="cat-tile-img"><img src="{{ 'circle-necklace.jpg' | asset_url }}" alt="Necklace" loading="lazy"/></div><div class="cat-tile-label">Necklace</div></a>
-      <a href="/collections/bracelets" class="cat-tile"><div class="cat-tile-img"><img src="{{ 'circle-bracelet.jpg' | asset_url }}" alt="Bracelet" loading="lazy"/></div><div class="cat-tile-label">Bracelet</div></a>
-      <a href="/collections/elegant-rings" class="cat-tile"><div class="cat-tile-img"><img src="{{ 'circle-rings.jpg' | asset_url }}" alt="Rings" loading="lazy"/></div><div class="cat-tile-label">Rings</div></a>
-      <a href="/collections/zodiac-pendants" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/zodiac_343.jpg" alt="Zodiac Pendants" loading="lazy"/></div><div class="cat-tile-label">Zodiac Pendants</div></a>
-      <a href="/collections/sets" class="cat-tile"><div class="cat-tile-img"><img src="https://cdn.shopify.com/s/files/1/0301/2793/files/TZ4383-19_1.jpg?v=1780923056" alt="Combo Earrings" loading="lazy"/></div><div class="cat-tile-label">Combo Earrings</div></a>
-      <a href="/collections/indo-western" class="cat-tile"><div class="cat-tile-img"><img src="{{ 'circle-indo.jpg' | asset_url }}" alt="Indo Western" loading="lazy"/></div><div class="cat-tile-label">Indo Western</div></a>
+    {%- for block in section.blocks -%}{%- if block.type == 'category' -%}
+      {%- assign _cimg = '' -%}
+      {%- if block.settings.image != blank -%}{%- assign _cimg = block.settings.image | image_url: width: 400 -%}
+      {%- elsif block.settings.image_url != blank -%}
+        {%- assign _cu = block.settings.image_url -%}
+        {%- if _cu contains 'http' or _cu contains '//' -%}{%- assign _cimg = _cu -%}{%- else -%}{%- assign _cimg = _cu | asset_url -%}{%- endif -%}
+      {%- endif -%}
+      <a href="{{ block.settings.link | default: '/collections/all' }}" class="cat-tile{% if block.settings.is_sale %} is-sale{% endif %}" {{ block.shopify_attributes }}>
+        <div class="cat-tile-img">{%- if _cimg != '' -%}<img src="{{ _cimg }}" alt="{{ block.settings.label | escape }}" loading="lazy"/>{%- endif -%}</div>
+        <div class="cat-tile-label">{{ block.settings.label }}</div>
+      </a>
+    {%- endif -%}{%- endfor -%}
   </div>
 </div>
+{%- endif -%}
 
 
 <!-- SHOP BY OCCASION (editable via blocks) -->
